@@ -2,36 +2,43 @@
 #include <math.h>
 
 #define CALL_TEST(method, args...) method(__LINE__, args)
+#define FORMAT_TEST(string, line, args...) printf("Test failed on line %d: " string, line, args)
 
 enum RootCount {
-    none, one, two, infinity, error
+    RootCount_NONE,
+    RootCount_ONE,
+    RootCount_TWO,
+    RootCount_INFINITY,
+    RootCount_ERROR
+};
+
+const char* RootCount_descriptions[] = {
+    "one root",
+    "two roots",
+    "zero roots",
+    "infinite roots",
+    "solver error"
 };
 
 typedef enum RootCount RootCount;
 
-const char* oneRoot = "one root";
-const char* twoRoots = "two roots";
-const char* noneRoots = "zero roots";
-const char* infiniteRoots = "infinite roots";
-const char* solverError = "solver error";
-
 RootCount solveEquation(double a, double b, double c, double roots[2]) {
     
     if(isnan(a) || isnan(b) || isnan(c) || roots == NULL) {
-        return error;
+        return RootCount_ERROR;
     }
     
-    if(a == 0 && b == 0 && c == 0) return infinity;
+    if(a == 0 && b == 0 && c == 0) return RootCount_INFINITY;
     
     double discriminant = b * b - 4 * a * c;
     
-    if(discriminant == 0) {
+    if(discriminant >= -1E-50 && discriminant <= 1E-50) {
         roots[0] = -(b / (a * 2));
-        return one;
+        return RootCount_ONE;
     }
     
     if(discriminant < 0) {
-        return none;
+        return RootCount_NONE;
     }
     
     discriminant = sqrt(discriminant);
@@ -39,20 +46,16 @@ RootCount solveEquation(double a, double b, double c, double roots[2]) {
     roots[0] = (-b + discriminant) / (a * 2);
     roots[1] = (-b - discriminant) / (a * 2);
     
-    return two;
+    return RootCount_TWO;
 }
 
 const char* responseToStr(RootCount response) {
-    if(response == one) return oneRoot;
-    if(response == two) return twoRoots;
-    if(response == none) return noneRoots;
-    if(response == infinity) return infiniteRoots;
-    return solverError;
+    return RootCount_descriptions[response];
 }
 
-short testResponse(RootCount response, RootCount expected, int line) {
+uint8_t testResponse(RootCount response, RootCount expected, int line) {
     if(response == expected) return 1;
-    printf("Test failed on line %d: %s expected, got %s\n", line, responseToStr(expected), responseToStr(response));
+    FORMAT_TEST("%s expected, got %s\n", line, responseToStr(expected), responseToStr(response));
     return 0;
 }
 
@@ -60,18 +63,18 @@ short testResponse(RootCount response, RootCount expected, int line) {
 void testSolverOneRoot(int line, double a, double b, double c, double root) {
     double roots[2];
     RootCount result = solveEquation(a, b, c, roots);
-    if(testResponse(result, one, line)) {
+    if(testResponse(result, RootCount_ONE, line)) {
         if(root != roots[0])
-            printf("Test failed on line %d: single %lf root expected, got %lf\n", line, root, roots[0]);
+            FORMAT_TEST("single %lf root expected, got %lf\n", line, root, roots[0]);
     }
 }
 
 void testSolverTwoRoots(int line, double a, double b, double c, double root1, double root2) {
     double roots[2];
     RootCount result = solveEquation(a, b, c, roots);
-    if(testResponse(result, two, line)) {
+    if(testResponse(result, RootCount_TWO, line)) {
         if(root1 != roots[0] || root2 != roots[1])
-            printf("Test failed on line %d: expected roots %lf, %lf, got %lf, %lf\n", line, root1, root2, roots[0], roots[1]);
+            FORMAT_TEST("expected roots %lf, %lf, got %lf, %lf\n", line, root1, root2, roots[0], roots[1]);
     }
 }
 
@@ -86,28 +89,34 @@ void test() {
     CALL_TEST(testSolverOneRoot, 1, -2, 1, 1);
     CALL_TEST(testSolverTwoRoots, -2, -2, 4, -2, 1);
     CALL_TEST(testSolverTwoRoots, 4, 2, -2, 0.5, -1);
-    CALL_TEST(testSolverResponse, 0, 0, 0, infinity);
-    CALL_TEST(testSolverResponse, 5, 5, 5, none);
-    CALL_TEST(testSolverResponse, 1, 1, 1, none);
+    CALL_TEST(testSolverResponse, 0, 0, 0, RootCount_INFINITY);
+    CALL_TEST(testSolverResponse, 5, 5, 5, RootCount_NONE);
+    CALL_TEST(testSolverResponse, 1, 1, 1, RootCount_NONE);
 }
 
 void solveUserEquation() {
-    double a, b, c;
-    double result[2];
+    double a = 0, b = 0, c = 0;
+    double result[2] = {0, 0};
     
-    printf("Enter a, b, c: ");
-    scanf("%lf %lf %lf", &a, &b, &c);
+    while(1) {
+        printf("Enter a, b, c: ");
+        if(scanf("%lf %lf %lf", &a, &b, &c) == 3) {
+            break;
+        }
+    }
     
     RootCount rootCount = solveEquation(a, b, c, result);
     
-    if(rootCount == none) {
+    if(rootCount == RootCount_NONE) {
         printf("no roots\n");
-    } else if(rootCount == one) {
+    } else if(rootCount == RootCount_ONE) {
         printf("root: %lf\n", result[0]);
-    } else if(rootCount == two) {
+    } else if(rootCount == RootCount_TWO) {
         printf("roots: %lf, %lf\n", result[0], result[1]);
-    } else if(rootCount == infinity) {
+    } else if(rootCount == RootCount_INFINITY) {
         printf("infinite roots\n");
+    } else if(rootCount == RootCount_ERROR) {
+        printf("solver error\n");
     }
 }
 

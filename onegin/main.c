@@ -15,11 +15,19 @@ struct Node {
     Node* right;
 };
 
+/**
+ * @brief Dispays allocation error message and crashes the program afterwards
+ */
 void memory_failure() {
     perror("Failed to allocate memory\n");
     exit(-1);
 }
 
+/**
+ * @brief Creates a new tree node
+ *
+ * @returns newly-created tree node
+ */
 Node* create_node() {
     Node* map = (Node*)malloc(sizeof(Node));
     
@@ -33,6 +41,17 @@ Node* create_node() {
     return map;
 }
 
+/**
+ * @brief Constructs new tree based on string
+ *
+ * This function should be used to
+ * initialize long branches. It's much faster
+ * than calling add_string method with NULL
+ * map.
+ *
+ * @param string The string that should be stored in new tree
+ * @param length The length of given string
+ */
 Node* build_string(char* string, size_t length) {
     Node* maps = NULL;
     Node* new_map = NULL;
@@ -61,6 +80,16 @@ Node* build_string(char* string, size_t length) {
     
     return maps;
 }
+
+/**
+ * @brief Adding new entry to existing map
+ *
+ * @param map Map which should store this string
+ * @param string String that should be stored
+ * @param length Length of the string
+ *
+ * @returns updated map entry point if it should change
+ */
 
 Node* add_string(Node* map, char* string, size_t length) {
     if(length == 0) return NULL;
@@ -110,6 +139,14 @@ Node* add_string(Node* map, char* string, size_t length) {
     }
 }
 
+/**
+ * @brief Prints the tree
+ *
+ * @param map Tree to pring
+ * @param buffer Char buffer to use for printing
+ * @param depth Internal flag. Should be set to zero
+ */
+
 void print_tree(Node* map, char* buffer, size_t depth) {
     if(!map) {
         return;
@@ -128,6 +165,12 @@ void print_tree(Node* map, char* buffer, size_t depth) {
     }
 }
 
+/**
+ * @brief Deallocates the tree
+ *
+ * @param tree Tree to deallocare
+ */
+
 void free_tree(Node* tree) {
     while(tree) {
         if(tree -> right) free_tree(tree -> right);
@@ -137,6 +180,17 @@ void free_tree(Node* tree) {
     }
 }
 
+/**
+ * @brief Entry point
+ *
+ * Execution of the program
+ * starts here.
+ *
+ * @param argc Number of arguments
+ * @param argv List of arguments
+ *
+ * @return Program exit status
+*/
 int main(int argc, const char * argv[]) {
     
     FILE* input = fopen(argv[1], "r");

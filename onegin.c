@@ -1,0 +1,188 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MEASURE_TIME
+#ifdef MEASURE_TIME
+#include <time.h>
+#endif
+
+typedef struct Node Node;
+typedef struct Node Node;
+
+struct Node {
+    char item;
+    Node* left;
+    Node* right;
+};
+
+Node* create_node() {
+    Node* map = (Node*)malloc(sizeof(Node));
+    map -> item = '\0';
+    map -> left = NULL;
+    map -> right = NULL;
+    return map;
+}
+
+Node* build_string(char* string, size_t length) {
+    Node* maps = NULL;
+    Node* item = NULL;
+    Node* previous = NULL;
+    for(size_t i = 0; i < length; i++) {
+        item = (Node*)malloc(sizeof(Node));
+        if(!maps) maps = item;
+        item -> item = string[i];
+        item -> left = NULL;
+        item -> right = NULL;
+        
+        if(previous) {
+            previous -> right = item;
+        }
+        
+        previous = item;
+    }
+    
+    return maps;
+}
+
+Node* add_string(Node* map, char* string, size_t length) {
+    if(length == 0) return NULL;
+
+    char start = string[0];
+
+    Node* current;
+    Node* previous = NULL;
+    
+    for(current = map; current; current = current -> left) {
+        if(current -> item == start) {
+            Node* result = add_string(current -> right, string + 1, length - 1);
+            if(result) {
+                current -> right = result;
+            }
+            
+            return NULL;
+        } else if(current -> item > start) {
+            Node* new_map = create_node();
+            new_map -> item = start;
+            new_map -> left = current;
+            if(previous) {
+                previous -> left = new_map;
+            }
+            
+            new_map -> right = build_string(string + 1, length - 1);
+            
+            if(previous) {
+                return NULL;
+            } else {
+                return new_map;
+            }
+        }
+        
+        previous = current;
+    }
+    
+    Node* new_map = create_node();
+    new_map -> item = start;
+    new_map -> right = build_string(string + 1, length - 1);
+    
+    if(previous) {
+        previous -> left = new_map;
+        return NULL;
+    } else {
+        return new_map;
+    }
+}
+
+void print_tree(Node* map, char* buffer, size_t depth) {
+    Node* current;
+    
+    for(current = map; current; current = current -> left) {
+        buffer[depth] = current -> item;
+        if(current -> right) {
+            print_tree(current -> right, buffer, depth + 1);
+        } else {
+            buffer[depth + 1] = '\0';
+            printf("%s\n", buffer);
+        }
+    }
+}
+
+void free_tree(Node* tree) {
+    while(tree) {
+        if(tree -> right) free_tree(tree -> right);
+        Node* next = tree -> left;
+        free(tree);
+        tree = next;
+    }
+}
+
+int main(int argc, const char * argv[]) {
+    
+    FILE* input = fopen(argv[1], "r");
+    
+    size_t buffer_length = 256;
+    size_t delta_buffer_length = 256;
+
+    
+    char* buffer = (char*)malloc(buffer_length);
+    char c;
+    size_t line_length = 0;
+
+    Node* begin = NULL;
+    
+#ifdef MEASURE_TIME
+    clock_t start, end;
+    clock_t total = 0;
+#endif
+    
+    
+    while (1) {
+        c = (char)fgetc(input);
+        
+        if(c == '\n' || c == EOF) {
+            
+#ifdef MEASURE_TIME
+            start = clock();
+#endif
+            Node* result = add_string(begin, buffer, line_length);
+            if(result != NULL) {
+                begin = result;
+            }
+
+#ifdef MEASURE_TIME
+            end = clock();
+            
+            total += end - start;
+#endif
+        
+            line_length = 0;
+            if(c == EOF) {
+                break;
+            }
+        } else {
+            buffer[line_length] = c;
+            line_length++;
+            if(line_length == buffer_length) {
+                buffer_length += delta_buffer_length;
+                buffer = realloc(buffer, buffer_length);
+            }
+        }
+    }
+    
+#ifdef MEASURE_TIME
+    double time_taken = ((double)total)/CLOCKS_PER_SEC;
+    
+    printf("### it took %f seconds to sort ###\n", time_taken);
+#endif
+    
+    if(begin) {
+        print_tree(begin, buffer, 0);
+    }
+    
+    fclose(input);
+    free_tree(begin);
+    free(buffer);
+    
+    return 0;
+}
+ 

@@ -13,14 +13,20 @@ enum RootCount {
 };
 
 const char* RootCount_descriptions[] = {
+    "zero roots",
     "one root",
     "two roots",
-    "zero roots",
     "infinite roots",
     "solver error"
 };
 
 typedef enum RootCount RootCount;
+
+const double epsilon = 1E-50;
+
+uint8_t double_is_tiny(double a) {
+    return a >= -epsilon && a <= epsilon;
+}
 
 RootCount solveEquation(double a, double b, double c, double roots[2]) {
     
@@ -32,7 +38,7 @@ RootCount solveEquation(double a, double b, double c, double roots[2]) {
     
     double discriminant = b * b - 4 * a * c;
     
-    if(discriminant >= -1E-50 && discriminant <= 1E-50) {
+    if(double_is_tiny(discriminant)) {
         roots[0] = -(b / (a * 2));
         return RootCount_ONE;
     }

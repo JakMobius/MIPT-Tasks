@@ -8,7 +8,6 @@
 #endif
 
 typedef struct Node Node;
-typedef struct Node Node;
 
 struct Node {
     char item;
@@ -16,8 +15,18 @@ struct Node {
     Node* right;
 };
 
+void memory_failure() {
+    perror("Failed to allocate memory\n");
+    exit(-1);
+}
+
 Node* create_node() {
     Node* map = (Node*)malloc(sizeof(Node));
+    
+    if(!map) {
+        memory_failure();
+    }
+    
     map -> item = '\0';
     map -> left = NULL;
     map -> right = NULL;
@@ -26,20 +35,28 @@ Node* create_node() {
 
 Node* build_string(char* string, size_t length) {
     Node* maps = NULL;
-    Node* item = NULL;
+    Node* new_map = NULL;
     Node* previous = NULL;
     for(size_t i = 0; i < length; i++) {
-        item = (Node*)malloc(sizeof(Node));
-        if(!maps) maps = item;
-        item -> item = string[i];
-        item -> left = NULL;
-        item -> right = NULL;
+        new_map = (Node*)malloc(sizeof(Node));
         
-        if(previous) {
-            previous -> right = item;
+        if(!new_map) {
+            memory_failure();
         }
         
-        previous = item;
+        if(!maps) {
+            maps = new_map;
+        }
+        
+        new_map -> item = string[i];
+        new_map -> left = NULL;
+        new_map -> right = NULL;
+        
+        if(previous) {
+            previous -> right = new_map;
+        }
+        
+        previous = new_map;
     }
     
     return maps;
@@ -94,6 +111,10 @@ Node* add_string(Node* map, char* string, size_t length) {
 }
 
 void print_tree(Node* map, char* buffer, size_t depth) {
+    if(!map) {
+        return;
+    }
+    
     Node* current;
     
     for(current = map; current; current = current -> left) {
@@ -120,12 +141,22 @@ int main(int argc, const char * argv[]) {
     
     FILE* input = fopen(argv[1], "r");
     
+    size_t fraction_length = 1024;
     size_t buffer_length = 256;
     size_t delta_buffer_length = 256;
-
     
-    char* buffer = (char*)malloc(buffer_length);
-    char c;
+    char* buffer = (char*) malloc(buffer_length);
+    char* fraction = (char*) malloc(fraction_length);
+    
+    if(!fraction) {
+        memory_failure();
+    }
+    
+    if(!buffer) {
+        memory_failure();
+    }
+    
+    size_t fraction_index = fraction_length;
     size_t line_length = 0;
 
     Node* begin = NULL;
@@ -135,9 +166,20 @@ int main(int argc, const char * argv[]) {
     clock_t total = 0;
 #endif
     
-    
     while (1) {
-        c = (char)fgetc(input);
+        char c;
+        
+        if(fraction_index == fraction_length) {
+            fraction_index = 0;
+            size_t readen = fread(fraction, 1, fraction_length, input);
+            if(readen < fraction_length) {
+                fraction[readen] = EOF;
+            }
+        }
+        
+        c = fraction[fraction_index];
+        
+        fraction_index++;
         
         if(c == '\n' || c == EOF) {
             

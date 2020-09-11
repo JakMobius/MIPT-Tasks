@@ -24,9 +24,23 @@ typedef enum RootCount RootCount;
 
 const double epsilon = 1E-50;
 
+/**
+ * @brief Determines if specified double is tiny (modulo less than epsilon)
+ * @returns 1 if double is tiny, 0 otherwise
+ */
+
 uint8_t double_is_tiny(double a) {
     return a >= -epsilon && a <= epsilon;
 }
+
+/**
+ * @brief Solves the square equation ax^2 + bx + c = 0
+ * @param [in] a the a coefficient
+ * @param [in] b the b coefficient
+ * @param [in] c the c coefficient
+ * @param [out] roots buffer for the roots of the equation. If the specified equation has one root, only roots[0] is written.
+ * @returns Root count, if equation is correct. If given arguments are invalid, RootCount_ERROR is returned.
+ */
 
 RootCount solveEquation(double a, double b, double c, double roots[2]) {
     
@@ -55,17 +69,24 @@ RootCount solveEquation(double a, double b, double c, double roots[2]) {
     return RootCount_TWO;
 }
 
-const char* responseToStr(RootCount response) {
-    return RootCount_descriptions[response];
-}
-
+/**
+ * @brief Tests if two RootCount enums match. Prints error message if they doesn't
+ * @returns 1 if they match, 0 otherwise
+ */
 uint8_t testResponse(RootCount response, RootCount expected, int line) {
     if(response == expected) return 1;
-    FORMAT_TEST("%s expected, got %s\n", line, responseToStr(expected), responseToStr(response));
+    FORMAT_TEST("%s expected, got %s\n", line, RootCount_descriptions[expected], RootCount_descriptions[response]);
     return 0;
 }
 
-
+/**
+ * @brief Tests if specified square equation has exactly one root. Prints error message if it doesn't
+ * @param [in] line test line. This argument is usally provided by macro
+ * @param [in] a the a coefficient
+ * @param [in] b the b coefficient
+ * @param [in] c the c coefficient
+ * @param [in] root the expected root
+*/
 void testSolverOneRoot(int line, double a, double b, double c, double root) {
     double roots[2];
     RootCount result = solveEquation(a, b, c, roots);
@@ -75,6 +96,15 @@ void testSolverOneRoot(int line, double a, double b, double c, double root) {
     }
 }
 
+/**
+ * @brief Tests if specified square equation has two roots. Prints error message if it doesn't
+ * @param [in] line test line. This argument is usally provided by macro
+ * @param [in] a the a coefficient
+ * @param [in] b the b coefficient
+ * @param [in] c the c coefficient
+ * @param [in] root1 the root expected to be first
+ * @param [in] root2 the root expected to be second
+*/
 void testSolverTwoRoots(int line, double a, double b, double c, double root1, double root2) {
     double roots[2];
     RootCount result = solveEquation(a, b, c, roots);
@@ -84,11 +114,24 @@ void testSolverTwoRoots(int line, double a, double b, double c, double root1, do
     }
 }
 
+/**
+ * @brief Tests if specified square equation leads to exact solver response. Prints error message if it doesn't.
+ * @param [in] line test line. This argument is usally provided by macro
+ * @param [in] a the a coefficient
+ * @param [in] b the b coefficient
+ * @param [in] c the c coefficient
+ * @param [in] response expected solver response
+ */
+
 void testSolverResponse(int line, double a, double b, double c, RootCount response) {
     double roots[2];
     RootCount result = solveEquation(a, b, c, roots);
     testResponse(result, response, line);
 }
+
+/**
+ * @brief Performs unit test
+ */
 
 void test() {
     CALL_TEST(testSolverOneRoot, 1, 2, 1, -1);
@@ -99,6 +142,10 @@ void test() {
     CALL_TEST(testSolverResponse, 5, 5, 5, RootCount_NONE);
     CALL_TEST(testSolverResponse, 1, 1, 1, RootCount_NONE);
 }
+
+/**
+ * @brief Solves equation from user input
+ */
 
 void solveUserEquation() {
     double a = 0, b = 0, c = 0;
@@ -125,6 +172,19 @@ void solveUserEquation() {
         printf("solver error\n");
     }
 }
+
+
+/**
+ * @brief Entry point
+ *
+ * Execution of the program
+ * starts here.
+ *
+ * @param [in] argc Number of arguments
+ * @param [in] argv List of arguments
+ *
+ * @return Program exit status
+*/
 
 int main(int argc, const char * argv[]) {
     

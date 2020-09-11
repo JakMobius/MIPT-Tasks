@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #define MEASURE_TIME
 #ifdef MEASURE_TIME
 #include <time.h>
 #endif
+
+#define CHECK_POINTER(pointer) if(!pointer) memory_failure();
 
 typedef struct Node Node;
 
@@ -30,12 +33,10 @@ void memory_failure() {
  * @param [in] string The string that should be stored in new tree
  * @param [in] length The length of given string
  */
-Node* build_string(char* string, size_t length) {
+Node* build_string(const char* string, size_t length) {
     Node* pointer = (Node*)malloc(sizeof(Node) * length);
     
-    if(!pointer) {
-        memory_failure();
-    }
+    CHECK_POINTER(pointer)
     
     Node* maps = NULL;
     Node* new_map = NULL;
@@ -76,7 +77,7 @@ Node* build_string(char* string, size_t length) {
  * @returns updated map entry point if it should change
  */
 
-Node* add_string(Node* map, char* string, size_t length) {
+Node* add_string(Node* map, const char* string, size_t length) {
     if(length == 0) {
         return NULL;
     }
@@ -163,6 +164,27 @@ void free_tree(Node* tree) {
 }
 
 /**
+ * @brief Allocates a buffer and reads file at given path into it
+ * @param [in] filepath Path to file to be readen
+ * @param [out] length Length of readen file
+ * @returns buffer with file data
+ */
+
+const char* read_file(const char* filepath, long long* length) {
+    struct stat filedata;
+    stat(filepath, &filedata);
+    *length = filedata.st_size;
+    
+    char* buffer = (char*) malloc(*length);
+    
+    FILE* input = fopen(filepath, "rb");
+    fread(buffer, 1, *length, input);
+    fclose(input);
+    
+    return buffer;
+}
+
+/**
  * @brief Entry point
  *
  * Execution of the program
@@ -175,26 +197,16 @@ void free_tree(Node* tree) {
 */
 int main(int argc, const char * argv[]) {
     
+    long long filesize;
     
-    FILE* input = fopen(argv[1], "r");
+    const char* filepath = "/Users/Temich/Downloads/input.txt";//argv[1];
+    const char* buffer = read_file(filepath, &filesize);
     
-    size_t fraction_length = 1024;
-    size_t buffer_length = 256;
-    size_t delta_buffer_length = 256;
+    size_t file_walker = 0;
+    size_t line_index = 0;
+    size_t largest_line = 0;
     
-    char* buffer = (char*) malloc(buffer_length);
-    char* fraction = (char*) malloc(fraction_length);
-    
-    if(!fraction) {
-        memory_failure();
-    }
-    
-    if(!buffer) {
-        memory_failure();
-    }
-    
-    size_t fraction_index = fraction_length;
-    size_t line_length = 0;
+    CHECK_POINTER(buffer)
 
     Node* begin = NULL;
     
@@ -203,27 +215,21 @@ int main(int argc, const char * argv[]) {
     clock_t total = 0;
 #endif
     
-    while (1) {
-        char c;
+    while (file_walker < filesize) {
+        char c = buffer[file_walker];
+        file_walker++;
         
-        if(fraction_index == fraction_length) {
-            fraction_index = 0;
-            size_t readen = fread(fraction, 1, fraction_length, input);
-            if(readen < fraction_length) {
-                fraction[readen] = EOF;
+        if(c == '\n') {
+            
+            size_t line_length = file_walker - line_index;
+            if(line_length > largest_line) {
+                largest_line = line_length;
             }
-        }
-        
-        c = fraction[fraction_index];
-        
-        fraction_index++;
-        
-        if(c == '\n' || c == EOF) {
             
 #ifdef MEASURE_TIME
             start = clock();
 #endif
-            Node* result = add_string(begin, buffer, line_length);
+            Node* result = add_string(begin, buffer + line_index, line_length - 1);
             if(result != NULL) {
                 begin = result;
             }
@@ -234,16 +240,9 @@ int main(int argc, const char * argv[]) {
             total += end - start;
 #endif
         
-            line_length = 0;
+            line_index = file_walker;
             if(c == EOF) {
                 break;
-            }
-        } else {
-            buffer[line_length] = c;
-            line_length++;
-            if(line_length == buffer_length) {
-                buffer_length += delta_buffer_length;
-                buffer = realloc(buffer, buffer_length);
             }
         }
     }
@@ -255,13 +254,17 @@ int main(int argc, const char * argv[]) {
 #endif
     
     if(begin) {
-        print_tree(begin, buffer, 0);
+        char* print_buffer = (char*) malloc(largest_line);
+        
+        CHECK_POINTER(print_buffer);
+        
+        print_tree(begin, print_buffer, 0);
+        
+        free(print_buffer);
     }
     
-    fclose(input);
     free_tree(begin);
-    free(buffer);
-    free(fraction);
+    free((void*) buffer);
     
     return 0;
 }

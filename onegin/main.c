@@ -10,6 +10,7 @@
 typedef struct Node Node;
 
 struct Node {
+    char allocated;
     char item;
     Node* left;
     Node* right;
@@ -24,44 +25,24 @@ void memory_failure() {
 }
 
 /**
- * @brief Creates a new tree node
+ * @brief Constructs new tree based on string
  *
- * @returns newly-created tree node
+ * @param [in] string The string that should be stored in new tree
+ * @param [in] length The length of given string
  */
-Node* create_node() {
-    Node* map = (Node*)malloc(sizeof(Node));
+Node* build_string(char* string, size_t length) {
+    Node* pointer = (Node*)malloc(sizeof(Node) * length);
     
-    if(!map) {
+    if(!pointer) {
         memory_failure();
     }
     
-    map -> item = '\0';
-    map -> left = NULL;
-    map -> right = NULL;
-    return map;
-}
-
-/**
- * @brief Constructs new tree based on string
- *
- * This function should be used to
- * initialize long branches. It's much faster
- * than calling add_string method with NULL
- * map.
- *
- * @param string The string that should be stored in new tree
- * @param length The length of given string
- */
-Node* build_string(char* string, size_t length) {
     Node* maps = NULL;
     Node* new_map = NULL;
     Node* previous = NULL;
     for(size_t i = 0; i < length; i++) {
-        new_map = (Node*)malloc(sizeof(Node));
-        
-        if(!new_map) {
-            memory_failure();
-        }
+        new_map = pointer;
+        pointer = (Node*)((char*)pointer + sizeof(Node));
         
         if(!maps) {
             maps = new_map;
@@ -69,14 +50,18 @@ Node* build_string(char* string, size_t length) {
         
         new_map -> item = string[i];
         new_map -> left = NULL;
-        new_map -> right = NULL;
         
         if(previous) {
             previous -> right = new_map;
+            new_map -> allocated = 0;
+        } else {
+            new_map -> allocated = 1;
         }
         
         previous = new_map;
     }
+    
+    previous -> right = NULL;
     
     return maps;
 }
@@ -84,15 +69,17 @@ Node* build_string(char* string, size_t length) {
 /**
  * @brief Adding new entry to existing map
  *
- * @param map Map which should store this string
- * @param string String that should be stored
- * @param length Length of the string
+ * @param [in] map Map which should store this string
+ * @param [in] string String that should be stored
+ * @param [in] length Length of the string
  *
  * @returns updated map entry point if it should change
  */
 
 Node* add_string(Node* map, char* string, size_t length) {
-    if(length == 0) return NULL;
+    if(length == 0) {
+        return NULL;
+    }
 
     char start = string[0];
 
@@ -108,14 +95,11 @@ Node* add_string(Node* map, char* string, size_t length) {
             
             return NULL;
         } else if(current -> item > start) {
-            Node* new_map = create_node();
-            new_map -> item = start;
+            Node* new_map = build_string(string, length);
             new_map -> left = current;
             if(previous) {
                 previous -> left = new_map;
             }
-            
-            new_map -> right = build_string(string + 1, length - 1);
             
             if(previous) {
                 return NULL;
@@ -127,9 +111,7 @@ Node* add_string(Node* map, char* string, size_t length) {
         previous = current;
     }
     
-    Node* new_map = create_node();
-    new_map -> item = start;
-    new_map -> right = build_string(string + 1, length - 1);
+    Node* new_map = build_string(string, length);
     
     if(previous) {
         previous -> left = new_map;
@@ -142,9 +124,9 @@ Node* add_string(Node* map, char* string, size_t length) {
 /**
  * @brief Prints the tree
  *
- * @param map Tree to pring
- * @param buffer Char buffer to use for printing
- * @param depth Internal flag. Should be set to zero
+ * @param [in] map Tree to pring
+ * @param [in] buffer Char buffer to use for printing
+ * @param [in] depth Internal flag. Should be set to zero
  */
 
 void print_tree(Node* map, char* buffer, size_t depth) {
@@ -168,14 +150,14 @@ void print_tree(Node* map, char* buffer, size_t depth) {
 /**
  * @brief Deallocates the tree
  *
- * @param tree Tree to deallocare
+ * @param [in] tree Tree to deallocare
  */
 
 void free_tree(Node* tree) {
     while(tree) {
         if(tree -> right) free_tree(tree -> right);
         Node* next = tree -> left;
-        free(tree);
+        if(tree -> allocated) free(tree);
         tree = next;
     }
 }
@@ -186,12 +168,13 @@ void free_tree(Node* tree) {
  * Execution of the program
  * starts here.
  *
- * @param argc Number of arguments
- * @param argv List of arguments
+ * @param [in] argc Number of arguments
+ * @param [in] argv List of arguments
  *
  * @return Program exit status
 */
 int main(int argc, const char * argv[]) {
+    
     
     FILE* input = fopen(argv[1], "r");
     
@@ -278,6 +261,7 @@ int main(int argc, const char * argv[]) {
     fclose(input);
     free_tree(begin);
     free(buffer);
+    free(fraction);
     
     return 0;
 }

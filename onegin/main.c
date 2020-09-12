@@ -68,6 +68,21 @@ Node* build_string(const char* string, size_t length) {
 }
 
 /**
+ * @brief Copies the tree node not-recursively
+ * @param [in] node node to copy
+ * @returns copied tree node
+ */
+Node* copy_node(Node* node) {
+    Node* new_node = (Node*) malloc(sizeof(Node));
+    CHECK_POINTER(new_node);
+    new_node -> left = NULL;
+    new_node -> right = NULL;
+    new_node -> item = node -> item;
+    new_node -> allocated = 1;
+    return new_node;
+}
+
+/**
  * @brief Adding new entry to existing map
  *
  * @param [in] map Map which should store this string
@@ -89,9 +104,17 @@ Node* add_string(Node* map, const char* string, size_t length) {
     
     for(current = map; current; current = current -> left) {
         if(current -> item == start) {
-            Node* result = add_string(current -> right, string + 1, length - 1);
-            if(result) {
-                current -> right = result;
+            if(length == 1) {
+                Node* left = current -> left;
+                Node* new = copy_node(current);
+                
+                current -> left = new;
+                new -> left = left;
+            } else {
+                Node* result = add_string(current -> right, string + 1, length - 1);
+                if(result) {
+                    current -> right = result;
+                }
             }
             
             return NULL;
@@ -229,9 +252,11 @@ int main(int argc, const char * argv[]) {
 #ifdef MEASURE_TIME
             start = clock();
 #endif
-            Node* result = add_string(begin, buffer + line_index, line_length - 1);
-            if(result != NULL) {
-                begin = result;
+            for(int i = 0; i < 1; i++) {
+                Node* result = add_string(begin, buffer + line_index, line_length - 1);
+                if(result != NULL) {
+                    begin = result;
+                }
             }
 
 #ifdef MEASURE_TIME

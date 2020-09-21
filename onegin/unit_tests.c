@@ -21,6 +21,8 @@ e_test_result perform_test(const char* input, const char* expected_output, e_wal
     
     char* input_copy = malloc(input_length * sizeof(char));
     
+    CHECK_POINTER(input_copy);
+    
     strcpy(input_copy, input);
     
     size_t line_num = replace_chars(input_copy, '\n', '\0');

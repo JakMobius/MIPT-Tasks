@@ -5,12 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define CHECK_POINTER(pointer) if(!pointer) memory_failure();
+#define CHECK_POINTER(pointer) if(!pointer) memory_failure(__LINE__, __FILE__);
 
 /**
  * @brief Dispays allocation error message and crashes the program afterwards
  */
-void memory_failure(void);
+void memory_failure(int, const char*);
 
 /**
  * @returns Minimum of two size_t values

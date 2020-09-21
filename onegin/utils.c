@@ -1,8 +1,8 @@
 
 #include "utils.h"
 
-void memory_failure() {
-    perror("Failed to allocate memory\n");
+void memory_failure(int line, const char* file) {
+    fprintf(stderr, "Failed to allocate memory at %s:%d\n", file, line);
     exit(-1);
 }
 

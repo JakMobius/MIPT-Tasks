@@ -14,7 +14,7 @@ typedef enum e_arg_type {
     ARG_TYPE_FLAG,
     
     /**
-     * @brief This type means that the flag stores additional string in next command line arguments
+     * @brief This type means that the flag stores additional string in next command line argument
      */
     ARG_TYPE_KEY
 } e_arg_type;
@@ -82,7 +82,7 @@ s_argv_view* argv_view_construct(int argc, const char** argv, const s_flag* argu
 
 /**
  * @brief s_argv_view destructor
- * @param argv_view s_argv_view to be destructed
+ * @param [in] argv_view s_argv_view to be destructed
  */
 
 void argv_view_destroy(s_argv_view* argv_view);

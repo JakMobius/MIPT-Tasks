@@ -3,7 +3,9 @@
 
 s_arg_view* arg_view_construct(const s_flag* argument) {
     s_arg_view* arg_view = (s_arg_view*)malloc(sizeof(s_arg_view));
-    CHECK_POINTER(arg_view);
+    if(!arg_view) {
+        return NULL;
+    }
     
     arg_view -> flag = argument;
     arg_view -> value = NULL;
@@ -39,6 +41,10 @@ s_arg_view* argv_view_use_arg_view(s_argv_view* argv_view, const s_flag* argumen
     
     if(arg_view == NULL) {
         argv_view -> initial = arg_view_construct(argument);
+        if(!argv_view) {
+            return NULL;
+        }
+        
         return argv_view -> initial;
     }
     
@@ -58,6 +64,10 @@ s_arg_view* argv_view_use_arg_view(s_argv_view* argv_view, const s_flag* argumen
 
 s_argv_view* argv_view_construct(int argc, const char** argv, const s_flag* arguments) {
     s_argv_view* argv_view = (s_argv_view*)malloc(sizeof(s_argv_view));
+    if(!argv_view) {
+        return NULL;
+    }
+    
     const s_flag* current_flag = NULL;
     
     argv_view -> initial = NULL;
@@ -67,6 +77,11 @@ s_argv_view* argv_view_construct(int argc, const char** argv, const s_flag* argu
         
         if(current_flag) {
             s_arg_view* arg_view = argv_view_use_arg_view(argv_view, current_flag);
+            if(!arg_view) {
+                argv_view_destroy(argv_view);
+                return NULL;
+            }
+            
             arg_view -> mentioned++;
             arg_view -> value = arg;
             current_flag = NULL;
@@ -85,7 +100,13 @@ s_argv_view* argv_view_construct(int argc, const char** argv, const s_flag* argu
             if(argument -> type == ARG_TYPE_KEY) {
                 current_flag = argument;
             } else {
-                argv_view_use_arg_view(argv_view, argument) -> mentioned++;
+                s_arg_view* arg_view = argv_view_use_arg_view(argv_view, argument);
+                if(!arg_view) {
+                    argv_view_destroy(argv_view);
+                    return NULL;
+                }
+                
+                arg_view -> mentioned++;
             }
         }
     }
@@ -98,7 +119,8 @@ s_argv_view* argv_view_construct(int argc, const char** argv, const s_flag* argu
 }
 
 void argv_view_destroy(s_argv_view* argv_view) {
-    arg_view_destroy(argv_view -> initial);
+    if(argv_view -> initial)
+        arg_view_destroy(argv_view -> initial);
     free(argv_view);
 }
 

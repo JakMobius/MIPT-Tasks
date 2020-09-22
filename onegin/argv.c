@@ -8,5 +8,6 @@ const s_flag argv_types[] = {
     {"-rtl", "specifies sorting order right to left", ARG_TYPE_FLAG},
     {"i", "input file", ARG_TYPE_KEY},
     {"o", "output file", ARG_TYPE_KEY},
+    {"-bubblesort", "uses bubble sort instead of qsort", ARG_TYPE_FLAG},
     {NULL, NULL, 0}
 };

@@ -18,6 +18,8 @@ int comparator(const void* a, const void* b, e_walk_direction walk_direction) {
     const char* first_string_end;
     const char* second_string_end;
     
+    int delta;
+    
     if(walk_direction == E_WALK_DIRECTION_RTL) {
         first_string = first -> string + first -> string_length - 1;
         second_string = second -> string + second -> string_length - 1;
@@ -25,7 +27,7 @@ int comparator(const void* a, const void* b, e_walk_direction walk_direction) {
         first_string_end = first -> string - 1;
         second_string_end = second -> string - 1;
         
-        walk_direction = -1;
+        delta = -1;
     } else {
         first_string = first -> string;
         second_string = second -> string;
@@ -33,7 +35,7 @@ int comparator(const void* a, const void* b, e_walk_direction walk_direction) {
         first_string_end = first_string + first -> string_length;
         second_string_end = second_string + second -> string_length;
         
-        walk_direction = 1;
+        delta = 1;
     }
     
     char char_a = '\0';
@@ -45,12 +47,12 @@ int comparator(const void* a, const void* b, e_walk_direction walk_direction) {
         char_b = *second_string;
         
         if(isspace(char_a) || ispunct(char_a)) {
-            first_string += walk_direction;
+            first_string += delta;
             continue;
         }
 
         if(isspace(char_b) || ispunct(char_b)) {
-            second_string += walk_direction;
+            second_string += delta;
             continue;
         }
         
@@ -61,8 +63,8 @@ int comparator(const void* a, const void* b, e_walk_direction walk_direction) {
             return -1;
         }
         
-        first_string += walk_direction;
-        second_string += walk_direction;
+        first_string += delta;
+        second_string += delta;
     }
     
     return 0;
@@ -86,7 +88,7 @@ int comparator_ltr(const void* a, const void* b) {
 void compile_lines(const my_string_view** lines, size_t line_count, char* buffer) {
     size_t string_index = 0;
     
-    char c;
+    char c = '\0';
     
     for(size_t i = 0; i < line_count; i++) {
         const char* string = lines[i] -> string;
@@ -100,13 +102,18 @@ void compile_lines(const my_string_view** lines, size_t line_count, char* buffer
     buffer[string_index] = '\0';
 }
 
-void sort_buffer(const char* buffer, size_t line_count, size_t buffer_length, char* out_buffer, e_walk_direction mode) {
+e_sort_result sort_buffer(const char* buffer, size_t line_count, size_t buffer_length, char* out_buffer, e_walk_direction walk_direction, e_sort_type sort_type) {
     my_string_view* line_array = (my_string_view*) malloc(line_count * sizeof(my_string_view));
     const my_string_view** line_map = (const my_string_view**) malloc(line_count * sizeof(my_string_view*));
     
-    CHECK_POINTER(line_map);
-    CHECK_POINTER(line_array);
-    CHECK_POINTER(out_buffer);
+    if(!line_map || !line_array || !out_buffer) {
+        free(line_map);
+        free(line_array);
+        free(out_buffer);
+        
+        OUT_OF_MEMORY_MESSAGE;
+        return E_SORT_RESULT_OUT_OF_MEMORY;
+    }
     
     size_t line_start = 0;
     size_t line_index = 0;
@@ -123,14 +130,24 @@ void sort_buffer(const char* buffer, size_t line_count, size_t buffer_length, ch
         }
     }
     
-    if(mode == E_WALK_DIRECTION_LTR) {
-        qsort(line_map, line_count, sizeof(*line_map), &comparator_ltr);
+    void (*sort_function)(void *__base, size_t __nel, size_t __width, int (* __compar)(const void *, const void *));
+    
+    if(sort_type == E_SORT_TYPE_QSORT) {
+        sort_function = &qsort;
     } else {
-        qsort(line_map, line_count, sizeof(*line_map), &comparator_rtl);
+        sort_function = &bubble_sort;
+    }
+    
+    if(walk_direction == E_WALK_DIRECTION_LTR) {
+        (*sort_function)(line_map, line_count, sizeof(*line_map), &comparator_ltr);
+    } else {
+        (*sort_function)(line_map, line_count, sizeof(*line_map), &comparator_rtl);
     }
     
     compile_lines(line_map, line_count, out_buffer);
     
     free(line_array);
     free(line_map);
+    
+    return E_SORT_RESULT_SUCCESS;
 }

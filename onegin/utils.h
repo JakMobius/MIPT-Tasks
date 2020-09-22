@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define CHECK_POINTER(pointer) if(!pointer) memory_failure(__LINE__, __FILE__);
+#define OUT_OF_MEMORY_MESSAGE printf("Out of memory at %s:%d\n", __FILE__, __LINE__);
 
 /**
  * @brief Dispays allocation error message and crashes the program afterwards

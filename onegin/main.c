@@ -16,7 +16,8 @@ void perform_unit_testing() {
             "ABC\n"
             "BCA\n"
             "CAB\n",
-            E_WALK_DIRECTION_LTR
+            E_WALK_DIRECTION_LTR,
+            E_SORT_TYPE_QSORT
     );
     
     CALL_TEST(print_test,
@@ -26,13 +27,36 @@ void perform_unit_testing() {
             "BCA\n"
             "CAB\n"
             "ABC\n",
-            E_WALK_DIRECTION_RTL
+            E_WALK_DIRECTION_RTL,
+            E_SORT_TYPE_QSORT
+    );
+    
+    CALL_TEST(print_test,
+            "ABC\n"
+            "CAB\n"
+            "BCA\n",
+            "ABC\n"
+            "BCA\n"
+            "CAB\n",
+            E_WALK_DIRECTION_LTR,
+            E_SORT_TYPE_BUBBLESORT
+    );
+    
+    CALL_TEST(print_test,
+            "ABC\n"
+            "CAB\n"
+            "BCA\n",
+            "BCA\n"
+            "CAB\n"
+            "ABC\n",
+            E_WALK_DIRECTION_RTL,
+            E_SORT_TYPE_BUBBLESORT
     );
     
     // ...
 }
 
-void perform_work_cycle(s_argv_view* argv_view) {
+void perform_work_cycle(s_argv_view* argv_view, e_sort_type sort_type) {
     s_arg_view* input_file_argument = argv_view_get_arg_view(argv_view, &argv_types[E_ARGV_NAME_INPUT_FILE]);
     s_arg_view* output_file_argument = argv_view_get_arg_view(argv_view, &argv_types[E_ARGV_NAME_OUTPUT_FILE]);
     
@@ -63,7 +87,6 @@ void perform_work_cycle(s_argv_view* argv_view) {
     char* buffer = read_file(filepath, &file_size);
     
     if(!buffer) {
-        perror("Failed to read file");
         return;
     }
     
@@ -71,13 +94,14 @@ void perform_work_cycle(s_argv_view* argv_view) {
     
     size_t line_num = replace_chars(buffer, '\n', '\0');
     char* out_buffer = (char*)malloc(file_size * sizeof(char));
-    sort_buffer(buffer, line_num, file_size, out_buffer, ltr);
-    write_file(output_file_argument -> value, out_buffer);
+    e_sort_result sort_result = sort_buffer(buffer, line_num, file_size, out_buffer, ltr, sort_type);
+    
+    if(sort_result == E_SORT_RESULT_SUCCESS) {
+        write_file(output_file_argument -> value, out_buffer);
+    }
     
     free(buffer);
     free(out_buffer);
-    
-    argv_view_destroy(argv_view);
 }
 
 /**
@@ -91,6 +115,11 @@ int main(int argc, const char * argv[]) {
     
     s_argv_view* argv_view = argv_view_construct(argc, argv, argv_types);
     
+    if(!argv_view) {
+        OUT_OF_MEMORY_MESSAGE;
+        return 0;
+    }
+    
     s_arg_view* help_flag = argv_view_get_arg_view(argv_view, &argv_types[E_ARGV_NAME_HELP]);
     
     if(help_flag != NULL) {
@@ -98,13 +127,19 @@ int main(int argc, const char * argv[]) {
         return 0;
     }
     
+    
+    s_arg_view* bubblesort_flag = argv_view_get_arg_view(argv_view, &argv_types[E_ARGV_NAME_BUBBLESORT]);
     s_arg_view* test_flag = argv_view_get_arg_view(argv_view, &argv_types[E_ARGV_NAME_TEST]);
+    
+    e_sort_type sort_type = bubblesort_flag == NULL ? E_SORT_TYPE_QSORT : E_SORT_TYPE_BUBBLESORT;
     
     if(test_flag != NULL) {
         perform_unit_testing();
     } else {
-        perform_work_cycle(argv_view);
+        perform_work_cycle(argv_view, sort_type);
     }
+    
+    argv_view_destroy(argv_view);
     
     return 0;
 }

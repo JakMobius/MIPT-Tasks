@@ -68,6 +68,14 @@ void ISTACK_OVERLOAD(istack_container_dump)(ISTACK_CONTAINER_TYPE* thou, int dee
                     if(stack_length < first_stack -> size) {
                         stack_length = first_stack -> size;
                     }
+                    
+                    if(stack_capacity < first_stack -> capacity) {
+                        stack_capacity = first_stack -> capacity;
+                    }
+                    
+                    if(stack_min_capacity < first_stack -> min_capacity) {
+                        stack_min_capacity = first_stack -> min_capacity;
+                    }
                 } else {
                     failed_stacks++;
                 }
@@ -78,7 +86,7 @@ void ISTACK_OVERLOAD(istack_container_dump)(ISTACK_CONTAINER_TYPE* thou, int dee
         printf(" - stack capacity:         ");
         
         if(!impl_pointer_valid || !first_stack) printf("unknown\n");
-        else if(ambiguous_сapacity) printf("ambiguous (less of equal %zu)\n", stack_capacity);
+        else if(ambiguous_сapacity) printf("ambiguous (less or equal %zu)\n", stack_capacity);
         else printf("%zu\n", first_stack -> capacity);
         
         istack_print_padding(deep);
@@ -92,7 +100,7 @@ void ISTACK_OVERLOAD(istack_container_dump)(ISTACK_CONTAINER_TYPE* thou, int dee
         printf(" - stack initial capacity: ");
         
         if(!impl_pointer_valid || !first_stack) printf("unknown\n");
-        else if(ambiguous_сapacity) printf("ambiguous (less of equal %zu)\n", stack_min_capacity);
+        else if(ambiguous_сapacity) printf("ambiguous (less or equal %zu)\n", stack_min_capacity);
         else printf("%zu\n", first_stack -> capacity);
         
         istack_print_padding(deep);
@@ -234,36 +242,41 @@ istack_err_t ISTACK_OVERLOAD(istack_container_validate)(ISTACK_CONTAINER_TYPE* t
         }
     }
     
-    ISTACK_END_POINTER_CHECKS;
-    
-    if(istack_pointer_hash(thou -> impl_list, ISTACK_IMPL_AMOUNT) != thou -> impl_pointer_hash) {
-        return ISTACK_CORRUPT_HASH_CHECK_FAILED;
-    }
-    
     ISTACK_IMPL_TYPE* first_stack = thou -> impl_list[0];
     size_t stack_capacity = first_stack -> capacity;
     size_t stack_size = first_stack -> size;
     size_t stack_min_capacity = first_stack -> min_capacity;
     uint64_t stack_hash = first_stack -> impl_hash;
     
-    for(int i = 1; i < ISTACK_IMPL_AMOUNT; i++) {
-        ISTACK_IMPL_TYPE* stack = thou -> impl_list[0];
+    for(int i = 0; i < ISTACK_IMPL_AMOUNT; i++) {
+        ISTACK_IMPL_TYPE* stack = thou -> impl_list[i];
         
         if(stack -> size != stack_size) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
         if(stack -> capacity != stack_capacity) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
         if(stack -> impl_hash != stack_hash) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
         if(stack -> min_capacity != stack_min_capacity) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
         
-        for(int item_index = 0; item_index < stack_size; item_index++) {
-            char* pointer_a = (char*)&first_stack -> buffer[item_index];
-            char* pointer_b = (char*)&first_stack -> buffer[item_index];
+        for(int item_index = 0; item_index < stack_capacity; item_index++) {
+            char* pointer_b = (char*)&stack -> buffer[item_index];
             
-            for(int byte_index = 0; byte_index < sizeof(ISTACK_ELEM_T); byte_index++) {
-                if(pointer_a[byte_index] != pointer_b[byte_index]) {
-                    return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
+            if(!ISTACK_TYPED_POINTER_VALIDITY(pointer_b, ISTACK_ELEM_T*)) {
+                return ISTACK_CORRUPT_INVALID_POINTER;
+            }
+            
+            if(item_index < stack_size) {
+                char* pointer_a = (char*)&first_stack -> buffer[item_index];
+                
+                for(int byte_index = 0; byte_index < sizeof(ISTACK_ELEM_T); byte_index++) {
+                    if(pointer_a[byte_index] != pointer_b[byte_index]) {
+                        return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
+                    }
                 }
             }
         }
+    }
+    
+    if(istack_pointer_hash(thou -> impl_list, ISTACK_IMPL_AMOUNT) != thou -> impl_pointer_hash) {
+        return ISTACK_CORRUPT_HASH_CHECK_FAILED;
     }
     
     if(stack_hash != ISTACK_OVERLOAD(istack_impl_hash)(first_stack)) {
@@ -274,6 +287,40 @@ istack_err_t ISTACK_OVERLOAD(istack_container_validate)(ISTACK_CONTAINER_TYPE* t
         return ISTACK_CORRUPT_SIZE_GREATER_THAN_CAPACITY;
     }
     
+    ISTACK_END_POINTER_CHECKS;
+    
+    return ISTACK_OK;
+}
+
+istack_err_t ISTACK_OVERLOAD(istack_container_reallocate)(ISTACK_CONTAINER_TYPE* thou, size_t new_capacity) {
+    
+    
+    for(int i = 0; i < ISTACK_IMPL_AMOUNT; i++) {
+        ISTACK_IMPL_TYPE* impl = thou -> impl_list[i];
+        size_t old_capacity = impl -> capacity;
+        impl -> capacity = new_capacity;
+        
+        if(new_capacity == old_capacity) {
+            break;
+        }
+        
+        ISTACK_ELEM_T* reallocated = realloc(impl -> buffer, impl -> capacity * sizeof(ISTACK_ELEM_T));
+        
+        if(new_capacity > old_capacity && reallocated == NULL) {
+            
+            // realloc cannot return NULL when block size decreases,
+            
+            for(int j = 0; j < i; j++) {
+                ISTACK_IMPL_TYPE* previous = thou -> impl_list[j];
+                previous -> capacity = old_capacity;
+                previous -> buffer = realloc(previous -> buffer, previous -> capacity * sizeof(ISTACK_ELEM_T));
+            }
+            
+            return ISTACK_ERR_OUT_OF_MEMORY;
+        }
+        
+        impl -> buffer = reallocated;
+    }
     
     return ISTACK_OK;
 }
@@ -287,27 +334,15 @@ istack_err_t ISTACK_OVERLOAD(istack_container_push)(ISTACK_CONTAINER_TYPE* thou,
     }
     
     ISTACK_IMPL_TYPE* first_stack = *thou -> impl_list;
-    _Bool reallocate = first_stack -> size == first_stack -> capacity;
+    if(first_stack -> size == first_stack -> capacity) {
+        error = ISTACK_OVERLOAD(istack_container_reallocate)(thou, first_stack -> capacity * 2);
+        if(error != ISTACK_OK) {
+            return error;
+        }
+    }
     
     for(int i = 0; i < ISTACK_IMPL_AMOUNT; i++) {
         ISTACK_IMPL_TYPE* impl = thou -> impl_list[i];
-        if(reallocate) {
-            impl -> capacity *= 2;
-            ISTACK_ELEM_T* reallocated = realloc(impl -> buffer, impl -> capacity * sizeof(ISTACK_ELEM_T));
-            
-            if(reallocated == NULL) {
-                for(int j = 0; j < i; j++) {
-                    ISTACK_IMPL_TYPE* previous = thou -> impl_list[j];
-                    previous -> capacity /= 2;
-                    previous -> buffer = realloc(previous -> buffer, previous -> capacity * sizeof(ISTACK_ELEM_T));
-//                    previous -> buffer[previous -> size--] = ISTACK_POSION;
-                }
-                
-                return ISTACK_ERR_OUT_OF_MEMORY;
-            }
-            
-            impl -> buffer = reallocated;
-        }
         
         impl -> buffer[impl -> size++] = value;
     }
@@ -334,19 +369,13 @@ istack_err_t ISTACK_OVERLOAD(istack_container_pop)(ISTACK_CONTAINER_TYPE* thou, 
     if(first_stack -> size == 0) return ISTACK_ERR_STACK_UNDERFLOW;
     
     if(first_stack -> size < first_stack -> capacity / 2 && first_stack -> capacity > first_stack -> min_capacity) {
-        for(int i = 0; i < ISTACK_IMPL_AMOUNT; i++) {
-            ISTACK_IMPL_TYPE* impl = thou -> impl_list[i];
-            impl -> capacity /= 2;
-            ISTACK_ELEM_T* reallocated = realloc(impl -> buffer, impl -> capacity * sizeof(ISTACK_ELEM_T));
-            impl -> buffer = reallocated;
-        }
+        ISTACK_OVERLOAD(istack_container_reallocate)(thou, first_stack -> capacity / 2);
     }
     
     *value_target = first_stack -> buffer[first_stack -> size - 1];
     
     for(int i = 0; i < ISTACK_IMPL_AMOUNT; i++) {
         thou -> impl_list[i] -> size--;
-        //thou -> impl_list[i] -> buffer[] = ISTACK_POSION;
     }
     
     return ISTACK_OK;

@@ -122,38 +122,50 @@ istack_err_t ISTACK_OVERLOAD(istack_dereference)(istack_reference_list* thou, is
     return ISTACK_ERR_NOT_EXIST;
 }
 
-istack_err_t ISTACK_OVERLOAD(istack_register)(istack_reference_list* thou, istack_t* reference, ISTACK_OVERLOAD(istack_container_t)* target) {
-    istack_err_t istack_list_error = ISTACK_OVERLOAD(verify_istack_list)(thou);
+istack_err_t ISTACK_OVERLOAD(istack_list_expand)(istack_reference_list* thou, int new_capacity) {
+    int old_capacity = thou -> list_capacity;
+    thou -> list_capacity = new_capacity;
     
-    if(istack_list_error != ISTACK_OK) {
-        return istack_list_error;
+    void** istack_list_new = (void**)realloc(thou -> istack_list, thou -> list_capacity * sizeof(void*));
+    istack_t* istack_indices_new = (istack_t*)realloc(thou -> istack_indices, thou -> list_capacity * sizeof(istack_t));
+    
+    if(istack_list_new == NULL || istack_indices_new == NULL) {
+        
+        // This code will run only when new_capacity > old_capacity
+        
+        thou -> list_capacity = old_capacity;
+        
+        if(istack_list_new != NULL) {
+            istack_list_new = (void**)realloc(istack_list_new, thou -> list_capacity * sizeof(void*));
+            thou -> istack_list = istack_list_new;
+        }
+        
+        if(istack_list_new != NULL) {
+            istack_indices_new = (istack_t*)realloc(istack_indices_new, thou -> list_capacity * sizeof(istack_t));
+            thou -> istack_indices = istack_indices_new;
+        }
+        
+        return ISTACK_ERR_OUT_OF_MEMORY;
+    }
+    
+    thou -> istack_list = istack_list_new;
+    thou -> istack_indices = istack_indices_new;
+    
+    return ISTACK_OK;
+}
+
+istack_err_t ISTACK_OVERLOAD(istack_register)(istack_reference_list* thou, istack_t* reference, ISTACK_OVERLOAD(istack_container_t)* target) {
+    istack_err_t error = ISTACK_OVERLOAD(verify_istack_list)(thou);
+    
+    if(error != ISTACK_OK) {
+        return error;
     }
     
     if(thou -> list_capacity == thou -> list_length) {
-        
-        thou -> list_capacity *= 2;
-        
-        void** istack_list_new = (void**)realloc(thou -> istack_list, thou -> list_capacity * sizeof(void*));
-        istack_t* istack_indices_new = (istack_t*)realloc(thou -> istack_indices, thou -> list_capacity * sizeof(istack_t));
-        
-        if(istack_list_new == NULL || istack_indices_new == NULL) {
-            thou -> list_capacity /= 2;
-            
-            if(istack_list_new != NULL) {
-                istack_list_new = (void**)realloc(istack_list_new, thou -> list_capacity * sizeof(void*));
-                thou -> istack_list = istack_list_new;
-            }
-            
-            if(istack_list_new != NULL) {
-                istack_indices_new = (istack_t*)realloc(istack_indices_new, thou -> list_capacity * sizeof(istack_t));
-                thou -> istack_indices = istack_indices_new;
-            }
-            
-            return ISTACK_ERR_OUT_OF_MEMORY;
+        error = ISTACK_OVERLOAD(istack_list_expand)(thou, thou -> list_capacity * 2);
+        if(error != ISTACK_OK) {
+            return error;
         }
-        
-        thou -> istack_list = istack_list_new;
-        thou -> istack_indices = istack_indices_new;
     }
     
     srand((unsigned int)time(0));

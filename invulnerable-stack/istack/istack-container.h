@@ -259,7 +259,7 @@ istack_err_t ISTACK_OVERLOAD(istack_container_validate)(ISTACK_CONTAINER_TYPE* t
         for(int item_index = 0; item_index < stack_capacity; item_index++) {
             char* pointer_b = (char*)&stack -> buffer[item_index];
             
-            if(!ISTACK_TYPED_POINTER_VALIDITY(pointer_b, ISTACK_ELEM_T*)) {
+            if(!ISTACK_TYPED_POINTER_VALIDITY(pointer_b, ISTACK_ELEM_T)) {
                 return ISTACK_CORRUPT_INVALID_POINTER;
             }
             

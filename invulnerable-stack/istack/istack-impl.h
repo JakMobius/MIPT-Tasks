@@ -39,13 +39,11 @@ uint64_t ISTACK_OVERLOAD(istack_impl_hash)(ISTACK_IMPL_TYPE* thou) {
         };
     }
     
-    result |= (uint64_t)thou -> buffer;
-    result = result << 29 || result >> 35;
-    result |= thou -> size;
-    result = result << 41 || result >> 24;
-    result |= thou -> capacity;
-    result = result << 27 || result >> 37;
-    result |= thou -> min_capacity;
+    result ^= (uint64_t)thou -> size;
+    result = result << 41 | result >> 24;
+    result ^= (uint64_t)thou -> capacity;
+    result = result << 27 | result >> 37;
+    result ^= (uint64_t)thou -> min_capacity;
         
     return result;
 }

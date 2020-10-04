@@ -54,27 +54,29 @@ void ISTACK_OVERLOAD(istack_container_dump)(ISTACK_CONTAINER_TYPE* thou, int dee
         
         if(impl_pointer_valid) {
             for(int i = 0; i < ISTACK_IMPL_AMOUNT; i++) {
-                ISTACK_IMPL_TYPE** each_stack = &(thou -> impl_list[i]);
+                ISTACK_IMPL_TYPE** each_stack_pointer = &(thou -> impl_list[i]);
                 
-                if(ISTACK_OVERLOAD(istack_impl_check_readability)(each_stack)) {
+                if(ISTACK_OVERLOAD(istack_impl_check_readability)(each_stack_pointer)) {
+                    ISTACK_IMPL_TYPE* each_stack = *each_stack_pointer;
+                    
                     if(!first_stack) {
-                        first_stack = *each_stack;
+                        first_stack = each_stack;
                     } else {
-                        if((*each_stack) -> capacity != first_stack -> capacity) ambiguous_сapacity = true;
-                        if((*each_stack) -> size != first_stack -> size) ambiguous_size = true;
-                        if((*each_stack) -> min_capacity != first_stack -> min_capacity) ambiguous_min_capacity = true;
+                        if(each_stack -> capacity != first_stack -> capacity) ambiguous_сapacity = true;
+                        if(each_stack -> size != first_stack -> size) ambiguous_size = true;
+                        if(each_stack -> min_capacity != first_stack -> min_capacity) ambiguous_min_capacity = true;
                     }
                     
-                    if(stack_length < first_stack -> size) {
-                        stack_length = first_stack -> size;
+                    if(stack_length < each_stack -> size) {
+                        stack_length = each_stack -> size;
                     }
                     
-                    if(stack_capacity < first_stack -> capacity) {
-                        stack_capacity = first_stack -> capacity;
+                    if(stack_capacity < each_stack -> capacity) {
+                        stack_capacity = each_stack -> capacity;
                     }
                     
-                    if(stack_min_capacity < first_stack -> min_capacity) {
-                        stack_min_capacity = first_stack -> min_capacity;
+                    if(stack_min_capacity < each_stack -> min_capacity) {
+                        stack_min_capacity = each_stack -> min_capacity;
                     }
                 } else {
                     failed_stacks++;

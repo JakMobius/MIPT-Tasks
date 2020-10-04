@@ -147,6 +147,10 @@ istack_err_t ISTACK_OVERLOAD(istack_top)(istack_t thou, ISTACK_ELEM_T* element) 
 
 istack_err_t ISTACK_OVERLOAD(istack_request)(istack_t* target, size_t capacity) {
     
+    if(capacity == 0) {
+        return ISTACK_ERR_ZERO_CAPACITY;
+    }
+    
     istack_err_t error = ISTACK_OVERLOAD(create_reference_list_if_neccessary)();
     
     if(error != ISTACK_OK) {

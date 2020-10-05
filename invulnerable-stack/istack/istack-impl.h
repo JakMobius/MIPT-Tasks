@@ -21,6 +21,8 @@ uint64_t ISTACK_OVERLOAD(istack_impl_hash)(ISTACK_IMPL_TYPE* thou);
 ISTACK_IMPL_TYPE* ISTACK_OVERLOAD(istack_impl_new)(size_t capacity);
 void ISTACK_OVERLOAD(istack_impl_delete)(ISTACK_IMPL_TYPE* thou);
 bool ISTACK_OVERLOAD(istack_impl_check_readability)(ISTACK_IMPL_TYPE** thou);
+void ISTACK_OVERLOAD(istack_fill_poison)(void* pointer, size_t length);
+bool ISTACK_OVERLOAD(istack_check_poison)(void* pointer, size_t length);
 
 uint64_t ISTACK_OVERLOAD(istack_impl_hash)(ISTACK_IMPL_TYPE* thou) {
     uint64_t result = 0;
@@ -30,7 +32,7 @@ uint64_t ISTACK_OVERLOAD(istack_impl_hash)(ISTACK_IMPL_TYPE* thou) {
     int byte_amount = 0;
     
     for(int i = 0; i < bytes; i++) {
-        char byte = ((char*) thou -> buffer)[i];
+        uint64_t byte = ((char*) thou -> buffer)[i];
         hash_entry |= byte << (byte_amount * 8);
         byte_amount++;
         if(byte_amount == 4) {
@@ -59,7 +61,12 @@ ISTACK_IMPL_TYPE* ISTACK_OVERLOAD(istack_impl_new)(size_t capacity) {
     instance -> size = 0;
     instance -> capacity = capacity;
     instance -> min_capacity = capacity;
+
+#ifdef ISTACK_USE_HASH
     instance -> impl_hash = ISTACK_OVERLOAD(istack_impl_hash)(instance);
+#endif
+    
+    ISTACK_OVERLOAD(istack_fill_poison)(instance -> buffer, capacity);
     
     return instance;
 }
@@ -69,19 +76,42 @@ void ISTACK_OVERLOAD(istack_impl_delete)(ISTACK_IMPL_TYPE* thou) {
 }
 
 bool ISTACK_OVERLOAD(istack_impl_check_readability)(ISTACK_IMPL_TYPE** thou) {
-    if(!istack_pointer_valid(thou, sizeof(ISTACK_IMPL_TYPE**))) {
+    if(!ISTACK_TYPED_POINTER_VALIDITY(thou, ISTACK_IMPL_TYPE**)) {
         return false;
     }
     
     ISTACK_IMPL_TYPE* impl = *thou;
     
-    if(!istack_pointer_valid(&(impl -> size), sizeof(size_t))) {
+    if(!ISTACK_TYPED_POINTER_VALIDITY(&(impl -> size), size_t)) {
         return false;
     }
     
     for(int i = 0; i < impl -> size; i++) {
-        if(!istack_pointer_valid(&(impl -> buffer[i]), sizeof(ISTACK_ELEM_T))) {
+        if(!ISTACK_TYPED_POINTER_VALIDITY(&(impl -> buffer[i]), ISTACK_ELEM_T)) {
             return false;
+        }
+    }
+    
+    return true;
+}
+
+void ISTACK_OVERLOAD(istack_fill_poison)(void* pointer, size_t length) {
+    size_t buffer_index = 0;
+    
+    for(size_t i = 0; i < length; i++) {
+        for(int byte = 0; byte < sizeof(ISTACK_ELEM_T); byte++, buffer_index++) {
+            ((char*)pointer)[buffer_index] = ISTACK_POISON;
+        }
+    }
+}
+
+bool ISTACK_OVERLOAD(istack_check_poison)(void* pointer, size_t length) {
+    
+    size_t buffer_index = 0;
+    
+    for(size_t i = 0; i < length; i++) {
+        for(int byte = 0; byte < sizeof(ISTACK_ELEM_T); byte++, buffer_index++) {
+            if(((char*)pointer)[buffer_index] != ISTACK_POISON) return false;
         }
     }
     

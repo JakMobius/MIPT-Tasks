@@ -39,7 +39,7 @@ void ISTACK_OVERLOAD(istack_container_dump)(ISTACK_CONTAINER_TYPE* thou, int dee
         istack_err_t validator_result = ISTACK_OVERLOAD(istack_container_validate)(thou);
         istack_print_padding(deep); printf(" - validator verdict:      0x%x (%s)\n", validator_result, istack_err_get_description(validator_result));
         istack_print_padding(deep); printf(" - entry pointer hash:     "); ISTACK_PRINT_POINTER_VALUE((void**)&(thou -> impl_pointer_hash), "%p", uint64_t);
-        istack_print_padding(deep); printf(" - stack amount:           %zu\n", ISTACK_IMPL_AMOUNT);
+        istack_print_padding(deep); printf(" - stack amount:           %d\n", ISTACK_IMPL_AMOUNT);
         
         bool impl_pointer_valid = ISTACK_TYPED_POINTER_VALIDITY(thou -> impl_list, ISTACK_IMPL_TYPE**);
         int failed_stacks = 0;
@@ -87,36 +87,38 @@ void ISTACK_OVERLOAD(istack_container_dump)(ISTACK_CONTAINER_TYPE* thou, int dee
         istack_print_padding(deep);
         printf(" - stack capacity:         ");
         
-        if(!impl_pointer_valid || !first_stack) printf("unknown\n");
-        else if(ambiguous_сapacity) printf("ambiguous (less or equal %zu)\n", stack_capacity);
-        else printf("%zu\n", first_stack -> capacity);
+        if(!impl_pointer_valid || !first_stack) ISTACK_PRINTF_UNKNOWN_VALUE();
+        else if(ambiguous_сapacity) ISTACK_PRINTF_AMBIGUOUS_VALUE("%zu", stack_capacity);
+        else printf("%zu\n", stack_capacity);
         
         istack_print_padding(deep);
         printf(" - stack length:           ");
         
-        if(!impl_pointer_valid || !first_stack) printf("unknown\n");
-        else if(ambiguous_сapacity) printf("ambiguous (less or equal %zu)\n", stack_length);
-        else printf("%zu\n", first_stack -> capacity);
+        if(!impl_pointer_valid || !first_stack) ISTACK_PRINTF_UNKNOWN_VALUE();
+        else if(ambiguous_сapacity) ISTACK_PRINTF_AMBIGUOUS_VALUE("%zu", stack_length);
+        else printf("%zu\n", stack_length);
         
         istack_print_padding(deep);
         printf(" - stack initial capacity: ");
         
-        if(!impl_pointer_valid || !first_stack) printf("unknown\n");
-        else if(ambiguous_сapacity) printf("ambiguous (less or equal %zu)\n", stack_min_capacity);
-        else printf("%zu\n", first_stack -> capacity);
+        if(!impl_pointer_valid || !first_stack) ISTACK_PRINTF_UNKNOWN_VALUE();
+        else if(ambiguous_сapacity) ISTACK_PRINTF_AMBIGUOUS_VALUE("%zu", stack_min_capacity);
+        else printf("%zu\n", stack_min_capacity);
         
         istack_print_padding(deep);
         printf(" - corrupted stacks:       %d\n", failed_stacks);
         
+        size_t elements_to_display = stack_length + ISTACK_OVERDISPLAYED_ITEMS;
+        
         istack_print_padding(deep);
-        if(stack_length > ISTACK_MAX_DISPLAYABLE_STACK_ITEMS) {
-            stack_length = ISTACK_MAX_DISPLAYABLE_STACK_ITEMS;
+        if(elements_to_display > ISTACK_MAX_DISPLAYABLE_STACK_ITEMS) {
+            elements_to_display = ISTACK_MAX_DISPLAYABLE_STACK_ITEMS;
             printf(" - first %zu stack items:\n", ISTACK_MAX_DISPLAYABLE_STACK_ITEMS);
         } else {
             printf(" - stack items:\n");
         }
         
-        for(int i = 0; i < stack_length; i++) {
+        for(int i = 0; i < elements_to_display; i++) {
             ISTACK_ELEM_T* element = NULL;
             
             bool ambiguous_element = false;
@@ -124,10 +126,10 @@ void ISTACK_OVERLOAD(istack_container_dump)(ISTACK_CONTAINER_TYPE* thou, int dee
             for(int stack_index = 0; stack_index < ISTACK_IMPL_AMOUNT; stack_index++) {
                 ISTACK_IMPL_TYPE** each_stack = &(thou -> impl_list[stack_index]);
                 
-                if(!istack_pointer_valid(each_stack, sizeof(ISTACK_IMPL_TYPE*))) {
+                if(!ISTACK_TYPED_POINTER_VALIDITY(each_stack, ISTACK_IMPL_TYPE*)) {
                     continue;
                 }
-                if(!istack_pointer_valid(&((*each_stack) -> buffer[i]), sizeof(ISTACK_ELEM_T))) {
+                if(!ISTACK_TYPED_POINTER_VALIDITY(&((*each_stack) -> buffer[i]), ISTACK_ELEM_T)) {
                     continue;
                 }
                 
@@ -149,17 +151,26 @@ void ISTACK_OVERLOAD(istack_container_dump)(ISTACK_CONTAINER_TYPE* thou, int dee
             istack_print_padding(deep);
             printf("   [%d] = ", i);
             
-            if(ambiguous_element) printf("ambiguous\n");
-            else if(element == NULL) printf("unknown\n");
+            bool is_poison = false;
+            
+            if(ambiguous_element) printf("ambiguous");
+            else if(element == NULL) printf("unknown");
             else {
                 printf("0x");
+                is_poison = true;
                 for(int byte = sizeof(ISTACK_ELEM_T) - 1; byte >= 0; byte--) {
                     char value = ((char*)element)[byte];
+                    if(value != ISTACK_POISON) is_poison = false;
                     
                     printf("%0*x", 2, (unsigned char)value);
                 }
-                printf("\n");
             }
+            
+            if(i >= stack_capacity) printf(" (outside of buffer)");
+            else if(i >= stack_length) printf(" (outside of stack)");
+            if(is_poison) printf(" (poison)");
+            
+            printf("\n");
         }
         
     }
@@ -255,28 +266,55 @@ istack_err_t ISTACK_OVERLOAD(istack_container_validate)(ISTACK_CONTAINER_TYPE* t
         
         if(stack -> size != stack_size) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
         if(stack -> capacity != stack_capacity) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
-        if(stack -> impl_hash != stack_hash) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
         if(stack -> min_capacity != stack_min_capacity) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
         
+#ifdef ISTACK_USE_HASH
+        if(stack -> impl_hash != stack_hash) return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
+#endif
+        
+#if defined(ISTACK_USE_CROSSCHECK) || defined(ISTACK_CHECK_BUFFER_MEMORY)
         for(int item_index = 0; item_index < stack_capacity; item_index++) {
             char* pointer_b = (char*)&stack -> buffer[item_index];
             
+#ifdef ISTACK_CHECK_BUFFER_MEMORY
             if(!ISTACK_TYPED_POINTER_VALIDITY(pointer_b, ISTACK_ELEM_T)) {
                 return ISTACK_CORRUPT_INVALID_POINTER;
             }
+#endif
+            
+            char* pointer_a = (char*)&first_stack -> buffer[item_index];
             
             if(item_index < stack_size) {
-                char* pointer_a = (char*)&first_stack -> buffer[item_index];
-                
+#ifdef ISTACK_USE_CROSSCHECK
                 for(int byte_index = 0; byte_index < sizeof(ISTACK_ELEM_T); byte_index++) {
                     if(pointer_a[byte_index] != pointer_b[byte_index]) {
+                        ISTACK_END_POINTER_CHECKS;
                         return ISTACK_CORRUPT_CLONE_INCONSISTENCY;
                     }
                 }
+#endif
             }
+#ifndef ISTACK_CHECK_BUFFER_MEMORY
+            else {
+                break;
+            }
+#endif
         }
+#endif
+        
+#ifdef ISTACK_POISON_CHECK
+        
+        if(!ISTACK_OVERLOAD(istack_check_poison)(stack -> buffer + stack -> size, stack -> capacity - stack -> size)) {
+            ISTACK_END_POINTER_CHECKS;
+            return ISTACK_CORRUPT_POISON_LEAK;
+        }
+#endif
     }
+
     
+    ISTACK_END_POINTER_CHECKS;
+    
+#ifdef ISTACK_USE_HASH
     if(istack_pointer_hash(thou -> impl_list, ISTACK_IMPL_AMOUNT) != thou -> impl_pointer_hash) {
         return ISTACK_CORRUPT_HASH_CHECK_FAILED;
     }
@@ -284,12 +322,11 @@ istack_err_t ISTACK_OVERLOAD(istack_container_validate)(ISTACK_CONTAINER_TYPE* t
     if(stack_hash != ISTACK_OVERLOAD(istack_impl_hash)(first_stack)) {
         return ISTACK_CORRUPT_HASH_CHECK_FAILED;
     }
+#endif
     
     if(stack_size > stack_capacity) {
         return ISTACK_CORRUPT_SIZE_GREATER_THAN_CAPACITY;
     }
-    
-    ISTACK_END_POINTER_CHECKS;
     
     return ISTACK_OK;
 }
@@ -377,7 +414,12 @@ istack_err_t ISTACK_OVERLOAD(istack_container_pop)(ISTACK_CONTAINER_TYPE* thou, 
     *value_target = first_stack -> buffer[first_stack -> size - 1];
     
     for(int i = 0; i < ISTACK_IMPL_AMOUNT; i++) {
-        thou -> impl_list[i] -> size--;
+        ISTACK_IMPL_TYPE* stack_impl = thou -> impl_list[i];
+        stack_impl -> size--;
+        char* pointer = (char*)(&stack_impl -> buffer[stack_impl -> size]);
+        
+        
+        ISTACK_OVERLOAD(istack_fill_poison)(pointer, 1);
     }
     
     return ISTACK_OK;

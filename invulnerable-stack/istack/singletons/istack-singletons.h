@@ -22,15 +22,6 @@
 #define ISTACK_REFERENCE_LIST_TYPE ISTACK_OVERLOAD(ISTACK_REFERENCE_LIST)
 #define ISTACK_REFERENCE_LIST_INIT_TYPE ISTACK_OVERLOAD(ISTACK_REFERENCE_LIST_INIT)
 
-#define ISTACK_BEGIN_POINTER_CHECKS istack_setup_signal_handling()
-#define ISTACK_TYPED_POINTER_CHECK(pointer, type) \
-    if(!istack_pointer_valid(pointer, sizeof(type))) {\
-        istack_restore_signal_handling(); \
-        return ISTACK_CORRUPT_INVALID_POINTER; \
-    }
-#define ISTACK_TYPED_POINTER_VALIDITY(pointer, type) istack_pointer_valid(pointer, sizeof(type))
-#define ISTACK_END_POINTER_CHECKS istack_restore_signal_handling()
-
 #define ISTACK_PRINT_POINTER_VALUE(pointer, format, type)\
     if(ISTACK_TYPED_POINTER_VALIDITY(pointer, type)) {\
         printf(format "\n", *pointer);\
@@ -48,6 +39,9 @@
 #define ISTACK_ELEM_T_TO_STRING(name) ISTACK_ELEM_T_STRINGIFY(name)
 #define ISTACK_ELEM_T_STRING ISTACK_ELEM_T_TO_STRING(ISTACK_ELEM_T)
 
+#define ISTACK_PRINTF_AMBIGUOUS_VALUE(format, value) printf("ambiguous (less or equal " format ")", value)
+#define ISTACK_PRINTF_UNKNOWN_VALUE() printf("unknown")
+
 #define ISTACK_HANDLE_LIST_ERROR(error, list)\
     if(istack_err_is_corruption(error)) {\
         ISTACK_OVERLOAD(istack_list_dump)(list);\
@@ -62,8 +56,9 @@
  */
 
 typedef long long istack_t;
-const size_t ISTACK_IMPL_AMOUNT = 10000;
 const size_t ISTACK_MAX_DISPLAYABLE_STACK_ITEMS = 20;
+const size_t ISTACK_OVERDISPLAYED_ITEMS = 5;
+const char ISTACK_POISON = 0xAF;
 
 typedef enum istack_err_t istack_err_t;
 typedef struct istack_reference_list istack_reference_list;

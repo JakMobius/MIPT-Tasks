@@ -90,6 +90,7 @@ istack_err_t ISTACK_OVERLOAD(verify_istack_list)(istack_reference_list* thou) {
         return ISTACK_CORRUPT_SIZE_GREATER_THAN_CAPACITY;
     }
     
+#ifdef ISTACK_USE_HASH
     uint64_t hash = istack_reference_list_hash(thou);
     
     if(thou -> list_hash != hash) {
@@ -101,6 +102,7 @@ istack_err_t ISTACK_OVERLOAD(verify_istack_list)(istack_reference_list* thou) {
     if(thou -> entry_hash != entry_hash) {
         return ISTACK_CORRUPT_DESCRIPTOR_LIST_FAILURE;
     }
+#endif
     
     return ISTACK_OK;
 }
@@ -194,8 +196,10 @@ istack_err_t ISTACK_OVERLOAD(istack_register)(istack_reference_list* thou, istac
     thou -> istack_list[thou -> list_length] = target;
     thou -> list_length++;
     
+#ifdef ISTACK_USE_HASH
     thou -> list_hash = istack_reference_list_hash(thou);
     thou -> entry_hash = istack_reference_entry_hash(thou);
+#endif
     
     return ISTACK_OK;
 }
@@ -236,9 +240,11 @@ istack_err_t ISTACK_OVERLOAD(istack_unregister)(istack_reference_list* thou, ist
     
     thou -> istack_indices[thou -> list_length] = 0;
     thou -> istack_list[thou -> list_length] = NULL;
-    
+
+#ifdef ISTACK_USE_HASH
     thou -> list_hash = istack_reference_list_hash(thou);
     thou -> entry_hash = istack_reference_entry_hash(thou);
+#endif
     
     return ISTACK_OK;
 }

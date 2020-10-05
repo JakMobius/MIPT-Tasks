@@ -7,8 +7,60 @@
 #error stack.h should not be included without ISTACK_ELEM_T macro defined
 #else
 
+#ifndef ISTACK_VALIDATION_LEVEL
+#define ISTACK_VALIDATION_LEVEL 9
+#endif
+
+#if (4 < ISTACK_VALIDATION_LEVEL + 0)
+#ifndef ISTACK_IMPL_AMOUNT
+#define ISTACK_IMPL_AMOUNT 1000
+#endif
+#endif
+
+#if (3 < ISTACK_VALIDATION_LEVEL + 0)
+#ifndef ISTACK_IMPL_AMOUNT
+#define ISTACK_IMPL_AMOUNT 100
+#endif
+#define ISTACK_USE_CROSSCHECK
+#endif
+
+#if (2 < ISTACK_VALIDATION_LEVEL + 0)
+#ifndef ISTACK_IMPL_AMOUNT
+#define ISTACK_IMPL_AMOUNT 10
+#endif
+#define ISTACK_USE_POSION_CHECK
+#endif
+
+#if (1 < ISTACK_VALIDATION_LEVEL + 0)
+#define ISTACK_USE_HASH
+#define ISTACK_CHECK_BUFFER_MEMORY
+#endif
+
+#ifndef ISTACK_IMPL_AMOUNT
+#define ISTACK_IMPL_AMOUNT 1
+#endif
+
+#ifdef ISTACK_CHECK_MEMORY
+
+#define ISTACK_BEGIN_POINTER_CHECKS istack_setup_signal_handling()
+#define ISTACK_TYPED_POINTER_CHECK(pointer, type) \
+    if(!istack_pointer_valid(pointer, sizeof(type))) {\
+        istack_restore_signal_handling(); \
+        return ISTACK_CORRUPT_INVALID_POINTER; \
+    }
+#define ISTACK_TYPED_POINTER_VALIDITY(pointer, type) istack_pointer_valid(pointer, sizeof(type))
+#define ISTACK_END_POINTER_CHECKS istack_restore_signal_handling()
+
+#else
+#define ISTACK_BEGIN_POINTER_CHECKS
+#define ISTACK_TYPED_POINTER_CHECK(pointer, type) true
+#define ISTACK_TYPED_POINTER_VALIDITY(pointer, type) true
+#define ISTACK_END_POINTER_CHECKS
+#endif
+
 #ifndef istack_h
 #define istack_h
+
 #define ISTACK_DECLARATIONS_ALLOWED
 
 #include <stdio.h>
@@ -136,7 +188,7 @@ istack_err_t ISTACK_OVERLOAD(istack_top)(istack_t thou, ISTACK_ELEM_T* element) 
         return error;
     }
     
-    error = ISTACK_OVERLOAD(istack_container_pop)(stack_container, element);
+    error = ISTACK_OVERLOAD(istack_container_top)(stack_container, element);
     
     if(error != ISTACK_OK) {
         ISTACK_HANDLE_STACK_ERROR(error, stack_container);
@@ -226,5 +278,13 @@ istack_err_t ISTACK_OVERLOAD(istack_reference_list_dump)() {
     
     return ISTACK_OK;
 }
+
+#undef ISTACK_USE_HASH
+#undef ISTACK_USE_CROSSCHECK
+#undef ISTACK_USE_POSION_CHECK
+#undef ISTACK_BEGIN_POINTER_CHECKS
+#undef ISTACK_TYPED_POINTER_CHECK
+#undef ISTACK_TYPED_POINTER_CHECK
+#undef ISTACK_END_POINTER_CHECKS
 
 #endif

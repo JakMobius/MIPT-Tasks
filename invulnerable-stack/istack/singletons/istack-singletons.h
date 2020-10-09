@@ -39,8 +39,8 @@
 #define ISTACK_ELEM_T_TO_STRING(name) ISTACK_ELEM_T_STRINGIFY(name)
 #define ISTACK_ELEM_T_STRING ISTACK_ELEM_T_TO_STRING(ISTACK_ELEM_T)
 
-#define ISTACK_PRINTF_AMBIGUOUS_VALUE(format, value) printf("ambiguous (less or equal " format ")", value)
-#define ISTACK_PRINTF_UNKNOWN_VALUE() printf("unknown")
+#define ISTACK_PRINTF_AMBIGUOUS_VALUE(format, value) printf("ambiguous (less or equal " format ")\n", value)
+#define ISTACK_PRINTF_UNKNOWN_VALUE() printf("unknown\n")
 
 #define ISTACK_HANDLE_LIST_ERROR(error, list)\
     if(istack_err_is_corruption(error)) {\

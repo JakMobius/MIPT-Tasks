@@ -3,6 +3,12 @@
 
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+// TODO: Recover from ISTACK_CLONE_INCONSISTENCY state
+// TODO: Print real value with user-defined ISTACK_PRINT_VALUE macro
+// TODO: Canary?
+// TODO: Use strong hashing algorithm
+// TODO: Windows port
+
 #ifndef ISTACK_ELEM_T
 #error stack.h should not be included without ISTACK_ELEM_T macro defined
 #else
@@ -11,29 +17,29 @@
 #define ISTACK_VALIDATION_LEVEL 9
 #endif
 
-#if (4 < ISTACK_VALIDATION_LEVEL + 0)
+#if (3 < ISTACK_VALIDATION_LEVEL + 0)
 #ifndef ISTACK_IMPL_AMOUNT
 #define ISTACK_IMPL_AMOUNT 1000
 #endif
 #endif
 
-#if (3 < ISTACK_VALIDATION_LEVEL + 0)
+#if (2 < ISTACK_VALIDATION_LEVEL + 0)
 #ifndef ISTACK_IMPL_AMOUNT
 #define ISTACK_IMPL_AMOUNT 100
 #endif
 #define ISTACK_USE_CROSSCHECK
 #endif
 
-#if (2 < ISTACK_VALIDATION_LEVEL + 0)
+#if (1 < ISTACK_VALIDATION_LEVEL + 0)
 #ifndef ISTACK_IMPL_AMOUNT
 #define ISTACK_IMPL_AMOUNT 10
 #endif
 #define ISTACK_USE_POSION_CHECK
 #endif
 
-#if (1 < ISTACK_VALIDATION_LEVEL + 0)
+#if (0 < ISTACK_VALIDATION_LEVEL + 0)
 #define ISTACK_USE_HASH
-#define ISTACK_CHECK_BUFFER_MEMORY
+#define ISTACK_CHECK_MEMORY
 #endif
 
 #ifndef ISTACK_IMPL_AMOUNT
@@ -134,7 +140,7 @@ istack_err_t ISTACK_OVERLOAD(istack_push)(istack_t thou, ISTACK_ELEM_T element) 
         return error;
     }
     
-    error = ISTACK_OVERLOAD(istack_container_push)(stack_container, element);
+     error = ISTACK_OVERLOAD(istack_container_push)(stack_container, element);
     
     if(error != ISTACK_OK) {
         ISTACK_HANDLE_STACK_ERROR(error, stack_container);

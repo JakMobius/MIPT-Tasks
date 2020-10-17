@@ -1,0 +1,41 @@
+
+in.d        ; entering A coefficient
+in.d        ; entering B coefficient
+in.d        ; entering C coefficient
+pop     rax
+pop     rbx
+pop     rcx
+push    rbx
+push    rbx
+mul.d
+push.d  4
+push    rax
+push    rcx
+mul.d
+mul.d
+sub.d
+sqrt.d
+pop     rdx
+push    rbx
+push.d  -1
+mul.d
+push    rdx
+sub.d
+push.d  2
+push    rax
+mul.d
+div.d
+push    rbx
+push.d  -1
+mul.d
+push    rdx
+add.d
+push.d  2
+push    rax
+mul.d
+div.d
+out.d
+pop rax
+out.d
+
+hlt

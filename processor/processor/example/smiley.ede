@@ -1,0 +1,255 @@
+
+jmp main
+
+putpix:
+pop rdx
+
+pop rax
+pop rbx
+
+; Y coordinate
+push.ul rax
+push.ul 16
+mul.ul
+
+; X coordinate
+push.ul rbx
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rcx
+
+push.ui 0xFFFFFFFF
+pop.ui [rcx]
+
+push rdx
+ret
+
+main:
+
+win 16 16
+draw
+
+push.ul 0x80000
+pop.ul [0]
+
+; [0] = FB offset
+
+; Y coordinate
+push.ul 10
+push.ul 16
+mul.ul
+
+; X coordinate
+push.ul 5
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 10
+push.ul 16
+mul.ul
+
+; X coordinate
+push.ul 11
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 5
+push.ul 16
+mul.ul
+
+; X coordinate
+push.ul 5
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 5
+push.ul 16
+mul.ul
+
+; X coordinate
+push.ul 6
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 5
+push.ul 16
+mul.ul
+
+; X coordinate
+push.ul 7
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 5
+push.ul 16
+mul.ul
+
+; X coordinate
+push.ul 8
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 5
+push.ul 16
+mul.ul
+
+
+; X coordinate
+push.ul 9
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 5
+push.ul 16
+mul.ul
+
+
+; X coordinate
+push.ul 10
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 5
+push.ul 16
+mul.ul
+
+
+; X coordinate
+push.ul 11
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+; Y coordinate
+push.ul 6
+push.ul 16
+mul.ul
+
+
+; X coordinate
+push.ul 12
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+; END
+
+
+; Y coordinate
+push.ul 6
+push.ul 16
+mul.ul
+
+
+; X coordinate
+push.ul 4
+add.ul
+push.ul 4
+mul.ul
+push.ul [0]
+add.ul
+pop rax
+
+push.ui 0xFFFFFFFF
+pop.ui [rax]
+
+draw
+in.d
+hlt

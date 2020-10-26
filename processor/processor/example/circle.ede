@@ -1,0 +1,186 @@
+
+
+
+win 64 64
+draw
+
+push.ul 64
+push.ul 64
+mul.ul
+pop.ul [8]
+
+push.ul 0x80000
+pop.ul [0]
+
+push.ul [8]
+pop rcx
+
+push.d 17
+pop.d [16]
+
+push.d 4
+pop.d [24]
+
+push.ub 0xFF
+pop.b [0x203]
+
+; [0] = FB size
+; [8] = FB offset
+; [16] double = Circle size
+; [24] double = Blur size
+; [32] unsigned long = square circle size
+
+push.d [16]
+push.d [16]
+mul.d
+dtou
+pop.ul [32]
+
+redraw:
+
+loop:
+
+push (rcx - 1)
+pop rcx
+
+; 0x100 - X
+; 0x108 - Y
+
+; Counting coordinates
+
+; Counting Y coordinate
+
+push.ul rcx
+push.ul 64
+div.ul
+pop.ul [0x108]
+    
+; Counting X Coordinate
+
+push.ul rcx
+push.ul [0x108]
+push.ul 64
+mul.ul
+sub.ul
+pop.ul [0x100]
+    
+push.ul [0]
+push.ul rcx
+push.ul 4
+mul.ul
+add.ul
+pop.ul rbx
+
+push.l [0x100]
+push.l 32
+sub.l
+pop rdx
+push rdx
+push rdx
+mul.l
+
+push.l [0x108]
+push.l 32
+sub.l
+pop rdx
+push rdx
+push rdx
+mul.l
+add.l
+pop rdx
+
+push rdx
+push.l [32]
+
+jbe.l alphaskip
+
+push rdx
+ltod
+sqrt.d
+push.d [16]
+sub.d
+pop rdx
+push.d [24]
+push.d rdx
+sub.d
+push.d [24]
+div.d
+pop rdx
+push rdx
+push.d 0.0
+jb.d loopend
+jmp color
+
+alphaskip:
+
+push.d 1.0
+pop rdx
+
+color:
+
+push.d rdx
+push.d 4
+mul.d
+pop.d rdx
+
+; 0x201 - red
+; 0x202 - green
+; 0x203 - blue
+; 0x204 - alpha (always 0xFF)
+
+; RED
+push.ub [0x100]
+push.ub 0
+push.us 0
+push.ui 0
+ltod
+push.d rdx
+mul.d
+dtol
+pop eax
+pop ax
+pop ah
+pop.ub [0x200]
+
+; GREEN
+push.ub [0x108]
+push.ub 0
+push.us 0
+push.ui 0
+ltod
+push.d rdx
+mul.d
+dtol
+pop eax
+pop ax
+pop ah
+pop.ub [0x201]
+
+; BLUE
+push.ub 63
+push.ub 0
+push.us 0
+push.ui 0
+ltod
+push.d rdx
+mul.d
+dtol
+pop eax
+pop ax
+pop ah
+pop.ub [0x202]
+
+push.ui [0x200]
+pop.ui [rbx]
+
+
+; Loop end
+draw
+loopend:
+
+push.ul rcx
+jnz.ul loop
+
+draw
+in.d
+hlt

@@ -1,0 +1,81 @@
+
+jmp main
+
+;
+; <fibonnaci>
+;
+
+fibonacci:
+pop rdx
+pop rax
+push rax
+push.ul 2
+jbe.ul fibonaccione
+
+; Saving return pointer
+push rdx
+push rbx
+
+
+push rax
+push.ul (rax - 1)
+call fibonacci
+pop rbx
+pop rax
+
+push rbx
+
+push rax
+push.ul (rax - 2)
+call fibonacci
+pop rbx
+pop rax
+
+push rbx
+
+add.ul
+pop rax
+
+; Restoring return pointer
+pop rbx
+pop rdx
+
+; Pushing the answer
+push rax
+
+jmp fibonacciret
+
+fibonaccione:
+push.ul 1
+
+fibonacciret:
+push rdx
+ret
+
+;
+; </fibonnaci>
+;
+
+main:
+
+push.ul 0
+pop rax
+
+loop:
+
+push (rax + 1)
+pop rax
+
+push rax
+push rax
+call fibonacci
+out.ul
+pop rbx
+pop rax
+
+push rax
+push.ul 10
+
+jbe.ul loop
+
+hlt

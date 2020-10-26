@@ -1,0 +1,116 @@
+
+in.d        ; entering A coefficient
+in.d        ; entering B coefficient
+in.d        ; entering C coefficient
+
+pop rcx
+pop rbx
+pop rax
+
+push rax
+jnz.d notinfinitezero
+
+push rbx
+jnz.d notinfinitezero
+
+push rcx
+jnz.d notinfinitezero
+
+jmp infiniteroots:
+
+notinfinitezero:
+
+; Counting discriminant
+
+push    rbx
+push    rbx
+mul.d
+push.d  4
+push    rax
+push    rcx
+mul.d
+mul.d
+sub.d
+
+pop rdx
+push rdx
+push.d 0
+jb.d noroots
+
+push rdx
+sqrt.d
+pop rdx
+
+push rdx
+push.d 0.00000000001
+jbe.d singleroot
+
+; Printing "2"
+
+push rax
+push.ub 2
+out.ub
+pop ah
+pop rax
+
+push.d 2
+push rax
+mul.d
+pop rax
+
+push.d (0 - rbx)
+pop rbx
+
+; First root goes here:
+push rbx
+push rdx
+sub.d
+push rax
+div.d
+
+; Second root goes here:
+push rbx
+push rdx
+add.d
+push rax
+div.d
+
+; Output
+out.d
+pop rax
+out.d
+jmp end
+
+singleroot:
+
+; Printing "1"
+push rax
+push.ub 1
+out.ub
+pop ah
+pop rax
+
+; Counting root
+push.d (0 - rbx)
+push rax
+push.d 2
+mul.d
+div.d
+out.d
+jmp end
+
+noroots:
+
+push.b 0
+out.b
+pop ah
+jmp end
+
+infiniteroots:
+push.ul -1
+out.ul
+pop rax
+jmp end
+
+end:
+hlt

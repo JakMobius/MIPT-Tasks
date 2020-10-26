@@ -1,0 +1,629 @@
+;; ----------------------------------------------
+;;
+;;     Testing conditional jumps for double values
+;;
+;; ----------------------------------------------
+
+test_d_1:
+    ; Test 1: double 10 is above double 0
+
+    push.d      10
+    push.d      0
+    ja.d        test_d_1_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_d_1_ok:
+    
+test_d_2:
+    ; Test 2: double 0 is below double 10
+
+    push.d      0
+    push.d      10
+    jb.d        test_d_2_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_d_2_ok:
+    
+test_d_3:
+    ; Test 3: double 3.14 not equals double 7.2
+
+    push.d      3.14
+    push.d      7.2
+    jne.d        test_d_3_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_d_3_ok:
+    
+test_d_4:
+    ; Test 4: double 3.14 equals double 3.14
+
+    push.d      3.14
+    push.d      3.14
+    je.d        test_d_4_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_d_4_ok:
+
+test_d_5:
+    ; Test 1: double 10 is above double 0 (inversed)
+
+    push.d      10
+    push.d      0
+    jb.d        test_d_5_fail
+    jmp         test_d_5_ok
+    
+    test_d_5_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_d_5_ok:
+    
+test_d_6:
+    ; Test 2: double 0 is below double 10 (inversed)
+
+    push.d      0
+    push.d      10
+    ja.d        test_d_6_fail
+    jmp            test_d_6_ok:
+
+    test_d_6_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_d_6_ok:
+    
+test_d_7:
+    ; Test 3: double 3.14 not equals double 7.2 (inversed)
+
+    push.d      3.14
+    push.d      7.2
+    je.d        test_d_7_fail
+    jmp         test_d_7_ok
+    
+    test_d_7_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_d_7_ok:
+    
+test_d_8:
+    ; Test 4: double 3.14 equals double 3.14 (inversed)
+
+    push.d      3.14
+    push.d      3.14
+    jne.d       test_d_8_fail
+    jmp            test_d_8_ok
+
+    test_d_8_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_d_8_ok:
+
+;; ----------------------------------------------
+;;
+;;     Testing conditional jumps for double values
+;;
+;; ----------------------------------------------
+
+test_f_1:
+    ; Test 1: double 10 is above double 0
+
+    push.f      10
+    push.f      0
+    ja.f        test_f_1_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_f_1_ok:
+    
+test_f_2:
+    ; Test 2: double 0 is below double 10
+
+    push.f      0
+    push.f      10
+    jb.f        test_f_2_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_f_2_ok:
+    
+test_f_3:
+    ; Test 3: double 3.14 not equals double 7.2
+
+    push.f      3.14
+    push.f      7.2
+    jne.f        test_f_3_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_f_3_ok:
+    
+test_f_4:
+    ; Test 4: double 3.14 equals double 3.14
+
+    push.f      3.14
+    push.f      3.14
+    je.f        test_f_4_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_f_4_ok:
+
+test_f_5:
+    ; Test 1: double 10 is above double 0 (inversed)
+
+    push.f      10
+    push.f      0
+    jb.f        test_f_5_fail
+    jmp         test_f_5_ok
+    
+    test_f_5_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_f_5_ok:
+    
+test_f_6:
+    ; Test 2: double 0 is below double 10 (inversed)
+
+    push.f      0
+    push.f      10
+    ja.f        test_f_6_fail
+    jmp            test_f_6_ok:
+
+    test_f_6_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_f_6_ok:
+    
+test_f_7:
+    ; Test 3: double 3.14 not equals double 7.2 (inversed)
+
+    push.f      3.14
+    push.f      7.2
+    je.f        test_f_7_fail
+    jmp         test_f_7_ok
+    
+    test_f_7_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_f_7_ok:
+    
+test_f_8:
+    ; Test 4: double 3.14 equals double 3.14 (inversed)
+
+    push.f      3.14
+    push.f      3.14
+    jne.f       test_f_8_fail
+    jmp            test_f_8_ok
+
+    test_f_8_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_f_8_ok:
+
+;; ----------------------------------------------
+;;
+;;     Testing conditional jumps for signed 4-byte
+;;      numbers (.i flag)
+;;
+;; ----------------------------------------------
+
+test_i_1:
+    ; Test 1: integer -18 is above integer -132
+
+    push.i      -18
+    push.i      -132
+    ja.i        test_i_1_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_i_1_ok:
+    
+test_i_2:
+    ; Test 2: integer -17 is below integer 112
+
+    push.i      -17
+    push.i      112
+    jb.i        test_i_2_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_i_2_ok:
+    
+test_i_3:
+    ; Test 3: integer 976 not equals integer -17
+
+    push.i      976
+    push.i      -17
+    jne.i        test_i_3_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_i_3_ok:
+    
+test_i_4:
+    ; Test 4: integer 976 equals integer 976
+
+    push.i      976
+    push.i      976
+    je.i        test_i_4_ok
+
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_i_4_ok:
+
+test_i_5:
+    ; Test 1: integer -18 is above integer -132 (inversed)
+
+    push.i      -18
+    push.i      -132
+    jb.i        test_i_5_fail
+    jmp         test_i_5_ok
+    
+    test_i_5_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_i_5_ok:
+    
+test_i_6:
+    ; Test 2: integer -17 is below integer 112 (inversed)
+
+    push.i      -17
+    push.i      112
+    ja.i        test_i_6_fail
+    jmp            test_i_6_ok:
+
+    test_i_6_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_i_6_ok:
+    
+test_i_7:
+    ; Test 3: integer 976 not equals integer -17 (inversed)
+
+    push.i      976
+    push.i      -17
+    je.i        test_i_7_fail
+    jmp         test_i_7_ok
+    
+    test_i_7_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_i_7_ok:
+    
+test_i_8:
+    ; Test 4: integer 976 equals integer 976 (inversed)
+
+    push.i      976
+    push.i      976
+    jne.i       test_i_8_fail
+    jmp         test_i_8_ok
+
+    test_i_8_fail:
+    push.d      -1
+    sqrt.d      ; To raise an exception
+
+    test_i_8_ok:
+
+;; ----------------------------------------------
+;;
+;;     Testing value conversions
+;;
+;; ----------------------------------------------
+
+
+test_c_dtol:
+    ; Converting -20 double to long
+     
+    push.d      -20
+    dtol
+    push.l      -20
+    je.l        test_c_dtol_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_dtol_ok:
+
+test_c_dtou:
+    ; Converting 1982 double to unsigned long
+    
+    push.d        1982
+    dtou
+    push.ul     1982
+    je.ul       test_c_dtou_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_dtou_ok:
+    
+test_c_ftol:
+    ; Converting -20 float to long
+    
+    push.f      -20
+    ftol
+    push.l      -20
+    je.l        test_c_ftol_ok
+       
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_ftol_ok:
+
+test_c_ftou:
+    ; Converting 1982 float to unsigned long
+    
+    push.f        1982
+    ftou
+    push.ul     1982
+    je.ul       test_c_ftou_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_ftou_ok:
+    
+test_c_ltod:
+    ; Converting -20 long to double
+     
+    push.l      -20
+    ltod
+    push.d      -20
+    je.d        test_c_ltod_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_ltod_ok:
+
+test_c_utod:
+    ; Converting 1982 unsigned long to double
+    
+    push.ul        1982
+    utod
+    push.d        1982
+    je.d       test_c_utod_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_utod_ok:
+    
+test_c_ltof:
+    ; Converting -20 long to float
+    
+    push.l      -20
+    ltof
+    push.f      -20
+    je.f        test_c_ltof_ok
+       
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_ltof_ok:
+
+test_c_utof:
+    ; Converting 1982 unsigned long to float
+    
+    push.ul        1982
+    utof
+    push.f         1982
+    je.f           test_c_utof_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_utof_ok:
+
+test_c_dtof:
+    ; Converting 3.141592 double to float
+    
+    push.d        3.141592
+    dtof
+    push.f         3.141592
+    je.f           test_c_dtof_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_dtof_ok:
+
+test_c_ftod:
+    ; Converting 3.1415 float to double
+    
+    push.f        3.1415
+    ftod
+    push.d         3.1415
+    
+    ; Well, it actually works but there are some precision problems
+    ; We should not check if these numbers are actually same, because
+    ; they are not. float-to-double conversion is inaccurate, so
+    ; we should rather check if |a - b| < 0.000001 to make sure we have
+    ; converted numbers properly.
+    
+    sub.d
+    
+    ; Counting modulo here:
+    
+    pop         rax
+    push         rax
+    push.d        0
+    
+    ; If a - b > 0, |a - b| = a - b
+        
+    ja.d        test_c_ftod_modulo_skip
+    
+    ; Else |a - b| = -(a - b)
+    
+    push         rax
+    push.d        -1
+    mul.d
+    pop            rax
+    
+    test_c_ftod_modulo_skip:
+    
+    ; We have |a - b| in rax now
+    
+    push        rax
+    push.d        0.000001
+    jb.d         test_c_ftod_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_ftod_ok:
+    
+    
+test_c_xtnd:
+    ; Converting negative signed byte to signed short
+    push.b      -56
+    xtnd.b      2
+    push.s      -56
+    je.s        test_c_xtnd_negative_byte_to_short_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_xtnd_negative_byte_to_short_ok:
+
+    ; Converting negative signed byte to signed int
+    push.b      -124
+    xtnd.b      4
+    push.i      -124
+    je.i        test_c_xtnd_negative_byte_to_int_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_xtnd_negative_byte_to_int_ok:
+
+    ; Converting negative signed byte to signed long
+    push.b      -92
+    xtnd.b      8
+    push.l      -92
+    je.l        test_c_xtnd_negative_byte_to_long_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_xtnd_negative_byte_to_long_ok:
+    
+    ; Converting positive signed byte to signed short
+    push.b      56
+    xtnd.b      2
+    push.s      56
+    je.s        test_c_xtnd_positive_byte_to_short_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_xtnd_positive_byte_to_short_ok:
+    
+    ; Converting positive signed byte to signed int
+    push.b      122
+    xtnd.b      4
+    push.i      122
+    je.i        test_c_xtnd_positive_byte_to_int_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_xtnd_positive_byte_to_int_ok:
+
+    ; Converting positive signed byte to signed int
+    push.b      92
+    xtnd.b      8
+    push.l      92
+    je.l        test_c_xtnd_positive_byte_to_long_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_c_xtnd_positive_byte_to_long_ok:
+
+test_arithmetic:
+    push.d        2
+    push.d        5
+    add.d
+    push.d        7
+    je.d        test_arithmetic_d_add_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_arithmetic_d_add_ok:
+    
+    push.d        2
+    push.d        4
+    mul.d
+    push.d        8
+    je.d        test_arithmetic_d_mul_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_arithmetic_d_mul_ok:
+    
+    push.d        3
+    push.d        2
+    div.d
+    push.d        1.5
+    je.d        test_arithmetic_d_div_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_arithmetic_d_div_ok:
+    
+    push.d        2
+    push.d        6
+    sub.d
+    push.d        -4
+    je.d        test_arithmetic_d_sub_ok
+    
+    push.d      -1
+    sqrt.d      ; To raise an exception
+    
+    test_arithmetic_d_sub_ok:
+    
+test_is_monday:
+    jm is_monday
+    
+    push.b         0
+    out.b        ; prints 0 if it's not monday
+    
+    jmp skip_monday
+    
+    is_monday:
+    
+    push.b         1
+    out.b        ; prints 1 if it's monday
+    
+    skip_monday:
+
+hlt

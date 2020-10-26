@@ -1,0 +1,93 @@
+
+
+win 64 64
+draw
+
+push.ul 64
+push.ul 64
+mul.ul
+pop.ul [8]
+
+push.ul 0x80000
+pop.ul [0]
+
+; [0] = FB size
+; [8] = FB offset
+
+; RCX = counter
+; RBX = counter + FB offset
+
+; Loop begin
+
+push.ul [8]
+pop rcx
+
+push.ub 0xFF
+pop [0x203]
+
+loop:
+
+push (rcx - 1)
+pop rcx
+
+; 0x100 - X
+; 0x108 - Y
+
+; Counting coordinates
+
+; Counting Y coordinate
+
+push.ul rcx
+push.ul 64
+div.ul
+pop.ul [0x108]
+    
+; Counting X Coordinate
+
+push.ul rcx
+push.ul [0x108]
+push.ul 64
+mul.ul
+sub.ul
+pop.ul [0x100]
+    
+push.ul [0]
+push.ul rcx
+push.ul 4
+mul.ul
+add.ul
+pop.ul rbx
+
+; 0x201 - red
+; 0x202 - green
+; 0x203 - blue
+; 0x204 - alpha (always 0xFF)
+
+; RED
+push.ub [0x100]
+push.ub 4
+mul.ub
+pop.ub [0x200]
+
+; GREEN
+push.ub [0x108]
+push.ub 4
+mul.ub
+pop.ub [0x201]
+
+; BLUE
+push.ub 0xFF
+pop.ub [0x202]
+
+push.ui [0x200]
+pop.ui [rbx]
+
+
+; Loop end
+
+push.ul rcx
+jnz.ul loop
+
+draw
+in.d
+hlt

@@ -1,0 +1,13 @@
+add 1 to head
+add 2 to tail
+add 3 at 2
+add 1.5 at 1
+
+chk 1 1.5 2 3
+
+del index 1
+del index 2
+del head
+del tail
+
+chk

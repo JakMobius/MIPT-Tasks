@@ -1,0 +1,14 @@
+add 1 to head
+add 2 to tail
+add 5 at 2
+add 4 at 2
+add 3 at 2
+
+chk 1 2 3 4 5
+srt
+chk 1 2 3 4 5
+assert_mad
+add 5 to tail
+assert_mad
+del tail
+assert_mad

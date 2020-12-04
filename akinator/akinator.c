@@ -5,7 +5,7 @@
 void main_akinator_loop(s_tree* tree) {
 
     printf("%s", AKINATOR_IMAGE);
-    printf("Hey, how it's going?\nI am Akinator. What will be your wish?\n");
+    akinator_say("Hey, how it’s going?\nI am Akinator. What will be your wish?\n");
     akinator_help();
 
     while (true) {
@@ -18,15 +18,15 @@ void main_akinator_loop(s_tree* tree) {
             else if(strcmp("help", answer) == 0) akinator_help();
             else if(strcmp("dump", answer) == 0) akinator_dump(tree);
             else {
-                printf("Sorry, I don't understand you. Let's try again.\n");
+                akinator_say("Sorry, I don’t understand you. Let’s try again.\n");
                 continue;
             }
 
-            printf("What will we do next?\n");
+            akinator_say("What will we do next?\n");
         }
     }
 
-    printf("Have a nice day!\n");
+    akinator_say("Have a nice day!\n");
 }
 
 void akinator_dump(s_tree* tree) {
@@ -35,25 +35,25 @@ void akinator_dump(s_tree* tree) {
         tree_parser_dump(tree, file);
         fclose(file);
         system("/usr/local/bin/dot -Tpng ./dump.txt -o ./dump.png -Gsize=0,0\\\\!");
-        printf("I've dumped my database for you\n");
+        akinator_say("I've dumped my database for you\n");
     } else {
-        printf("Sorry, the gods forbade me to do the dump, saying so: %s\n", strerror(errno));
+        akinator_say("Sorry, the gods forbade me to do the dump, saying so: %s\n", strerror(errno));
     }
 }
 
 void akinator_help() {
-    printf("Type 'guess' if you want me to guess what you have wished for\n");
-    printf("Type 'difference' if you want me to say the difference between objects\n");
-    printf("Type 'bye' if you have already tired of me\n");
-    printf("Type 'help' if you get lost in this terrible and not user-friendly interface.\n");
-    printf("Type 'describe' if you want me to describe you some object\n");
+    printf("Type ’guess’ if you want me to guess what you have wished for\n");
+    printf("Type ’difference’ if you want me to say the difference between objects\n");
+    printf("Type ’bye’ if you have already tired of me\n");
+    printf("Type ’help’ if you get lost in this terrible and not user-friendly interface.\n");
+    printf("Type ’describe’ if you want me to describe you some object\n");
 }
 
 void akinator_describe(s_tree* tree) {
-    printf("What would you like me to describe?\n");
+    akinator_say("What would you like me to describe?\n");
 
     const char* object_name;
-    const bool* path;
+    const s_tree_node** path;
 
     akinator_ask_for_object(tree, &path, &object_name);
 
@@ -66,7 +66,7 @@ void akinator_describe(s_tree* tree) {
     s_tree_node* parent = NULL;
     int path_index = 0;
 
-    printf("%s", object_name);
+    akinator_say("%s", object_name);
 
     while(current->left) {
         if(parent != NULL) {
@@ -74,14 +74,14 @@ void akinator_describe(s_tree* tree) {
         }
 
         parent = current;
-        if(path[path_index++]) {
+        if(path[path_index++] == current->right) {
             current = current->right;
             if(!current->left) printf(" and");
-            printf(" not %s", parent->value);
+            akinator_say(" not %s", parent->value);
         } else {
             current = current->left;
             if(!current->left) printf(" and");
-            printf(" %s", parent->value);
+            akinator_say(" %s", parent->value);
         }
     }
 
@@ -97,18 +97,21 @@ void akinator_guess(s_tree* tree) {
 
         while(true) {
             if(question->left == NULL) {
-                printf("It is %s!\n", question->value);
+                akinator_say("It is %s!\n", question->value);
                 if(akinator_ask("Am I right?")) {
-                    printf("I was sure!\n");
+                    akinator_say("I was sure!\n");
                 } else {
-                    printf("Oh. This makes me upset.\nWell, what was that then?\n> It was ");
+                    akinator_say("Oh. This makes me upset.\n");
+                    akinator_say("Well, what was that then?\n");
+                    printf("> It was ");
                     const char* newEntry = akinator_ask_string();
 
-                    printf("I will try to remember. And what distinguishes %s from %s?\n> It ", newEntry, question->value);
+                    akinator_say("I will try to remember. And what distinguishes %s from %s?\n", newEntry, question->value);
+                    printf("> It ");
                     const char* distinction = akinator_ask_string();
 
-                    s_tree_node* newEntryNode;
-                    s_tree_node* oldEntryNode;
+                    s_tree_node* newEntryNode = NULL;
+                    s_tree_node* oldEntryNode = NULL;
 
                     tree_get_free_node(tree, &newEntryNode);
                     tree_get_free_node(tree, &oldEntryNode);
@@ -125,7 +128,7 @@ void akinator_guess(s_tree* tree) {
                         fclose(file);
                     }
 
-                    printf("Well, now you won't fool me.\n");
+                    akinator_say("Well, now you won’t fool me.\n");
                 }
                 break;
             }
@@ -134,15 +137,15 @@ void akinator_guess(s_tree* tree) {
             else question = question -> right;
         }
 
-        if(!akinator_ask("Let's play once more?")) break;
+        if(!akinator_ask("Let’s play once more?")) break;
     }
 }
 
 void akinator_difference(s_tree* tree) {
-    printf("Which object shall we take for comparison?\n");
+    akinator_say("Which object shall we take for comparison?\n");
 
-    const char* first_object;
-    const bool* first_object_path;
+    const char* first_object = NULL;
+    const s_tree_node** first_object_path = NULL;
 
     akinator_ask_for_object(tree, &first_object_path, &first_object);
 
@@ -151,10 +154,10 @@ void akinator_difference(s_tree* tree) {
         return;
     }
 
-    printf("What shall we compare with?\n");
+    akinator_say("What shall we compare with?\n");
 
-    const char* second_object;
-    const bool* second_object_path;
+    const char* second_object = NULL;
+    const s_tree_node** second_object_path = NULL;
 
     akinator_ask_for_object(tree, &second_object_path, &second_object);
 
@@ -171,21 +174,29 @@ void akinator_difference(s_tree* tree) {
         return;
     }
 
-    printf("So what differs %s from %s...\n", first_object, second_object);
+    akinator_say("So what differs %s from %s...\n", first_object, second_object);
 
-    s_tree_node* current = tree->root;
+    const s_tree_node* current = tree->root;
 
-    for(int i = 0;;i++) {
+    for(int i = 1;;i++) {
         if(first_object_path[i] == second_object_path[i]) {
-            if(first_object_path[i]) current = current->right;
-            else current = current->left;
+            if(i == 1) {
+                akinator_say("%s and %s are both ", first_object, second_object);
+            }
+            if(first_object_path[i] == current->left) {
+                akinator_say("%s, ", current->value);
+            } else {
+                akinator_say("not %s, ", current->value);
+            }
+            current = first_object_path[i];
             continue;
         }
 
-        if(first_object_path[i]) {
-            printf("%s %s, while %s is not\n", first_object, current->value, second_object);
+        if(i != 0) akinator_say("but ");
+        if(first_object_path[i] == current->left) {
+            akinator_say("%s %s, while %s is not\n", first_object, current->value, second_object);
         } else {
-            printf("%s %s, while %s is not\n", second_object, current->value, first_object);
+            akinator_say("%s %s, while %s is not\n", second_object, current->value, first_object);
         }
         break;
     }
@@ -194,25 +205,6 @@ void akinator_difference(s_tree* tree) {
     free((void*)first_object_path);
     free((void*)second_object);
     free((void*)second_object_path);
-}
-
-bool akinator_ask(const char* format, ...) {
-    while(true) {
-        va_list ap;
-        va_start (ap, format);
-        vprintf(format, ap);
-        va_end(ap);
-
-        printf(" ");
-
-        char answer[5];
-        if(scanf("%4s", answer) == 1) {
-            if(strcmp("yes", answer) == 0) return true;
-            if(strcmp("no", answer) == 0) return false;
-        }
-
-        printf("Sorry, I don't understand you. Let's try again.\n");
-    }
 }
 
 const char* akinator_ask_string(){
@@ -241,13 +233,79 @@ const char* akinator_ask_string(){
     return str;
 }
 
-void akinator_ask_for_object(s_tree* tree, const bool** path_buffer, const char** name_buffer) {
+void akinator_escape_char(char* str, char escape, char to) {
+    for(int i = 0; str[i]; i++) if(str[i] == escape) str[i] = to;
+}
+
+void akinator_escape_console(char* str) {
+    akinator_escape_char(str, '\n', ' ');
+    akinator_escape_char(str, '\"', '\'');
+}
+
+void akinator_say(const char* format, ...) {
+    va_list ap, ap2;
+    va_start(ap, format);
+    va_copy(ap2, ap);
+
+    int command_length = vsnprintf(NULL, 0, format, ap) + 7;
+    char* message = malloc(command_length);
+    vsnprintf(message + 5, command_length, format, ap2) + 7;
+
+    va_end(ap);
+    va_end(ap2);
+
+    memcpy(message, "say \"", 5);
+    printf("%s", message + 5);
+    akinator_escape_console(message + 5);
+    message[command_length - 2] = '\"';
+    message[command_length - 1] = '\0';
+    //printf(" console: %s\n", message);
+    system(message);
+    free(message);
+}
+
+bool akinator_ask(const char* format, ...) {
+    while(true) {
+        va_list ap, ap2;
+
+        va_start(ap, format);
+        va_copy(ap2, ap);
+
+        int command_length = vsnprintf(NULL, 0, format, ap) + 7;
+        char* message = malloc(command_length);
+        vsnprintf(message + 5, command_length, format, ap2) + 7;
+
+        va_end(ap);
+        va_end(ap2);
+
+        memcpy(message, "say \"", 5);
+        printf("%s", message + 5);
+        akinator_escape_console(message + 5);
+        message[command_length - 2] = '\"';
+        message[command_length - 1] = '\0';
+        //printf(" console: %s\n", message);
+        system(message);
+        free(message);
+
+        printf(" ");
+
+        char answer[5];
+        if(scanf("%4s", answer) == 1) {
+            if(strcmp("yes", answer) == 0) return true;
+            if(strcmp("no", answer) == 0) return false;
+        }
+
+        akinator_say("Sorry, I don’t understand you. Let’s try again.\n");
+    }
+}
+
+void akinator_ask_for_object(s_tree* tree, const s_tree_node*** path_buffer, const char** name_buffer) {
 
     const char* object_name = akinator_ask_string();
-    const bool* path = tree_searcher_object_path(tree, object_name);
+    const s_tree_node** path = tree_searcher_object_path(tree, object_name);
 
     if(!path) {
-        printf("I don't know anything about %s...\n", object_name);
+        akinator_say("I don’t know anything about %s...\n", object_name);
     }
 
     *name_buffer = object_name;

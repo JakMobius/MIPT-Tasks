@@ -22,7 +22,8 @@ void akinator_guess(s_tree* tree);
 void akinator_difference(s_tree* tree);
 void akinator_help();
 void akinator_dump(s_tree* tree);
+void akinator_say(const char* format, ...);
 
-void akinator_ask_for_object(s_tree* tree, const bool** path_buffer, const char** name_buffer);
+void akinator_ask_for_object(s_tree* tree, const s_tree_node*** path_buffer, const char** name_buffer);
 
 #endif //AKINATOR_AKINATOR_H

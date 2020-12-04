@@ -33,7 +33,7 @@ char* tree_parser_read_string_literal(s_tree_parser* parser) {
 
     unsigned long string_length = parser->text_index-position - 1;
 
-    char* buffer = malloc(string_length + 1);
+    char* buffer = calloc(1, string_length + 1);
     memcpy(buffer, parser->text + position, string_length);
     buffer[string_length] = '\0';
 

@@ -14,7 +14,7 @@ file_op_result read_file(const char* filepath, const char** result, unsigned lon
 
     unsigned long file_length = filedata.st_size + 1;
 
-    char* buffer = (char*) malloc(file_length);
+    char* buffer = (char*) calloc(1, file_length);
 
     if(!buffer) {
         return FILE_OP_NOT_ENOUGH_MEMORY;

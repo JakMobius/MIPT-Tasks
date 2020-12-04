@@ -11,7 +11,7 @@ int main(__unused int argc, __unused const char * argv[]) {
 
     const char* database_path = "./database.db";
 
-    const char* database;
+    const char* database = NULL;
     file_op_result result = read_file(database_path, &database, NULL);
 
     if(result != FILE_OP_OK) {

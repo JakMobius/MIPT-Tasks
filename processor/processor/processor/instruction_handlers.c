@@ -12,8 +12,6 @@ void proc_read_stack_argument(s_processor* thou, s_proc_stack_argument* argument
     bool number_met   = flag & (1 << 5);
     bool memory_read  = flag & (1 << 6);
     bool reg_first    = flag & (1 << 7);
-    
-//    printf("%x %x %x %x\n", register_met, number_met, memory_read, reg_first);
 
     flag &= 0x0F;
 

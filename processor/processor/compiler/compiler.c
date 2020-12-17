@@ -156,7 +156,7 @@ void compiler_read_token(s_compiler* thou, s_compiler_token* target) {
                 return;
             }
         } else if(brace_amount == 0) {
-            if(!isalpha(c) && !isdigit(c) && c != '.' && c != '+' && c != '-' && c != ':') break;
+            if(!isalpha(c) && !isdigit(c) && c != '.' && c != '+' && c != '-' && c != ':' && c != '_') break;
         }
     } while(c != '\n' && c != '\0');
     

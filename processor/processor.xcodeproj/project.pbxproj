@@ -281,6 +281,7 @@
 				89D4DD522536E9220095BA18 /* Frameworks */,
 				89D4DD532536E9220095BA18 /* CopyFiles */,
 				89BF385C25437AF7001BE361 /* CopyFiles */,
+				8979748325890A7A00CE7247 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -298,6 +299,7 @@
 				89D4DD6C2536EA740095BA18 /* Sources */,
 				89D4DD6D2536EA740095BA18 /* Frameworks */,
 				89D4DD6E2536EA740095BA18 /* CopyFiles */,
+				8979748425890A8F00CE7247 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -342,6 +344,43 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8979748325890A7A00CE7247 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm /usr/local/bin/eder\nln -n /Users/Temich/Library/Developer/Xcode/DerivedData/processor-hjmrrrmyyxwqetdswpkarrizwibh/Build/Products/Debug/processor /usr/local/bin/eder\n";
+		};
+		8979748425890A8F00CE7247 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm /usr/local/bin/ederer\nln -n /Users/Temich/Library/Developer/Xcode/DerivedData/processor-hjmrrrmyyxwqetdswpkarrizwibh/Build/Products/Debug/compiler /usr/local/bin/ederer\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89D4DD512536E9220095BA18 /* Sources */ = {
@@ -506,6 +545,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_OPTIMIZATION_LEVEL = fast;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/hidapi/0.9.0/lib,
@@ -548,6 +588,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K88K8W9Z6A;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;

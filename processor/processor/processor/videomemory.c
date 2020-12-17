@@ -2,6 +2,27 @@
 #define GL_SILENCE_DEPRECATION
 #include "videomemory.h"
 
+const char* VM_VERTEX_SHADER = "#version 330 core\n"
+                               "\n"
+                               "uniform sampler2D u_texture;\n"
+                               "layout(location = 0) in vec2 position;\n"
+                               "out vec2 vertex_position;\n"
+                               "\n"
+                               "void main()\n"
+                               "{\n"
+                               "    vertex_position = position * 0.5 + vec2(0.5, 0.5);\n"
+                               "    gl_Position = vec4(position, 0.0, 1.0);\n"
+                               "}";
+const char* VM_FRAGMENT_SHADER = "#version 330 core\n"
+                                 "\n"
+                                 "uniform sampler2D u_texture;\n"
+                                 "in vec2 vertex_position;\n"
+                                 "out vec4 color;\n"
+                                 "\n"
+                                 "void main(){\n"
+                                 "    color = vec4(texture(u_texture, vertex_position).xyz, 1.0);\n"
+                                 "}";
+
 bool sdl_initialized = false;
 
 s_proc_vm* proc_vm_create() {
@@ -78,20 +99,13 @@ void proc_vm_init_window(s_proc_vm* thou, int width, int height, void* framebuff
     proc_vm_compile_shaders(thou);
 }
 
-GLuint proc_vm_shader(s_proc_vm* thou, const char* path, GLenum type) {
+GLuint proc_vm_shader(s_proc_vm* thou, const char* source, GLenum type) {
     if(thou -> state != PROC_VM_RESULT_OK) return 0;
-    file_op_result result = FILE_OP_READ_ERROR;
-    
-    const char* source = read_file(path, &result, NULL);
     
     GLuint shader = glCreateShader(type);
     
     glShaderSource(shader, 1, &source, NULL);
     glCompileShader(shader);
-
-    glCompileShader(shader);
-    
-    free((void*)source);
     
     GLint isCompiled = 0;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
@@ -135,17 +149,9 @@ void proc_vm_create_vao(s_proc_vm* thou) {
 }
 
 void proc_vm_compile_shaders(s_proc_vm* thou) {
-    char* base_path = SDL_GetBasePath();
-    unsigned long base_path_length = strlen(base_path);
     
-    const char* vertex_shader_path = "shaders/vertex.vsh";
-    const char* fragment_shader_path = "shaders/fragment.fsh";
-    
-    char* vertex_shader_full_path = strcat(calloc(1, base_path_length + strlen(vertex_shader_path) + 1), vertex_shader_path);
-    char* fragment_shader_full_path = strcat(calloc(1, base_path_length + strlen(fragment_shader_path) + 1), fragment_shader_path);
-    
-    GLuint vertProg = proc_vm_shader(thou, vertex_shader_full_path, GL_VERTEX_SHADER);
-    GLuint fragProg = proc_vm_shader(thou, fragment_shader_full_path, GL_FRAGMENT_SHADER);
+    GLuint vertProg = proc_vm_shader(thou, VM_VERTEX_SHADER, GL_VERTEX_SHADER);
+    GLuint fragProg = proc_vm_shader(thou, VM_FRAGMENT_SHADER, GL_FRAGMENT_SHADER);
 
     if(thou -> state != PROC_VM_RESULT_OK) return;
 
@@ -181,11 +187,6 @@ void proc_vm_compile_shaders(s_proc_vm* thou) {
             printf("Failed to link program\n");
         }
     }
-    
-    free(vertex_shader_full_path);
-    free(fragment_shader_full_path);
-    
-    SDL_free(base_path);
     
     glDetachShader(thou -> gl_program, fragProg);
     glDetachShader(thou -> gl_program, vertProg);

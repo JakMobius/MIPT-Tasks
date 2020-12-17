@@ -241,7 +241,7 @@ void proc_add_jmp_instruction(s_compiler* thou, proc_command command, e_proc_fla
     
     if(isdigit(c)) {
         compiler_pipe_number(thou, PROC_FLAG_UNSIGNED_INT64);
-    } else if(isalpha(c)) {
+    } else if(isalpha(c) || c == '_') {
         unsigned long long address = 0;
         
         s_compiler_token token = {};

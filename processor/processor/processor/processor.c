@@ -13,12 +13,13 @@ void s_processor_stack_resize(s_processor* thou, int direction) {
     if(direction > 0) capacity *= 2;
     else capacity /= 2;
     
+    if(capacity < thou -> registers.rsp) capacity = thou -> registers.rsp;
+    
     if(capacity > 32768) {
         proc_error(thou, PROC_STATE_OUT_OF_MEMORY);
         return;
     }
     
-    if(capacity < thou -> registers.rsp) capacity = thou -> registers.rsp;
     if(capacity < 256) capacity = 256;
     if(capacity == thou -> stack_capacity) return;
     
@@ -43,6 +44,7 @@ void s_processor_stack_resize_if_needed(s_processor* thou) {
 
 void s_processor_stack_push(s_processor* thou, void* ptr, size_t amount) {
     thou -> registers.rsp += amount;
+    if(thou->state) return;
     
     s_processor_stack_resize_if_needed(thou);
     
@@ -57,6 +59,9 @@ void s_processor_stack_push(s_processor* thou, void* ptr, size_t amount) {
 }
 
 void s_processor_stack_top(s_processor* thou, void* ptr, unsigned long amount) {
+    s_processor_stack_resize_if_needed(thou);
+    if(thou->state) return;
+    
     if(thou -> registers.rsp < amount) {
         proc_error(thou, PROC_STATE_STACK_UNDERFLOW);
         return;
@@ -70,13 +75,19 @@ void s_processor_stack_top(s_processor* thou, void* ptr, unsigned long amount) {
 }
 
 void s_processor_stack_pop(s_processor* thou, void* ptr, unsigned long amount) {
+    s_processor_stack_resize_if_needed(thou);
+    if(thou->state) return;
+    
     if(thou -> registers.rsp < amount) {
         proc_error(thou, PROC_STATE_STACK_UNDERFLOW);
         return;
     }
     
+    unsigned long long old_rsp = thou->registers.rsp;
+    thou->registers.rsp -= amount;
+    
     for(; amount--;) {
-        ((char*)ptr)[amount] = thou -> stack[--thou -> registers.rsp];
+        ((char*)ptr)[amount] = thou->stack[--old_rsp];
     }
     
     s_processor_stack_resize_if_needed(thou);
@@ -88,12 +99,14 @@ void compiler_previous_char(s_processor* thou) {
 }
 
 unsigned char compiler_next_char(s_processor* thou) {
+    if(thou->registers.rip >= thou->text_length) {
+        proc_error(thou, PROC_STATE_REACHED_FILE_END);
+        return 0;
+    }
+    
     unsigned char result = thou -> text[thou -> registers.rip];
     
-    if(thou -> registers.rip + 1 < thou -> text_length) thou -> registers.rip++;
-    else {
-        proc_error(thou, PROC_STATE_REACHED_FILE_END);
-    }
+    thou -> registers.rip++;
     
     return result;
 }
@@ -176,6 +189,22 @@ void proc_dump(s_processor* thou) {
     for(int i = (int)thou -> registers.rsp - 1; i >= 0 && limit > 0; i--, limit--) {
         printf(" - [0x%04x] = 0x%02x\n", i, limit);
     }
+}
+
+unsigned long long proc_read_long_long(s_processor* thou) {
+    
+    return proc_read_integer(thou, 8);
+    
+    // this is totally unsafe
+//    if(thou->text_length < thou->registers.rsp + 8) {
+//        proc_error(thou, PROC_STATE_REACHED_FILE_END);
+//        return 0;
+//    }
+//    unsigned long long result = *(unsigned long long*)(thou->text + thou->registers.rip);
+//
+//    thou->registers.rip += 8;
+//
+//    return result;
 }
 
 unsigned long long proc_read_integer(s_processor* thou, size_t bytes) {

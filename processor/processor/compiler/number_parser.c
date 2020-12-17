@@ -154,6 +154,12 @@ u_compiler_number read_number(s_compiler* thou, bool is_integer) {
             
             c = compiler_next_char(thou);
             c = tolower(c);
+            
+            if(c == '+' || c == '-') {
+                if(c == '-') factor = -1;
+                c = compiler_next_char(thou);
+            }
+            
             if(!is_digit_16(c)) {
                 if(exponent) {
                     compiler_error(thou, "expected exponent value after 'e' character");

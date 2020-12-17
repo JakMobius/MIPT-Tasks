@@ -520,7 +520,7 @@ ADD_COMMAND
         proc_add_jmp_instruction(thou, PROC_COMMAND_JUMP, PROC_FLAG_NONE);
     ),
     PROCESS({
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION("jmp"))
@@ -540,7 +540,7 @@ ADD_COMMAND
             thou -> registers.rip += 8;
             break;
         }
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION_FLAG("jae"))
@@ -560,7 +560,7 @@ ADD_COMMAND
             thou -> registers.rip += 8;
             break;
         }
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION_FLAG("jbe"))
@@ -580,7 +580,7 @@ ADD_COMMAND
             thou -> registers.rip += 8;
             break;
         }
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION_FLAG("ja"))
@@ -600,7 +600,7 @@ ADD_COMMAND
             thou -> registers.rip += 8;
             break;
         }
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION_FLAG("jb"))
@@ -620,7 +620,7 @@ ADD_COMMAND
             thou -> registers.rip += 8;
             break;
         }
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION_FLAG("je"))
@@ -640,7 +640,7 @@ ADD_COMMAND
             thou -> registers.rip += 8;
             break;
         }
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION_FLAG("jne"))
@@ -661,7 +661,7 @@ ADD_COMMAND
             break;
         }
         if(thou -> state != PROC_STATE_RUNNING) return;
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION_FLAG("jz"))
@@ -682,7 +682,7 @@ ADD_COMMAND
             break;
         }
         if(thou -> state != PROC_STATE_RUNNING) return;
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION_FLAG("jnz"))
@@ -704,7 +704,7 @@ ADD_COMMAND
             thou -> registers.rip += 8;
             break;
         }
-        unsigned long long argument = proc_read_integer(thou, 8);
+        unsigned long long argument = proc_read_long_long(thou);
         thou -> registers.rip = argument;
     }),
     DECOMPILE(DECOMPILE_JMP_INSTRUCTION("jm"))

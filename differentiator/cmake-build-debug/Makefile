@@ -521,6 +521,33 @@ parsing/parser.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/differentiator.dir/build.make CMakeFiles/differentiator.dir/parsing/parser.c.s
 .PHONY : parsing/parser.c.s
 
+phrases.o: phrases.c.o
+
+.PHONY : phrases.o
+
+# target to build an object file
+phrases.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/differentiator.dir/build.make CMakeFiles/differentiator.dir/phrases.c.o
+.PHONY : phrases.c.o
+
+phrases.i: phrases.c.i
+
+.PHONY : phrases.i
+
+# target to preprocess a source file
+phrases.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/differentiator.dir/build.make CMakeFiles/differentiator.dir/phrases.c.i
+.PHONY : phrases.c.i
+
+phrases.s: phrases.c.s
+
+.PHONY : phrases.s
+
+# target to generate assembly for a file
+phrases.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/differentiator.dir/build.make CMakeFiles/differentiator.dir/phrases.c.s
+.PHONY : phrases.c.s
+
 simplifier.o: simplifier.c.o
 
 .PHONY : simplifier.o
@@ -602,6 +629,33 @@ tree_serializer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/differentiator.dir/build.make CMakeFiles/differentiator.dir/tree_serializer.c.s
 .PHONY : tree_serializer.c.s
 
+utils.o: utils.c.o
+
+.PHONY : utils.o
+
+# target to build an object file
+utils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/differentiator.dir/build.make CMakeFiles/differentiator.dir/utils.c.o
+.PHONY : utils.c.o
+
+utils.i: utils.c.i
+
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/differentiator.dir/build.make CMakeFiles/differentiator.dir/utils.c.i
+.PHONY : utils.c.i
+
+utils.s: utils.c.s
+
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/differentiator.dir/build.make CMakeFiles/differentiator.dir/utils.c.s
+.PHONY : utils.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -653,6 +707,9 @@ help:
 	@echo "... parsing/parser.o"
 	@echo "... parsing/parser.i"
 	@echo "... parsing/parser.s"
+	@echo "... phrases.o"
+	@echo "... phrases.i"
+	@echo "... phrases.s"
 	@echo "... simplifier.o"
 	@echo "... simplifier.i"
 	@echo "... simplifier.s"
@@ -662,6 +719,9 @@ help:
 	@echo "... tree_serializer.o"
 	@echo "... tree_serializer.i"
 	@echo "... tree_serializer.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
 .PHONY : help
 
 

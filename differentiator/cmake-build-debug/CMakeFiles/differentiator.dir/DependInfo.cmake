@@ -18,9 +18,11 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_power_base.c" "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_power_base.c.o"
   "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_reference.c" "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_reference.c.o"
   "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/parser.c" "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir/parsing/parser.c.o"
+  "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.c" "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir/phrases.c.o"
   "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/simplifier.c" "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir/simplifier.c.o"
   "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree.c" "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir/tree.c.o"
   "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree_serializer.c" "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir/tree_serializer.c.o"
+  "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.c" "/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir/utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

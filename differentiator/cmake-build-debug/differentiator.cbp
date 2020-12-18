@@ -159,6 +159,12 @@
 		<Unit filename="/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/parser.h">
 			<Option target="differentiator"/>
 		</Unit>
+		<Unit filename="/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.c">
+			<Option target="differentiator"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.h">
+			<Option target="differentiator"/>
+		</Unit>
 		<Unit filename="/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/simplifier.c">
 			<Option target="differentiator"/>
 		</Unit>
@@ -175,6 +181,12 @@
 			<Option target="differentiator"/>
 		</Unit>
 		<Unit filename="/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree_serializer.h">
+			<Option target="differentiator"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.c">
+			<Option target="differentiator"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.h">
 			<Option target="differentiator"/>
 		</Unit>
 		<Unit filename="/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/CMakeLists.txt">

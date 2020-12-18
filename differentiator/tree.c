@@ -8,11 +8,11 @@
 const int TREE_NODE_OPERATOR_PRIORITY[] = {
     0, // TREE_OPERATOR_TYPE_PLUS
     1, // TREE_OPERATOR_TYPE_MINUS
-    4, // TREE_OPERATOR_TYPE_MULTIPLY
+    3, // TREE_OPERATOR_TYPE_MULTIPLY
     2, // TREE_OPERATOR_TYPE_DIVIDE
-    4, // TREE_OPERATOR_TYPE_POW
+    3, // TREE_OPERATOR_TYPE_POW
     1, // TREE_OPERATOR_TYPE_DIFFERENTIAL
-    1, // TREE_OPERATOR_TYPE_CALL
+    4, // TREE_OPERATOR_TYPE_CALL
 };
 
 const char* TREE_NODE_OPERATOR_NAMES[] = {
@@ -104,27 +104,22 @@ s_tree* tree_new() {
     return tree;
 }
 
+int tree_node_amount = 0;
+
 e_tree_error tree_construct(s_tree* tree) {
 
     tree->root = NULL;
-
     return TREE_OK;
 }
 
 void tree_destruct(s_tree* tree) {
-    tree_node_release(tree->root);
+    tree_release_subtree(tree->root);
 }
 
 void tree_release(s_tree *tree) {
     if(!tree) return;
     tree_destruct(tree);
     free(tree);
-}
-
-void tree_node_release(s_tree_node *node) {
-    if(!node) return;
-    tree_node_release(node->left);
-    tree_node_release(node->right);
 }
 
 s_tree_node_number* tree_create_number_from_double(double value) {
@@ -149,6 +144,8 @@ void tree_construct_node(s_tree_node* node) {
     node->type = -1;
     node->left = NULL;
     node->right = NULL;
+
+    tree_node_amount++;
 }
 
 s_tree_node* tree_create_node() {
@@ -217,6 +214,7 @@ s_tree_node_variable* tree_create_node_variable() {
 e_tree_error tree_release_node(s_tree_node* node) {
     if(!node) return TREE_ERROR_NULL;
 
+
     free(node);
 
     return TREE_OK;
@@ -224,6 +222,8 @@ e_tree_error tree_release_node(s_tree_node* node) {
 
 e_tree_error tree_release_subtree(s_tree_node* node) {
     if(!node) return TREE_ERROR_NULL;
+
+    tree_node_amount--;
 
     tree_release_subtree(node->left);
     tree_release_subtree(node->right);
@@ -233,19 +233,17 @@ e_tree_error tree_release_subtree(s_tree_node* node) {
 }
 
 void tree_node_sift_left(s_tree_node** node) {
-    tree_release_subtree((*node)->right);
     s_tree_node* release = *node;
     *node = (*node)->left;
     release->left = NULL;
-    tree_release_node(release);
+    tree_release_subtree(release);
 }
 
 void tree_node_sift_right(s_tree_node** node) {
-    tree_release_subtree((*node)->left);
     s_tree_node* release = *node;
     *node = (*node)->right;
     release->right = NULL;
-    tree_release_node(release);
+    tree_release_subtree(release);
 }
 
 s_tree_node* tree_left_leap(s_tree_node* node) {
@@ -295,6 +293,7 @@ s_tree_node* tree_node_clone_deep(s_tree_node* node) {
     unsigned long type_size = tree_node_size(node);
     s_tree_node* clone = calloc(1, type_size);
     if(!clone) return NULL;
+    tree_node_amount++;
 
     clone->type = node->type;
     clone->left = tree_node_clone_deep(node->left);
@@ -332,8 +331,9 @@ void subtree_reference_count_reset(s_tree_node* node) {
 }
 
 void tree_validate(s_tree* tree) {
-    subtree_reference_count_reset(tree->root);
     subtree_validate(tree->root, NULL);
+    subtree_reference_count_reset(tree->root);
+
 }
 
 e_tree_error tree_evaluate(s_tree* tree, const double** variables, double* value) {

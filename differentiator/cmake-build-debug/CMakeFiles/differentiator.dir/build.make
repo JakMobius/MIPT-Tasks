@@ -298,6 +298,32 @@ CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.s: cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_derivative.c -o CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.s
 
+CMakeFiles/differentiator.dir/utils.c.o: CMakeFiles/differentiator.dir/flags.make
+CMakeFiles/differentiator.dir/utils.c.o: ../utils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/differentiator.dir/utils.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/differentiator.dir/utils.c.o   -c /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.c
+
+CMakeFiles/differentiator.dir/utils.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/differentiator.dir/utils.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.c > CMakeFiles/differentiator.dir/utils.c.i
+
+CMakeFiles/differentiator.dir/utils.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/differentiator.dir/utils.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.c -o CMakeFiles/differentiator.dir/utils.c.s
+
+CMakeFiles/differentiator.dir/phrases.c.o: CMakeFiles/differentiator.dir/flags.make
+CMakeFiles/differentiator.dir/phrases.c.o: ../phrases.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/differentiator.dir/phrases.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/differentiator.dir/phrases.c.o   -c /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.c
+
+CMakeFiles/differentiator.dir/phrases.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/differentiator.dir/phrases.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.c > CMakeFiles/differentiator.dir/phrases.c.i
+
+CMakeFiles/differentiator.dir/phrases.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/differentiator.dir/phrases.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.c -o CMakeFiles/differentiator.dir/phrases.c.s
+
 # Object files for target differentiator
 differentiator_OBJECTS = \
 "CMakeFiles/differentiator.dir/main.c.o" \
@@ -316,7 +342,9 @@ differentiator_OBJECTS = \
 "CMakeFiles/differentiator.dir/compiler.c.o" \
 "CMakeFiles/differentiator.dir/errors.c.o" \
 "CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_power_base.c.o" \
-"CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.o"
+"CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.o" \
+"CMakeFiles/differentiator.dir/utils.c.o" \
+"CMakeFiles/differentiator.dir/phrases.c.o"
 
 # External object files for target differentiator
 differentiator_EXTERNAL_OBJECTS =
@@ -338,9 +366,11 @@ differentiator: CMakeFiles/differentiator.dir/compiler.c.o
 differentiator: CMakeFiles/differentiator.dir/errors.c.o
 differentiator: CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_power_base.c.o
 differentiator: CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.o
+differentiator: CMakeFiles/differentiator.dir/utils.c.o
+differentiator: CMakeFiles/differentiator.dir/phrases.c.o
 differentiator: CMakeFiles/differentiator.dir/build.make
 differentiator: CMakeFiles/differentiator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking C executable differentiator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/Temich/Documents/Учеба/Прога/Дед/differentiator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking C executable differentiator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/differentiator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

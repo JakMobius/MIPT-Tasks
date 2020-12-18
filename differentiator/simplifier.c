@@ -2,12 +2,28 @@
 #include "simplifier.h"
 #include "tree.h"
 
+#define USE_EXPENSIVE_SIMPLIFICATIONS true
+
+void simplifier_context_init(s_simplifier_context* ctx) {
+    ctx->before_simplification = NULL;
+    ctx->after_simplification = NULL;
+    ctx->taken_derivative = false;
+    ctx->tree = NULL;
+    ctx->config = NULL;
+    ctx->current_operations = 0;
+}
+
+void simplifier_context_destruct(s_simplifier_context* ctx) {
+
+}
+
 // MARK: Context management
 
 bool simplify_context_can_perform_action(s_simplifier_context* context) {
     return context->current_operations < context->config->max_operations_per_step;
 }
 
+e_tree_error tree_parser_serialize(s_tree* target, FILE* file);
 void simplify_context_perform_action(s_simplifier_context* context) {
     context->current_operations++;
 }
@@ -270,7 +286,7 @@ e_tree_error tree_node_pow_derivative(s_tree_node** node_link, s_tree_node** tar
         derivative->left = (s_tree_node*) tree_create_node_operator(TREE_OPERATOR_TYPE_CALL);
         if(!derivative->left) return TREE_ERROR_OUT_OF_MEMORY;
         derivative->left->left = (s_tree_node*) tree_create_node_function(TREE_FUNCTION_LN);
-        if(derivative->left->left) return TREE_ERROR_OUT_OF_MEMORY;
+        if(!derivative->left->left) return TREE_ERROR_OUT_OF_MEMORY;
 
         derivative->left->right = tree_node_clone_deep(node->left);
         if(!derivative->left->right) return TREE_ERROR_OUT_OF_MEMORY;
@@ -511,6 +527,8 @@ e_tree_error tree_node_multiplication_derivative(s_tree_node** node_link, s_tree
 e_tree_error tree_subtree_derivative(s_tree_node** node_link, s_tree_node** target, unsigned long variable_index, s_simplifier_context* context) {
     s_tree_node* subtree = *node_link;
 
+    context->taken_derivative = true;
+
     if(subtree == NULL) return TREE_ERROR_NULL;
 
     if(subtree->type == TREE_NODE_TYPE_FUNCTION) {
@@ -528,6 +546,7 @@ e_tree_error tree_subtree_derivative(s_tree_node** node_link, s_tree_node** targ
     if(subtree->type == TREE_NODE_TYPE_NUMBER) {
         *target = (s_tree_node*) tree_create_number_from_double(0);
         if(!*target) return TREE_ERROR_OUT_OF_MEMORY;
+        context->after_simplification = *target;
         return TREE_OK;
     }
     if(subtree->type == TREE_NODE_TYPE_VARIABLE) {
@@ -537,10 +556,12 @@ e_tree_error tree_subtree_derivative(s_tree_node** node_link, s_tree_node** targ
             *target = (s_tree_node*) tree_create_number_from_double(0);
         }
         if(!*target) return TREE_ERROR_OUT_OF_MEMORY;
+        context->after_simplification = *target;
         return TREE_OK;
     }
 
     if(subtree->type == TREE_NODE_TYPE_OPERATOR) {
+        e_tree_error error = TREE_OK;
         s_tree_node_operator* operator = (s_tree_node_operator*) subtree;
 
         switch(operator->operator_type) {
@@ -551,17 +572,24 @@ e_tree_error tree_subtree_derivative(s_tree_node** node_link, s_tree_node** targ
 
                 if(subtree->left) {
                     e_tree_error error = TREE_OK;
-                    if((error = tree_subtree_derivative(&subtree->left, &(*target)->left, variable_index, context)))
-                        return error;
+                    error = tree_subtree_derivative(&subtree->left, &(*target)->left, variable_index, context);
+                    if(error) return error;
                 } else (*target)->left = NULL;
-
-                return tree_subtree_derivative(&subtree->right, &(*target)->right, variable_index, context);
+                error = tree_subtree_derivative(&subtree->right, &(*target)->right, variable_index, context);
+                context->after_simplification = (*target);
+                return error;
             case TREE_OPERATOR_TYPE_MULTIPLY:
-                return tree_node_multiplication_derivative(&subtree, target, variable_index, context);
+                error = tree_node_multiplication_derivative(&subtree, target, variable_index, context);
+                context->after_simplification = *target;
+                return error;
             case TREE_OPERATOR_TYPE_DIVIDE:
-                return tree_node_division_derivative(&subtree, target, variable_index, context);
+                error = tree_node_division_derivative(&subtree, target, variable_index, context);
+                context->after_simplification = *target;
+                return error;
             case TREE_OPERATOR_TYPE_POW:
-                return tree_node_pow_derivative(&subtree, target, variable_index, context);
+                error = tree_node_pow_derivative(&subtree, target, variable_index, context);
+                context->after_simplification = *target;
+                return error;
             case TREE_OPERATOR_TYPE_CALL:
                 if(subtree->left->type == TREE_NODE_TYPE_FUNCTION) {
                     s_tree_node_function* function = (s_tree_node_function*)subtree->left;
@@ -569,10 +597,14 @@ e_tree_error tree_subtree_derivative(s_tree_node** node_link, s_tree_node** targ
                         case TREE_FUNCTION_SIN:
                         case TREE_FUNCTION_COS:
                         case TREE_FUNCTION_LN:
-                            return tree_node_function_derivative(&subtree, target, variable_index, context);
+                            error = tree_node_function_derivative(&subtree, target, variable_index, context);
+                            break;
                         case TREE_FUNCTION_SQRT:
-                            return tree_node_sqrt_derivative(&subtree, target, variable_index, context);
+                            error = tree_node_sqrt_derivative(&subtree, target, variable_index, context);
                     }
+
+                    context->after_simplification = *target;
+                    return error;
                 }
 
                 return TREE_ERROR_CANNOT_TAKE_DERIVATIVE;
@@ -815,6 +847,7 @@ e_tree_error tree_node_sort_members(s_tree_node* expression, s_simplifier_contex
     }
 
     if(moved) {
+        context->after_simplification = expression;
         simplify_context_perform_action(context);
     }
 
@@ -825,14 +858,12 @@ e_tree_error tree_cite_merge_similar(s_tree_node_operator** node_link, bool is_n
 
     s_tree_node_operator* node = *node_link;
 
-    s_tree_node* left = node->tree_node.left;
+    s_tree_node* left = NULL;
     s_tree_node* right = NULL;
 
-    if(is_nested) {
-        right = node->tree_node.right->left;
-    } else {
-        right = node->tree_node.right;
-    }
+    left = node->tree_node.left;
+    if(is_nested) right = node->tree_node.right->left;
+    else right = node->tree_node.right;
 
     e_tree_node_operator_type group_operator = 0;
     if(node->operator_type == TREE_OPERATOR_TYPE_PLUS) {
@@ -873,7 +904,6 @@ e_tree_error tree_cite_merge_similar(s_tree_node_operator** node_link, bool is_n
                 tree_node_sift_right(&node->tree_node.left);
                 left = node->tree_node.left;
             } else {
-                tree_release_subtree((s_tree_node*) right_number);
                 node->tree_node.left = (s_tree_node*) tree_create_node_operator(TREE_OPERATOR_TYPE_MINUS);
                 left = node->tree_node.left;
                 if(!left) return TREE_ERROR_OUT_OF_MEMORY;
@@ -885,6 +915,7 @@ e_tree_error tree_cite_merge_similar(s_tree_node_operator** node_link, bool is_n
         if(is_nested) tree_node_sift_right(&node->tree_node.right);
         else tree_node_sift_left((s_tree_node**)node_link);
 
+        context->after_simplification = (s_tree_node*) *node_link;
         simplify_context_perform_action(context);
     } else if(tree_node_compare(left, right) == 0) {
         // a equals b
@@ -900,6 +931,8 @@ e_tree_error tree_cite_merge_similar(s_tree_node_operator** node_link, bool is_n
 
         if(is_nested) tree_node_sift_right(&node->tree_node.right);
         else tree_node_sift_left((s_tree_node**) node_link);
+
+        context->after_simplification = (s_tree_node*) *node_link;
         simplify_context_perform_action(context);
     } else if(tree_node_is_operator(left, group_operator) || tree_node_is_operator(right, group_operator)) {
         if(tree_node_is_operator(left, group_operator) && tree_node_is_operator(right, group_operator)) {
@@ -921,19 +954,25 @@ e_tree_error tree_cite_merge_similar(s_tree_node_operator** node_link, bool is_n
                     left_number->float_value += right_number->float_value;
                     if(is_nested) tree_node_sift_right(&node->tree_node.right);
                     else tree_node_sift_left((s_tree_node**) node_link);
+
+                    context->after_simplification = (s_tree_node*) *node_link;
                     simplify_context_perform_action(context);
                 } else {
-                    s_tree_node* power_sum = (s_tree_node*) tree_create_node_operator(TREE_OPERATOR_TYPE_PLUS);
-                    if(!power_sum) return TREE_ERROR_OUT_OF_MEMORY;
+                    if(!tree_subtree_is_simple_value(left->left)) {
+                        s_tree_node* power_sum = (s_tree_node*) tree_create_node_operator(TREE_OPERATOR_TYPE_PLUS);
+                        if(!power_sum) return TREE_ERROR_OUT_OF_MEMORY;
 
-                    power_sum->left = left->right;
-                    power_sum->right = right->right;
-                    right->right = NULL; // Prevent this node from being freed by tree_node_sift_*
-                    left->right = power_sum;
+                        power_sum->left = left->right;
+                        power_sum->right = right->right;
+                        right->right = NULL; // Prevent this node from being freed by tree_node_sift_*
+                        left->right = power_sum;
 
-                    if(is_nested) tree_node_sift_right(&node->tree_node.right);
-                    else tree_node_sift_left((s_tree_node**) node_link);
-                    simplify_context_perform_action(context);
+                        if(is_nested) tree_node_sift_right(&node->tree_node.right);
+                        else tree_node_sift_left((s_tree_node**) node_link);
+
+                        context->after_simplification = (s_tree_node*) *node_link;
+                        simplify_context_perform_action(context);
+                    }
                 }
             }
         } else {
@@ -977,12 +1016,16 @@ e_tree_error tree_cite_merge_similar(s_tree_node_operator** node_link, bool is_n
                 if(is_nested) tree_node_sift_right(&node->tree_node.right);
                 else tree_node_sift_left((s_tree_node**) node_link);
 
+                context->after_simplification = (s_tree_node*) *node_link;
                 simplify_context_perform_action(context);
             }
         }
     }
 
     node = *node_link;
+    left = node->tree_node.left;
+    if(is_nested) right = node->tree_node.right->left;
+    else right = node->tree_node.right;
 
     if(tree_node_is_operator((s_tree_node*) node, TREE_OPERATOR_TYPE_PLUS)) {
         if(tree_node_is_operator(left, TREE_OPERATOR_TYPE_DIVIDE) && tree_node_is_operator(right, TREE_OPERATOR_TYPE_DIVIDE)) {
@@ -1000,6 +1043,7 @@ e_tree_error tree_cite_merge_similar(s_tree_node_operator** node_link, bool is_n
                 if(is_nested) tree_node_sift_right(&node->tree_node.right);
                 else tree_node_sift_left((s_tree_node**) node_link);
 
+                context->after_simplification = (s_tree_node*) *node_link;
                 simplify_context_perform_action(context);
             }
         }
@@ -1194,11 +1238,11 @@ void tree_node_intersect(s_tree_node** sum_link, s_tree_node* mask) {
 
             if(tree_node_factor_of_term_in_expression(mask, (*runner)->left, &factor)) {
                 double left_value = tree_subtree_constant_value(factor);
-                double right_value = tree_subtree_constant_value(current_factor);
+                double right_value = tree_subtree_constant_value((s_tree_node*) current_factor);
 
                 if((right_value > 0) != (left_value > 0)) {
                     tree_release_subtree((*runner)->left->right);
-                    (*runner)->left->right = tree_create_number_from_double(0.0);
+                    (*runner)->left->right = (s_tree_node*) tree_create_number_from_double(0.0);
                     // TODO handle calloc fail
                 } else if(fabs(left_value) < fabs(right_value)) {
                     tree_release_subtree((*runner)->left->right);
@@ -1206,7 +1250,7 @@ void tree_node_intersect(s_tree_node** sum_link, s_tree_node* mask) {
                 }
             } else {
                 tree_release_subtree((*runner)->left->right);
-                (*runner)->left->right = tree_create_number_from_double(0.0);
+                (*runner)->left->right = (s_tree_node*) tree_create_number_from_double(0.0);
                 // TODO handle calloc fail
             }
 
@@ -1214,11 +1258,11 @@ void tree_node_intersect(s_tree_node** sum_link, s_tree_node* mask) {
 
             if(tree_node_factor_of_term_in_expression(mask, (*runner)->right, &factor)) {
                 double left_value = tree_subtree_constant_value(factor);
-                double right_value = tree_subtree_constant_value(current_factor);
+                double right_value = tree_subtree_constant_value((s_tree_node*) current_factor);
 
                 if((right_value > 0) != (left_value > 0)) {
                     tree_release_subtree((*runner)->right->right);
-                    (*runner)->right->right = tree_create_number_from_double(0.0);
+                    (*runner)->right->right = (s_tree_node*) tree_create_number_from_double(0.0);
                     // TODO handle calloc fail
                 } else if(fabs(left_value) < fabs(right_value)) {
                     tree_release_subtree((*runner)->right->right);
@@ -1226,7 +1270,7 @@ void tree_node_intersect(s_tree_node** sum_link, s_tree_node* mask) {
                 }
             } else {
                 tree_release_subtree((*runner)->right->right);
-                (*runner)->right->right = tree_create_number_from_double(0.0);
+                (*runner)->right->right = (s_tree_node*) tree_create_number_from_double(0.0);
                 // TODO handle calloc fail
             }
         }
@@ -1237,19 +1281,20 @@ void tree_node_intersect(s_tree_node** sum_link, s_tree_node* mask) {
 
         if(tree_node_factor_of_term_in_expression(mask, sum, &factor)) {
             double left_value = tree_subtree_constant_value(factor);
-            double right_value = tree_subtree_constant_value(current_factor);
+            double right_value = tree_subtree_constant_value((s_tree_node*) current_factor);
 
             if((right_value > 0) != (left_value > 0)) {
                 tree_release_subtree(sum->right);
-                sum->right = tree_create_number_from_double(0.0);
+                sum->right = (s_tree_node*) tree_create_number_from_double(0.0);
                 // TODO handle calloc fail
-            } else if(fabs(tree_subtree_constant_value(factor)) < fabs(tree_subtree_constant_value(current_factor))) {
+            } else if(fabs(tree_subtree_constant_value(factor)) < fabs(tree_subtree_constant_value(
+                    (s_tree_node*) current_factor))) {
                 tree_release_subtree(sum->right);
                 sum->right = tree_node_clone_deep(factor);
             }
         } else {
             tree_release_subtree(sum->right);
-            sum->right = tree_create_number_from_double(0.0);
+            sum->right = (s_tree_node*) tree_create_number_from_double(0.0);
             // TODO handle calloc fail
         }
     }
@@ -1515,6 +1560,7 @@ e_tree_error tree_try_move_term(s_tree_node** expression_link, s_tree_node* memb
     if(redusable_degree != NULL) {
         if((error = tree_remove_factor_from_expression(expression_link, redusable_degree, member))) return error;
 
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
     }
 
@@ -1620,6 +1666,7 @@ e_tree_error tree_reduce_fraction_factor(s_tree_node* expression, s_tree_node* m
         if(!member) return TREE_ERROR_OUT_OF_MEMORY;
         if((error = tree_remove_factor_from_term(&expression->right, redusable_degree, member, NULL))) return error;
 
+        context->after_simplification = (s_tree_node*) expression;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
@@ -1678,6 +1725,8 @@ e_tree_error tree_simplify_plus_minus(s_tree_node_operator** expression_link, s_
             tree_release_subtree((s_tree_node*) expression);
             *expression_link = (s_tree_node_operator*) tree_create_number_from_double(0);
             if(!*expression_link) return TREE_ERROR_OUT_OF_MEMORY;
+
+            context->after_simplification = (s_tree_node*) *expression_link;
             simplify_context_perform_action(context);
         } else if(expression->tree_node.right->type == TREE_NODE_TYPE_OPERATOR) {
             s_tree_node* unary_minus = (s_tree_node*) tree_create_node_operator(TREE_OPERATOR_TYPE_MINUS);
@@ -1685,6 +1734,8 @@ e_tree_error tree_simplify_plus_minus(s_tree_node_operator** expression_link, s_
             expression->tree_node.left = unary_minus;
             if(!(unary_minus->right = (s_tree_node*) tree_create_number_from_double(1))) return TREE_ERROR_OUT_OF_MEMORY;
             expression->operator_type = TREE_OPERATOR_TYPE_MULTIPLY;
+
+            context->after_simplification = (s_tree_node*) *expression_link;
             simplify_context_perform_action(context);
         }
         return TREE_OK;
@@ -1698,6 +1749,8 @@ e_tree_error tree_simplify_plus_minus(s_tree_node_operator** expression_link, s_
         expression->tree_node.right = (s_tree_node*) unary_minus;
         unary_minus->tree_node.type = TREE_NODE_TYPE_OPERATOR;
         unary_minus->operator_type = TREE_OPERATOR_TYPE_MINUS;
+
+        context->after_simplification = (s_tree_node*) expression;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
@@ -1708,10 +1761,14 @@ e_tree_error tree_simplify_plus_minus(s_tree_node_operator** expression_link, s_
 
         if(expression->operator_type == TREE_OPERATOR_TYPE_PLUS) {
             tree_node_sift_right((s_tree_node**) expression_link);
+
+            context->after_simplification = (s_tree_node*) expression;
             simplify_context_perform_action(context);
         }
     } else if(tree_node_is_exact_number(expression->tree_node.right, 0)) {
         tree_node_sift_left((s_tree_node**) expression_link);
+
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
     }
 
@@ -1765,6 +1822,7 @@ e_tree_error tree_simplify_power(s_tree_node** expression_link, s_simplifier_con
 
     if(tree_node_is_exact_number(expression->right, 1)) {
         tree_node_sift_left(expression_link);
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
@@ -1773,6 +1831,7 @@ e_tree_error tree_simplify_power(s_tree_node** expression_link, s_simplifier_con
         tree_release_subtree(expression);
         *expression_link = (s_tree_node*) tree_create_number_from_double(1);
         if(!*expression_link) return TREE_ERROR_OUT_OF_MEMORY;
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
@@ -1781,6 +1840,7 @@ e_tree_error tree_simplify_power(s_tree_node** expression_link, s_simplifier_con
         tree_release_subtree(expression);
         *expression_link = (s_tree_node*) tree_create_number_from_double(1);
         if(!*expression_link) return TREE_ERROR_OUT_OF_MEMORY;
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
@@ -1789,6 +1849,7 @@ e_tree_error tree_simplify_power(s_tree_node** expression_link, s_simplifier_con
         tree_release_subtree(expression);
         *expression_link = (s_tree_node*) tree_create_number_from_double(0);
         if(!*expression_link) return TREE_ERROR_OUT_OF_MEMORY;
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
@@ -1797,12 +1858,14 @@ e_tree_error tree_simplify_power(s_tree_node** expression_link, s_simplifier_con
         e_tree_error error = TREE_OK;
         if((error = tree_node_distribute_degree(expression->left, expression->right))) return error;
         tree_node_sift_left(expression_link);
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
     if(tree_node_is_operator(expression->left, TREE_OPERATOR_TYPE_POW)) {
         tree_node_amplify_degree(&expression->left, expression->right);
         tree_node_sift_left(expression_link);
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
@@ -1816,6 +1879,7 @@ e_tree_error tree_simplify_power(s_tree_node** expression_link, s_simplifier_con
             tree_release_subtree(expression);
             *expression_link = (s_tree_node*) tree_create_number_from_double(pow(left_number, right_number));
             if(!*expression_link) return TREE_ERROR_OUT_OF_MEMORY;
+            context->after_simplification = (s_tree_node*) *expression_link;
             simplify_context_perform_action(context);
             return TREE_OK;
         }
@@ -1828,20 +1892,25 @@ e_tree_error tree_simplify_division(s_tree_node** expression_link, s_simplifier_
 
     if(tree_node_is_exact_number(expression->right, 1)) {
         tree_node_sift_left(expression_link);
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
 
     if(tree_node_is_exact_number(expression->left, 0)) {
         tree_node_sift_left(expression_link);
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
         return TREE_OK;
     }
 
+#if USE_EXPENSIVE_SIMPLIFICATIONS
     if(context->current_operations == 0 && simplify_context_can_perform_action(context)) {
         e_tree_error error = TREE_OK;
         if((error = tree_reduce_fraction(expression, context))) return error;
     }
+#endif
+
     return TREE_OK;
 }
 
@@ -1853,23 +1922,28 @@ e_tree_error tree_simplify_multiplication(s_tree_node** expression_link, s_simpl
         tree_release_subtree(expression);
         *expression_link = (s_tree_node*) tree_create_number_from_double(0);
         if(!*expression_link) return TREE_ERROR_OUT_OF_MEMORY;
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
     } else if(tree_node_is_exact_number(expression->left, 0)) {
         tree_node_sift_right(expression_link);
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
     } else if(tree_node_is_exact_number(expression->right, 1)) {
         tree_node_sift_left(expression_link);
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
     } else if(tree_node_is_operator(expression->left, TREE_OPERATOR_TYPE_MINUS) && !expression->left->left) {
         if(tree_node_is_operator(expression->right, TREE_OPERATOR_TYPE_PLUS)) {
             if((error = tree_node_distribute_value(expression->left, expression->right, context))) return error;
             tree_node_sift_right(expression_link);
+            context->after_simplification = (s_tree_node*) *expression_link;
             simplify_context_perform_action(context);
         }
     } else if(tree_node_is_operator(expression->right, TREE_OPERATOR_TYPE_MINUS) && !expression->right->left) {
         if(tree_node_is_operator(expression->left, TREE_OPERATOR_TYPE_PLUS)) {
             if((error = tree_node_distribute_value(expression->right, expression->left, context))) return error;
             tree_node_sift_left(expression_link);
+            context->after_simplification = (s_tree_node*) *expression_link;
             simplify_context_perform_action(context);
         }
     }
@@ -1906,11 +1980,14 @@ e_tree_error tree_simplify_multiplication(s_tree_node** expression_link, s_simpl
             expression->right->left = multiplication;
             tree_node_sift_right(expression_link);
         }
+        context->after_simplification = (s_tree_node*) *expression_link;
         simplify_context_perform_action(context);
     }
 
     return error;
 }
+
+int a = 0;
 
 e_tree_error tree_subtree_simplify(s_tree_node** expression_link, s_simplifier_context* context, s_tree_node_operator* parent) {
     s_tree_node* expression = *expression_link;
@@ -1922,10 +1999,13 @@ e_tree_error tree_subtree_simplify(s_tree_node** expression_link, s_simplifier_c
 
     if(expression->type == TREE_NODE_TYPE_OPERATOR) {
         s_tree_node_operator* operator = (s_tree_node_operator*) expression;
+
         if(expression->left) {
             if((error = tree_subtree_simplify(&expression->left, context, (s_tree_node_operator*) expression))) return error;
         }
+
         if(expression->right) {
+            a++;
             if((error = tree_subtree_simplify(&expression->right, context, (s_tree_node_operator*) expression))) return error;
         }
 
@@ -1953,41 +2033,52 @@ e_tree_error tree_subtree_simplify(s_tree_node** expression_link, s_simplifier_c
 
     expression = *expression_link;
 
-    tree_node_reorder_members(expression);
+#if USE_EXPENSIVE_SIMPLIFICATIONS
+    if(!parent || parent->operator_type != ((s_tree_node_operator*)expression)->operator_type) {
 
-    if(!simplify_context_can_perform_action(context)) return TREE_OK;
+        tree_node_reorder_members(expression);
 
-    tree_node_sort_members(expression, context);
-
-    if(simplify_context_can_perform_action(context)) {
-        if((error = tree_cite_similar_members(expression_link, context))) return error;
         if(!simplify_context_can_perform_action(context)) return TREE_OK;
-    }
 
-    if(expression->type == TREE_NODE_TYPE_OPERATOR && (!parent || parent->operator_type != ((s_tree_node_operator*)expression)->operator_type)) {
-        // This method might get looped when expression is not simplified
-        if(simplify_context_can_perform_action(context) && context->current_operations == 0) {
-            if((error = tree_try_move_same_factors(expression_link, context))) return error;
+        tree_node_sort_members(expression, context);
+
+        if(simplify_context_can_perform_action(context)) {
+            if((error = tree_cite_similar_members(expression_link, context))) return error;
+            if(!simplify_context_can_perform_action(context)) return TREE_OK;
+        }
+
+        expression = *expression_link;
+
+
+        if(expression->type == TREE_NODE_TYPE_OPERATOR) {
+            // This method might get looped when expression is not simplified
+            if(simplify_context_can_perform_action(context) && context->current_operations == 0) {
+                if((error = tree_try_move_same_factors(expression_link, context))) return error;
+            }
         }
     }
+#endif
 
     return TREE_OK;
 }
 // MARK: Interface
 
-bool tree_simplify(s_tree* expression, s_simplifier_config* config) {
+bool tree_simplify(s_simplifier_context* context, s_tree* expression, s_simplifier_config* config) {
     if(expression == NULL) return false;
 
-    s_simplifier_context context = {0};
+    context->current_operations = 0;
+    context->config = config;
+    context->tree = expression;
+    context->taken_derivative = false;
 
-    context.current_operations = 0;
-    context.config = config;
+    context->after_simplification = NULL;
+    context->before_simplification = NULL;
 
 //    e_tree_error error = test(expression->root, &context);
 //    if(error) return false;
 
-    e_tree_error error = tree_subtree_simplify(&expression->root, &context, NULL);
+    e_tree_error error = tree_subtree_simplify(&expression->root, context, NULL);
     if(error) return false;
 
-    return context.current_operations > 0;
+    return context->current_operations > 0;
 }

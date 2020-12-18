@@ -13,9 +13,11 @@ file(REMOVE_RECURSE
   "CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_power_base.c.o"
   "CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_reference.c.o"
   "CMakeFiles/differentiator.dir/parsing/parser.c.o"
+  "CMakeFiles/differentiator.dir/phrases.c.o"
   "CMakeFiles/differentiator.dir/simplifier.c.o"
   "CMakeFiles/differentiator.dir/tree.c.o"
   "CMakeFiles/differentiator.dir/tree_serializer.c.o"
+  "CMakeFiles/differentiator.dir/utils.c.o"
   "differentiator"
   "differentiator.pdb"
 )

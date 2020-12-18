@@ -3,78 +3,12 @@
 #include "simplifier.h"
 #include "grapher.h"
 #include "compiler.h"
+#include "utils.h"
+#include "phrases.h"
+#include <time.h>
 
-const char* get_string(){
-    size_t size = 64;
-
-    char *str = malloc(sizeof(char) * size);
-    char ch;
-    size_t len = 0;
-
-    if(!str) return str;
-
-    while(scanf("%c", &ch) == 1){
-        if(ch == '\n') {
-            if(len > 0) break;
-            continue;
-        }
-        str[len++] = ch;
-        if(len == size){
-            size += 64;
-            str = realloc(str, sizeof(char) * size);
-            if(!str) return str;
-        }
-    }
-    str[len] = '\0';
-
-    return str;
-}
-
-void make_tex_doc(s_simplifier_config* simplifier_config, s_tree* tree) {
-
-    FILE* output = fopen("./formula.tex", "w");
-    printf("Simplifying your expression...\n");
-    latex_document_begin(output);
-    latex_expression_begin(output);
-    latex_document_add_expression(tree, output);
-
-    for(int i = 0; i < 1000; i++) {
-        if(!tree_simplify(tree, simplifier_config)) break;
-        fprintf(output, "=");
-        latex_expression_break(output);
-        fprintf(output, "=");
-        latex_document_add_expression(tree, output);
-    }
-
-    latex_expression_end(output);
-    latex_add_image("graph.png", output);
-    latex_document_end(output);
-    printf("Drawing graph...\n");
-
-    bmp_draw_graph(tree, "graph.bmp");
-    fclose(output);
-
-    system("sips -s format png ./graph.bmp --out ./graph.png > /dev/null");
-    printf("Creating your PDF...\n");
-    system("pdflatex -synctex=1 -interaction=nonstopmode formula.tex > /dev/null");
-
-    printf("Your PDF is ready\n");
-    system("open formula.pdf");
-}
-
-s_tree* parse_tree(const char* input, s_compiler* compiler) {
-    s_tree* result = parser_parse_file(compiler->parser, "<stdin>", input);
-    if(!result || !result->root) return NULL;
-
-    compiler_compile(compiler, result);
-
-    if(compiler->state == COMPILER_OK) {
-        return result;
-    }
-
-    tree_release(result);
-    return NULL;
-}
+void make_tex_doc(s_simplifier_config* simplifier_config, s_tree* expression);
+void simplify(s_simplifier_config* simplifier_config, s_tree* expression);
 
 int main() {
 
@@ -99,34 +33,101 @@ int main() {
 
         if(strcmp(user_input, "doc") == 0) {
             free((void*)user_input);
-
             printf("Enter your expression:\n");
-
             user_input = get_string();
-
             s_tree* expression = parse_tree(user_input, &compiler);
             if(expression) make_tex_doc(&simplifier_config, expression);
-            continue;
-        }
-
-        s_tree* expression = parse_tree(user_input, &compiler);
-
-        if(expression) {
-            while(true) {
-                if(!tree_simplify(expression, &simplifier_config)) break;
-                tree_parser_serialize(expression, stdout);
-                printf("\n");
-                tree_validate(expression);
-            }
-
-            printf("Answer: ");
-            tree_parser_serialize(expression, stdout);
-            printf("\n");
-
+            tree_release(expression);
+        } else {
+            s_tree* expression = parse_tree(user_input, &compiler);
+            if(expression) simplify(&simplifier_config, expression);
             tree_release(expression);
         }
+
+//        printf("%d nodes in memory after cleanup\n", tree_node_amount);
+
         free((void*)user_input);
     }
 
     return 0;
+}
+
+void make_tex_doc(s_simplifier_config* simplifier_config, s_tree* expression) {
+
+    FILE* output = fopen("./formula.tex", "w");
+    printf("Simplifying your expression...\n");
+    latex_document_begin(output);
+
+    srand(time(0));
+
+    fprintf(output, "%s", NONSENSE_HEADER);
+
+    latex_expression_begin(output);
+    latex_document_add_expression(expression, output, NULL);
+    latex_expression_end(output);
+
+    s_simplifier_context ctx = {};
+    simplifier_context_init(&ctx);
+
+    for(volatile int i = 0;;i++) {
+        if(!tree_simplify(&ctx, expression, simplifier_config)) break;
+
+        if(ctx.taken_derivative) {
+            fprintf(output, "%s", NONSENSE_DERIVATIVE_PHRASES[rand() % NONSENSE_DERIVATIVE_PHRASES_AMOUNT]);
+        } else {
+            fprintf(output, "%s", NONSENSE_PHRASES[rand() % NONSENSE_PHRASES_AMOUNT]);
+        }
+
+        latex_expression_begin(output);
+        latex_document_add_expression(expression, output, ctx.after_simplification);
+        latex_expression_end(output);
+    }
+
+    simplifier_context_destruct(&ctx);
+
+    fprintf(output, "%s", NONSENSE_GRAPH_HEADER);
+
+    latex_add_image("graph.png", output);
+
+    fprintf(output, "%s", NONSENSE_FOOTER);
+
+    latex_document_end(output);
+    printf("Drawing graph...\n");
+
+    bmp_draw_graph(expression, "graph.bmp");
+    fclose(output);
+
+    system("sips -s format png ./graph.bmp --out ./graph.png > /dev/null");
+    printf("Creating your PDF...\n");
+    system("pdflatex -synctex=1 -interaction=nonstopmode formula.tex > /dev/null");
+
+    printf("Your PDF is ready\n");
+    system("open formula.pdf");
+}
+
+void simplify(s_simplifier_config* simplifier_config, s_tree* expression) {
+    struct timespec time1, time2;
+    clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time1);
+
+    s_simplifier_context ctx = {0};
+    simplifier_context_init(&ctx);
+
+    while(true) {
+        if(!tree_simplify(&ctx, expression, simplifier_config)) break;
+//        printf("%d tree nodes are now stored in memory\n", tree_node_amount);
+        tree_validate(expression);
+        tree_parser_serialize(expression, stdout);
+        printf("\n\n");
+    }
+
+    simplifier_context_destruct(&ctx);
+
+    clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
+
+    printf("Answer: ");
+    tree_parser_serialize(expression, stdout);
+    printf("\n");
+//    printf("Simplifying took %ld.%09lds\n", diff(time1, time2).tv_sec, diff(time1, time2).tv_nsec);
+
+//    printf("%d nodes in memory\n", tree_node_amount);
 }

@@ -55,6 +55,7 @@ typedef struct tree_node {
     struct tree_node* right;
     e_tree_node_type type;
     struct tree_node* parent_reference;
+    unsigned long long id;
 } s_tree_node;
 
 typedef struct tree_node_operator {
@@ -75,6 +76,8 @@ typedef struct tree_node_variable {
     bool resolved;
     unsigned long variable_index;
 } s_tree_node_variable;
+
+extern int tree_node_amount;
 
 typedef struct tree_node_function {
     s_tree_node tree_node;

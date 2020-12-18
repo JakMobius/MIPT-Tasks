@@ -49,9 +49,11 @@ CMakeFiles/differentiator.dir/main.c.o
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_power_base.h
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_reference.h
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/parser.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.h
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/simplifier.h
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree.h
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree_serializer.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.h
 CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.o
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_derivative.c
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_derivative.h
@@ -190,6 +192,9 @@ CMakeFiles/differentiator.dir/parsing/parser.c.o
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/parser.h
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/simplifier.h
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree.h
+CMakeFiles/differentiator.dir/phrases.c.o
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.c
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/phrases.h
 CMakeFiles/differentiator.dir/simplifier.c.o
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/simplifier.c
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/simplifier.h
@@ -203,3 +208,21 @@ CMakeFiles/differentiator.dir/tree_serializer.c.o
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree.h
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree_serializer.c
  /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree_serializer.h
+CMakeFiles/differentiator.dir/utils.c.o
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/compiler.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/errors.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/grapher.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_expression.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_global.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_math_expression.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_math_factor.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_math_term.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_number.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_power_base.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/grammatics/grammatic_reference.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/parsing/parser.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/simplifier.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/tree_serializer.h
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.c
+ /Users/Temich/Documents/Учеба/Прога/Дед/differentiator/utils.h

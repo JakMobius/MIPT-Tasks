@@ -15,6 +15,10 @@ typedef struct simplifier_config {
 typedef struct simplifier_context {
     s_simplifier_config* config;
     int current_operations;
+    bool taken_derivative;
+    s_tree_node* before_simplification;
+    s_tree_node* after_simplification;
+    s_tree* tree;
 } s_simplifier_context;
 
 typedef struct member_degree_pool {
@@ -22,6 +26,9 @@ typedef struct member_degree_pool {
     int members_checked;
     s_tree_node** powers;
 } s_member_degree_pool;
+
+void simplifier_context_init(s_simplifier_context* ctx);
+void simplifier_context_destruct(s_simplifier_context* ctx);
 
 void member_degree_pool_init(s_member_degree_pool* pool, int capacity);
 void member_degree_pool_release(s_member_degree_pool* pool);
@@ -74,7 +81,7 @@ e_tree_error tree_simplify_power(s_tree_node** expression_link, s_simplifier_con
 e_tree_error tree_simplify_division(s_tree_node** expression_link, s_simplifier_context* context);
 e_tree_error tree_simplify_multiplication(s_tree_node** expression_link, s_simplifier_context* context);
 
-bool tree_simplify(s_tree* expression, s_simplifier_config* config);
+bool tree_simplify(s_simplifier_context* context, s_tree* expression, s_simplifier_config* config);
 e_tree_error tree_subtree_simplify(s_tree_node** expression_link, s_simplifier_context* context, s_tree_node_operator* parent);
 
 

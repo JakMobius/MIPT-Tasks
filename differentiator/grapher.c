@@ -1,6 +1,4 @@
-//
-// Created by Темыч on 30.11.2020.
-//
+
 
 #include "grapher.h"
 

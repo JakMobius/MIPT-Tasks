@@ -48,9 +48,11 @@ CMakeFiles/differentiator.dir/main.c.o: ../parsing/grammatics/grammatic_number.h
 CMakeFiles/differentiator.dir/main.c.o: ../parsing/grammatics/grammatic_power_base.h
 CMakeFiles/differentiator.dir/main.c.o: ../parsing/grammatics/grammatic_reference.h
 CMakeFiles/differentiator.dir/main.c.o: ../parsing/parser.h
+CMakeFiles/differentiator.dir/main.c.o: ../phrases.h
 CMakeFiles/differentiator.dir/main.c.o: ../simplifier.h
 CMakeFiles/differentiator.dir/main.c.o: ../tree.h
 CMakeFiles/differentiator.dir/main.c.o: ../tree_serializer.h
+CMakeFiles/differentiator.dir/main.c.o: ../utils.h
 
 CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.o: ../parsing/grammatics/grammatic_derivative.c
 CMakeFiles/differentiator.dir/parsing/grammatics/grammatic_derivative.c.o: ../parsing/grammatics/grammatic_derivative.h
@@ -190,6 +192,9 @@ CMakeFiles/differentiator.dir/parsing/parser.c.o: ../parsing/parser.h
 CMakeFiles/differentiator.dir/parsing/parser.c.o: ../simplifier.h
 CMakeFiles/differentiator.dir/parsing/parser.c.o: ../tree.h
 
+CMakeFiles/differentiator.dir/phrases.c.o: ../phrases.c
+CMakeFiles/differentiator.dir/phrases.c.o: ../phrases.h
+
 CMakeFiles/differentiator.dir/simplifier.c.o: ../simplifier.c
 CMakeFiles/differentiator.dir/simplifier.c.o: ../simplifier.h
 CMakeFiles/differentiator.dir/simplifier.c.o: ../tree.h
@@ -202,4 +207,22 @@ CMakeFiles/differentiator.dir/tree_serializer.c.o: ../simplifier.h
 CMakeFiles/differentiator.dir/tree_serializer.c.o: ../tree.h
 CMakeFiles/differentiator.dir/tree_serializer.c.o: ../tree_serializer.c
 CMakeFiles/differentiator.dir/tree_serializer.c.o: ../tree_serializer.h
+
+CMakeFiles/differentiator.dir/utils.c.o: ../compiler.h
+CMakeFiles/differentiator.dir/utils.c.o: ../errors.h
+CMakeFiles/differentiator.dir/utils.c.o: ../grapher.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/grammatics/grammatic_expression.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/grammatics/grammatic_global.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/grammatics/grammatic_math_expression.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/grammatics/grammatic_math_factor.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/grammatics/grammatic_math_term.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/grammatics/grammatic_number.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/grammatics/grammatic_power_base.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/grammatics/grammatic_reference.h
+CMakeFiles/differentiator.dir/utils.c.o: ../parsing/parser.h
+CMakeFiles/differentiator.dir/utils.c.o: ../simplifier.h
+CMakeFiles/differentiator.dir/utils.c.o: ../tree.h
+CMakeFiles/differentiator.dir/utils.c.o: ../tree_serializer.h
+CMakeFiles/differentiator.dir/utils.c.o: ../utils.c
+CMakeFiles/differentiator.dir/utils.c.o: ../utils.h
 

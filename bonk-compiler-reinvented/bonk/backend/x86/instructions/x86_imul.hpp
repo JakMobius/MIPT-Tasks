@@ -1,0 +1,22 @@
+//
+// Created by Темыч on 25.04.2021.
+//
+
+#ifndef BONK_COMPILER_REINVENTED_X86_IMUL_HPP
+#define BONK_COMPILER_REINVENTED_X86_IMUL_HPP
+
+#include "x86_command.hpp"
+#include "../x86_abstract_register.hpp"
+#include "../../../../utils/linear_allocator.hpp"
+
+namespace bonk::x86_backend {
+
+struct imul_command : asm_command {
+    static imul_command* create_reg64_reg64(abstract_register target, abstract_register source, command_list* list);
+    void construct_reg64_reg64(abstract_register target, abstract_register source);
+    void to_bytes(command_encoder* buffer);
+};
+
+}
+
+#endif //BONK_COMPILER_REINVENTED_X86_IMUL_HPP

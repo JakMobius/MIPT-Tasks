@@ -1,0 +1,8 @@
+
+1) Use register for holding address when displacement is too large
+// 2) Headers
+// 3) Limit read and write registers to current-scope-visible to improve efficiency and register prediction
+// 4) Forbid subscopes to relocate register memory address (critical)
+// 5) Make sure we're dealing right with frames when restoring state (critical)
+// 6) Count return value before restoring state (critical)
+7) use add/sub r64/imm8 where it's possible

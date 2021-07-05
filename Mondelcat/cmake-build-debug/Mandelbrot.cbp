@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Mandelbrot"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\..\..\usr\local\lib\cmake\SDL2\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Mandelbrot">
+				<Option output="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Mandelbrot" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/Mandelbrot"/>
+					<Add directory="/usr/local/Cellar/sdl2/2.0.14_1/include/SDL2"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 Mandelbrot"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Mandelbrot/fast">
+				<Option output="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Mandelbrot" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/Mandelbrot"/>
+					<Add directory="/usr/local/Cellar/sdl2/2.0.14_1/include/SDL2"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 Mandelbrot/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/bmp_reader.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/bmp_reader.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cat_controller.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/cat_controller.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/color_blend.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/color_blend.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/game.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/game.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/main.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_controller.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_controller.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_methods/draw_nosse.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_methods/draw_nosse.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_methods/draw_pd_128.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_methods/draw_pd_128.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_methods/draw_pd_128_messed.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_methods/draw_pd_128_messed.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_methods/draw_ps_128.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_methods/draw_ps_128.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_thread.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/mandelbrot_thread.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/messed_drawer.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/messed_drawer.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/semaphores.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/videomemory.c">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/videomemory.h">
+			<Option target="Mandelbrot"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/../../../../../../../usr/local/lib/cmake/SDL2/sdl2-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\usr\local\lib\cmake\SDL2\"/>
+		</Unit>
+		<Unit filename="/Users/Temich/Documents/Физтех/Прога/Дед/image_appliance_sse/../../../../../../../usr/local/lib/cmake/SDL2/sdl2-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\usr\local\lib\cmake\SDL2\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

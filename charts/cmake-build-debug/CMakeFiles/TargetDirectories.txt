@@ -1,0 +1,3 @@
+/Users/Artem/Документики/Физтех/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/Artem/Документики/Физтех/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/Artem/Документики/Физтех/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir

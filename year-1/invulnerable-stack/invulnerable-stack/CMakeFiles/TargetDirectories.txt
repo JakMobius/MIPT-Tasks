@@ -1,0 +1,3 @@
+/Users/Temich/Documents/Учеба/Прога/Дед/invulnerable-stack/invulnerable-stack/CMakeFiles/rebuild_cache.dir
+/Users/Temich/Documents/Учеба/Прога/Дед/invulnerable-stack/invulnerable-stack/CMakeFiles/edit_cache.dir
+/Users/Temich/Documents/Учеба/Прога/Дед/invulnerable-stack/invulnerable-stack/CMakeFiles/main.dir

@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/Temich/Documents/Учеба/Прога/Дед/invulnerable-stack/invulnerable-stack",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -o CMakeFiles/main.dir/main.c.o -c /Users/Temich/Documents/Учеба/Прога/Дед/invulnerable-stack/invulnerable-stack/main.c",
+  "file": "/Users/Temich/Documents/Учеба/Прога/Дед/invulnerable-stack/invulnerable-stack/main.c"
+}
+]

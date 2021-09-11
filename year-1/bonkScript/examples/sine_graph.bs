@@ -1,0 +1,26 @@
+help math
+help txlib
+help stdio
+
+block main {
+  @tx_graphics_init;
+
+  var i = 0;
+
+  cycle {
+    i < 64 or brek;
+
+    var y = @floor[input = @sin[x = (i - 32) / 5] * 5] + 32;
+
+    @tx_graphics_put_pixel[x=i, y=y, r=255, g=255, b=0];
+
+    y = @floor[input = @cos[x = (i - 32) / 5] * 5] + 32;
+
+    @tx_graphics_put_pixel[x=i, y=y, r=0, g=255, b=255];
+
+    i = i + 1;
+  }
+
+  @tx_graphics_redraw;
+  @read_number;
+}

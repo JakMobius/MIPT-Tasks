@@ -1,0 +1,49 @@
+help txlib
+help math
+help stdio
+
+block main {
+  @tx_graphics_init;
+
+  var angle = 0;
+
+  var color = 0;
+
+  cycle {
+
+    var i = 0;
+    var delta_angle = MATH_PI / 200;
+
+    cycle {
+      i < 2 or brek;
+
+      angle = angle + delta_angle;
+      var tr = 3;
+      color = color + 0.015;
+
+      var radius = 20 + @sin[x = angle * 16] * 5;
+
+      @tx_fill_circle[
+        x0=@floor[input = @sin[x = angle] * radius + 32],
+        y0=@floor[input = @cos[x = angle] * radius + 32],
+        r=128 + @sin[x = color] * 128,
+        g=128 + @cos[x = color] * 128,
+        b=128 - @sin[x = color / 2] * 128,
+        radius=4
+      ];
+
+      @tx_fill_circle[
+        x0=@floor[input = -@sin[x = angle] * radius + 32],
+        y0=@floor[input = -@cos[x = angle] * radius + 32],
+        r=128 + @sin[x = color] * 128,
+        g=128 + @cos[x = color] * 128,
+        b=128 - @sin[x = color] * 128,
+        radius=4
+      ];
+
+      i = i + 1;
+    }
+
+    @tx_graphics_redraw;
+  }
+}

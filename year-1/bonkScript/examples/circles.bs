@@ -1,0 +1,41 @@
+help txlib
+help math
+
+block main {
+  @tx_graphics_init;
+
+  var r1 = 1;
+  var r2 = 6;
+  var r3 = 12;
+  var r4 = 18;
+
+  cycle {
+    r1 = r1 + 1;
+    r1 == 0 and r1 = 1;
+    r1 > 30 and r1 = -30;
+
+    r2 = r2 + 1;
+    r2 == 0 and r2 = 1;
+    r2 > 30 and r2 = -30;
+
+    r3 = r3 + 1;
+    r3 == 0 and r3 = 1;
+    r3 > 30 and r3 = -30;
+
+    r4 = r4 + 1;
+    r4 == 0 and r4 = 1;
+    r4 > 30 and r4 = -30;
+
+    @tx_draw_circle[x0=32, y0=32, r=255, g=0, b=0, radius=@abs[input=r1]];
+    @tx_draw_circle[x0=32, y0=32, r=0, g=255, b=0, radius=@abs[input=r2]];
+    @tx_draw_circle[x0=32, y0=32, r=0, g=0, b=255, radius=@abs[input=r3]];
+    @tx_draw_circle[x0=32, y0=32, r=255, g=0, b=255, radius=@abs[input=r4]];
+
+    @tx_graphics_redraw;
+
+    @tx_draw_circle[x0=32, y0=32, r=0, g=0, b=0, radius=@abs[input=r1]];
+    @tx_draw_circle[x0=32, y0=32, r=0, g=0, b=0, radius=@abs[input=r2]];
+    @tx_draw_circle[x0=32, y0=32, r=0, g=0, b=0, radius=@abs[input=r3]];
+    @tx_draw_circle[x0=32, y0=32, r=0, g=0, b=0, radius=@abs[input=r4]];
+  }
+}

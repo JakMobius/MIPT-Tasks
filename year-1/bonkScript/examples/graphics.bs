@@ -1,0 +1,51 @@
+
+help math
+
+block bonk_graphics_init {
+  bams {
+    win 64 64
+  };
+}
+
+block bonk_graphics_redraw {
+  bams {
+    draw
+  };
+}
+
+block bonk_graphics_put_pixel {
+  context var x;
+  context var y;
+  context var r;
+  context var g;
+  context var b;
+
+  var index = (x + y * 64) * 4;
+
+  bams {
+    push.d %r%
+    dtou
+    pop.ul rcx
+    push.ub rcx
+
+    push.d %g%
+    dtou
+    pop.ul rcx
+    push.ub rcx
+
+    push.d %b%
+    dtou
+    pop.ul rcx
+    push.ub rcx
+
+    push.ub 1
+
+    push.ul 0x80000
+    push.d %index%
+    dtou
+    add.ul
+    pop.ul rcx
+
+    pop.ui [rcx]
+  };
+}

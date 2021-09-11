@@ -1,0 +1,35 @@
+
+help stdio
+help math
+
+block main {
+  var a = @read_number;
+  var b = @read_number;
+  var c = @read_number;
+
+  check a == 0 and b == 0 and c == 0 {
+    print -1;
+    bonk 0;
+  }
+
+  var d = b * b - 4 * a * c;
+
+  check d < 0 {
+    print 0;
+    bonk 0;
+  } check d == 0 {
+    print 1;
+
+    print -b / (a * 2);
+
+    bonk 0;
+  }
+
+  print 2;
+
+  d = @sqrt[input=d];
+
+  print (-b + d) / (a * 2);
+  print (-b - d) / (a * 2);
+}
+

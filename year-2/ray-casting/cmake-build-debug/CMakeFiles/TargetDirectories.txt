@@ -1,0 +1,3 @@
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir

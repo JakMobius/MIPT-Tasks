@@ -1,0 +1,84 @@
+
+block floor {
+  context var input;
+
+  bams {
+    push.d %input%
+    dtol
+    ltod
+    pop.d %input%
+  };
+
+  bonk input;
+}
+
+block modulo {
+  context var x;
+  context var divider;
+
+  var negative = x < 0;
+  var y = x / divider;
+
+  bams {
+    push.d %y%
+    dtou
+    utod
+    pop.d %y%
+  };
+
+  x = x - y * divider;
+  negative and a = -x;
+  bonk x;
+}
+
+block sin {
+  context var x;
+  var pi = 3.1415926;
+  x > 0 or x = -x + pi;
+  x = @modulo[x, pi * 2];
+  var second_semiperiod = x > pi;
+  second_semiperiod and x = x - pi;
+  var square = x * x;
+  var approx = x + (x * square) *
+                         (-0.16666666666 + square *
+                         (0.008333333333 + square *
+                         (-0.00019841269)));
+
+  second_semiperiod and approx = -aprox;
+  bonk approx;
+}
+
+block cos {
+  context var x;
+  var pi = 3.1415926;
+  x > 0 or x = -x;
+  x = @modulo[x, pi * 2];
+  var second_semiperiod = x > pi;
+  second_semiperiod and x = x - pi;
+  var square = x * x;
+  var approx 1 + (square) *
+          (-0.5 + square *
+          (0.041666666666 + square *
+          (-0.00138888888)));
+  second_semiperiod and approx = -aprox;
+  bonk approx;
+}
+
+block abs {
+  context var input;
+  input > 0 or input = -input;
+  bonk input;
+}
+
+block sqrt {
+  context var input;
+  var result;
+
+  bams {
+    push.d %input%
+    sqrt.d
+    pop.d %input%
+  };
+
+  bonk input;
+}

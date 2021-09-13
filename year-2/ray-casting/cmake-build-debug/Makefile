@@ -153,6 +153,54 @@ camera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/camera.cpp.s
 .PHONY : camera.cpp.s
 
+drawing_context.o: drawing_context.cpp.o
+.PHONY : drawing_context.o
+
+# target to build an object file
+drawing_context.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/drawing_context.cpp.o
+.PHONY : drawing_context.cpp.o
+
+drawing_context.i: drawing_context.cpp.i
+.PHONY : drawing_context.i
+
+# target to preprocess a source file
+drawing_context.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/drawing_context.cpp.i
+.PHONY : drawing_context.cpp.i
+
+drawing_context.s: drawing_context.cpp.s
+.PHONY : drawing_context.s
+
+# target to generate assembly for a file
+drawing_context.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/drawing_context.cpp.s
+.PHONY : drawing_context.cpp.s
+
+events/mouse_events.o: events/mouse_events.cpp.o
+.PHONY : events/mouse_events.o
+
+# target to build an object file
+events/mouse_events.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/events/mouse_events.cpp.o
+.PHONY : events/mouse_events.cpp.o
+
+events/mouse_events.i: events/mouse_events.cpp.i
+.PHONY : events/mouse_events.i
+
+# target to preprocess a source file
+events/mouse_events.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/events/mouse_events.cpp.i
+.PHONY : events/mouse_events.cpp.i
+
+events/mouse_events.s: events/mouse_events.cpp.s
+.PHONY : events/mouse_events.s
+
+# target to generate assembly for a file
+events/mouse_events.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/events/mouse_events.cpp.s
+.PHONY : events/mouse_events.cpp.s
+
 light.o: light.cpp.o
 .PHONY : light.o
 
@@ -200,30 +248,6 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/main.cpp.s
 .PHONY : main.cpp.s
-
-matrix4.o: matrix4.cpp.o
-.PHONY : matrix4.o
-
-# target to build an object file
-matrix4.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/matrix4.cpp.o
-.PHONY : matrix4.cpp.o
-
-matrix4.i: matrix4.cpp.i
-.PHONY : matrix4.i
-
-# target to preprocess a source file
-matrix4.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/matrix4.cpp.i
-.PHONY : matrix4.cpp.i
-
-matrix4.s: matrix4.cpp.s
-.PHONY : matrix4.s
-
-# target to generate assembly for a file
-matrix4.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/matrix4.cpp.s
-.PHONY : matrix4.cpp.s
 
 ray.o: ray.cpp.o
 .PHONY : ray.o
@@ -273,29 +297,125 @@ renderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/renderer.cpp.s
 .PHONY : renderer.cpp.s
 
-sphere.o: sphere.cpp.o
-.PHONY : sphere.o
+shapes/sphere.o: shapes/sphere.cpp.o
+.PHONY : shapes/sphere.o
 
 # target to build an object file
-sphere.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/sphere.cpp.o
-.PHONY : sphere.cpp.o
+shapes/sphere.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/shapes/sphere.cpp.o
+.PHONY : shapes/sphere.cpp.o
 
-sphere.i: sphere.cpp.i
-.PHONY : sphere.i
+shapes/sphere.i: shapes/sphere.cpp.i
+.PHONY : shapes/sphere.i
 
 # target to preprocess a source file
-sphere.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/sphere.cpp.i
-.PHONY : sphere.cpp.i
+shapes/sphere.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/shapes/sphere.cpp.i
+.PHONY : shapes/sphere.cpp.i
 
-sphere.s: sphere.cpp.s
-.PHONY : sphere.s
+shapes/sphere.s: shapes/sphere.cpp.s
+.PHONY : shapes/sphere.s
 
 # target to generate assembly for a file
-sphere.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/sphere.cpp.s
-.PHONY : sphere.cpp.s
+shapes/sphere.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/shapes/sphere.cpp.s
+.PHONY : shapes/sphere.cpp.s
+
+ui/point_test_iterator.o: ui/point_test_iterator.cpp.o
+.PHONY : ui/point_test_iterator.o
+
+# target to build an object file
+ui/point_test_iterator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o
+.PHONY : ui/point_test_iterator.cpp.o
+
+ui/point_test_iterator.i: ui/point_test_iterator.cpp.i
+.PHONY : ui/point_test_iterator.i
+
+# target to preprocess a source file
+ui/point_test_iterator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.i
+.PHONY : ui/point_test_iterator.cpp.i
+
+ui/point_test_iterator.s: ui/point_test_iterator.cpp.s
+.PHONY : ui/point_test_iterator.s
+
+# target to generate assembly for a file
+ui/point_test_iterator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.s
+.PHONY : ui/point_test_iterator.cpp.s
+
+ui/ui_button.o: ui/ui_button.cpp.o
+.PHONY : ui/ui_button.o
+
+# target to build an object file
+ui/ui_button.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_button.cpp.o
+.PHONY : ui/ui_button.cpp.o
+
+ui/ui_button.i: ui/ui_button.cpp.i
+.PHONY : ui/ui_button.i
+
+# target to preprocess a source file
+ui/ui_button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_button.cpp.i
+.PHONY : ui/ui_button.cpp.i
+
+ui/ui_button.s: ui/ui_button.cpp.s
+.PHONY : ui/ui_button.s
+
+# target to generate assembly for a file
+ui/ui_button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_button.cpp.s
+.PHONY : ui/ui_button.cpp.s
+
+ui/ui_text.o: ui/ui_text.cpp.o
+.PHONY : ui/ui_text.o
+
+# target to build an object file
+ui/ui_text.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_text.cpp.o
+.PHONY : ui/ui_text.cpp.o
+
+ui/ui_text.i: ui/ui_text.cpp.i
+.PHONY : ui/ui_text.i
+
+# target to preprocess a source file
+ui/ui_text.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_text.cpp.i
+.PHONY : ui/ui_text.cpp.i
+
+ui/ui_text.s: ui/ui_text.cpp.s
+.PHONY : ui/ui_text.s
+
+# target to generate assembly for a file
+ui/ui_text.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_text.cpp.s
+.PHONY : ui/ui_text.cpp.s
+
+ui/ui_view.o: ui/ui_view.cpp.o
+.PHONY : ui/ui_view.o
+
+# target to build an object file
+ui/ui_view.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_view.cpp.o
+.PHONY : ui/ui_view.cpp.o
+
+ui/ui_view.i: ui/ui_view.cpp.i
+.PHONY : ui/ui_view.i
+
+# target to preprocess a source file
+ui/ui_view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_view.cpp.i
+.PHONY : ui/ui_view.cpp.i
+
+ui/ui_view.s: ui/ui_view.cpp.s
+.PHONY : ui/ui_view.s
+
+# target to generate assembly for a file
+ui/ui_view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_view.cpp.s
+.PHONY : ui/ui_view.cpp.s
 
 user_controller.o: user_controller.cpp.o
 .PHONY : user_controller.o
@@ -345,54 +465,6 @@ user_viewport.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/user_viewport.cpp.s
 .PHONY : user_viewport.cpp.s
 
-vec2.o: vec2.cpp.o
-.PHONY : vec2.o
-
-# target to build an object file
-vec2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/vec2.cpp.o
-.PHONY : vec2.cpp.o
-
-vec2.i: vec2.cpp.i
-.PHONY : vec2.i
-
-# target to preprocess a source file
-vec2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/vec2.cpp.i
-.PHONY : vec2.cpp.i
-
-vec2.s: vec2.cpp.s
-.PHONY : vec2.s
-
-# target to generate assembly for a file
-vec2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/vec2.cpp.s
-.PHONY : vec2.cpp.s
-
-vec3.o: vec3.cpp.o
-.PHONY : vec3.o
-
-# target to build an object file
-vec3.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/vec3.cpp.o
-.PHONY : vec3.cpp.o
-
-vec3.i: vec3.cpp.i
-.PHONY : vec3.i
-
-# target to preprocess a source file
-vec3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/vec3.cpp.i
-.PHONY : vec3.cpp.i
-
-vec3.s: vec3.cpp.s
-.PHONY : vec3.s
-
-# target to generate assembly for a file
-vec3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/vec3.cpp.s
-.PHONY : vec3.cpp.s
-
 world.o: world.cpp.o
 .PHONY : world.o
 
@@ -429,36 +501,45 @@ help:
 	@echo "... camera.o"
 	@echo "... camera.i"
 	@echo "... camera.s"
+	@echo "... drawing_context.o"
+	@echo "... drawing_context.i"
+	@echo "... drawing_context.s"
+	@echo "... events/mouse_events.o"
+	@echo "... events/mouse_events.i"
+	@echo "... events/mouse_events.s"
 	@echo "... light.o"
 	@echo "... light.i"
 	@echo "... light.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... matrix4.o"
-	@echo "... matrix4.i"
-	@echo "... matrix4.s"
 	@echo "... ray.o"
 	@echo "... ray.i"
 	@echo "... ray.s"
 	@echo "... renderer.o"
 	@echo "... renderer.i"
 	@echo "... renderer.s"
-	@echo "... sphere.o"
-	@echo "... sphere.i"
-	@echo "... sphere.s"
+	@echo "... shapes/sphere.o"
+	@echo "... shapes/sphere.i"
+	@echo "... shapes/sphere.s"
+	@echo "... ui/point_test_iterator.o"
+	@echo "... ui/point_test_iterator.i"
+	@echo "... ui/point_test_iterator.s"
+	@echo "... ui/ui_button.o"
+	@echo "... ui/ui_button.i"
+	@echo "... ui/ui_button.s"
+	@echo "... ui/ui_text.o"
+	@echo "... ui/ui_text.i"
+	@echo "... ui/ui_text.s"
+	@echo "... ui/ui_view.o"
+	@echo "... ui/ui_view.i"
+	@echo "... ui/ui_view.s"
 	@echo "... user_controller.o"
 	@echo "... user_controller.i"
 	@echo "... user_controller.s"
 	@echo "... user_viewport.o"
 	@echo "... user_viewport.i"
 	@echo "... user_viewport.s"
-	@echo "... vec2.o"
-	@echo "... vec2.i"
-	@echo "... vec2.s"
-	@echo "... vec3.o"
-	@echo "... vec3.i"
-	@echo "... vec3.s"
 	@echo "... world.o"
 	@echo "... world.i"
 	@echo "... world.s"

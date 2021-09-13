@@ -1,7 +1,6 @@
 #pragma once
 
-#include "vec3.hpp"
-#include "ray.hpp"
+#include "../utils/vec3.hpp"
 
 class Sphere {
 public:

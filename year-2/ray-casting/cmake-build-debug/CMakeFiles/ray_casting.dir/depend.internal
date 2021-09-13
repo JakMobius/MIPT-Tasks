@@ -4,12 +4,12 @@
 CMakeFiles/ray_casting.dir/camera.cpp.o
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.cpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.hpp
  /usr/local/include/SFML/Config.hpp
  /usr/local/include/SFML/Graphics/Color.hpp
@@ -19,27 +19,85 @@ CMakeFiles/ray_casting.dir/camera.cpp.o
  /usr/local/include/SFML/Graphics/Rect.inl
  /usr/local/include/SFML/System/Vector2.hpp
  /usr/local/include/SFML/System/Vector2.inl
+CMakeFiles/ray_casting.dir/drawing_context.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec2.hpp
+ /usr/local/include/SFML/Config.hpp
+ /usr/local/include/SFML/Graphics/BlendMode.hpp
+ /usr/local/include/SFML/Graphics/Color.hpp
+ /usr/local/include/SFML/Graphics/Drawable.hpp
+ /usr/local/include/SFML/Graphics/Export.hpp
+ /usr/local/include/SFML/Graphics/Font.hpp
+ /usr/local/include/SFML/Graphics/Glyph.hpp
+ /usr/local/include/SFML/Graphics/Image.hpp
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp
+ /usr/local/include/SFML/Graphics/Rect.hpp
+ /usr/local/include/SFML/Graphics/Rect.inl
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp
+ /usr/local/include/SFML/Graphics/RenderStates.hpp
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp
+ /usr/local/include/SFML/Graphics/Shape.hpp
+ /usr/local/include/SFML/Graphics/Text.hpp
+ /usr/local/include/SFML/Graphics/Texture.hpp
+ /usr/local/include/SFML/Graphics/Transform.hpp
+ /usr/local/include/SFML/Graphics/Transformable.hpp
+ /usr/local/include/SFML/Graphics/Vertex.hpp
+ /usr/local/include/SFML/Graphics/VertexArray.hpp
+ /usr/local/include/SFML/Graphics/View.hpp
+ /usr/local/include/SFML/System/Clock.hpp
+ /usr/local/include/SFML/System/Export.hpp
+ /usr/local/include/SFML/System/NonCopyable.hpp
+ /usr/local/include/SFML/System/String.hpp
+ /usr/local/include/SFML/System/String.inl
+ /usr/local/include/SFML/System/Time.hpp
+ /usr/local/include/SFML/System/Utf.hpp
+ /usr/local/include/SFML/System/Utf.inl
+ /usr/local/include/SFML/System/Vector2.hpp
+ /usr/local/include/SFML/System/Vector2.inl
+ /usr/local/include/SFML/Window/ContextSettings.hpp
+ /usr/local/include/SFML/Window/Cursor.hpp
+ /usr/local/include/SFML/Window/Export.hpp
+ /usr/local/include/SFML/Window/GlResource.hpp
+ /usr/local/include/SFML/Window/VideoMode.hpp
+ /usr/local/include/SFML/Window/Window.hpp
+ /usr/local/include/SFML/Window/WindowHandle.hpp
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/events/mouse_events.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp
 CMakeFiles/ray_casting.dir/light.cpp.o
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.cpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
  /usr/local/include/SFML/System/Vector2.hpp
  /usr/local/include/SFML/System/Vector2.inl
 CMakeFiles/ray_casting.dir/main.cpp.o
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/main.cpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/semaphores.h
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_button.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_text.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_controller.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec2.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec4.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.hpp
  /usr/local/include/SFML/Config.hpp
  /usr/local/include/SFML/Graphics.hpp
@@ -115,56 +173,279 @@ CMakeFiles/ray_casting.dir/main.cpp.o
  /usr/local/include/SFML/Window/Window.hpp
  /usr/local/include/SFML/Window/WindowHandle.hpp
  /usr/local/include/SFML/Window/WindowStyle.hpp
-CMakeFiles/ray_casting.dir/matrix4.cpp.o
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.cpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
 CMakeFiles/ray_casting.dir/ray.cpp.o
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.cpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
  /usr/local/include/SFML/System/Vector2.hpp
  /usr/local/include/SFML/System/Vector2.inl
 CMakeFiles/ray_casting.dir/renderer.cpp.o
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.cpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/semaphores.h
-CMakeFiles/ray_casting.dir/sphere.cpp.o
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.cpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+CMakeFiles/ray_casting.dir/shapes/sphere.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
  /usr/local/include/SFML/System/Vector2.hpp
  /usr/local/include/SFML/System/Vector2.inl
-CMakeFiles/ray_casting.dir/user_controller.cpp.o
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_controller.cpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_controller.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.hpp
+CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec2.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec4.hpp
  /usr/local/include/SFML/Config.hpp
  /usr/local/include/SFML/Graphics/BlendMode.hpp
  /usr/local/include/SFML/Graphics/Color.hpp
+ /usr/local/include/SFML/Graphics/Drawable.hpp
  /usr/local/include/SFML/Graphics/Export.hpp
+ /usr/local/include/SFML/Graphics/Font.hpp
+ /usr/local/include/SFML/Graphics/Glyph.hpp
  /usr/local/include/SFML/Graphics/Image.hpp
  /usr/local/include/SFML/Graphics/PrimitiveType.hpp
  /usr/local/include/SFML/Graphics/Rect.hpp
  /usr/local/include/SFML/Graphics/Rect.inl
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp
  /usr/local/include/SFML/Graphics/RenderStates.hpp
  /usr/local/include/SFML/Graphics/RenderTarget.hpp
  /usr/local/include/SFML/Graphics/RenderWindow.hpp
+ /usr/local/include/SFML/Graphics/Shape.hpp
+ /usr/local/include/SFML/Graphics/Text.hpp
+ /usr/local/include/SFML/Graphics/Texture.hpp
  /usr/local/include/SFML/Graphics/Transform.hpp
+ /usr/local/include/SFML/Graphics/Transformable.hpp
  /usr/local/include/SFML/Graphics/Vertex.hpp
+ /usr/local/include/SFML/Graphics/VertexArray.hpp
+ /usr/local/include/SFML/Graphics/View.hpp
+ /usr/local/include/SFML/System/Clock.hpp
+ /usr/local/include/SFML/System/Export.hpp
+ /usr/local/include/SFML/System/NonCopyable.hpp
+ /usr/local/include/SFML/System/String.hpp
+ /usr/local/include/SFML/System/String.inl
+ /usr/local/include/SFML/System/Time.hpp
+ /usr/local/include/SFML/System/Utf.hpp
+ /usr/local/include/SFML/System/Utf.inl
+ /usr/local/include/SFML/System/Vector2.hpp
+ /usr/local/include/SFML/System/Vector2.inl
+ /usr/local/include/SFML/Window/ContextSettings.hpp
+ /usr/local/include/SFML/Window/Cursor.hpp
+ /usr/local/include/SFML/Window/Export.hpp
+ /usr/local/include/SFML/Window/GlResource.hpp
+ /usr/local/include/SFML/Window/VideoMode.hpp
+ /usr/local/include/SFML/Window/Window.hpp
+ /usr/local/include/SFML/Window/WindowHandle.hpp
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/ui/ui_button.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_button.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_button.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_text.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec2.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec4.hpp
+ /usr/local/include/SFML/Config.hpp
+ /usr/local/include/SFML/Graphics/BlendMode.hpp
+ /usr/local/include/SFML/Graphics/Color.hpp
+ /usr/local/include/SFML/Graphics/Drawable.hpp
+ /usr/local/include/SFML/Graphics/Export.hpp
+ /usr/local/include/SFML/Graphics/Font.hpp
+ /usr/local/include/SFML/Graphics/Glyph.hpp
+ /usr/local/include/SFML/Graphics/Image.hpp
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp
+ /usr/local/include/SFML/Graphics/Rect.hpp
+ /usr/local/include/SFML/Graphics/Rect.inl
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp
+ /usr/local/include/SFML/Graphics/RenderStates.hpp
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp
+ /usr/local/include/SFML/Graphics/Shape.hpp
+ /usr/local/include/SFML/Graphics/Text.hpp
+ /usr/local/include/SFML/Graphics/Texture.hpp
+ /usr/local/include/SFML/Graphics/Transform.hpp
+ /usr/local/include/SFML/Graphics/Transformable.hpp
+ /usr/local/include/SFML/Graphics/Vertex.hpp
+ /usr/local/include/SFML/Graphics/VertexArray.hpp
+ /usr/local/include/SFML/Graphics/View.hpp
+ /usr/local/include/SFML/System/Clock.hpp
+ /usr/local/include/SFML/System/Export.hpp
+ /usr/local/include/SFML/System/NonCopyable.hpp
+ /usr/local/include/SFML/System/String.hpp
+ /usr/local/include/SFML/System/String.inl
+ /usr/local/include/SFML/System/Time.hpp
+ /usr/local/include/SFML/System/Utf.hpp
+ /usr/local/include/SFML/System/Utf.inl
+ /usr/local/include/SFML/System/Vector2.hpp
+ /usr/local/include/SFML/System/Vector2.inl
+ /usr/local/include/SFML/Window/ContextSettings.hpp
+ /usr/local/include/SFML/Window/Cursor.hpp
+ /usr/local/include/SFML/Window/Export.hpp
+ /usr/local/include/SFML/Window/GlResource.hpp
+ /usr/local/include/SFML/Window/VideoMode.hpp
+ /usr/local/include/SFML/Window/Window.hpp
+ /usr/local/include/SFML/Window/WindowHandle.hpp
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/ui/ui_text.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_text.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_text.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec2.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec4.hpp
+ /usr/local/include/SFML/Config.hpp
+ /usr/local/include/SFML/Graphics/BlendMode.hpp
+ /usr/local/include/SFML/Graphics/Color.hpp
+ /usr/local/include/SFML/Graphics/Drawable.hpp
+ /usr/local/include/SFML/Graphics/Export.hpp
+ /usr/local/include/SFML/Graphics/Font.hpp
+ /usr/local/include/SFML/Graphics/Glyph.hpp
+ /usr/local/include/SFML/Graphics/Image.hpp
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp
+ /usr/local/include/SFML/Graphics/Rect.hpp
+ /usr/local/include/SFML/Graphics/Rect.inl
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp
+ /usr/local/include/SFML/Graphics/RenderStates.hpp
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp
+ /usr/local/include/SFML/Graphics/Shape.hpp
+ /usr/local/include/SFML/Graphics/Text.hpp
+ /usr/local/include/SFML/Graphics/Texture.hpp
+ /usr/local/include/SFML/Graphics/Transform.hpp
+ /usr/local/include/SFML/Graphics/Transformable.hpp
+ /usr/local/include/SFML/Graphics/Vertex.hpp
+ /usr/local/include/SFML/Graphics/VertexArray.hpp
+ /usr/local/include/SFML/Graphics/View.hpp
+ /usr/local/include/SFML/System/Clock.hpp
+ /usr/local/include/SFML/System/Export.hpp
+ /usr/local/include/SFML/System/NonCopyable.hpp
+ /usr/local/include/SFML/System/String.hpp
+ /usr/local/include/SFML/System/String.inl
+ /usr/local/include/SFML/System/Time.hpp
+ /usr/local/include/SFML/System/Utf.hpp
+ /usr/local/include/SFML/System/Utf.inl
+ /usr/local/include/SFML/System/Vector2.hpp
+ /usr/local/include/SFML/System/Vector2.inl
+ /usr/local/include/SFML/Window/ContextSettings.hpp
+ /usr/local/include/SFML/Window/Cursor.hpp
+ /usr/local/include/SFML/Window/Export.hpp
+ /usr/local/include/SFML/Window/GlResource.hpp
+ /usr/local/include/SFML/Window/VideoMode.hpp
+ /usr/local/include/SFML/Window/Window.hpp
+ /usr/local/include/SFML/Window/WindowHandle.hpp
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/ui/ui_view.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec2.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec4.hpp
+ /usr/local/include/SFML/Config.hpp
+ /usr/local/include/SFML/Graphics/BlendMode.hpp
+ /usr/local/include/SFML/Graphics/Color.hpp
+ /usr/local/include/SFML/Graphics/Drawable.hpp
+ /usr/local/include/SFML/Graphics/Export.hpp
+ /usr/local/include/SFML/Graphics/Font.hpp
+ /usr/local/include/SFML/Graphics/Glyph.hpp
+ /usr/local/include/SFML/Graphics/Image.hpp
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp
+ /usr/local/include/SFML/Graphics/Rect.hpp
+ /usr/local/include/SFML/Graphics/Rect.inl
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp
+ /usr/local/include/SFML/Graphics/RenderStates.hpp
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp
+ /usr/local/include/SFML/Graphics/Shape.hpp
+ /usr/local/include/SFML/Graphics/Text.hpp
+ /usr/local/include/SFML/Graphics/Texture.hpp
+ /usr/local/include/SFML/Graphics/Transform.hpp
+ /usr/local/include/SFML/Graphics/Transformable.hpp
+ /usr/local/include/SFML/Graphics/Vertex.hpp
+ /usr/local/include/SFML/Graphics/VertexArray.hpp
+ /usr/local/include/SFML/Graphics/View.hpp
+ /usr/local/include/SFML/System/Clock.hpp
+ /usr/local/include/SFML/System/Export.hpp
+ /usr/local/include/SFML/System/NonCopyable.hpp
+ /usr/local/include/SFML/System/String.hpp
+ /usr/local/include/SFML/System/String.inl
+ /usr/local/include/SFML/System/Time.hpp
+ /usr/local/include/SFML/System/Utf.hpp
+ /usr/local/include/SFML/System/Utf.inl
+ /usr/local/include/SFML/System/Vector2.hpp
+ /usr/local/include/SFML/System/Vector2.inl
+ /usr/local/include/SFML/Window/ContextSettings.hpp
+ /usr/local/include/SFML/Window/Cursor.hpp
+ /usr/local/include/SFML/Window/Export.hpp
+ /usr/local/include/SFML/Window/GlResource.hpp
+ /usr/local/include/SFML/Window/VideoMode.hpp
+ /usr/local/include/SFML/Window/Window.hpp
+ /usr/local/include/SFML/Window/WindowHandle.hpp
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/user_controller.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_controller.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_controller.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec2.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.hpp
+ /usr/local/include/SFML/Config.hpp
+ /usr/local/include/SFML/Graphics/BlendMode.hpp
+ /usr/local/include/SFML/Graphics/Color.hpp
+ /usr/local/include/SFML/Graphics/Drawable.hpp
+ /usr/local/include/SFML/Graphics/Export.hpp
+ /usr/local/include/SFML/Graphics/Font.hpp
+ /usr/local/include/SFML/Graphics/Glyph.hpp
+ /usr/local/include/SFML/Graphics/Image.hpp
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp
+ /usr/local/include/SFML/Graphics/Rect.hpp
+ /usr/local/include/SFML/Graphics/Rect.inl
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp
+ /usr/local/include/SFML/Graphics/RenderStates.hpp
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp
+ /usr/local/include/SFML/Graphics/Shape.hpp
+ /usr/local/include/SFML/Graphics/Text.hpp
+ /usr/local/include/SFML/Graphics/Texture.hpp
+ /usr/local/include/SFML/Graphics/Transform.hpp
+ /usr/local/include/SFML/Graphics/Transformable.hpp
+ /usr/local/include/SFML/Graphics/Vertex.hpp
+ /usr/local/include/SFML/Graphics/VertexArray.hpp
  /usr/local/include/SFML/Graphics/View.hpp
  /usr/local/include/SFML/System/Clock.hpp
  /usr/local/include/SFML/System/Export.hpp
@@ -193,16 +474,16 @@ CMakeFiles/ray_casting.dir/user_controller.cpp.o
  /usr/local/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/ray_casting.dir/user_viewport.cpp.o
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/semaphores.h
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.cpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.hpp
  /usr/local/include/SFML/Config.hpp
  /usr/local/include/SFML/Graphics/Color.hpp
@@ -212,24 +493,14 @@ CMakeFiles/ray_casting.dir/user_viewport.cpp.o
  /usr/local/include/SFML/Graphics/Rect.inl
  /usr/local/include/SFML/System/Vector2.hpp
  /usr/local/include/SFML/System/Vector2.inl
-CMakeFiles/ray_casting.dir/vec2.cpp.o
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.cpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.hpp
- /usr/local/include/SFML/System/Vector2.hpp
- /usr/local/include/SFML/System/Vector2.inl
-CMakeFiles/ray_casting.dir/vec3.cpp.o
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.cpp
- /usr/local/include/SFML/System/Vector2.hpp
- /usr/local/include/SFML/System/Vector2.inl
 CMakeFiles/ray_casting.dir/world.cpp.o
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp
- /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.cpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.hpp
  /usr/local/include/SFML/Config.hpp

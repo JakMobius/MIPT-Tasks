@@ -54,10 +54,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики"
+CMAKE_SOURCE_DIR = /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/graphics-zhiraphics.dir/clean
 CMakeFiles/graphics-zhiraphics.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics-zhiraphics.dir/build.make CMakeFiles/graphics-zhiraphics.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics-zhiraphics.dir/build.make CMakeFiles/graphics-zhiraphics.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5,6,7 "Built target graphics-zhiraphics"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target graphics-zhiraphics"
 .PHONY : CMakeFiles/graphics-zhiraphics.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/graphics-zhiraphics.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/graphics-zhiraphics.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/graphics-zhiraphics.dir/rule
 
 # Convenience name for target.

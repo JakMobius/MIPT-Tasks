@@ -53,10 +53,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики"
+CMAKE_SOURCE_DIR = /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/graphics-zhiraphics.dir/depend.make
@@ -68,81 +68,81 @@ include CMakeFiles/graphics-zhiraphics.dir/flags.make
 
 CMakeFiles/graphics-zhiraphics.dir/main.cpp.o: CMakeFiles/graphics-zhiraphics.dir/flags.make
 CMakeFiles/graphics-zhiraphics.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/main.cpp.o -c "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/main.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/main.cpp
 
 CMakeFiles/graphics-zhiraphics.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics-zhiraphics.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/main.cpp" > CMakeFiles/graphics-zhiraphics.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/main.cpp > CMakeFiles/graphics-zhiraphics.dir/main.cpp.i
 
 CMakeFiles/graphics-zhiraphics.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics-zhiraphics.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/main.cpp" -o CMakeFiles/graphics-zhiraphics.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/main.cpp -o CMakeFiles/graphics-zhiraphics.dir/main.cpp.s
 
 CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.o: CMakeFiles/graphics-zhiraphics.dir/flags.make
 CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.o: ../drawing_context.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.o -c "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/drawing_context.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/drawing_context.cpp
 
 CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/drawing_context.cpp" > CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/drawing_context.cpp > CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.i
 
 CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/drawing_context.cpp" -o CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/drawing_context.cpp -o CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.s
 
 CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.o: CMakeFiles/graphics-zhiraphics.dir/flags.make
 CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.o: ../matrix3.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.o -c "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/matrix3.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/matrix3.cpp
 
 CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/matrix3.cpp" > CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/matrix3.cpp > CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.i
 
 CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/matrix3.cpp" -o CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/matrix3.cpp -o CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.s
 
 CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.o: CMakeFiles/graphics-zhiraphics.dir/flags.make
 CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.o: ../vec2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.o -c "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/vec2.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/vec2.cpp
 
 CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/vec2.cpp" > CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/vec2.cpp > CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.i
 
 CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/vec2.cpp" -o CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/vec2.cpp -o CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.s
 
 CMakeFiles/graphics-zhiraphics.dir/graph.cpp.o: CMakeFiles/graphics-zhiraphics.dir/flags.make
 CMakeFiles/graphics-zhiraphics.dir/graph.cpp.o: ../graph.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/graph.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/graph.cpp.o -c "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/graph.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/graph.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/graph.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/graph.cpp
 
 CMakeFiles/graphics-zhiraphics.dir/graph.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics-zhiraphics.dir/graph.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/graph.cpp" > CMakeFiles/graphics-zhiraphics.dir/graph.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/graph.cpp > CMakeFiles/graphics-zhiraphics.dir/graph.cpp.i
 
 CMakeFiles/graphics-zhiraphics.dir/graph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics-zhiraphics.dir/graph.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/graph.cpp" -o CMakeFiles/graphics-zhiraphics.dir/graph.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/graph.cpp -o CMakeFiles/graphics-zhiraphics.dir/graph.cpp.s
 
 CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.o: CMakeFiles/graphics-zhiraphics.dir/flags.make
 CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.o: ../awesome_functions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.o -c "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/awesome_functions.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/awesome_functions.cpp
 
 CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/awesome_functions.cpp" > CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/awesome_functions.cpp > CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.i
 
 CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/awesome_functions.cpp" -o CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/awesome_functions.cpp -o CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.s
 
 # Object files for target graphics-zhiraphics
 graphics__zhiraphics_OBJECTS = \
@@ -168,7 +168,7 @@ graphics-zhiraphics: /usr/local/lib/libsfml-audio.2.5.1.dylib
 graphics-zhiraphics: /usr/local/lib/libsfml-window.2.5.1.dylib
 graphics-zhiraphics: /usr/local/lib/libsfml-system.2.5.1.dylib
 graphics-zhiraphics: CMakeFiles/graphics-zhiraphics.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable graphics-zhiraphics"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable graphics-zhiraphics"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/graphics-zhiraphics.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -180,6 +180,6 @@ CMakeFiles/graphics-zhiraphics.dir/clean:
 .PHONY : CMakeFiles/graphics-zhiraphics.dir/clean
 
 CMakeFiles/graphics-zhiraphics.dir/depend:
-	cd "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/graphics-zhiraphics.dir/depend
 

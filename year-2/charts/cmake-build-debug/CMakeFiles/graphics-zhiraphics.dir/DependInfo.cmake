@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/awesome_functions.cpp" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.o"
-  "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/drawing_context.cpp" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.o"
-  "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/graph.cpp" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/graph.cpp.o"
-  "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/main.cpp" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/main.cpp.o"
-  "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/matrix3.cpp" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.o"
-  "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/vec2.cpp" "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/awesome_functions.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/awesome_functions.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/drawing_context.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/drawing_context.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/graph.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/graph.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/main.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/main.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/matrix3.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/matrix3.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/vec2.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/CMakeFiles/graphics-zhiraphics.dir/vec2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

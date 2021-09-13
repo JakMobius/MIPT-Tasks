@@ -86,6 +86,18 @@
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.cpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.cpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.cpp">
 			<Option target="ray_casting"/>
 		</Unit>
@@ -93,12 +105,6 @@
 			<Option target="ray_casting"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/main.cpp">
-			<Option target="ray_casting"/>
-		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.cpp">
-			<Option target="ray_casting"/>
-		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.cpp">
@@ -116,10 +122,34 @@
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/semaphores.h">
 			<Option target="ray_casting"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.cpp">
 			<Option target="ray_casting"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.cpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_button.cpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_button.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_text.cpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_text.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.cpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_controller.cpp">
@@ -134,16 +164,19 @@
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix3.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/matrix4.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec2.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec3.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/utils/vec4.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.cpp">

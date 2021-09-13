@@ -1,4 +1,4 @@
-# Install script for directory: /Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики
+# Install script for directory: /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/artem/Documents/Физтех/2 курс/Прога/Дед/графики-жирафики/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/charts/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

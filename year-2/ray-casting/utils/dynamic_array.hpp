@@ -21,26 +21,33 @@ struct dynamic_array {
     ~dynamic_array();
     dynamic_array<T>& operator=(const dynamic_array<T>& other);
 
-    T get(int index) const;
-    T* point(int index) const;
+    const T &operator[](int index) const;
+    T &operator[](int index);
 
-    T erase(int index);
     void set(int index, T value);
     void push(T value);
     void resize(int capacity);
+
+    T &erase(int index);
 
     void pop();
     void clear();
 };
 
 template<typename T>
-T dynamic_array<T>::get(int index) const {
+const T &dynamic_array<T>::operator[](int index) const {
     debug_assert(index >= 0 && index < capacity);
     return array[index];
 }
 
 template<typename T>
-T dynamic_array<T>::erase(int index) {
+T &dynamic_array<T>::operator[](int index) {
+    debug_assert(index >= 0 && index < capacity);
+    return array[index];
+}
+
+template<typename T>
+T &dynamic_array<T>::erase(int index) {
     debug_assert(index >= 0 && index < capacity);
     T value = array[index];
 
@@ -51,12 +58,6 @@ T dynamic_array<T>::erase(int index) {
     size--;
 
     return value;
-}
-
-template<typename T>
-T* dynamic_array<T>::point(int index) const {
-    debug_assert(index >= 0 && index < capacity);
-    return array + index;
 }
 
 template<typename T>

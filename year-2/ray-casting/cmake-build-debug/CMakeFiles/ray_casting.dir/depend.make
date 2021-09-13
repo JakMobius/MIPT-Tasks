@@ -4,12 +4,12 @@
 CMakeFiles/ray_casting.dir/camera.cpp.o: \
  ../camera.cpp \
  ../camera.hpp \
- ../dynamic_array.hpp \
  ../light.hpp \
- ../matrix4.hpp \
  ../ray.hpp \
- ../sphere.hpp \
- ../vec3.hpp \
+ ../shapes/sphere.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec3.hpp \
  ../world.hpp \
  /usr/local/include/SFML/Config.hpp \
  /usr/local/include/SFML/Graphics/Color.hpp \
@@ -19,27 +19,85 @@ CMakeFiles/ray_casting.dir/camera.cpp.o: \
  /usr/local/include/SFML/Graphics/Rect.inl \
  /usr/local/include/SFML/System/Vector2.hpp \
  /usr/local/include/SFML/System/Vector2.inl
+CMakeFiles/ray_casting.dir/drawing_context.cpp.o: \
+ ../drawing_context.cpp \
+ ../drawing_context.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix3.hpp \
+ ../utils/vec2.hpp \
+ /usr/local/include/SFML/Config.hpp \
+ /usr/local/include/SFML/Graphics/BlendMode.hpp \
+ /usr/local/include/SFML/Graphics/Color.hpp \
+ /usr/local/include/SFML/Graphics/Drawable.hpp \
+ /usr/local/include/SFML/Graphics/Export.hpp \
+ /usr/local/include/SFML/Graphics/Font.hpp \
+ /usr/local/include/SFML/Graphics/Glyph.hpp \
+ /usr/local/include/SFML/Graphics/Image.hpp \
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp \
+ /usr/local/include/SFML/Graphics/Rect.hpp \
+ /usr/local/include/SFML/Graphics/Rect.inl \
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp \
+ /usr/local/include/SFML/Graphics/RenderStates.hpp \
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp \
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp \
+ /usr/local/include/SFML/Graphics/Shape.hpp \
+ /usr/local/include/SFML/Graphics/Text.hpp \
+ /usr/local/include/SFML/Graphics/Texture.hpp \
+ /usr/local/include/SFML/Graphics/Transform.hpp \
+ /usr/local/include/SFML/Graphics/Transformable.hpp \
+ /usr/local/include/SFML/Graphics/Vertex.hpp \
+ /usr/local/include/SFML/Graphics/VertexArray.hpp \
+ /usr/local/include/SFML/Graphics/View.hpp \
+ /usr/local/include/SFML/System/Clock.hpp \
+ /usr/local/include/SFML/System/Export.hpp \
+ /usr/local/include/SFML/System/NonCopyable.hpp \
+ /usr/local/include/SFML/System/String.hpp \
+ /usr/local/include/SFML/System/String.inl \
+ /usr/local/include/SFML/System/Time.hpp \
+ /usr/local/include/SFML/System/Utf.hpp \
+ /usr/local/include/SFML/System/Utf.inl \
+ /usr/local/include/SFML/System/Vector2.hpp \
+ /usr/local/include/SFML/System/Vector2.inl \
+ /usr/local/include/SFML/Window/ContextSettings.hpp \
+ /usr/local/include/SFML/Window/Cursor.hpp \
+ /usr/local/include/SFML/Window/Export.hpp \
+ /usr/local/include/SFML/Window/GlResource.hpp \
+ /usr/local/include/SFML/Window/VideoMode.hpp \
+ /usr/local/include/SFML/Window/Window.hpp \
+ /usr/local/include/SFML/Window/WindowHandle.hpp \
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/events/mouse_events.cpp.o: \
+ ../events/mouse_events.cpp \
+ ../events/mouse_events.hpp
 CMakeFiles/ray_casting.dir/light.cpp.o: \
- ../dynamic_array.hpp \
  ../light.cpp \
  ../light.hpp \
- ../matrix4.hpp \
- ../vec3.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec3.hpp \
  /usr/local/include/SFML/System/Vector2.hpp \
  /usr/local/include/SFML/System/Vector2.inl
 CMakeFiles/ray_casting.dir/main.cpp.o: \
  ../camera.hpp \
- ../dynamic_array.hpp \
+ ../drawing_context.hpp \
+ ../events/mouse_events.hpp \
  ../light.hpp \
  ../main.cpp \
- ../matrix4.hpp \
  ../ray.hpp \
  ../renderer.hpp \
  ../semaphores.h \
- ../sphere.hpp \
+ ../shapes/sphere.hpp \
+ ../ui/ui_button.hpp \
+ ../ui/ui_text.hpp \
+ ../ui/ui_view.hpp \
  ../user_controller.hpp \
  ../user_viewport.hpp \
- ../vec3.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix3.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec2.hpp \
+ ../utils/vec3.hpp \
+ ../utils/vec4.hpp \
  ../world.hpp \
  /usr/local/include/SFML/Config.hpp \
  /usr/local/include/SFML/Graphics.hpp \
@@ -115,56 +173,279 @@ CMakeFiles/ray_casting.dir/main.cpp.o: \
  /usr/local/include/SFML/Window/Window.hpp \
  /usr/local/include/SFML/Window/WindowHandle.hpp \
  /usr/local/include/SFML/Window/WindowStyle.hpp
-CMakeFiles/ray_casting.dir/matrix4.cpp.o: \
- ../dynamic_array.hpp \
- ../matrix4.cpp \
- ../matrix4.hpp
 CMakeFiles/ray_casting.dir/ray.cpp.o: \
- ../dynamic_array.hpp \
- ../matrix4.hpp \
  ../ray.cpp \
  ../ray.hpp \
- ../vec3.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec3.hpp \
  /usr/local/include/SFML/System/Vector2.hpp \
  /usr/local/include/SFML/System/Vector2.inl
 CMakeFiles/ray_casting.dir/renderer.cpp.o: \
- ../dynamic_array.hpp \
  ../renderer.cpp \
  ../renderer.hpp \
- ../semaphores.h
-CMakeFiles/ray_casting.dir/sphere.cpp.o: \
- ../dynamic_array.hpp \
- ../matrix4.hpp \
- ../ray.hpp \
- ../sphere.cpp \
- ../sphere.hpp \
- ../vec3.hpp \
+ ../semaphores.h \
+ ../utils/dynamic_array.hpp
+CMakeFiles/ray_casting.dir/shapes/sphere.cpp.o: \
+ ../shapes/sphere.cpp \
+ ../shapes/sphere.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec3.hpp \
  /usr/local/include/SFML/System/Vector2.hpp \
  /usr/local/include/SFML/System/Vector2.inl
-CMakeFiles/ray_casting.dir/user_controller.cpp.o: \
- ../camera.hpp \
- ../dynamic_array.hpp \
- ../light.hpp \
- ../matrix4.hpp \
- ../ray.hpp \
- ../sphere.hpp \
- ../user_controller.cpp \
- ../user_controller.hpp \
- ../vec3.hpp \
- ../world.hpp \
+CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o: \
+ ../drawing_context.hpp \
+ ../events/mouse_events.hpp \
+ ../ui/point_test_iterator.cpp \
+ ../ui/point_test_iterator.hpp \
+ ../ui/ui_view.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix3.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec2.hpp \
+ ../utils/vec3.hpp \
+ ../utils/vec4.hpp \
  /usr/local/include/SFML/Config.hpp \
  /usr/local/include/SFML/Graphics/BlendMode.hpp \
  /usr/local/include/SFML/Graphics/Color.hpp \
+ /usr/local/include/SFML/Graphics/Drawable.hpp \
  /usr/local/include/SFML/Graphics/Export.hpp \
+ /usr/local/include/SFML/Graphics/Font.hpp \
+ /usr/local/include/SFML/Graphics/Glyph.hpp \
  /usr/local/include/SFML/Graphics/Image.hpp \
  /usr/local/include/SFML/Graphics/PrimitiveType.hpp \
  /usr/local/include/SFML/Graphics/Rect.hpp \
  /usr/local/include/SFML/Graphics/Rect.inl \
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp \
  /usr/local/include/SFML/Graphics/RenderStates.hpp \
  /usr/local/include/SFML/Graphics/RenderTarget.hpp \
  /usr/local/include/SFML/Graphics/RenderWindow.hpp \
+ /usr/local/include/SFML/Graphics/Shape.hpp \
+ /usr/local/include/SFML/Graphics/Text.hpp \
+ /usr/local/include/SFML/Graphics/Texture.hpp \
  /usr/local/include/SFML/Graphics/Transform.hpp \
+ /usr/local/include/SFML/Graphics/Transformable.hpp \
  /usr/local/include/SFML/Graphics/Vertex.hpp \
+ /usr/local/include/SFML/Graphics/VertexArray.hpp \
+ /usr/local/include/SFML/Graphics/View.hpp \
+ /usr/local/include/SFML/System/Clock.hpp \
+ /usr/local/include/SFML/System/Export.hpp \
+ /usr/local/include/SFML/System/NonCopyable.hpp \
+ /usr/local/include/SFML/System/String.hpp \
+ /usr/local/include/SFML/System/String.inl \
+ /usr/local/include/SFML/System/Time.hpp \
+ /usr/local/include/SFML/System/Utf.hpp \
+ /usr/local/include/SFML/System/Utf.inl \
+ /usr/local/include/SFML/System/Vector2.hpp \
+ /usr/local/include/SFML/System/Vector2.inl \
+ /usr/local/include/SFML/Window/ContextSettings.hpp \
+ /usr/local/include/SFML/Window/Cursor.hpp \
+ /usr/local/include/SFML/Window/Export.hpp \
+ /usr/local/include/SFML/Window/GlResource.hpp \
+ /usr/local/include/SFML/Window/VideoMode.hpp \
+ /usr/local/include/SFML/Window/Window.hpp \
+ /usr/local/include/SFML/Window/WindowHandle.hpp \
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/ui/ui_button.cpp.o: \
+ ../drawing_context.hpp \
+ ../events/mouse_events.hpp \
+ ../ui/ui_button.cpp \
+ ../ui/ui_button.hpp \
+ ../ui/ui_text.hpp \
+ ../ui/ui_view.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix3.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec2.hpp \
+ ../utils/vec3.hpp \
+ ../utils/vec4.hpp \
+ /usr/local/include/SFML/Config.hpp \
+ /usr/local/include/SFML/Graphics/BlendMode.hpp \
+ /usr/local/include/SFML/Graphics/Color.hpp \
+ /usr/local/include/SFML/Graphics/Drawable.hpp \
+ /usr/local/include/SFML/Graphics/Export.hpp \
+ /usr/local/include/SFML/Graphics/Font.hpp \
+ /usr/local/include/SFML/Graphics/Glyph.hpp \
+ /usr/local/include/SFML/Graphics/Image.hpp \
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp \
+ /usr/local/include/SFML/Graphics/Rect.hpp \
+ /usr/local/include/SFML/Graphics/Rect.inl \
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp \
+ /usr/local/include/SFML/Graphics/RenderStates.hpp \
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp \
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp \
+ /usr/local/include/SFML/Graphics/Shape.hpp \
+ /usr/local/include/SFML/Graphics/Text.hpp \
+ /usr/local/include/SFML/Graphics/Texture.hpp \
+ /usr/local/include/SFML/Graphics/Transform.hpp \
+ /usr/local/include/SFML/Graphics/Transformable.hpp \
+ /usr/local/include/SFML/Graphics/Vertex.hpp \
+ /usr/local/include/SFML/Graphics/VertexArray.hpp \
+ /usr/local/include/SFML/Graphics/View.hpp \
+ /usr/local/include/SFML/System/Clock.hpp \
+ /usr/local/include/SFML/System/Export.hpp \
+ /usr/local/include/SFML/System/NonCopyable.hpp \
+ /usr/local/include/SFML/System/String.hpp \
+ /usr/local/include/SFML/System/String.inl \
+ /usr/local/include/SFML/System/Time.hpp \
+ /usr/local/include/SFML/System/Utf.hpp \
+ /usr/local/include/SFML/System/Utf.inl \
+ /usr/local/include/SFML/System/Vector2.hpp \
+ /usr/local/include/SFML/System/Vector2.inl \
+ /usr/local/include/SFML/Window/ContextSettings.hpp \
+ /usr/local/include/SFML/Window/Cursor.hpp \
+ /usr/local/include/SFML/Window/Export.hpp \
+ /usr/local/include/SFML/Window/GlResource.hpp \
+ /usr/local/include/SFML/Window/VideoMode.hpp \
+ /usr/local/include/SFML/Window/Window.hpp \
+ /usr/local/include/SFML/Window/WindowHandle.hpp \
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/ui/ui_text.cpp.o: \
+ ../drawing_context.hpp \
+ ../events/mouse_events.hpp \
+ ../ui/ui_text.cpp \
+ ../ui/ui_text.hpp \
+ ../ui/ui_view.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix3.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec2.hpp \
+ ../utils/vec3.hpp \
+ ../utils/vec4.hpp \
+ /usr/local/include/SFML/Config.hpp \
+ /usr/local/include/SFML/Graphics/BlendMode.hpp \
+ /usr/local/include/SFML/Graphics/Color.hpp \
+ /usr/local/include/SFML/Graphics/Drawable.hpp \
+ /usr/local/include/SFML/Graphics/Export.hpp \
+ /usr/local/include/SFML/Graphics/Font.hpp \
+ /usr/local/include/SFML/Graphics/Glyph.hpp \
+ /usr/local/include/SFML/Graphics/Image.hpp \
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp \
+ /usr/local/include/SFML/Graphics/Rect.hpp \
+ /usr/local/include/SFML/Graphics/Rect.inl \
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp \
+ /usr/local/include/SFML/Graphics/RenderStates.hpp \
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp \
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp \
+ /usr/local/include/SFML/Graphics/Shape.hpp \
+ /usr/local/include/SFML/Graphics/Text.hpp \
+ /usr/local/include/SFML/Graphics/Texture.hpp \
+ /usr/local/include/SFML/Graphics/Transform.hpp \
+ /usr/local/include/SFML/Graphics/Transformable.hpp \
+ /usr/local/include/SFML/Graphics/Vertex.hpp \
+ /usr/local/include/SFML/Graphics/VertexArray.hpp \
+ /usr/local/include/SFML/Graphics/View.hpp \
+ /usr/local/include/SFML/System/Clock.hpp \
+ /usr/local/include/SFML/System/Export.hpp \
+ /usr/local/include/SFML/System/NonCopyable.hpp \
+ /usr/local/include/SFML/System/String.hpp \
+ /usr/local/include/SFML/System/String.inl \
+ /usr/local/include/SFML/System/Time.hpp \
+ /usr/local/include/SFML/System/Utf.hpp \
+ /usr/local/include/SFML/System/Utf.inl \
+ /usr/local/include/SFML/System/Vector2.hpp \
+ /usr/local/include/SFML/System/Vector2.inl \
+ /usr/local/include/SFML/Window/ContextSettings.hpp \
+ /usr/local/include/SFML/Window/Cursor.hpp \
+ /usr/local/include/SFML/Window/Export.hpp \
+ /usr/local/include/SFML/Window/GlResource.hpp \
+ /usr/local/include/SFML/Window/VideoMode.hpp \
+ /usr/local/include/SFML/Window/Window.hpp \
+ /usr/local/include/SFML/Window/WindowHandle.hpp \
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/ui/ui_view.cpp.o: \
+ ../drawing_context.hpp \
+ ../events/mouse_events.hpp \
+ ../ui/point_test_iterator.hpp \
+ ../ui/ui_view.cpp \
+ ../ui/ui_view.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix3.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec2.hpp \
+ ../utils/vec3.hpp \
+ ../utils/vec4.hpp \
+ /usr/local/include/SFML/Config.hpp \
+ /usr/local/include/SFML/Graphics/BlendMode.hpp \
+ /usr/local/include/SFML/Graphics/Color.hpp \
+ /usr/local/include/SFML/Graphics/Drawable.hpp \
+ /usr/local/include/SFML/Graphics/Export.hpp \
+ /usr/local/include/SFML/Graphics/Font.hpp \
+ /usr/local/include/SFML/Graphics/Glyph.hpp \
+ /usr/local/include/SFML/Graphics/Image.hpp \
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp \
+ /usr/local/include/SFML/Graphics/Rect.hpp \
+ /usr/local/include/SFML/Graphics/Rect.inl \
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp \
+ /usr/local/include/SFML/Graphics/RenderStates.hpp \
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp \
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp \
+ /usr/local/include/SFML/Graphics/Shape.hpp \
+ /usr/local/include/SFML/Graphics/Text.hpp \
+ /usr/local/include/SFML/Graphics/Texture.hpp \
+ /usr/local/include/SFML/Graphics/Transform.hpp \
+ /usr/local/include/SFML/Graphics/Transformable.hpp \
+ /usr/local/include/SFML/Graphics/Vertex.hpp \
+ /usr/local/include/SFML/Graphics/VertexArray.hpp \
+ /usr/local/include/SFML/Graphics/View.hpp \
+ /usr/local/include/SFML/System/Clock.hpp \
+ /usr/local/include/SFML/System/Export.hpp \
+ /usr/local/include/SFML/System/NonCopyable.hpp \
+ /usr/local/include/SFML/System/String.hpp \
+ /usr/local/include/SFML/System/String.inl \
+ /usr/local/include/SFML/System/Time.hpp \
+ /usr/local/include/SFML/System/Utf.hpp \
+ /usr/local/include/SFML/System/Utf.inl \
+ /usr/local/include/SFML/System/Vector2.hpp \
+ /usr/local/include/SFML/System/Vector2.inl \
+ /usr/local/include/SFML/Window/ContextSettings.hpp \
+ /usr/local/include/SFML/Window/Cursor.hpp \
+ /usr/local/include/SFML/Window/Export.hpp \
+ /usr/local/include/SFML/Window/GlResource.hpp \
+ /usr/local/include/SFML/Window/VideoMode.hpp \
+ /usr/local/include/SFML/Window/Window.hpp \
+ /usr/local/include/SFML/Window/WindowHandle.hpp \
+ /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/user_controller.cpp.o: \
+ ../camera.hpp \
+ ../drawing_context.hpp \
+ ../events/mouse_events.hpp \
+ ../light.hpp \
+ ../ray.hpp \
+ ../shapes/sphere.hpp \
+ ../ui/ui_view.hpp \
+ ../user_controller.cpp \
+ ../user_controller.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix3.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec2.hpp \
+ ../utils/vec3.hpp \
+ ../utils/vec4.hpp \
+ ../world.hpp \
+ /usr/local/include/SFML/Config.hpp \
+ /usr/local/include/SFML/Graphics/BlendMode.hpp \
+ /usr/local/include/SFML/Graphics/Color.hpp \
+ /usr/local/include/SFML/Graphics/Drawable.hpp \
+ /usr/local/include/SFML/Graphics/Export.hpp \
+ /usr/local/include/SFML/Graphics/Font.hpp \
+ /usr/local/include/SFML/Graphics/Glyph.hpp \
+ /usr/local/include/SFML/Graphics/Image.hpp \
+ /usr/local/include/SFML/Graphics/PrimitiveType.hpp \
+ /usr/local/include/SFML/Graphics/Rect.hpp \
+ /usr/local/include/SFML/Graphics/Rect.inl \
+ /usr/local/include/SFML/Graphics/RectangleShape.hpp \
+ /usr/local/include/SFML/Graphics/RenderStates.hpp \
+ /usr/local/include/SFML/Graphics/RenderTarget.hpp \
+ /usr/local/include/SFML/Graphics/RenderWindow.hpp \
+ /usr/local/include/SFML/Graphics/Shape.hpp \
+ /usr/local/include/SFML/Graphics/Text.hpp \
+ /usr/local/include/SFML/Graphics/Texture.hpp \
+ /usr/local/include/SFML/Graphics/Transform.hpp \
+ /usr/local/include/SFML/Graphics/Transformable.hpp \
+ /usr/local/include/SFML/Graphics/Vertex.hpp \
+ /usr/local/include/SFML/Graphics/VertexArray.hpp \
  /usr/local/include/SFML/Graphics/View.hpp \
  /usr/local/include/SFML/System/Clock.hpp \
  /usr/local/include/SFML/System/Export.hpp \
@@ -193,16 +474,16 @@ CMakeFiles/ray_casting.dir/user_controller.cpp.o: \
  /usr/local/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/ray_casting.dir/user_viewport.cpp.o: \
  ../camera.hpp \
- ../dynamic_array.hpp \
  ../light.hpp \
- ../matrix4.hpp \
  ../ray.hpp \
  ../renderer.hpp \
  ../semaphores.h \
- ../sphere.hpp \
+ ../shapes/sphere.hpp \
  ../user_viewport.cpp \
  ../user_viewport.hpp \
- ../vec3.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec3.hpp \
  ../world.hpp \
  /usr/local/include/SFML/Config.hpp \
  /usr/local/include/SFML/Graphics/Color.hpp \
@@ -212,24 +493,14 @@ CMakeFiles/ray_casting.dir/user_viewport.cpp.o: \
  /usr/local/include/SFML/Graphics/Rect.inl \
  /usr/local/include/SFML/System/Vector2.hpp \
  /usr/local/include/SFML/System/Vector2.inl
-CMakeFiles/ray_casting.dir/vec2.cpp.o: \
- ../vec2.cpp \
- ../vec2.hpp \
- /usr/local/include/SFML/System/Vector2.hpp \
- /usr/local/include/SFML/System/Vector2.inl
-CMakeFiles/ray_casting.dir/vec3.cpp.o: \
- ../vec2.hpp \
- ../vec3.cpp \
- /usr/local/include/SFML/System/Vector2.hpp \
- /usr/local/include/SFML/System/Vector2.inl
 CMakeFiles/ray_casting.dir/world.cpp.o: \
  ../camera.hpp \
- ../dynamic_array.hpp \
  ../light.hpp \
- ../matrix4.hpp \
  ../ray.hpp \
- ../sphere.hpp \
- ../vec3.hpp \
+ ../shapes/sphere.hpp \
+ ../utils/dynamic_array.hpp \
+ ../utils/matrix4.hpp \
+ ../utils/vec3.hpp \
  ../world.cpp \
  ../world.hpp \
  /usr/local/include/SFML/Config.hpp \

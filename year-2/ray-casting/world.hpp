@@ -2,8 +2,8 @@
 
 class World;
 
-#include "sphere.hpp"
-#include "dynamic_array.hpp"
+#include "shapes/sphere.hpp"
+#include "utils/dynamic_array.hpp"
 #include "light.hpp"
 #include "ray.hpp"
 #include "camera.hpp"
@@ -21,5 +21,5 @@ public:
 
     void trace_ray(Ray* ray, Camera* camera) const;
 
-    Vec3d calculate_ray_color(Ray* ray, Vec3d intersection_vector, Sphere* sphere, Camera* camera) const;
+    Vec3d calculate_ray_color(Vec3d intersection_vector, Sphere* sphere, Camera* camera) const;
 };

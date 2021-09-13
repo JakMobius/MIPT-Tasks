@@ -3,9 +3,9 @@
 class Camera;
 
 #include <SFML/Graphics/Image.hpp>
-#include "vec3.hpp"
+#include "utils/vec3.hpp"
 #include "world.hpp"
-#include "matrix4.hpp"
+#include "utils/matrix4.hpp"
 
 class Camera {
     Vec3d position;

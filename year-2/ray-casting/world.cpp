@@ -1,6 +1,3 @@
-//
-// Created by Артем on 08.09.2021.
-//
 
 #include "world.hpp"
 
@@ -24,7 +21,7 @@ void World::trace_ray(Ray* ray, Camera* camera) const {
     double yet_min_distance = std::numeric_limits<double>::infinity();
 
     for(int i = 0; i < spheres.size; i++) {
-        Sphere* sphere = spheres.get(i);
+        Sphere* sphere = spheres[i];
 
         Vec3d b = ray->position - sphere->center;
         double a = ray->velocity.dot(b);
@@ -49,7 +46,7 @@ void World::trace_ray(Ray* ray, Camera* camera) const {
     }
 
     if(intersection_sphere != nullptr) {
-        ray->color = calculate_ray_color(ray, intersection_position, intersection_sphere, camera);
+        ray->color = calculate_ray_color(intersection_position, intersection_sphere, camera);
     } else {
         double sky_position = floor((ray->velocity.z + 1) / 2 * 20) / 20;
 
@@ -57,7 +54,7 @@ void World::trace_ray(Ray* ray, Camera* camera) const {
     }
 }
 
-Vec3d World::calculate_ray_color(Ray* ray, Vec3d intersection_vector, Sphere* sphere, Camera* camera) const {
+Vec3d World::calculate_ray_color(Vec3d intersection_vector, Sphere* sphere, Camera* camera) const {
     Vec3d normal_vector = intersection_vector - sphere->center;
     normal_vector *= 1 / sphere->radius;
 
@@ -65,7 +62,7 @@ Vec3d World::calculate_ray_color(Ray* ray, Vec3d intersection_vector, Sphere* sp
     Vec3d specular_color;
 
     for(int i = 0; i < light_points.size; i++) {
-        LightPoint* point = light_points.get(i);
+        LightPoint* point = light_points[i];
         Vec3d radius_vector = point->position - intersection_vector;
         double radius = radius_vector.length();
         double cosine = radius_vector.dot(normal_vector) / radius_vector.length();

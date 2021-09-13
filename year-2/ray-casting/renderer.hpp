@@ -3,7 +3,7 @@
 class Renderer;
 struct RendererTask;
 
-#include "dynamic_array.hpp"
+#include "utils/dynamic_array.hpp"
 #include "semaphores.h"
 #include "pthread.h"
 

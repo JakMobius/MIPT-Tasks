@@ -9,16 +9,19 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/camera.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/drawing_context.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/drawing_context.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/events/mouse_events.cpp.o"
   "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/light.cpp.o"
   "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/main.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/main.cpp.o"
-  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/matrix4.cpp.o"
   "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/ray.cpp.o"
   "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/renderer.cpp.o"
-  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/sphere.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/shapes/sphere.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_button.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/ui/ui_button.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_text.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/ui/ui_text.cpp.o"
+  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_view.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/ui/ui_view.cpp.o"
   "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_controller.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/user_controller.cpp.o"
   "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/user_viewport.cpp.o"
-  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/vec2.cpp.o"
-  "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/vec3.cpp.o"
   "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.cpp" "/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles/ray_casting.dir/world.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

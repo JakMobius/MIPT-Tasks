@@ -16,18 +16,18 @@ Renderer::Renderer(draw_function_type draw_function, int thread_count, void* use
 
 Renderer::~Renderer() {
     for(int i = 0; i < thread_count; i++) {
-        if(threads.get(i)) {
-            delete threads.get(i);
+        if(threads[i]) {
+            delete threads[i];
         }
     }
 }
 void Renderer::perform() {
     for(int i = 0; i < thread_count; i++) {
-        threads.get(i)->perform();
+        threads[i]->perform();
     }
 
     for(int i = 0; i < thread_count; i++) {
-        threads.get(i)->wait();
+        threads[i]->wait();
     }
 }
 

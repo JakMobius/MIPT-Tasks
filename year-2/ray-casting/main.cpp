@@ -4,31 +4,14 @@
 #include "user_controller.hpp"
 #include "renderer.hpp"
 #include <SFML/Graphics.hpp>
-
-struct UserViewport {
-    int window_width;
-    int window_height;
-    sf::Uint8* pixels;
-    Camera* camera;
-    World* world;
-
-    static void draw(RendererTask* task) {
-        UserViewport* viewport = (UserViewport*) task->get_renderer()->get_user_data();
-        viewport->next_frame(task->get_id(), task->get_renderer()->get_thread_count());
-    }
-
-private:
-    void next_frame(int thread_id, int total_threads) {
-        camera->trace_rays(world, (uint32_t*)(pixels), window_width, window_height, thread_id, total_threads);
-    }
-};
+#include "user_viewport.hpp"
 
 int main() {
 
-    const unsigned int window_width = 3000;
-    const unsigned int window_height = 1800;
+    const unsigned int window_width = 1440;
+    const unsigned int window_height = 720;
 
-    sf::RenderWindow window(sf::VideoMode(window_width, window_height, 32), "Test");
+    sf::RenderWindow window(sf::VideoMode(window_width, window_height, 32), "Raycaster");
     sf::Texture texture;
     sf::Sprite sprite;
     sf::Uint8* pixels  = new sf::Uint8[window_width * window_height * 4];

@@ -38,6 +38,7 @@ CMakeFiles/ray_casting.dir/main.cpp.o
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/semaphores.h
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_controller.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.hpp
  /usr/local/include/SFML/Config.hpp
@@ -190,6 +191,27 @@ CMakeFiles/ray_casting.dir/user_controller.cpp.o
  /usr/local/include/SFML/Window/Window.hpp
  /usr/local/include/SFML/Window/WindowHandle.hpp
  /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/user_viewport.cpp.o
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/dynamic_array.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/semaphores.h
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/sphere.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.cpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
+ /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/world.hpp
+ /usr/local/include/SFML/Config.hpp
+ /usr/local/include/SFML/Graphics/Color.hpp
+ /usr/local/include/SFML/Graphics/Export.hpp
+ /usr/local/include/SFML/Graphics/Image.hpp
+ /usr/local/include/SFML/Graphics/Rect.hpp
+ /usr/local/include/SFML/Graphics/Rect.inl
+ /usr/local/include/SFML/System/Vector2.hpp
+ /usr/local/include/SFML/System/Vector2.inl
 CMakeFiles/ray_casting.dir/vec2.cpp.o
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.cpp
  /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.hpp

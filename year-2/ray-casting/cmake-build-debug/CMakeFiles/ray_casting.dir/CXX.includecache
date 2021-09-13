@@ -47,10 +47,8 @@ renderer.hpp
 /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.hpp
 SFML/Graphics.hpp
 -
-
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.cpp
-matrix4.hpp
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
+user_viewport.hpp
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.hpp
 
 /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/matrix4.hpp
 dynamic_array.hpp
@@ -67,10 +65,6 @@ ray.hpp
 /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ray.hpp
 vec3.hpp
 /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
-
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.cpp
-renderer.hpp
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.hpp
 
 /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.hpp
 dynamic_array.hpp
@@ -108,19 +102,17 @@ SFML/Graphics/RenderWindow.hpp
 camera.hpp
 /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
 
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.cpp
-vec2.hpp
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.hpp
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.cpp
+user_viewport.hpp
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.hpp
 
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.hpp
-SFML/System/Vector2.hpp
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/user_viewport.hpp
+SFML/Config.hpp
 -
-cmath
--
-
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.cpp
-vec2.hpp
-/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec2.hpp
+camera.hpp
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/camera.hpp
+renderer.hpp
+/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/renderer.hpp
 
 /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/vec3.hpp
 SFML/System/Vector2.hpp

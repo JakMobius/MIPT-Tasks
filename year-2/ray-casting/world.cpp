@@ -53,7 +53,7 @@ void World::trace_ray(Ray* ray, Camera* camera) const {
     } else {
         double sky_position = floor((ray->velocity.z + 1) / 2 * 20) / 20;
 
-        ray->color = Vec3d( 0.05, 0.05, 0.05) * (1 - sky_position) + Vec3d( 0.5, 0.5, 0.05 ) * (sky_position);
+        ray->color = (Vec3d( 0.05, 0.05, 0.05) *= (1 - sky_position)) + (Vec3d( 0.5, 0.5, 0.05 ) *= (sky_position));
     }
 }
 
@@ -92,9 +92,7 @@ Vec3d World::calculate_ray_color(Ray* ray, Vec3d intersection_vector, Sphere* sp
         }
     }
 
-    result_color.x *= sphere->color.x;
-    result_color.y *= sphere->color.y;
-    result_color.z *= sphere->color.z;
+    result_color.multiply_components(sphere->color);
 
     result_color += specular_color;
 

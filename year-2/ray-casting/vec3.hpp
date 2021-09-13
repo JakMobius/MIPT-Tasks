@@ -16,6 +16,8 @@ public:
     Vec3(): Vec3(0, 0, 0) {};
     ~Vec3() = default;
 
+    void multiply_components(const Vec3<ValueType>& other) { x *= other.x; y *= other.y; z *= other.z; }
+
     ValueType dot(const Vec3& other) const { return x * other.x + y * other.y + z * other.z; };
 
     Vec3& operator=(const Vec3& other) = default;

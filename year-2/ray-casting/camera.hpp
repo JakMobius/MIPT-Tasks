@@ -12,7 +12,7 @@ class Camera {
     double heading;
     double pitch;
     double roll;
-    double fov = 1.22;
+    double fov = 20;//1.22;
     Matrix4<double> matrix;
     bool should_update_matrix = true;
 public:

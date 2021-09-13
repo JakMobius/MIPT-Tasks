@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ray_casting.dir/renderer.cpp.o"
   "CMakeFiles/ray_casting.dir/sphere.cpp.o"
   "CMakeFiles/ray_casting.dir/user_controller.cpp.o"
+  "CMakeFiles/ray_casting.dir/user_viewport.cpp.o"
   "CMakeFiles/ray_casting.dir/vec2.cpp.o"
   "CMakeFiles/ray_casting.dir/vec3.cpp.o"
   "CMakeFiles/ray_casting.dir/world.cpp.o"

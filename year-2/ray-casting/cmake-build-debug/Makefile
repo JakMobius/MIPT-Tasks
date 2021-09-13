@@ -321,6 +321,30 @@ user_controller.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/user_controller.cpp.s
 .PHONY : user_controller.cpp.s
 
+user_viewport.o: user_viewport.cpp.o
+.PHONY : user_viewport.o
+
+# target to build an object file
+user_viewport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/user_viewport.cpp.o
+.PHONY : user_viewport.cpp.o
+
+user_viewport.i: user_viewport.cpp.i
+.PHONY : user_viewport.i
+
+# target to preprocess a source file
+user_viewport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/user_viewport.cpp.i
+.PHONY : user_viewport.cpp.i
+
+user_viewport.s: user_viewport.cpp.s
+.PHONY : user_viewport.s
+
+# target to generate assembly for a file
+user_viewport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/user_viewport.cpp.s
+.PHONY : user_viewport.cpp.s
+
 vec2.o: vec2.cpp.o
 .PHONY : vec2.o
 
@@ -426,6 +450,9 @@ help:
 	@echo "... user_controller.o"
 	@echo "... user_controller.i"
 	@echo "... user_controller.s"
+	@echo "... user_viewport.o"
+	@echo "... user_viewport.i"
+	@echo "... user_viewport.s"
 	@echo "... vec2.o"
 	@echo "... vec2.i"
 	@echo "... vec2.s"

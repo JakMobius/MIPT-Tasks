@@ -38,6 +38,7 @@ CMakeFiles/ray_casting.dir/main.cpp.o: \
  ../semaphores.h \
  ../sphere.hpp \
  ../user_controller.hpp \
+ ../user_viewport.hpp \
  ../vec3.hpp \
  ../world.hpp \
  /usr/local/include/SFML/Config.hpp \
@@ -190,6 +191,27 @@ CMakeFiles/ray_casting.dir/user_controller.cpp.o: \
  /usr/local/include/SFML/Window/Window.hpp \
  /usr/local/include/SFML/Window/WindowHandle.hpp \
  /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/ray_casting.dir/user_viewport.cpp.o: \
+ ../camera.hpp \
+ ../dynamic_array.hpp \
+ ../light.hpp \
+ ../matrix4.hpp \
+ ../ray.hpp \
+ ../renderer.hpp \
+ ../semaphores.h \
+ ../sphere.hpp \
+ ../user_viewport.cpp \
+ ../user_viewport.hpp \
+ ../vec3.hpp \
+ ../world.hpp \
+ /usr/local/include/SFML/Config.hpp \
+ /usr/local/include/SFML/Graphics/Color.hpp \
+ /usr/local/include/SFML/Graphics/Export.hpp \
+ /usr/local/include/SFML/Graphics/Image.hpp \
+ /usr/local/include/SFML/Graphics/Rect.hpp \
+ /usr/local/include/SFML/Graphics/Rect.inl \
+ /usr/local/include/SFML/System/Vector2.hpp \
+ /usr/local/include/SFML/System/Vector2.inl
 CMakeFiles/ray_casting.dir/vec2.cpp.o: \
  ../vec2.cpp \
  ../vec2.hpp \

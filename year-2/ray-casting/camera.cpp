@@ -79,8 +79,8 @@ void Camera::update_matrix() {
     });
 
     Matrix4<double> heading_matrix({
-           heading_cos, heading_sin, 0, 0,
-           -heading_sin, heading_cos,  0, 0,
+           heading_cos, heading_sin,  0, 0,
+           -heading_sin, heading_cos, 0, 0,
            0,           0,            1, 0,
            0,           0,            0, 1
     });

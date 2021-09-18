@@ -98,6 +98,12 @@
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/interface_view.cpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/interface_view.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/light.cpp">
 			<Option target="ray_casting"/>
 		</Unit>
@@ -128,16 +134,16 @@
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/shapes/sphere.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.cpp">
-			<Option target="ray_casting"/>
-		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.hpp">
-			<Option target="ray_casting"/>
-		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_button.cpp">
 			<Option target="ray_casting"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_button.hpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_slider.cpp">
+			<Option target="ray_casting"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_slider.hpp">
 			<Option target="ray_casting"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_text.cpp">

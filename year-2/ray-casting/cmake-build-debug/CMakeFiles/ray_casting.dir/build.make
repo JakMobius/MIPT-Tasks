@@ -248,18 +248,31 @@ CMakeFiles/ray_casting.dir/events/mouse_events.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_casting.dir/events/mouse_events.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/events/mouse_events.cpp -o CMakeFiles/ray_casting.dir/events/mouse_events.cpp.s
 
-CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o: CMakeFiles/ray_casting.dir/flags.make
-CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o: ../ui/point_test_iterator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.cpp
+CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.o: CMakeFiles/ray_casting.dir/flags.make
+CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.o: ../ui/ui_slider.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_slider.cpp
 
-CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.cpp > CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.i
+CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_slider.cpp > CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.i
 
-CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/point_test_iterator.cpp -o CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.s
+CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/ui/ui_slider.cpp -o CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.s
+
+CMakeFiles/ray_casting.dir/interface_view.cpp.o: CMakeFiles/ray_casting.dir/flags.make
+CMakeFiles/ray_casting.dir/interface_view.cpp.o: ../interface_view.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ray_casting.dir/interface_view.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ray_casting.dir/interface_view.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/interface_view.cpp
+
+CMakeFiles/ray_casting.dir/interface_view.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ray_casting.dir/interface_view.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/interface_view.cpp > CMakeFiles/ray_casting.dir/interface_view.cpp.i
+
+CMakeFiles/ray_casting.dir/interface_view.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_casting.dir/interface_view.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/interface_view.cpp -o CMakeFiles/ray_casting.dir/interface_view.cpp.s
 
 # Object files for target ray_casting
 ray_casting_OBJECTS = \
@@ -277,7 +290,8 @@ ray_casting_OBJECTS = \
 "CMakeFiles/ray_casting.dir/ui/ui_text.cpp.o" \
 "CMakeFiles/ray_casting.dir/ui/ui_button.cpp.o" \
 "CMakeFiles/ray_casting.dir/events/mouse_events.cpp.o" \
-"CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o"
+"CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.o" \
+"CMakeFiles/ray_casting.dir/interface_view.cpp.o"
 
 # External object files for target ray_casting
 ray_casting_EXTERNAL_OBJECTS =
@@ -296,14 +310,15 @@ ray_casting: CMakeFiles/ray_casting.dir/drawing_context.cpp.o
 ray_casting: CMakeFiles/ray_casting.dir/ui/ui_text.cpp.o
 ray_casting: CMakeFiles/ray_casting.dir/ui/ui_button.cpp.o
 ray_casting: CMakeFiles/ray_casting.dir/events/mouse_events.cpp.o
-ray_casting: CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o
+ray_casting: CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.o
+ray_casting: CMakeFiles/ray_casting.dir/interface_view.cpp.o
 ray_casting: CMakeFiles/ray_casting.dir/build.make
 ray_casting: /usr/local/lib/libsfml-graphics.2.5.1.dylib
 ray_casting: /usr/local/lib/libsfml-audio.2.5.1.dylib
 ray_casting: /usr/local/lib/libsfml-window.2.5.1.dylib
 ray_casting: /usr/local/lib/libsfml-system.2.5.1.dylib
 ray_casting: CMakeFiles/ray_casting.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable ray_casting"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/ray-casting/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable ray_casting"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ray_casting.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

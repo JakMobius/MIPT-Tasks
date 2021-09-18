@@ -1,20 +1,18 @@
-
-#ifndef MANDELBROT_SEMAPHORES_H
-#define MANDELBROT_SEMAPHORES_H
+#pragma once
 
 #ifdef __APPLE__
 #include <dispatch/dispatch.h>
 #else
-#include <start_semaphore.h>
+#include <semaphore.h>
 #endif
 
-typedef struct rk_sema {
+ struct rk_sema {
 #ifdef __APPLE__
     dispatch_semaphore_t    sem;
 #else
     sem_t                   sem;
 #endif
-} s_rk_sema;
+};
 
 
 static inline void
@@ -48,5 +46,3 @@ rk_sema_post(struct rk_sema *s) {
     sem_post(&s->sem);
 #endif
 }
-
-#endif //MANDELBROT_SEMAPHORES_H

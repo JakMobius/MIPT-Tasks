@@ -6,21 +6,18 @@
 #include <SFML/Graphics.hpp>
 #include "user_viewport.hpp"
 #include "ui/ui_view.hpp"
-#include "ui/ui_button.hpp"
-
-const char* BUTTON_TITLES[] = {
-    "BUTTON1", "BUTTON2", "BUTTON3"
-};
+#include "interface_view.hpp"
 
 int main() {
 
-    const unsigned int window_width = 500;
-    const unsigned int window_height = 200;
+    const unsigned int window_width = 1500;
+    const unsigned int window_height = 1200;
 
-    sf::RenderWindow window(sf::VideoMode(window_width, window_height, 32), "Raycaster", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(window_width, window_height, 32), "Raycaster",
+                            sf::Style::Titlebar | sf::Style::Close);
     sf::Texture texture;
     sf::Sprite sprite;
-    sf::Uint8* pixels  = new sf::Uint8[window_width * window_height * 4];
+    sf::Uint8* pixels = new sf::Uint8[window_width * window_height * 4];
     sf::Event event = {};
 
     window.setVerticalSyncEnabled(true);
@@ -30,21 +27,29 @@ int main() {
 
     World world;
     Camera camera({0, 0, 0});
-    UIView interface({0, 0}, {window_width, window_height});
-    UserController controller(&camera, &window, &interface);
-    UserViewport viewport { window_width, window_height, pixels, &camera, &world };
+    UIView root_view({0, 0}, {window_width, window_height});
+    UserController controller(&camera, &window, &root_view);
+    UserViewport viewport {window_width, window_height, pixels, &camera, &world};
     Renderer renderer(&UserViewport::draw, 16, &viewport);
     DrawingContext ctx(&window);
 
+    bool animation_toggled = true;
+
     /* Setting up interface */
 
-    interface.set_background({0, 0, 0, 0});
+    root_view.set_background({0, 0, 0, 0});
+    InterfaceView interface_view({window_width - 400, window_height - 120});
 
-    for(int i = 1; i <= 3; i++) {
-        auto button = new UIButton({window_width - (double)(110 * i), window_height - 70}, {90, 50});
-        button->set_title(BUTTON_TITLES[i - 1]);
-        interface.append_child(button);
-    }
+    interface_view.get_slider()->set_callback([&camera](double fraction) -> void {
+        camera.set_fov(fraction * M_PI + 0.1);
+    });
+    interface_view.get_slider()->set_fraction(0.5);
+
+    interface_view.get_animation_button()->set_callback([&animation_toggled]() -> void {
+        animation_toggled = !animation_toggled;
+    });
+
+    root_view.append_child(&interface_view);
 
     /* Setting up the world */
 
@@ -70,10 +75,11 @@ int main() {
 
         while (window.pollEvent(event)) controller.handle_event(event);
 
-        timer += 0.03;
-
-        sphere2.center = { 5 + sin(timer) * 4, cos(timer) * 4, 0};
-        light3.position = sphere2.center;
+        if(animation_toggled) {
+            timer += 0.03;
+            sphere2.center = { 5 + sin(timer) * 4, cos(timer) * 4, 0};
+            light3.position = sphere2.center;
+        }
 
         window.clear();
 
@@ -81,7 +87,7 @@ int main() {
 
         texture.update(pixels);
         window.draw(sprite);
-        interface.draw(&ctx);
+        root_view.draw(&ctx);
         window.display();
         controller.tick();
     }

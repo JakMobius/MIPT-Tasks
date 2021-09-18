@@ -201,6 +201,30 @@ events/mouse_events.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/events/mouse_events.cpp.s
 .PHONY : events/mouse_events.cpp.s
 
+interface_view.o: interface_view.cpp.o
+.PHONY : interface_view.o
+
+# target to build an object file
+interface_view.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/interface_view.cpp.o
+.PHONY : interface_view.cpp.o
+
+interface_view.i: interface_view.cpp.i
+.PHONY : interface_view.i
+
+# target to preprocess a source file
+interface_view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/interface_view.cpp.i
+.PHONY : interface_view.cpp.i
+
+interface_view.s: interface_view.cpp.s
+.PHONY : interface_view.s
+
+# target to generate assembly for a file
+interface_view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/interface_view.cpp.s
+.PHONY : interface_view.cpp.s
+
 light.o: light.cpp.o
 .PHONY : light.o
 
@@ -321,30 +345,6 @@ shapes/sphere.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/shapes/sphere.cpp.s
 .PHONY : shapes/sphere.cpp.s
 
-ui/point_test_iterator.o: ui/point_test_iterator.cpp.o
-.PHONY : ui/point_test_iterator.o
-
-# target to build an object file
-ui/point_test_iterator.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.o
-.PHONY : ui/point_test_iterator.cpp.o
-
-ui/point_test_iterator.i: ui/point_test_iterator.cpp.i
-.PHONY : ui/point_test_iterator.i
-
-# target to preprocess a source file
-ui/point_test_iterator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.i
-.PHONY : ui/point_test_iterator.cpp.i
-
-ui/point_test_iterator.s: ui/point_test_iterator.cpp.s
-.PHONY : ui/point_test_iterator.s
-
-# target to generate assembly for a file
-ui/point_test_iterator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/point_test_iterator.cpp.s
-.PHONY : ui/point_test_iterator.cpp.s
-
 ui/ui_button.o: ui/ui_button.cpp.o
 .PHONY : ui/ui_button.o
 
@@ -368,6 +368,30 @@ ui/ui_button.s: ui/ui_button.cpp.s
 ui/ui_button.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_button.cpp.s
 .PHONY : ui/ui_button.cpp.s
+
+ui/ui_slider.o: ui/ui_slider.cpp.o
+.PHONY : ui/ui_slider.o
+
+# target to build an object file
+ui/ui_slider.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.o
+.PHONY : ui/ui_slider.cpp.o
+
+ui/ui_slider.i: ui/ui_slider.cpp.i
+.PHONY : ui/ui_slider.i
+
+# target to preprocess a source file
+ui/ui_slider.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.i
+.PHONY : ui/ui_slider.cpp.i
+
+ui/ui_slider.s: ui/ui_slider.cpp.s
+.PHONY : ui/ui_slider.s
+
+# target to generate assembly for a file
+ui/ui_slider.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_casting.dir/build.make CMakeFiles/ray_casting.dir/ui/ui_slider.cpp.s
+.PHONY : ui/ui_slider.cpp.s
 
 ui/ui_text.o: ui/ui_text.cpp.o
 .PHONY : ui/ui_text.o
@@ -507,6 +531,9 @@ help:
 	@echo "... events/mouse_events.o"
 	@echo "... events/mouse_events.i"
 	@echo "... events/mouse_events.s"
+	@echo "... interface_view.o"
+	@echo "... interface_view.i"
+	@echo "... interface_view.s"
 	@echo "... light.o"
 	@echo "... light.i"
 	@echo "... light.s"
@@ -522,12 +549,12 @@ help:
 	@echo "... shapes/sphere.o"
 	@echo "... shapes/sphere.i"
 	@echo "... shapes/sphere.s"
-	@echo "... ui/point_test_iterator.o"
-	@echo "... ui/point_test_iterator.i"
-	@echo "... ui/point_test_iterator.s"
 	@echo "... ui/ui_button.o"
 	@echo "... ui/ui_button.i"
 	@echo "... ui/ui_button.s"
+	@echo "... ui/ui_slider.o"
+	@echo "... ui/ui_slider.i"
+	@echo "... ui/ui_slider.s"
 	@echo "... ui/ui_text.o"
 	@echo "... ui/ui_text.i"
 	@echo "... ui/ui_text.s"

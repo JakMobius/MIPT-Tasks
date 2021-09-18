@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="moleculas"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\..\..\..\usr\local\lib\cmake\SFML\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="moleculas">
+				<Option output="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/moleculas" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 moleculas"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="moleculas/fast">
+				<Option output="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/moleculas" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 moleculas/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_circle_contact.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_circle_contact.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_plane_contact.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_plane_contact.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/contact.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/contact.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/circle.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/circle.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/creature.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/creature.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/plane.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/plane.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/drawing_context.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/drawing_context.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/circle_fixture.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/circle_fixture.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/fixture.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/fixture.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/plane_fixture.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/plane_fixture.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/main.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/user_controller.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/user_controller.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/dynamic_array.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/dynamic_array.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/matrix3.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/matrix4.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/vec2.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/vec3.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/world.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/world.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/../../../../../../../../usr/local/lib/cmake/SFML/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/../../../../../../../../usr/local/lib/cmake/SFML/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/../../../../../../../../usr/local/lib/cmake/SFML/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/../../../../../../../../usr/local/lib/cmake/SFML/SFMLSharedTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/../../../../../../../../usr/local/lib/cmake/SFML/SFMLSharedTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

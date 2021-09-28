@@ -28,7 +28,7 @@ struct dynamic_array {
     void push(T value);
     void resize(int capacity);
 
-    T &erase(int index);
+    void erase(int index);
 
     void pop();
     void clear();
@@ -47,7 +47,7 @@ T &dynamic_array<T>::operator[](int index) {
 }
 
 template<typename T>
-T &dynamic_array<T>::erase(int index) {
+void dynamic_array<T>::erase(int index) {
     debug_assert(index >= 0 && index < capacity);
     T value = array[index];
 
@@ -56,8 +56,6 @@ T &dynamic_array<T>::erase(int index) {
     }
 
     size--;
-
-    return value;
 }
 
 template<typename T>

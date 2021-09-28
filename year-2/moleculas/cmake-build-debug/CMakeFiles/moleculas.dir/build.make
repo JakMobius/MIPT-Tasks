@@ -79,74 +79,87 @@ CMakeFiles/moleculas.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/main.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/main.cpp -o CMakeFiles/moleculas.dir/main.cpp.s
 
-CMakeFiles/moleculas.dir/world.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/world.cpp.o: ../world.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/moleculas.dir/world.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/world.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/world.cpp
+CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.o: ../physics-engine/world/world.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/world/world.cpp
 
-CMakeFiles/moleculas.dir/world.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/world.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/world.cpp > CMakeFiles/moleculas.dir/world.cpp.i
+CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/world/world.cpp > CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.i
 
-CMakeFiles/moleculas.dir/world.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/world.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/world.cpp -o CMakeFiles/moleculas.dir/world.cpp.s
+CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/world/world.cpp -o CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.s
 
-CMakeFiles/moleculas.dir/creatures/creature.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/creatures/creature.cpp.o: ../creatures/creature.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/moleculas.dir/creatures/creature.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/creatures/creature.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/creature.cpp
+CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.o: ../game/creatures/game_object.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/game_object.cpp
 
-CMakeFiles/moleculas.dir/creatures/creature.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/creatures/creature.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/creature.cpp > CMakeFiles/moleculas.dir/creatures/creature.cpp.i
+CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/game_object.cpp > CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.i
 
-CMakeFiles/moleculas.dir/creatures/creature.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/creatures/creature.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/creature.cpp -o CMakeFiles/moleculas.dir/creatures/creature.cpp.s
+CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/game_object.cpp -o CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.s
 
-CMakeFiles/moleculas.dir/creatures/circle.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/creatures/circle.cpp.o: ../creatures/circle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/moleculas.dir/creatures/circle.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/creatures/circle.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/circle.cpp
+CMakeFiles/moleculas.dir/game/creatures/circle.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/game/creatures/circle.cpp.o: ../game/creatures/circle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/moleculas.dir/game/creatures/circle.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/game/creatures/circle.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/circle.cpp
 
-CMakeFiles/moleculas.dir/creatures/circle.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/creatures/circle.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/circle.cpp > CMakeFiles/moleculas.dir/creatures/circle.cpp.i
+CMakeFiles/moleculas.dir/game/creatures/circle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/game/creatures/circle.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/circle.cpp > CMakeFiles/moleculas.dir/game/creatures/circle.cpp.i
 
-CMakeFiles/moleculas.dir/creatures/circle.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/creatures/circle.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/circle.cpp -o CMakeFiles/moleculas.dir/creatures/circle.cpp.s
+CMakeFiles/moleculas.dir/game/creatures/circle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/game/creatures/circle.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/circle.cpp -o CMakeFiles/moleculas.dir/game/creatures/circle.cpp.s
 
-CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.o: ../fixtures/circle_fixture.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/circle_fixture.cpp
+CMakeFiles/moleculas.dir/game/interface_view.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/game/interface_view.cpp.o: ../game/interface_view.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/moleculas.dir/game/interface_view.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/game/interface_view.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/interface_view.cpp
 
-CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/circle_fixture.cpp > CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.i
+CMakeFiles/moleculas.dir/game/interface_view.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/game/interface_view.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/interface_view.cpp > CMakeFiles/moleculas.dir/game/interface_view.cpp.i
 
-CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/circle_fixture.cpp -o CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.s
+CMakeFiles/moleculas.dir/game/interface_view.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/game/interface_view.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/interface_view.cpp -o CMakeFiles/moleculas.dir/game/interface_view.cpp.s
 
-CMakeFiles/moleculas.dir/fixtures/fixture.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/fixtures/fixture.cpp.o: ../fixtures/fixture.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/moleculas.dir/fixtures/fixture.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/fixtures/fixture.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/fixture.cpp
+CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.o: ../physics-engine/bodies/circle_body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/circle_body.cpp
 
-CMakeFiles/moleculas.dir/fixtures/fixture.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/fixtures/fixture.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/fixture.cpp > CMakeFiles/moleculas.dir/fixtures/fixture.cpp.i
+CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/circle_body.cpp > CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.i
 
-CMakeFiles/moleculas.dir/fixtures/fixture.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/fixtures/fixture.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/fixture.cpp -o CMakeFiles/moleculas.dir/fixtures/fixture.cpp.s
+CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/circle_body.cpp -o CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.s
+
+CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.o: ../physics-engine/bodies/body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/body.cpp
+
+CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/body.cpp > CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.i
+
+CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/body.cpp -o CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.s
 
 CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.o: CMakeFiles/moleculas.dir/flags.make
 CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.o: ../utils/dynamic_array.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/dynamic_array.cpp
 
 CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.i: cmake_force
@@ -157,138 +170,290 @@ CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/dynamic_array.cpp -o CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.s
 
-CMakeFiles/moleculas.dir/user_controller.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/user_controller.cpp.o: ../user_controller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/moleculas.dir/user_controller.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/user_controller.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/user_controller.cpp
+CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.o: ../visual-engine/user_controller.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/user_controller.cpp
 
-CMakeFiles/moleculas.dir/user_controller.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/user_controller.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/user_controller.cpp > CMakeFiles/moleculas.dir/user_controller.cpp.i
+CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/user_controller.cpp > CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.i
 
-CMakeFiles/moleculas.dir/user_controller.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/user_controller.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/user_controller.cpp -o CMakeFiles/moleculas.dir/user_controller.cpp.s
+CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/user_controller.cpp -o CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.s
 
-CMakeFiles/moleculas.dir/drawing_context.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/drawing_context.cpp.o: ../drawing_context.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/moleculas.dir/drawing_context.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/drawing_context.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/drawing_context.cpp
+CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.o: ../visual-engine/drawing_context.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/drawing_context.cpp
 
-CMakeFiles/moleculas.dir/drawing_context.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/drawing_context.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/drawing_context.cpp > CMakeFiles/moleculas.dir/drawing_context.cpp.i
+CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/drawing_context.cpp > CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.i
 
-CMakeFiles/moleculas.dir/drawing_context.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/drawing_context.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/drawing_context.cpp -o CMakeFiles/moleculas.dir/drawing_context.cpp.s
+CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/drawing_context.cpp -o CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.s
 
-CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.o: ../fixtures/plane_fixture.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/plane_fixture.cpp
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.o: ../visual-engine/ui/ui_text.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_text.cpp
 
-CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/plane_fixture.cpp > CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.i
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_text.cpp > CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.i
 
-CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/plane_fixture.cpp -o CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.s
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_text.cpp -o CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.s
 
-CMakeFiles/moleculas.dir/contacts/contact.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/contacts/contact.cpp.o: ../contacts/contact.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/moleculas.dir/contacts/contact.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/contacts/contact.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/contact.cpp
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.o: ../visual-engine/ui/ui_button.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_button.cpp
 
-CMakeFiles/moleculas.dir/contacts/contact.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/contacts/contact.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/contact.cpp > CMakeFiles/moleculas.dir/contacts/contact.cpp.i
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_button.cpp > CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.i
 
-CMakeFiles/moleculas.dir/contacts/contact.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/contacts/contact.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/contact.cpp -o CMakeFiles/moleculas.dir/contacts/contact.cpp.s
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_button.cpp -o CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.s
 
-CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.o: ../contacts/circle_circle_contact.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_circle_contact.cpp
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.o: ../visual-engine/ui/ui_slider.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_slider.cpp
 
-CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_circle_contact.cpp > CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.i
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_slider.cpp > CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.i
 
-CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_circle_contact.cpp -o CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.s
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_slider.cpp -o CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.s
 
-CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.o: ../contacts/circle_plane_contact.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_plane_contact.cpp
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.o: ../visual-engine/ui/ui_view.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_view.cpp
 
-CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_plane_contact.cpp > CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.i
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_view.cpp > CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.i
 
-CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_plane_contact.cpp -o CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.s
+CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_view.cpp -o CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.s
 
-CMakeFiles/moleculas.dir/creatures/plane.cpp.o: CMakeFiles/moleculas.dir/flags.make
-CMakeFiles/moleculas.dir/creatures/plane.cpp.o: ../creatures/plane.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/moleculas.dir/creatures/plane.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/creatures/plane.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/plane.cpp
+CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.o: ../visual-engine/events/mouse_events.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/events/mouse_events.cpp
 
-CMakeFiles/moleculas.dir/creatures/plane.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/creatures/plane.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/plane.cpp > CMakeFiles/moleculas.dir/creatures/plane.cpp.i
+CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/events/mouse_events.cpp > CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.i
 
-CMakeFiles/moleculas.dir/creatures/plane.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/creatures/plane.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/plane.cpp -o CMakeFiles/moleculas.dir/creatures/plane.cpp.s
+CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/events/mouse_events.cpp -o CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.s
+
+CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.o: ../physics-engine/bodies/plane_body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/plane_body.cpp
+
+CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/plane_body.cpp > CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.i
+
+CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/plane_body.cpp -o CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.s
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.o: ../physics-engine/contacts/contact.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/contact.cpp
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/contact.cpp > CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.i
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/contact.cpp -o CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.s
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.o: ../physics-engine/contacts/circle_circle_contact.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_circle_contact.cpp
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_circle_contact.cpp > CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.i
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_circle_contact.cpp -o CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.s
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.o: ../physics-engine/contacts/circle_plane_contact.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_plane_contact.cpp
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_plane_contact.cpp > CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.i
+
+CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_plane_contact.cpp -o CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.s
+
+CMakeFiles/moleculas.dir/game/creatures/plane.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/game/creatures/plane.cpp.o: ../game/creatures/plane.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/moleculas.dir/game/creatures/plane.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/game/creatures/plane.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/plane.cpp
+
+CMakeFiles/moleculas.dir/game/creatures/plane.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/game/creatures/plane.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/plane.cpp > CMakeFiles/moleculas.dir/game/creatures/plane.cpp.i
+
+CMakeFiles/moleculas.dir/game/creatures/plane.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/game/creatures/plane.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/plane.cpp -o CMakeFiles/moleculas.dir/game/creatures/plane.cpp.s
+
+CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.o: ../game/creatures/super_circle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/super_circle.cpp
+
+CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/super_circle.cpp > CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.i
+
+CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/super_circle.cpp -o CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.s
+
+CMakeFiles/moleculas.dir/game/scene.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/game/scene.cpp.o: ../game/scene.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/moleculas.dir/game/scene.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/game/scene.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/scene.cpp
+
+CMakeFiles/moleculas.dir/game/scene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/game/scene.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/scene.cpp > CMakeFiles/moleculas.dir/game/scene.cpp.i
+
+CMakeFiles/moleculas.dir/game/scene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/game/scene.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/scene.cpp -o CMakeFiles/moleculas.dir/game/scene.cpp.s
+
+CMakeFiles/moleculas.dir/components/component.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/components/component.cpp.o: ../components/component.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/moleculas.dir/components/component.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/components/component.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/component.cpp
+
+CMakeFiles/moleculas.dir/components/component.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/components/component.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/component.cpp > CMakeFiles/moleculas.dir/components/component.cpp.i
+
+CMakeFiles/moleculas.dir/components/component.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/components/component.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/component.cpp -o CMakeFiles/moleculas.dir/components/component.cpp.s
+
+CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.o: ../visual-engine/visual_component.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/visual_component.cpp
+
+CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/visual_component.cpp > CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.i
+
+CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/visual_component.cpp -o CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.s
+
+CMakeFiles/moleculas.dir/components/entity.cpp.o: CMakeFiles/moleculas.dir/flags.make
+CMakeFiles/moleculas.dir/components/entity.cpp.o: ../components/entity.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/moleculas.dir/components/entity.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/moleculas.dir/components/entity.cpp.o -c /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/entity.cpp
+
+CMakeFiles/moleculas.dir/components/entity.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/moleculas.dir/components/entity.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/entity.cpp > CMakeFiles/moleculas.dir/components/entity.cpp.i
+
+CMakeFiles/moleculas.dir/components/entity.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/moleculas.dir/components/entity.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/entity.cpp -o CMakeFiles/moleculas.dir/components/entity.cpp.s
 
 # Object files for target moleculas
 moleculas_OBJECTS = \
 "CMakeFiles/moleculas.dir/main.cpp.o" \
-"CMakeFiles/moleculas.dir/world.cpp.o" \
-"CMakeFiles/moleculas.dir/creatures/creature.cpp.o" \
-"CMakeFiles/moleculas.dir/creatures/circle.cpp.o" \
-"CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.o" \
-"CMakeFiles/moleculas.dir/fixtures/fixture.cpp.o" \
+"CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.o" \
+"CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.o" \
+"CMakeFiles/moleculas.dir/game/creatures/circle.cpp.o" \
+"CMakeFiles/moleculas.dir/game/interface_view.cpp.o" \
+"CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.o" \
+"CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.o" \
 "CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.o" \
-"CMakeFiles/moleculas.dir/user_controller.cpp.o" \
-"CMakeFiles/moleculas.dir/drawing_context.cpp.o" \
-"CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.o" \
-"CMakeFiles/moleculas.dir/contacts/contact.cpp.o" \
-"CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.o" \
-"CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.o" \
-"CMakeFiles/moleculas.dir/creatures/plane.cpp.o"
+"CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.o" \
+"CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.o" \
+"CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.o" \
+"CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.o" \
+"CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.o" \
+"CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.o" \
+"CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.o" \
+"CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.o" \
+"CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.o" \
+"CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.o" \
+"CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.o" \
+"CMakeFiles/moleculas.dir/game/creatures/plane.cpp.o" \
+"CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.o" \
+"CMakeFiles/moleculas.dir/game/scene.cpp.o" \
+"CMakeFiles/moleculas.dir/components/component.cpp.o" \
+"CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.o" \
+"CMakeFiles/moleculas.dir/components/entity.cpp.o"
 
 # External object files for target moleculas
 moleculas_EXTERNAL_OBJECTS =
 
 moleculas: CMakeFiles/moleculas.dir/main.cpp.o
-moleculas: CMakeFiles/moleculas.dir/world.cpp.o
-moleculas: CMakeFiles/moleculas.dir/creatures/creature.cpp.o
-moleculas: CMakeFiles/moleculas.dir/creatures/circle.cpp.o
-moleculas: CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.o
-moleculas: CMakeFiles/moleculas.dir/fixtures/fixture.cpp.o
+moleculas: CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.o
+moleculas: CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.o
+moleculas: CMakeFiles/moleculas.dir/game/creatures/circle.cpp.o
+moleculas: CMakeFiles/moleculas.dir/game/interface_view.cpp.o
+moleculas: CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.o
+moleculas: CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.o
 moleculas: CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.o
-moleculas: CMakeFiles/moleculas.dir/user_controller.cpp.o
-moleculas: CMakeFiles/moleculas.dir/drawing_context.cpp.o
-moleculas: CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.o
-moleculas: CMakeFiles/moleculas.dir/contacts/contact.cpp.o
-moleculas: CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.o
-moleculas: CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.o
-moleculas: CMakeFiles/moleculas.dir/creatures/plane.cpp.o
+moleculas: CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.o
+moleculas: CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.o
+moleculas: CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.o
+moleculas: CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.o
+moleculas: CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.o
+moleculas: CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.o
+moleculas: CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.o
+moleculas: CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.o
+moleculas: CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.o
+moleculas: CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.o
+moleculas: CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.o
+moleculas: CMakeFiles/moleculas.dir/game/creatures/plane.cpp.o
+moleculas: CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.o
+moleculas: CMakeFiles/moleculas.dir/game/scene.cpp.o
+moleculas: CMakeFiles/moleculas.dir/components/component.cpp.o
+moleculas: CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.o
+moleculas: CMakeFiles/moleculas.dir/components/entity.cpp.o
 moleculas: CMakeFiles/moleculas.dir/build.make
 moleculas: /usr/local/lib/libsfml-graphics.2.5.1.dylib
 moleculas: /usr/local/lib/libsfml-audio.2.5.1.dylib
 moleculas: /usr/local/lib/libsfml-window.2.5.1.dylib
 moleculas: /usr/local/lib/libsfml-system.2.5.1.dylib
 moleculas: CMakeFiles/moleculas.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable moleculas"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX executable moleculas"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/moleculas.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

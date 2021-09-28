@@ -129,245 +129,197 @@ moleculas/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/build
 .PHONY : moleculas/fast
 
-contacts/circle_circle_contact.o: contacts/circle_circle_contact.cpp.o
-.PHONY : contacts/circle_circle_contact.o
+components/component.o: components/component.cpp.o
+.PHONY : components/component.o
 
 # target to build an object file
-contacts/circle_circle_contact.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.o
-.PHONY : contacts/circle_circle_contact.cpp.o
+components/component.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/components/component.cpp.o
+.PHONY : components/component.cpp.o
 
-contacts/circle_circle_contact.i: contacts/circle_circle_contact.cpp.i
-.PHONY : contacts/circle_circle_contact.i
+components/component.i: components/component.cpp.i
+.PHONY : components/component.i
 
 # target to preprocess a source file
-contacts/circle_circle_contact.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.i
-.PHONY : contacts/circle_circle_contact.cpp.i
+components/component.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/components/component.cpp.i
+.PHONY : components/component.cpp.i
 
-contacts/circle_circle_contact.s: contacts/circle_circle_contact.cpp.s
-.PHONY : contacts/circle_circle_contact.s
+components/component.s: components/component.cpp.s
+.PHONY : components/component.s
 
 # target to generate assembly for a file
-contacts/circle_circle_contact.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/circle_circle_contact.cpp.s
-.PHONY : contacts/circle_circle_contact.cpp.s
+components/component.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/components/component.cpp.s
+.PHONY : components/component.cpp.s
 
-contacts/circle_plane_contact.o: contacts/circle_plane_contact.cpp.o
-.PHONY : contacts/circle_plane_contact.o
+components/entity.o: components/entity.cpp.o
+.PHONY : components/entity.o
 
 # target to build an object file
-contacts/circle_plane_contact.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.o
-.PHONY : contacts/circle_plane_contact.cpp.o
+components/entity.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/components/entity.cpp.o
+.PHONY : components/entity.cpp.o
 
-contacts/circle_plane_contact.i: contacts/circle_plane_contact.cpp.i
-.PHONY : contacts/circle_plane_contact.i
+components/entity.i: components/entity.cpp.i
+.PHONY : components/entity.i
 
 # target to preprocess a source file
-contacts/circle_plane_contact.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.i
-.PHONY : contacts/circle_plane_contact.cpp.i
+components/entity.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/components/entity.cpp.i
+.PHONY : components/entity.cpp.i
 
-contacts/circle_plane_contact.s: contacts/circle_plane_contact.cpp.s
-.PHONY : contacts/circle_plane_contact.s
+components/entity.s: components/entity.cpp.s
+.PHONY : components/entity.s
 
 # target to generate assembly for a file
-contacts/circle_plane_contact.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/circle_plane_contact.cpp.s
-.PHONY : contacts/circle_plane_contact.cpp.s
+components/entity.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/components/entity.cpp.s
+.PHONY : components/entity.cpp.s
 
-contacts/contact.o: contacts/contact.cpp.o
-.PHONY : contacts/contact.o
+game/creatures/circle.o: game/creatures/circle.cpp.o
+.PHONY : game/creatures/circle.o
 
 # target to build an object file
-contacts/contact.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/contact.cpp.o
-.PHONY : contacts/contact.cpp.o
+game/creatures/circle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/circle.cpp.o
+.PHONY : game/creatures/circle.cpp.o
 
-contacts/contact.i: contacts/contact.cpp.i
-.PHONY : contacts/contact.i
+game/creatures/circle.i: game/creatures/circle.cpp.i
+.PHONY : game/creatures/circle.i
 
 # target to preprocess a source file
-contacts/contact.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/contact.cpp.i
-.PHONY : contacts/contact.cpp.i
+game/creatures/circle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/circle.cpp.i
+.PHONY : game/creatures/circle.cpp.i
 
-contacts/contact.s: contacts/contact.cpp.s
-.PHONY : contacts/contact.s
+game/creatures/circle.s: game/creatures/circle.cpp.s
+.PHONY : game/creatures/circle.s
 
 # target to generate assembly for a file
-contacts/contact.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/contacts/contact.cpp.s
-.PHONY : contacts/contact.cpp.s
+game/creatures/circle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/circle.cpp.s
+.PHONY : game/creatures/circle.cpp.s
 
-creatures/circle.o: creatures/circle.cpp.o
-.PHONY : creatures/circle.o
+game/creatures/game_object.o: game/creatures/game_object.cpp.o
+.PHONY : game/creatures/game_object.o
 
 # target to build an object file
-creatures/circle.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/circle.cpp.o
-.PHONY : creatures/circle.cpp.o
+game/creatures/game_object.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.o
+.PHONY : game/creatures/game_object.cpp.o
 
-creatures/circle.i: creatures/circle.cpp.i
-.PHONY : creatures/circle.i
+game/creatures/game_object.i: game/creatures/game_object.cpp.i
+.PHONY : game/creatures/game_object.i
 
 # target to preprocess a source file
-creatures/circle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/circle.cpp.i
-.PHONY : creatures/circle.cpp.i
+game/creatures/game_object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.i
+.PHONY : game/creatures/game_object.cpp.i
 
-creatures/circle.s: creatures/circle.cpp.s
-.PHONY : creatures/circle.s
+game/creatures/game_object.s: game/creatures/game_object.cpp.s
+.PHONY : game/creatures/game_object.s
 
 # target to generate assembly for a file
-creatures/circle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/circle.cpp.s
-.PHONY : creatures/circle.cpp.s
+game/creatures/game_object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/game_object.cpp.s
+.PHONY : game/creatures/game_object.cpp.s
 
-creatures/creature.o: creatures/creature.cpp.o
-.PHONY : creatures/creature.o
+game/creatures/plane.o: game/creatures/plane.cpp.o
+.PHONY : game/creatures/plane.o
 
 # target to build an object file
-creatures/creature.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/creature.cpp.o
-.PHONY : creatures/creature.cpp.o
+game/creatures/plane.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/plane.cpp.o
+.PHONY : game/creatures/plane.cpp.o
 
-creatures/creature.i: creatures/creature.cpp.i
-.PHONY : creatures/creature.i
+game/creatures/plane.i: game/creatures/plane.cpp.i
+.PHONY : game/creatures/plane.i
 
 # target to preprocess a source file
-creatures/creature.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/creature.cpp.i
-.PHONY : creatures/creature.cpp.i
+game/creatures/plane.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/plane.cpp.i
+.PHONY : game/creatures/plane.cpp.i
 
-creatures/creature.s: creatures/creature.cpp.s
-.PHONY : creatures/creature.s
+game/creatures/plane.s: game/creatures/plane.cpp.s
+.PHONY : game/creatures/plane.s
 
 # target to generate assembly for a file
-creatures/creature.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/creature.cpp.s
-.PHONY : creatures/creature.cpp.s
+game/creatures/plane.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/plane.cpp.s
+.PHONY : game/creatures/plane.cpp.s
 
-creatures/plane.o: creatures/plane.cpp.o
-.PHONY : creatures/plane.o
+game/creatures/super_circle.o: game/creatures/super_circle.cpp.o
+.PHONY : game/creatures/super_circle.o
 
 # target to build an object file
-creatures/plane.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/plane.cpp.o
-.PHONY : creatures/plane.cpp.o
+game/creatures/super_circle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.o
+.PHONY : game/creatures/super_circle.cpp.o
 
-creatures/plane.i: creatures/plane.cpp.i
-.PHONY : creatures/plane.i
+game/creatures/super_circle.i: game/creatures/super_circle.cpp.i
+.PHONY : game/creatures/super_circle.i
 
 # target to preprocess a source file
-creatures/plane.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/plane.cpp.i
-.PHONY : creatures/plane.cpp.i
+game/creatures/super_circle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.i
+.PHONY : game/creatures/super_circle.cpp.i
 
-creatures/plane.s: creatures/plane.cpp.s
-.PHONY : creatures/plane.s
+game/creatures/super_circle.s: game/creatures/super_circle.cpp.s
+.PHONY : game/creatures/super_circle.s
 
 # target to generate assembly for a file
-creatures/plane.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/creatures/plane.cpp.s
-.PHONY : creatures/plane.cpp.s
+game/creatures/super_circle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/creatures/super_circle.cpp.s
+.PHONY : game/creatures/super_circle.cpp.s
 
-drawing_context.o: drawing_context.cpp.o
-.PHONY : drawing_context.o
+game/interface_view.o: game/interface_view.cpp.o
+.PHONY : game/interface_view.o
 
 # target to build an object file
-drawing_context.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/drawing_context.cpp.o
-.PHONY : drawing_context.cpp.o
+game/interface_view.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/interface_view.cpp.o
+.PHONY : game/interface_view.cpp.o
 
-drawing_context.i: drawing_context.cpp.i
-.PHONY : drawing_context.i
+game/interface_view.i: game/interface_view.cpp.i
+.PHONY : game/interface_view.i
 
 # target to preprocess a source file
-drawing_context.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/drawing_context.cpp.i
-.PHONY : drawing_context.cpp.i
+game/interface_view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/interface_view.cpp.i
+.PHONY : game/interface_view.cpp.i
 
-drawing_context.s: drawing_context.cpp.s
-.PHONY : drawing_context.s
+game/interface_view.s: game/interface_view.cpp.s
+.PHONY : game/interface_view.s
 
 # target to generate assembly for a file
-drawing_context.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/drawing_context.cpp.s
-.PHONY : drawing_context.cpp.s
+game/interface_view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/interface_view.cpp.s
+.PHONY : game/interface_view.cpp.s
 
-fixtures/circle_fixture.o: fixtures/circle_fixture.cpp.o
-.PHONY : fixtures/circle_fixture.o
+game/scene.o: game/scene.cpp.o
+.PHONY : game/scene.o
 
 # target to build an object file
-fixtures/circle_fixture.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.o
-.PHONY : fixtures/circle_fixture.cpp.o
+game/scene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/scene.cpp.o
+.PHONY : game/scene.cpp.o
 
-fixtures/circle_fixture.i: fixtures/circle_fixture.cpp.i
-.PHONY : fixtures/circle_fixture.i
-
-# target to preprocess a source file
-fixtures/circle_fixture.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.i
-.PHONY : fixtures/circle_fixture.cpp.i
-
-fixtures/circle_fixture.s: fixtures/circle_fixture.cpp.s
-.PHONY : fixtures/circle_fixture.s
-
-# target to generate assembly for a file
-fixtures/circle_fixture.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/circle_fixture.cpp.s
-.PHONY : fixtures/circle_fixture.cpp.s
-
-fixtures/fixture.o: fixtures/fixture.cpp.o
-.PHONY : fixtures/fixture.o
-
-# target to build an object file
-fixtures/fixture.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/fixture.cpp.o
-.PHONY : fixtures/fixture.cpp.o
-
-fixtures/fixture.i: fixtures/fixture.cpp.i
-.PHONY : fixtures/fixture.i
+game/scene.i: game/scene.cpp.i
+.PHONY : game/scene.i
 
 # target to preprocess a source file
-fixtures/fixture.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/fixture.cpp.i
-.PHONY : fixtures/fixture.cpp.i
+game/scene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/scene.cpp.i
+.PHONY : game/scene.cpp.i
 
-fixtures/fixture.s: fixtures/fixture.cpp.s
-.PHONY : fixtures/fixture.s
-
-# target to generate assembly for a file
-fixtures/fixture.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/fixture.cpp.s
-.PHONY : fixtures/fixture.cpp.s
-
-fixtures/plane_fixture.o: fixtures/plane_fixture.cpp.o
-.PHONY : fixtures/plane_fixture.o
-
-# target to build an object file
-fixtures/plane_fixture.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.o
-.PHONY : fixtures/plane_fixture.cpp.o
-
-fixtures/plane_fixture.i: fixtures/plane_fixture.cpp.i
-.PHONY : fixtures/plane_fixture.i
-
-# target to preprocess a source file
-fixtures/plane_fixture.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.i
-.PHONY : fixtures/plane_fixture.cpp.i
-
-fixtures/plane_fixture.s: fixtures/plane_fixture.cpp.s
-.PHONY : fixtures/plane_fixture.s
+game/scene.s: game/scene.cpp.s
+.PHONY : game/scene.s
 
 # target to generate assembly for a file
-fixtures/plane_fixture.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/fixtures/plane_fixture.cpp.s
-.PHONY : fixtures/plane_fixture.cpp.s
+game/scene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/game/scene.cpp.s
+.PHONY : game/scene.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -393,29 +345,173 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-user_controller.o: user_controller.cpp.o
-.PHONY : user_controller.o
+physics-engine/bodies/body.o: physics-engine/bodies/body.cpp.o
+.PHONY : physics-engine/bodies/body.o
 
 # target to build an object file
-user_controller.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/user_controller.cpp.o
-.PHONY : user_controller.cpp.o
+physics-engine/bodies/body.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.o
+.PHONY : physics-engine/bodies/body.cpp.o
 
-user_controller.i: user_controller.cpp.i
-.PHONY : user_controller.i
+physics-engine/bodies/body.i: physics-engine/bodies/body.cpp.i
+.PHONY : physics-engine/bodies/body.i
 
 # target to preprocess a source file
-user_controller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/user_controller.cpp.i
-.PHONY : user_controller.cpp.i
+physics-engine/bodies/body.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.i
+.PHONY : physics-engine/bodies/body.cpp.i
 
-user_controller.s: user_controller.cpp.s
-.PHONY : user_controller.s
+physics-engine/bodies/body.s: physics-engine/bodies/body.cpp.s
+.PHONY : physics-engine/bodies/body.s
 
 # target to generate assembly for a file
-user_controller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/user_controller.cpp.s
-.PHONY : user_controller.cpp.s
+physics-engine/bodies/body.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/body.cpp.s
+.PHONY : physics-engine/bodies/body.cpp.s
+
+physics-engine/bodies/circle_body.o: physics-engine/bodies/circle_body.cpp.o
+.PHONY : physics-engine/bodies/circle_body.o
+
+# target to build an object file
+physics-engine/bodies/circle_body.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.o
+.PHONY : physics-engine/bodies/circle_body.cpp.o
+
+physics-engine/bodies/circle_body.i: physics-engine/bodies/circle_body.cpp.i
+.PHONY : physics-engine/bodies/circle_body.i
+
+# target to preprocess a source file
+physics-engine/bodies/circle_body.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.i
+.PHONY : physics-engine/bodies/circle_body.cpp.i
+
+physics-engine/bodies/circle_body.s: physics-engine/bodies/circle_body.cpp.s
+.PHONY : physics-engine/bodies/circle_body.s
+
+# target to generate assembly for a file
+physics-engine/bodies/circle_body.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/circle_body.cpp.s
+.PHONY : physics-engine/bodies/circle_body.cpp.s
+
+physics-engine/bodies/plane_body.o: physics-engine/bodies/plane_body.cpp.o
+.PHONY : physics-engine/bodies/plane_body.o
+
+# target to build an object file
+physics-engine/bodies/plane_body.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.o
+.PHONY : physics-engine/bodies/plane_body.cpp.o
+
+physics-engine/bodies/plane_body.i: physics-engine/bodies/plane_body.cpp.i
+.PHONY : physics-engine/bodies/plane_body.i
+
+# target to preprocess a source file
+physics-engine/bodies/plane_body.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.i
+.PHONY : physics-engine/bodies/plane_body.cpp.i
+
+physics-engine/bodies/plane_body.s: physics-engine/bodies/plane_body.cpp.s
+.PHONY : physics-engine/bodies/plane_body.s
+
+# target to generate assembly for a file
+physics-engine/bodies/plane_body.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/bodies/plane_body.cpp.s
+.PHONY : physics-engine/bodies/plane_body.cpp.s
+
+physics-engine/contacts/circle_circle_contact.o: physics-engine/contacts/circle_circle_contact.cpp.o
+.PHONY : physics-engine/contacts/circle_circle_contact.o
+
+# target to build an object file
+physics-engine/contacts/circle_circle_contact.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.o
+.PHONY : physics-engine/contacts/circle_circle_contact.cpp.o
+
+physics-engine/contacts/circle_circle_contact.i: physics-engine/contacts/circle_circle_contact.cpp.i
+.PHONY : physics-engine/contacts/circle_circle_contact.i
+
+# target to preprocess a source file
+physics-engine/contacts/circle_circle_contact.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.i
+.PHONY : physics-engine/contacts/circle_circle_contact.cpp.i
+
+physics-engine/contacts/circle_circle_contact.s: physics-engine/contacts/circle_circle_contact.cpp.s
+.PHONY : physics-engine/contacts/circle_circle_contact.s
+
+# target to generate assembly for a file
+physics-engine/contacts/circle_circle_contact.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/circle_circle_contact.cpp.s
+.PHONY : physics-engine/contacts/circle_circle_contact.cpp.s
+
+physics-engine/contacts/circle_plane_contact.o: physics-engine/contacts/circle_plane_contact.cpp.o
+.PHONY : physics-engine/contacts/circle_plane_contact.o
+
+# target to build an object file
+physics-engine/contacts/circle_plane_contact.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.o
+.PHONY : physics-engine/contacts/circle_plane_contact.cpp.o
+
+physics-engine/contacts/circle_plane_contact.i: physics-engine/contacts/circle_plane_contact.cpp.i
+.PHONY : physics-engine/contacts/circle_plane_contact.i
+
+# target to preprocess a source file
+physics-engine/contacts/circle_plane_contact.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.i
+.PHONY : physics-engine/contacts/circle_plane_contact.cpp.i
+
+physics-engine/contacts/circle_plane_contact.s: physics-engine/contacts/circle_plane_contact.cpp.s
+.PHONY : physics-engine/contacts/circle_plane_contact.s
+
+# target to generate assembly for a file
+physics-engine/contacts/circle_plane_contact.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/circle_plane_contact.cpp.s
+.PHONY : physics-engine/contacts/circle_plane_contact.cpp.s
+
+physics-engine/contacts/contact.o: physics-engine/contacts/contact.cpp.o
+.PHONY : physics-engine/contacts/contact.o
+
+# target to build an object file
+physics-engine/contacts/contact.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.o
+.PHONY : physics-engine/contacts/contact.cpp.o
+
+physics-engine/contacts/contact.i: physics-engine/contacts/contact.cpp.i
+.PHONY : physics-engine/contacts/contact.i
+
+# target to preprocess a source file
+physics-engine/contacts/contact.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.i
+.PHONY : physics-engine/contacts/contact.cpp.i
+
+physics-engine/contacts/contact.s: physics-engine/contacts/contact.cpp.s
+.PHONY : physics-engine/contacts/contact.s
+
+# target to generate assembly for a file
+physics-engine/contacts/contact.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/contacts/contact.cpp.s
+.PHONY : physics-engine/contacts/contact.cpp.s
+
+physics-engine/world/world.o: physics-engine/world/world.cpp.o
+.PHONY : physics-engine/world/world.o
+
+# target to build an object file
+physics-engine/world/world.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.o
+.PHONY : physics-engine/world/world.cpp.o
+
+physics-engine/world/world.i: physics-engine/world/world.cpp.i
+.PHONY : physics-engine/world/world.i
+
+# target to preprocess a source file
+physics-engine/world/world.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.i
+.PHONY : physics-engine/world/world.cpp.i
+
+physics-engine/world/world.s: physics-engine/world/world.cpp.s
+.PHONY : physics-engine/world/world.s
+
+# target to generate assembly for a file
+physics-engine/world/world.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/physics-engine/world/world.cpp.s
+.PHONY : physics-engine/world/world.cpp.s
 
 utils/dynamic_array.o: utils/dynamic_array.cpp.o
 .PHONY : utils/dynamic_array.o
@@ -441,29 +537,197 @@ utils/dynamic_array.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/utils/dynamic_array.cpp.s
 .PHONY : utils/dynamic_array.cpp.s
 
-world.o: world.cpp.o
-.PHONY : world.o
+visual-engine/drawing_context.o: visual-engine/drawing_context.cpp.o
+.PHONY : visual-engine/drawing_context.o
 
 # target to build an object file
-world.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/world.cpp.o
-.PHONY : world.cpp.o
+visual-engine/drawing_context.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.o
+.PHONY : visual-engine/drawing_context.cpp.o
 
-world.i: world.cpp.i
-.PHONY : world.i
+visual-engine/drawing_context.i: visual-engine/drawing_context.cpp.i
+.PHONY : visual-engine/drawing_context.i
 
 # target to preprocess a source file
-world.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/world.cpp.i
-.PHONY : world.cpp.i
+visual-engine/drawing_context.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.i
+.PHONY : visual-engine/drawing_context.cpp.i
 
-world.s: world.cpp.s
-.PHONY : world.s
+visual-engine/drawing_context.s: visual-engine/drawing_context.cpp.s
+.PHONY : visual-engine/drawing_context.s
 
 # target to generate assembly for a file
-world.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/world.cpp.s
-.PHONY : world.cpp.s
+visual-engine/drawing_context.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/drawing_context.cpp.s
+.PHONY : visual-engine/drawing_context.cpp.s
+
+visual-engine/events/mouse_events.o: visual-engine/events/mouse_events.cpp.o
+.PHONY : visual-engine/events/mouse_events.o
+
+# target to build an object file
+visual-engine/events/mouse_events.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.o
+.PHONY : visual-engine/events/mouse_events.cpp.o
+
+visual-engine/events/mouse_events.i: visual-engine/events/mouse_events.cpp.i
+.PHONY : visual-engine/events/mouse_events.i
+
+# target to preprocess a source file
+visual-engine/events/mouse_events.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.i
+.PHONY : visual-engine/events/mouse_events.cpp.i
+
+visual-engine/events/mouse_events.s: visual-engine/events/mouse_events.cpp.s
+.PHONY : visual-engine/events/mouse_events.s
+
+# target to generate assembly for a file
+visual-engine/events/mouse_events.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/events/mouse_events.cpp.s
+.PHONY : visual-engine/events/mouse_events.cpp.s
+
+visual-engine/ui/ui_button.o: visual-engine/ui/ui_button.cpp.o
+.PHONY : visual-engine/ui/ui_button.o
+
+# target to build an object file
+visual-engine/ui/ui_button.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.o
+.PHONY : visual-engine/ui/ui_button.cpp.o
+
+visual-engine/ui/ui_button.i: visual-engine/ui/ui_button.cpp.i
+.PHONY : visual-engine/ui/ui_button.i
+
+# target to preprocess a source file
+visual-engine/ui/ui_button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.i
+.PHONY : visual-engine/ui/ui_button.cpp.i
+
+visual-engine/ui/ui_button.s: visual-engine/ui/ui_button.cpp.s
+.PHONY : visual-engine/ui/ui_button.s
+
+# target to generate assembly for a file
+visual-engine/ui/ui_button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_button.cpp.s
+.PHONY : visual-engine/ui/ui_button.cpp.s
+
+visual-engine/ui/ui_slider.o: visual-engine/ui/ui_slider.cpp.o
+.PHONY : visual-engine/ui/ui_slider.o
+
+# target to build an object file
+visual-engine/ui/ui_slider.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.o
+.PHONY : visual-engine/ui/ui_slider.cpp.o
+
+visual-engine/ui/ui_slider.i: visual-engine/ui/ui_slider.cpp.i
+.PHONY : visual-engine/ui/ui_slider.i
+
+# target to preprocess a source file
+visual-engine/ui/ui_slider.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.i
+.PHONY : visual-engine/ui/ui_slider.cpp.i
+
+visual-engine/ui/ui_slider.s: visual-engine/ui/ui_slider.cpp.s
+.PHONY : visual-engine/ui/ui_slider.s
+
+# target to generate assembly for a file
+visual-engine/ui/ui_slider.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_slider.cpp.s
+.PHONY : visual-engine/ui/ui_slider.cpp.s
+
+visual-engine/ui/ui_text.o: visual-engine/ui/ui_text.cpp.o
+.PHONY : visual-engine/ui/ui_text.o
+
+# target to build an object file
+visual-engine/ui/ui_text.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.o
+.PHONY : visual-engine/ui/ui_text.cpp.o
+
+visual-engine/ui/ui_text.i: visual-engine/ui/ui_text.cpp.i
+.PHONY : visual-engine/ui/ui_text.i
+
+# target to preprocess a source file
+visual-engine/ui/ui_text.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.i
+.PHONY : visual-engine/ui/ui_text.cpp.i
+
+visual-engine/ui/ui_text.s: visual-engine/ui/ui_text.cpp.s
+.PHONY : visual-engine/ui/ui_text.s
+
+# target to generate assembly for a file
+visual-engine/ui/ui_text.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_text.cpp.s
+.PHONY : visual-engine/ui/ui_text.cpp.s
+
+visual-engine/ui/ui_view.o: visual-engine/ui/ui_view.cpp.o
+.PHONY : visual-engine/ui/ui_view.o
+
+# target to build an object file
+visual-engine/ui/ui_view.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.o
+.PHONY : visual-engine/ui/ui_view.cpp.o
+
+visual-engine/ui/ui_view.i: visual-engine/ui/ui_view.cpp.i
+.PHONY : visual-engine/ui/ui_view.i
+
+# target to preprocess a source file
+visual-engine/ui/ui_view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.i
+.PHONY : visual-engine/ui/ui_view.cpp.i
+
+visual-engine/ui/ui_view.s: visual-engine/ui/ui_view.cpp.s
+.PHONY : visual-engine/ui/ui_view.s
+
+# target to generate assembly for a file
+visual-engine/ui/ui_view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/ui/ui_view.cpp.s
+.PHONY : visual-engine/ui/ui_view.cpp.s
+
+visual-engine/user_controller.o: visual-engine/user_controller.cpp.o
+.PHONY : visual-engine/user_controller.o
+
+# target to build an object file
+visual-engine/user_controller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.o
+.PHONY : visual-engine/user_controller.cpp.o
+
+visual-engine/user_controller.i: visual-engine/user_controller.cpp.i
+.PHONY : visual-engine/user_controller.i
+
+# target to preprocess a source file
+visual-engine/user_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.i
+.PHONY : visual-engine/user_controller.cpp.i
+
+visual-engine/user_controller.s: visual-engine/user_controller.cpp.s
+.PHONY : visual-engine/user_controller.s
+
+# target to generate assembly for a file
+visual-engine/user_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/user_controller.cpp.s
+.PHONY : visual-engine/user_controller.cpp.s
+
+visual-engine/visual_component.o: visual-engine/visual_component.cpp.o
+.PHONY : visual-engine/visual_component.o
+
+# target to build an object file
+visual-engine/visual_component.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.o
+.PHONY : visual-engine/visual_component.cpp.o
+
+visual-engine/visual_component.i: visual-engine/visual_component.cpp.i
+.PHONY : visual-engine/visual_component.i
+
+# target to preprocess a source file
+visual-engine/visual_component.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.i
+.PHONY : visual-engine/visual_component.cpp.i
+
+visual-engine/visual_component.s: visual-engine/visual_component.cpp.s
+.PHONY : visual-engine/visual_component.s
+
+# target to generate assembly for a file
+visual-engine/visual_component.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/moleculas.dir/build.make CMakeFiles/moleculas.dir/visual-engine/visual_component.cpp.s
+.PHONY : visual-engine/visual_component.cpp.s
 
 # Help Target
 help:
@@ -474,48 +738,81 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... moleculas"
-	@echo "... contacts/circle_circle_contact.o"
-	@echo "... contacts/circle_circle_contact.i"
-	@echo "... contacts/circle_circle_contact.s"
-	@echo "... contacts/circle_plane_contact.o"
-	@echo "... contacts/circle_plane_contact.i"
-	@echo "... contacts/circle_plane_contact.s"
-	@echo "... contacts/contact.o"
-	@echo "... contacts/contact.i"
-	@echo "... contacts/contact.s"
-	@echo "... creatures/circle.o"
-	@echo "... creatures/circle.i"
-	@echo "... creatures/circle.s"
-	@echo "... creatures/creature.o"
-	@echo "... creatures/creature.i"
-	@echo "... creatures/creature.s"
-	@echo "... creatures/plane.o"
-	@echo "... creatures/plane.i"
-	@echo "... creatures/plane.s"
-	@echo "... drawing_context.o"
-	@echo "... drawing_context.i"
-	@echo "... drawing_context.s"
-	@echo "... fixtures/circle_fixture.o"
-	@echo "... fixtures/circle_fixture.i"
-	@echo "... fixtures/circle_fixture.s"
-	@echo "... fixtures/fixture.o"
-	@echo "... fixtures/fixture.i"
-	@echo "... fixtures/fixture.s"
-	@echo "... fixtures/plane_fixture.o"
-	@echo "... fixtures/plane_fixture.i"
-	@echo "... fixtures/plane_fixture.s"
+	@echo "... components/component.o"
+	@echo "... components/component.i"
+	@echo "... components/component.s"
+	@echo "... components/entity.o"
+	@echo "... components/entity.i"
+	@echo "... components/entity.s"
+	@echo "... game/creatures/circle.o"
+	@echo "... game/creatures/circle.i"
+	@echo "... game/creatures/circle.s"
+	@echo "... game/creatures/game_object.o"
+	@echo "... game/creatures/game_object.i"
+	@echo "... game/creatures/game_object.s"
+	@echo "... game/creatures/plane.o"
+	@echo "... game/creatures/plane.i"
+	@echo "... game/creatures/plane.s"
+	@echo "... game/creatures/super_circle.o"
+	@echo "... game/creatures/super_circle.i"
+	@echo "... game/creatures/super_circle.s"
+	@echo "... game/interface_view.o"
+	@echo "... game/interface_view.i"
+	@echo "... game/interface_view.s"
+	@echo "... game/scene.o"
+	@echo "... game/scene.i"
+	@echo "... game/scene.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... user_controller.o"
-	@echo "... user_controller.i"
-	@echo "... user_controller.s"
+	@echo "... physics-engine/bodies/body.o"
+	@echo "... physics-engine/bodies/body.i"
+	@echo "... physics-engine/bodies/body.s"
+	@echo "... physics-engine/bodies/circle_body.o"
+	@echo "... physics-engine/bodies/circle_body.i"
+	@echo "... physics-engine/bodies/circle_body.s"
+	@echo "... physics-engine/bodies/plane_body.o"
+	@echo "... physics-engine/bodies/plane_body.i"
+	@echo "... physics-engine/bodies/plane_body.s"
+	@echo "... physics-engine/contacts/circle_circle_contact.o"
+	@echo "... physics-engine/contacts/circle_circle_contact.i"
+	@echo "... physics-engine/contacts/circle_circle_contact.s"
+	@echo "... physics-engine/contacts/circle_plane_contact.o"
+	@echo "... physics-engine/contacts/circle_plane_contact.i"
+	@echo "... physics-engine/contacts/circle_plane_contact.s"
+	@echo "... physics-engine/contacts/contact.o"
+	@echo "... physics-engine/contacts/contact.i"
+	@echo "... physics-engine/contacts/contact.s"
+	@echo "... physics-engine/world/world.o"
+	@echo "... physics-engine/world/world.i"
+	@echo "... physics-engine/world/world.s"
 	@echo "... utils/dynamic_array.o"
 	@echo "... utils/dynamic_array.i"
 	@echo "... utils/dynamic_array.s"
-	@echo "... world.o"
-	@echo "... world.i"
-	@echo "... world.s"
+	@echo "... visual-engine/drawing_context.o"
+	@echo "... visual-engine/drawing_context.i"
+	@echo "... visual-engine/drawing_context.s"
+	@echo "... visual-engine/events/mouse_events.o"
+	@echo "... visual-engine/events/mouse_events.i"
+	@echo "... visual-engine/events/mouse_events.s"
+	@echo "... visual-engine/ui/ui_button.o"
+	@echo "... visual-engine/ui/ui_button.i"
+	@echo "... visual-engine/ui/ui_button.s"
+	@echo "... visual-engine/ui/ui_slider.o"
+	@echo "... visual-engine/ui/ui_slider.i"
+	@echo "... visual-engine/ui/ui_slider.s"
+	@echo "... visual-engine/ui/ui_text.o"
+	@echo "... visual-engine/ui/ui_text.i"
+	@echo "... visual-engine/ui/ui_text.s"
+	@echo "... visual-engine/ui/ui_view.o"
+	@echo "... visual-engine/ui/ui_view.i"
+	@echo "... visual-engine/ui/ui_view.s"
+	@echo "... visual-engine/user_controller.o"
+	@echo "... visual-engine/user_controller.i"
+	@echo "... visual-engine/user_controller.s"
+	@echo "... visual-engine/visual_component.o"
+	@echo "... visual-engine/visual_component.i"
+	@echo "... visual-engine/visual_component.s"
 .PHONY : help
 
 

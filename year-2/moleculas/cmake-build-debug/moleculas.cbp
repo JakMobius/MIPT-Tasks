@@ -80,73 +80,97 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_circle_contact.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/component.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_circle_contact.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/component.hpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_plane_contact.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/entity.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/circle_plane_contact.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/components/entity.hpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/contact.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/circle.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/contacts/contact.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/circle.hpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/circle.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/game_object.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/circle.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/game_object.hpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/creature.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/plane.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/creature.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/plane.hpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/plane.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/super_circle.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/creatures/plane.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/creatures/super_circle.hpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/drawing_context.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/interface_view.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/drawing_context.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/interface_view.hpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/circle_fixture.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/scene.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/circle_fixture.hpp">
-			<Option target="moleculas"/>
-		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/fixture.cpp">
-			<Option target="moleculas"/>
-		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/fixture.hpp">
-			<Option target="moleculas"/>
-		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/plane_fixture.cpp">
-			<Option target="moleculas"/>
-		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/fixtures/plane_fixture.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/game/scene.hpp">
 			<Option target="moleculas"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/main.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/user_controller.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/body.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/user_controller.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/body.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/circle_body.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/circle_body.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/plane_body.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/bodies/plane_body.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_circle_contact.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_circle_contact.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_plane_contact.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/circle_plane_contact.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/contact.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/contacts/contact.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/world/world.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/physics-engine/world/world.hpp">
 			<Option target="moleculas"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/dynamic_array.cpp">
@@ -167,10 +191,52 @@
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/utils/vec3.hpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/world.cpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/drawing_context.cpp">
 			<Option target="moleculas"/>
 		</Unit>
-		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/world.hpp">
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/drawing_context.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/events/mouse_events.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/events/mouse_events.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_button.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_button.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_slider.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_slider.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_text.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_text.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_view.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/ui/ui_view.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/user_controller.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/user_controller.hpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/visual_component.cpp">
+			<Option target="moleculas"/>
+		</Unit>
+		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/visual-engine/visual_component.hpp">
 			<Option target="moleculas"/>
 		</Unit>
 		<Unit filename="/Users/artem/Documents/Физтех/Репозиторий/MIPT-Tasks/year-2/moleculas/CMakeLists.txt">

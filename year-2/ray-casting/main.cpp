@@ -41,7 +41,7 @@ int main() {
     InterfaceView interface_view({window_width - 400, window_height - 120});
 
     interface_view.get_slider()->set_callback([&camera](double fraction) -> void {
-        camera.set_fov(fraction * M_PI + 0.1);
+        camera.set_fov(fraction * M_PI * 5 + 0.1);
     });
     interface_view.get_slider()->set_fraction(0.5);
 

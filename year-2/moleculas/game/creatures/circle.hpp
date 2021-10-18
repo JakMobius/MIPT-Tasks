@@ -17,7 +17,6 @@ public:
     };
 
     ~Circle() {
-        delete body;
         delete visual_component;
     }
 

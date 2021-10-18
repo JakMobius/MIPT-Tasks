@@ -12,6 +12,10 @@ public:
         visual_component = new VisualComponentPlane(this);
     };
 
+    ~Plane() {
+        delete visual_component;
+    }
+
     void draw(DrawingContext* ctx) override {
         auto circle_fixture = (Physics::PlaneBody*)body;
 

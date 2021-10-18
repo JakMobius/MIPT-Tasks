@@ -15,6 +15,10 @@ public:
         visual_component = new VisualComponentSquare(this);
     };
 
+    ~SuperCircle() {
+        delete visual_component;
+    }
+
     void draw(DrawingContext* ctx) override {
         auto circle_fixture = (Physics::CircleBody*)body;
         visual_component->set_size({circle_fixture->get_radius(), circle_fixture->get_radius()});

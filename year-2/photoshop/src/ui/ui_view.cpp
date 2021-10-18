@@ -1,0 +1,244 @@
+#include "ui_view.hpp"
+
+void UIView::transform_context(DrawingContext* ctx) {
+    ctx->transform.translate(position[0], position[1]);
+    ctx->transform.multiply(transform);
+}
+
+void UIView::prepare_to_draw(DrawingContext* ctx) {
+    if(get_hidden()) return;
+
+    Matrix3f saved_transform = ctx->transform;
+    transform_context(ctx);
+
+    layout_if_needed();
+    draw(ctx);
+    needs_redraw = false;
+
+    for(int i = 0; i < children.size; i++) {
+        auto* child = children[i];
+        child->prepare_to_draw(ctx);
+    }
+
+    ctx->transform = saved_transform;
+}
+
+void UIView::draw(DrawingContext* ctx) {
+    if(background[3] > 0) {
+        ctx->color = background.to_sf_color();
+        ctx->draw_rect({0, 0}, size);
+    }
+}
+
+void UIView::on_mouse_in(MouseInEvent* event) {
+    Vec2f internal_point;
+    UIView* child = test(Vec2f { event->x, event->y }, &internal_point);
+
+    if(child) {
+        MouseInEvent nested_event(internal_point[0], internal_point[1]);
+
+        child->on_mouse_in(&nested_event);
+        if(nested_event.is_handled()) event->mark_handled();
+        current_hovered_child = child;
+    }
+}
+
+UIView* UIView::test(const Vec2f& point, Vec2f* internal_point) const {
+    for(int i = children.size - 1; i >= 0; i--) {
+        UIView* child = children[i];
+        if(child->get_hidden()) continue;
+        Vec2f absolute_point = point;
+        absolute_point -= child->get_position();
+        absolute_point *= child->get_inv_transform();
+        if(absolute_point[0] < 0 || absolute_point[0] >= child->get_size()[0]) continue;
+        if(absolute_point[1] < 0 || absolute_point[1] >= child->get_size()[1]) continue;
+        *internal_point = absolute_point;
+        return child;
+    }
+    return nullptr;
+}
+
+void UIView::on_mouse_move(MouseMoveEvent* event) {
+    Vec2f internal_point;
+    UIView* child = nullptr;
+
+    if(current_clicked_child) {
+        child = current_clicked_child;
+        internal_point = child->get_local_position(Vec2f { event->x, event->y });
+    } else {
+        child = test(Vec2f {event->x, event->y}, &internal_point);
+    }
+
+    if(child && child == current_hovered_child) {
+        float dx = child->transform.transform_x(event->dx, event->dy, 0);
+        float dy = child->transform.transform_y(event->dx, event->dy, 0);
+        MouseMoveEvent nested_event(internal_point[0], internal_point[1], dx, dy);
+        child->on_mouse_move(&nested_event);
+        if(nested_event.is_handled()) event->mark_handled();
+    } else update_hover(child, internal_point);
+}
+
+void UIView::on_mouse_out(MouseOutEvent* event) {
+
+    if(current_hovered_child) {
+        Vec2f internal_point = Vec2f(event->x, event->y);
+        MouseOutEvent nested_event(internal_point[0], internal_point[1]);
+        current_hovered_child->on_mouse_out(&nested_event);
+        current_hovered_child = nullptr;
+        if(nested_event.is_handled()) event->mark_handled();
+    }
+
+    if(current_clicked_child) {
+        Vec2f internal_point = Vec2f(event->x, event->y);
+        MouseUpEvent nested_event(internal_point[0], internal_point[1]);
+        current_clicked_child->on_mouse_up(&nested_event);
+        current_clicked_child = nullptr;
+        if(nested_event.is_handled()) event->mark_handled();
+    }
+}
+
+void UIView::on_mouse_down(MouseDownEvent* event) {
+    current_clicked_child = current_hovered_child;
+    if(current_clicked_child) {
+        Vec2f internal_point = current_clicked_child->get_local_position({ event->x, event->y });
+        MouseDownEvent nested_event(internal_point[0], internal_point[1]);
+
+        current_clicked_child->on_mouse_down(&nested_event);
+        if(nested_event.is_handled()) event->mark_handled();
+    }
+}
+
+void UIView::on_mouse_up(MouseUpEvent* event) {
+    clicked = false;
+    if(current_clicked_child) {
+        Vec2f internal_point = current_clicked_child->get_local_position({ event->x, event->y });
+        MouseUpEvent nested_event(internal_point[0], internal_point[1]);
+        if(nested_event.is_handled()) event->mark_handled();
+
+        UIView* child = test(Vec2f {event->x, event->y}, &internal_point);
+        if(child != current_hovered_child) {
+            if(update_hover(child, internal_point)) event->mark_handled();
+        }
+
+        current_clicked_child->on_mouse_up(&nested_event);
+        if(nested_event.is_handled()) event->mark_handled();
+        current_clicked_child = nullptr;
+    }
+
+    if(event->x >= 0 && event->y >= 0 && event->x < size[0] && event->y < size[1]) {
+        auto click_event = MouseClickEvent(event->x, event->y);
+        if(event->is_handled()) click_event.mark_handled();
+        on_mouse_click(&click_event);
+        if(click_event.is_handled()) event->mark_handled();
+    }
+}
+
+Vec2f UIView::get_local_position(const Vec2f &external_position) {
+    Vec2f internal_point = external_position;
+    internal_point -= position;
+    internal_point *= get_inv_transform();
+    return internal_point;
+}
+
+Vec2f UIView::get_parent_position(const Vec2f &local_position) {
+    Vec2f parent_point = local_position;
+    parent_point *= get_transform();
+    parent_point += position;
+    return parent_point;
+}
+
+Vec2f UIView::get_screen_position(Vec2f local_position) {
+    UIView* view = this;
+    while(view) {
+        local_position = view->get_parent_position(local_position);
+        view = view->parent;
+    }
+    return local_position;
+}
+
+bool UIView::update_hover(UIView* child, const Vec2f& internal_point) {
+    bool handled = false;
+    if(child) {
+        MouseInEvent nested_mouse_in_event(internal_point[0], internal_point[1]);
+        child->on_mouse_in(&nested_mouse_in_event);
+        handled |= nested_mouse_in_event.is_handled();
+    }
+    if(current_hovered_child) {
+        MouseOutEvent nested_mouse_out_event(internal_point[0], internal_point[1]);
+        current_hovered_child->on_mouse_out(&nested_mouse_out_event);
+        handled |= nested_mouse_out_event.is_handled();
+    }
+    current_hovered_child = child;
+    return handled;
+}
+
+void UIView::layout() {
+
+}
+
+void UIView::append_child(UIView* child) {
+    assert(!child->parent);
+    children.push(child);
+    child->parent = this;
+    child->set_needs_layout();
+}
+
+void UIView::remove_child(int index) {
+    auto* child = children.erase(index);
+    if(!child) return;
+    child->parent = nullptr;
+    set_needs_layout();
+}
+
+void UIView::layout_if_needed() {
+    if(needs_layout || needs_children_layout) {
+        layout();
+        needs_layout = false;
+        needs_children_layout = false;
+    }
+}
+
+void UIView::set_needs_layout() {
+    set_needs_redraw();
+    needs_layout = true;
+    if(parent) parent->set_needs_children_layout();
+}
+
+void UIView::set_needs_redraw() {
+    needs_redraw = true;
+    if(parent) parent->set_needs_redraw();
+}
+
+bool UIView::get_needs_redraw() const {
+    return needs_redraw;
+}
+
+void UIView::set_background(const Vec4f &new_background) {
+    background = new_background;
+    set_needs_redraw();
+}
+
+void UIView::set_transform(const Matrix3f &new_transform) {
+    transform = new_transform;
+    inv_transform = transform.inverse();
+    set_needs_redraw();
+}
+
+void UIView::set_size(const Vec2f &new_size) {
+    size = new_size;
+    set_needs_layout();
+}
+
+UIScreen* UIView::get_screen() {
+    if(parent) return parent->get_screen();
+    return nullptr;
+}
+
+void UIView::set_needs_children_layout() {
+    needs_children_layout = true;
+    if(parent) parent->set_needs_children_layout();
+}
+
+void UIView::on_mouse_click(MouseClickEvent* event) {
+
+}

@@ -14,8 +14,10 @@ public:
 
     void present() { set_hidden(false); }
     void hide() {
-        for(int i = children.size - 1; i >= 0; i--) {
+        for(int i = children.size() - 1; i >= 0; i--) {
+            auto* child = children[i];
             remove_child(i);
+            delete child;
         }
         set_hidden(true);
     }

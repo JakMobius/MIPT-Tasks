@@ -4,6 +4,7 @@
 #include "controls/user_controller.hpp"
 #include "test_views/stack_test_view.hpp"
 #include "test_views/dropping_menu_test.hpp"
+#include "app/photoshop_view.hpp"
 
 int main() {
     const int window_width = 1520;
@@ -16,28 +17,31 @@ int main() {
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
 
-    UIScreen screen({0, 0}, {window_width, window_height});
-//    DroppingMenuTestView root_view({0, 0}, {window_width, window_height});
-    LayoutTestView root_view({0, 0}, {window_width, window_height});
-    UserController controller(&window, &screen);
-    DrawingContext ctx(&window);
+    auto screen = new UIScreen({0, 0}, {window_width, window_height});
+//    auto root_view = new DroppingMenuTestView({}, screen->get_size());
+//    auto root_view = new LayoutTestView({}, screen->get_size());
+    auto root_view = new PhotoshopView({0, 0}, {window_width, window_height});
+    UserController controller(&window, screen);
+    UIDrawingContext ctx(&window);
 
-    screen.get_view_container()->append_child(&root_view);
+    screen->get_view_container()->append_child(root_view);
 
     while(window.isOpen()) {
 
         while (window.pollEvent(event)) controller.handle_event(event);
 
-        if(screen.get_needs_redraw()) {
+        if(screen->get_needs_redraw()) {
             window.clear();
 
-            screen.prepare_to_draw(&ctx);
+            screen->prepare_to_draw(&ctx);
             window.display();
             controller.tick();
         } else {
             if(window.waitEvent(event)) controller.handle_event(event);
         }
     }
+
+    delete screen;
 
     return 0;
 }

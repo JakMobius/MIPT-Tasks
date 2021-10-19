@@ -4,15 +4,15 @@
 #include "../ui/ui_stack.hpp"
 #include "../ui/ui_slider.hpp"
 #include "../ui/ui_text.hpp"
-#include "../utils/dynamic_array.hpp"
 #include "../ui/ui_button.hpp"
+#include <vector>
 
 class LayoutTestView : public UIView {
 
     float spacing = 0;
     UIStackViewInsets stack_insets {};
-    dynamic_array<UIStackView*> stacks;
-    dynamic_array<UIStackView*> containers;
+    std::vector<UIStackView*> stacks;
+    std::vector<UIStackView*> containers;
     UIStackViewDirection direction = UIStackViewDirection::x;
     UIStackViewPrimaryAlignment primary_alignment = UIStackViewPrimaryAlignment::leading;
     UIStackViewFitting fitting = {{350}, {700}};

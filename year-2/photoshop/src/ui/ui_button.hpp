@@ -5,59 +5,64 @@
 
 typedef std::function<void()> button_callback;
 
+struct UIButtonStyle {
+    Vec4f hovered_color;
+    Vec4f idle_color;
+    Vec4f clicked_color;
+    Vec4f selected_color;
+    Vec4f disabled_color;
+    Vec4f inactive_color;
+};
+
+extern const UIButtonStyle UI_DEFAULT_BUTTON_STYLE;
+
 class UIButton : public UIView {
-    UIText label;
+    UIText* label = new UIText();
+    const UIButtonStyle* style = nullptr;
     button_callback callback {};
 
-    bool hovered = false;
     bool selected = false;
 
-    void update_state() {
-        if(hovered) {
-            set_background({0, 1, 0, 1});
-        } else if(clicked) {
-            set_background({0, 0.8, 0, 1});
-        } else if(selected) {
-            set_background({0.6, 0.6, 0.8, 1});
-        } else {
-            set_background({0.8, 0.8, 0.8, 1});
-        }
+    void update_state(bool active) {
+        if(!active) set_background(style->inactive_color);
+        else if(hovered) set_background(style->hovered_color);
+        else if(clicked) set_background(style->clicked_color);
+        else if(selected) set_background(style->selected_color);
+        else set_background(style->idle_color);
     }
 
 public:
-    explicit UIButton(const Vec2f& position = {0, 0}, const Vec2f& size = {50, 50}): UIView(position, size), label({0, 0}, size) {
-        children.push(&label);
-        update_state();
+    explicit UIButton(const Vec2f& position = {0, 0}, const Vec2f& size = {50, 50}): UIView(position, size) {
+        append_child(label);
+        set_style(&UI_DEFAULT_BUTTON_STYLE);
     }
 
-    ~UIButton() override = default;
-
     void set_title(const char* string) {
-        label.set_text(string);
+        label->set_text(string);
     }
 
     void on_mouse_in(MouseInEvent *event) override {
         UIView::on_mouse_in(event);
-        hovered = true;
-        update_state();
+        set_needs_redraw();
     }
 
     void on_mouse_out(MouseOutEvent *event) override {
         UIView::on_mouse_out(event);
-        hovered = false;
-        update_state();
+        set_needs_redraw();
     }
 
     void on_mouse_down(MouseDownEvent *event) override {
         UIView::on_mouse_down(event);
+        event->mark_handled();
         transform.translate(0, 2);
-        update_state();
+        set_needs_redraw();
     }
 
     void on_mouse_up(MouseUpEvent *event) override {
         UIView::on_mouse_up(event);
+        event->mark_handled();
         transform.translate(0, -2);
-        update_state();
+        set_needs_redraw();
     }
 
     void on_mouse_click(MouseClickEvent* event) override {
@@ -65,8 +70,22 @@ public:
         event->mark_handled();
     }
 
-    button_callback get_callback() { return callback; }
-    void set_callback(button_callback callback) { this->callback = callback; }
+    void draw(UIDrawingContext *ctx) override {
+        update_state(ctx->get_context_active());
+        UIView::draw(ctx);
+    }
 
-    void set_selected(bool p_selected) { selected = p_selected; update_state(); }
+    button_callback get_callback() { return callback; }
+    void set_callback(button_callback p_callback) { callback = p_callback; }
+
+    void set_selected(bool p_selected) { selected = p_selected; set_needs_redraw(); }
+
+    void set_style(const UIButtonStyle* p_style) {
+        style = p_style;
+        set_needs_redraw();
+    }
+
+    void layout() override {
+        label->set_size(get_size());
+    }
 };

@@ -26,9 +26,7 @@ struct MouseClickEvent : MouseEvent {
 };
 
 struct MouseMoveEvent : MouseEvent {
-    float dx, dy;
-
-    MouseMoveEvent(float x, float y, float dx, float dy): MouseEvent(x, y), dx(dx), dy(dy) {}
+    MouseMoveEvent(float x, float y): MouseEvent(x, y) {}
 };
 struct MouseOutEvent : MouseEvent {
     MouseOutEvent(float x, float y): MouseEvent(x, y) {}

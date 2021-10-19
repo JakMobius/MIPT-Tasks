@@ -104,31 +104,31 @@ public:
     void layout() override {
         UIView::layout();
 
-        for(int i = 0; i < children.size; i++) children[i]->layout_if_needed();
-
-        set_size({
-            layout_direction(UIStackViewDirection::x),
-            layout_direction(UIStackViewDirection::y)
-        });
+        if(get_needs_layout()) {
+            set_size({
+                 layout_direction(UIStackViewDirection::x),
+                 layout_direction(UIStackViewDirection::y)
+            });
+        }
     }
 
     UIStackViewPrimaryAlignment get_primary_alignment() const { return primary_alignment; }
-    void set_primary_alignment(UIStackViewPrimaryAlignment primaryAlignment) { primary_alignment = primaryAlignment; }
+    void set_primary_alignment(UIStackViewPrimaryAlignment primaryAlignment) { primary_alignment = primaryAlignment; set_needs_layout(); }
 
     UIStackViewLateralAlignment get_lateral_alignment() const { return lateral_alignment; }
-    void set_lateral_alignment(UIStackViewLateralAlignment lateralAlignment) { lateral_alignment = lateralAlignment; }
+    void set_lateral_alignment(UIStackViewLateralAlignment lateralAlignment) { lateral_alignment = lateralAlignment; set_needs_layout(); }
 
     const UIStackViewInsets &get_insets() const { return insets; }
     void set_insets(const UIStackViewInsets &p_insets) { insets = p_insets; }
 
     const UIStackViewFitting &get_fitting() const { return fitting; }
-    void set_fitting(const UIStackViewFitting &p_fitting) { fitting = p_fitting; }
+    void set_fitting(const UIStackViewFitting &p_fitting) { fitting = p_fitting; set_needs_layout(); }
 
     UIStackViewDirection get_direction() const { return direction; }
-    void set_direction(UIStackViewDirection p_direction) { direction = p_direction; }
+    void set_direction(UIStackViewDirection p_direction) { direction = p_direction; set_needs_layout(); }
 
     float get_item_spacing() const { return item_spacing; }
-    void set_item_spacing(float itemSpacing) { item_spacing = itemSpacing; }
+    void set_item_spacing(float itemSpacing) { item_spacing = itemSpacing; set_needs_layout(); }
 
     float get_primary_size(UIStackViewDirection direction);
 

@@ -40,5 +40,5 @@ public:
 
 private:
     DrawingContext& operator=(const DrawingContext& other);
-    DrawingContext(const DrawingContext& other);
+    DrawingContext(sf::Window* other);
 };

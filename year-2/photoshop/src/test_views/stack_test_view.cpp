@@ -3,7 +3,7 @@
 //
 
 #include "stack_test_view.hpp"
-#include "../ui/ui_select.hpp"
+#include "../ui/select/ui_select.hpp"
 
 const Vec4f test_colors[] = {
         {1, 0, 0, 1},
@@ -14,7 +14,7 @@ const Vec4f test_colors[] = {
 };
 
 void LayoutTestView::layout() {
-    for(int i = 0; i < stacks.size; i++) {
+    for(int i = 0; i < stacks.size(); i++) {
         auto stack = stacks[i];
         stack->set_fitting(fitting);
         stack->set_background({1, 1, 1, 1});
@@ -38,8 +38,8 @@ void LayoutTestView::create_layout(const Vec2f &position, UIStackViewLateralAlig
     container->append_child(stack);
     append_child(container);
 
-    stacks.push(stack);
-    containers.push(container);
+    stacks.push_back(stack);
+    containers.push_back(container);
 
     auto* view_a = new UIView();
     auto* view_b = new UIView();
@@ -146,17 +146,17 @@ void LayoutTestView::add_primary_alignment_buttons() {
             "space_evenly"
     };
 
-    auto buttons = new dynamic_array<UIButton*>();
+    auto buttons = new std::vector<UIButton*>();
 
     for(int i = 0; i < 6; i++) {
         auto button = new UIButton({}, {250, 50});
         button->set_selected(i == 0);
-        buttons->push(button);
+        buttons->push_back(button);
         button->set_title(modes[i]);
         controls->append_child(button);
         button->set_callback([this, i, buttons]() -> void {
             primary_alignment = (UIStackViewPrimaryAlignment) i;
-            for(int j = 0; j < buttons->size; j++) (*buttons)[j]->set_selected(i == j);
+            for(int j = 0; j < buttons->size(); j++) (*buttons)[j]->set_selected(i == j);
             set_needs_layout();
         });
     }
@@ -170,16 +170,16 @@ void LayoutTestView::add_h_v_modes_buttons() {
             "vertical"
     };
 
-    auto buttons = new dynamic_array<UIButton*>();
+    auto buttons = new std::vector<UIButton*>();
 
     for(int i = 0; i < 2; i++) {
         auto button = new UIButton({}, {250, 50});
         button->set_selected(i == 0);
-        buttons->push(button);
+        buttons->push_back(button);
         button->set_title(directions[i]);
         button->set_callback([this, i, buttons]() -> void {
             direction = (UIStackViewDirection) i;
-            for(int j = 0; j < buttons->size; j++) (*buttons)[j]->set_selected(i == j);
+            for(int j = 0; j < buttons->size(); j++) (*buttons)[j]->set_selected(i == j);
             set_needs_layout();
         });
         controls->append_child(button);
@@ -194,17 +194,17 @@ void LayoutTestView::add_fit_modes_buttons() {
             "fit"
     };
 
-    auto buttons = new dynamic_array<UIButton*>();
+    auto buttons = new std::vector<UIButton*>();
 
     for(int i = 0; i < 2; i++) {
         auto button = new UIButton({}, {250, 50});
         button->set_selected(i == 0);
-        buttons->push(button);
+        buttons->push_back(button);
         button->set_title(fit_modes[i]);
         button->set_callback([this, i, buttons]() -> void {
             if(i == 0) fitting = {350, 700};
             else fitting = {{} , {}};
-            for(int j = 0; j < buttons->size; j++) (*buttons)[j]->set_selected(i == j);
+            for(int j = 0; j < buttons->size(); j++) (*buttons)[j]->set_selected(i == j);
             set_needs_layout();
         });
         controls->append_child(button);

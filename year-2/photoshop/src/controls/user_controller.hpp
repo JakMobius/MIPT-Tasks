@@ -17,9 +17,6 @@ class UserController {
     bool down_pressed = false;
     sf::Window* window;
     UIView* root_view;
-
-    int old_mouse_x = -1;
-    int old_mouse_y = -1;
 public:
 
     explicit UserController(sf::Window* window, UIView* root_view): window(window), root_view(root_view) {};

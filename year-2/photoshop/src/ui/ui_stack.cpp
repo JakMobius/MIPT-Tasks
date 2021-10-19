@@ -5,7 +5,7 @@
 #include "ui_stack.hpp"
 
 void UIStackView::layout_primary_leading(UIStackViewDirection p_direction, float from, float to) {
-    for(int i = 0; i < children.size; i++) {
+    for(int i = 0; i < children.size(); i++) {
         auto child = children[i];
         Vec2f child_position = child->get_position();
         Vec2f child_size = child->get_size();
@@ -16,7 +16,7 @@ void UIStackView::layout_primary_leading(UIStackViewDirection p_direction, float
 }
 
 void UIStackView::layout_primary_trailing(UIStackViewDirection p_direction, float from, float to) {
-    for(int i = (int)children.size - 1; i >= 0; i--) {
+    for(int i = (int)children.size() - 1; i >= 0; i--) {
         auto child = children[i];
         Vec2f child_position = child->get_position();
         Vec2f child_size = child->get_size();
@@ -29,13 +29,13 @@ void UIStackView::layout_primary_trailing(UIStackViewDirection p_direction, floa
 void UIStackView::layout_primary_center(UIStackViewDirection p_direction, float from, float to) {
     float total_size = 0;
 
-    for(int i = 0; i < children.size; i++) {
+    for(int i = 0; i < children.size(); i++) {
         total_size += children[i]->get_size()[(int) p_direction] + item_spacing;
     }
 
     from = (to + from - total_size + item_spacing) / 2;
 
-    for(int i = 0; i < children.size; i++) {
+    for(int i = 0; i < children.size(); i++) {
         auto child = children[i];
         Vec2f child_position = child->get_position();
         Vec2f child_size = child->get_size();
@@ -48,7 +48,7 @@ void UIStackView::layout_primary_center(UIStackViewDirection p_direction, float 
 void UIStackView::layout_primary_space(UIStackViewDirection p_direction, float from, float to, UIStackViewSpaceMode mode) {
     float total_size = 0;
 
-    for(int i = 0; i < children.size; i++) {
+    for(int i = 0; i < children.size(); i++) {
         auto child = children[i];
         total_size += child->get_size()[(int) p_direction];
     }
@@ -56,18 +56,18 @@ void UIStackView::layout_primary_space(UIStackViewDirection p_direction, float f
     float free_size = to - from - total_size;
 
     if(mode == UIStackViewSpaceMode::around) {
-        float padding = free_size / float(children.size) / 2;
+        float padding = free_size / float(children.size()) / 2;
         from += padding;
         free_size -= padding * 2;
     } else if(mode == UIStackViewSpaceMode::evenly) {
-        float padding = free_size / float(children.size + 1);
+        float padding = free_size / float(children.size() + 1);
         from += padding;
         free_size -= padding * 2;
     }
 
-    float padding = free_size / float(children.size - 1);
+    float padding = free_size / float(children.size() - 1);
 
-    for(int i = 0; i < children.size; i++) {
+    for(int i = 0; i < children.size(); i++) {
         auto child = children[i];
         Vec2f child_position = child->get_position();
         Vec2f child_size = child->get_size();
@@ -89,7 +89,7 @@ void UIStackView::layout_primary(UIStackViewDirection p_direction, float from, f
 }
 
 void UIStackView::layout_lateral(UIStackViewDirection p_direction, float from, float to) {
-    for(int i = 0; i < children.size; i++) {
+    for(int i = 0; i < children.size(); i++) {
         auto child = children[i];
         float size = child->get_size()[(int) p_direction];
         float position = 0;
@@ -131,7 +131,7 @@ float UIStackView::get_primary_size(UIStackViewDirection p_direction) {
     if(!dir_fitting.is_fitting) return dir_fitting.size;
 
     float total_size = 0;
-    for(int i = 0; i < children.size; i++) {
+    for(int i = 0; i < children.size(); i++) {
         total_size += children[i]->get_size()[(int) p_direction];
     }
 
@@ -139,7 +139,7 @@ float UIStackView::get_primary_size(UIStackViewDirection p_direction) {
         case UIStackViewPrimaryAlignment::center:
         case UIStackViewPrimaryAlignment::leading:
         case UIStackViewPrimaryAlignment::trailing:
-            total_size += item_spacing * float(children.size - 1);
+            total_size += item_spacing * float(children.size() - 1);
             break;
         default: break;
     }
@@ -153,7 +153,7 @@ float UIStackView::get_lateral_size(UIStackViewDirection p_direction) {
 
     float total_size = 0;
 
-    for(int i = 0; i < children.size; i++) {
+    for(int i = 0; i < children.size(); i++) {
         auto child = children[i];
         total_size = std::max(total_size, child->get_size()[(int) p_direction]);
     }

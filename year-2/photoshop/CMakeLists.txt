@@ -10,6 +10,6 @@ message(${files})
 add_executable(photoshop ${files})
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS -O0)
+set(CMAKE_CXX_FLAGS "-O0 -fsanitize=address")
 
 target_link_libraries(photoshop sfml-graphics sfml-audio)

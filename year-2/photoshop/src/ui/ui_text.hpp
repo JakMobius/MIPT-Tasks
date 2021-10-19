@@ -16,7 +16,7 @@ public:
     };
     ~UIText() override = default;
 
-    void draw(DrawingContext *ctx) override;
+    void draw(UIDrawingContext* ctx) override;
 
     HTextAlignment get_h_text_alignment() const { return h_text_alignment; }
     void set_h_text_alignment(HTextAlignment new_h_text_alignment) { h_text_alignment = new_h_text_alignment; }

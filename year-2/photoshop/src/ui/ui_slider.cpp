@@ -9,11 +9,11 @@ void UISlider::on_mouse_move(MouseMoveEvent* event) {
 }
 
 UISlider::UISlider(const Vec2f& position, const Vec2f& size): UIView(position, {size[0], BUTTON_HEIGHT}) {
-    bar.set_background({0.3, 0.3, 0.3, 1});
-    button.set_background({0.2, 0.2, 1, 1});
-    button.set_size({BUTTON_WIDTH, BUTTON_HEIGHT});
-    append_child(&bar);
-    append_child(&button);
+    bar->set_background({0.3, 0.3, 0.3, 1});
+    button->set_background({0.2, 0.2, 1, 1});
+    button->set_size({BUTTON_WIDTH, BUTTON_HEIGHT});
+    append_child(bar);
+    append_child(button);
 }
 
 void UISlider::set_fraction(float new_fraction) {

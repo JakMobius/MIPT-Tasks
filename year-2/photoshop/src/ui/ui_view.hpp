@@ -7,8 +7,8 @@ class UIScreen;
 #include "../utils/vec2.hpp"
 #include "../utils/matrix3.hpp"
 #include "../utils/vec4.hpp"
-#include "../graphics/drawing_context.hpp"
-#include "../utils/dynamic_array.hpp"
+#include "../ui/ui_drawing_context.hpp"
+#include <vector>
 
 class UIView {
 
@@ -18,7 +18,7 @@ protected:
     Matrix3f transform {};
     Matrix3f inv_transform {};
     Vec4f background {0, 0, 0, 0};
-    dynamic_array<UIView*> children {};
+    std::vector<UIView*> children {};
     UIView* current_hovered_child = nullptr;
     UIView* current_clicked_child = nullptr;
     UIView* parent = nullptr;
@@ -27,17 +27,22 @@ protected:
     bool needs_layout = true;
     bool needs_redraw = true;
     bool hidden = false;
+    bool hovered = false;
     bool clicked = false;
 
-    void transform_context(DrawingContext* ctx);
+    void transform_context(UIDrawingContext* ctx);
     bool update_hover(UIView* child, const Vec2f& internal_point);
 public:
 
     explicit UIView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): position(position), size(size) {}
-    virtual ~UIView() = default;
+    virtual ~UIView() {
+        for(int i = 0; i < children.size(); i++) {
+            delete children[i];
+        }
+    };
 
-    virtual void prepare_to_draw(DrawingContext* ctx);
-    virtual void draw(DrawingContext* ctx);
+    virtual void prepare_to_draw(UIDrawingContext* ctx);
+    virtual void draw(UIDrawingContext* ctx);
     virtual void on_mouse_in(MouseInEvent *event);
     virtual void on_mouse_move(MouseMoveEvent *event);
     virtual void on_mouse_out(MouseOutEvent *event);
@@ -45,8 +50,10 @@ public:
     virtual void on_mouse_up(MouseUpEvent *event);
     virtual void on_mouse_click(MouseClickEvent *event);
 
+    bool update_hovered_child(float x, float y);
+
     const Vec2f& get_position() { return position; }
-    virtual void set_position(const Vec2f& pos) { position = pos; }
+    virtual void set_position(const Vec2f& pos) { position = pos; set_needs_redraw(); }
 
     const Vec2f& get_size() { return size; }
     virtual void set_size(const Vec2f& new_size);
@@ -55,6 +62,8 @@ public:
     void layout_if_needed();
     void set_needs_layout();
     void set_needs_children_layout();
+
+    int get_child_index(UIView* child);
 
     bool get_needs_layout() const { return needs_layout; };
     bool get_needs_children_layout() const { return needs_children_layout; };
@@ -81,7 +90,7 @@ public:
     /// Returns screen coordinates of point in local coordinates
     Vec2f get_screen_position(Vec2f local_position);
 
-    const dynamic_array<UIView*>& get_children() const { return children; }
+    const std::vector<UIView*>& get_children() const { return children; }
     void append_child(UIView* child);
     void remove_child(int index);
 

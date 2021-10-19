@@ -1,6 +1,6 @@
 
 #include "ui_select.hpp"
-#include "ui_screen.hpp"
+#include "../ui_screen.hpp"
 
 void UISelectView::on_mouse_click(MouseClickEvent* event) {
     auto* screen = get_screen();
@@ -14,7 +14,7 @@ void UISelectView::on_mouse_click(MouseClickEvent* event) {
     screen->present_modal(modal, this);
 }
 
-void UISelectView::draw(DrawingContext* ctx) {
+void UISelectView::draw(UIDrawingContext* ctx) {
     UIView::draw(ctx);
 
     ctx->color = Vec4f {0, 0, 0, 1}.to_sf_color();

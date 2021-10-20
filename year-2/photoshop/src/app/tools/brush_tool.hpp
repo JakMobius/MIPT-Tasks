@@ -4,6 +4,7 @@
 
 class BrushTool : public Tool {
     DrawingContext ctx {};
+    UIFillStyleColor brush_fill_style {{0, 0, 0, 0}};
 public:
     BrushTool(): Tool() {}
 
@@ -13,9 +14,10 @@ public:
         if(!layer) return;
         auto texture = layer->get_texture();
 
-        ctx.set_color(manager->get_color());
+        brush_fill_style.set_color(manager->get_color());
+        ctx.set_fill_style(&brush_fill_style);
         ctx.push_render_target(texture);
-        ctx.draw_circle(position, 3);
+        ctx.fill_circle(position, 3);
         ctx.pop_render_target();
 
         layer->set_needs_redraw();

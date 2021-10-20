@@ -1,5 +1,7 @@
 #include "ui_view.hpp"
 
+const UIFillStyleColor UIViewWhiteBackground({1, 1, 1, 1});
+
 void UIView::transform_context(UIDrawingContext* ctx) {
     ctx->transform.translate(position[0], position[1]);
     ctx->transform.multiply(transform);
@@ -25,9 +27,9 @@ void UIView::prepare_to_draw(UIDrawingContext* ctx) {
 }
 
 void UIView::draw(UIDrawingContext* ctx) {
-    if(background[3] > 0) {
-        ctx->set_color(background);
-        ctx->draw_rect({0, 0}, size);
+    if(fill_style) {
+        ctx->set_fill_style(fill_style);
+        ctx->fill_rect({0, 0}, size);
     }
 }
 
@@ -226,8 +228,8 @@ bool UIView::get_needs_redraw() const {
     return needs_redraw;
 }
 
-void UIView::set_background(const Vec4f &new_background) {
-    background = new_background;
+void UIView::set_fill_style(const UIFillStyle* p_fill_style) {
+    fill_style = p_fill_style;
     set_needs_redraw();
 }
 

@@ -5,19 +5,19 @@
 #include "stack_test_view.hpp"
 #include "../ui/select/ui_select.hpp"
 
-const Vec4f test_colors[] = {
-        {1, 0, 0, 1},
-        {0, 1, 0, 1},
-        {0, 0, 1, 1},
-        {1, 1, 0, 1},
-        {1, 0, 1, 1},
+const UIFillStyleColor test_colors[] = {
+    UIFillStyleColor({1, 0, 0, 1}),
+    UIFillStyleColor({0, 1, 0, 1}),
+    UIFillStyleColor({0, 0, 1, 1}),
+    UIFillStyleColor({1, 1, 0, 1}),
+    UIFillStyleColor({1, 0, 1, 1}),
 };
 
 void LayoutTestView::layout() {
     for(int i = 0; i < stacks.size(); i++) {
         auto stack = stacks[i];
         stack->set_fitting(fitting);
-        stack->set_background({1, 1, 1, 1});
+        stack->set_fill_style(&UIViewWhiteBackground);
         stack->set_insets(stack_insets);
         stack->set_item_spacing(spacing);
         stack->set_primary_alignment(primary_alignment);
@@ -49,9 +49,9 @@ void LayoutTestView::create_layout(const Vec2f &position, UIStackViewLateralAlig
     view_b->set_size({30, 200});
     view_c->set_size({120, 100});
 
-    view_a->set_background(test_colors[0]);
-    view_b->set_background(test_colors[1]);
-    view_c->set_background(test_colors[2]);
+    view_a->set_fill_style(&test_colors[0]);
+    view_b->set_fill_style(&test_colors[1]);
+    view_c->set_fill_style(&test_colors[2]);
 
     stack->append_child(view_a);
     stack->append_child(view_b);
@@ -65,7 +65,7 @@ void LayoutTestView::create_controls(const Vec2f &position) {
     controls_container->set_primary_alignment(UIStackViewPrimaryAlignment::center);
 
     controls = new UIStackView(UIStackViewDirection::y);
-    controls->set_background({1, 1, 1, 1});
+    controls->set_fill_style(&UIViewWhiteBackground);
     controls->set_lateral_alignment(UIStackViewLateralAlignment::center);
     controls->set_insets({25});
 

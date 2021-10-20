@@ -1,6 +1,5 @@
 #pragma once
 
-struct UIWindowStyle;
 class UIWindow;
 
 #include "../ui_view.hpp"
@@ -8,16 +7,7 @@ class UIWindow;
 #include "../ui_drawing_context.hpp"
 #include "ui_window_container.hpp"
 #include "../ui_stack.hpp"
-
-extern const UIWindowStyle UI_WINDOW_DEFAULT_STYLE;
-struct UIWindowStyle {
-    UIButtonStyle close_button_style;
-    UIButtonStyle fullscreen_button_style;
-    Vec4f window_background_color;
-    Vec4f header_background_color;
-    Vec4f inactive_header_background_color;
-    Vec4f header_text_color;
-};
+#include "../styles/window_style.hpp"
 
 class UIWindow : public UIStackView {
 

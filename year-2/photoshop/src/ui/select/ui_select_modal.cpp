@@ -9,6 +9,14 @@ UISelectModalView::UISelectModalView(std::vector<UISelectOption>* options, float
     for(int i = 0; i < options->size(); i++) {
         auto* button = new UIButton({}, { width, 50 });
         button->set_title((*options)[i].title);
+        buttons.push_back(button);
         append_child(button);
+    }
+}
+
+void UISelectModalView::set_style(const UISelectViewStyle* p_style) {
+    style = p_style;
+    for(int i = 0; i < buttons.size(); i++) {
+        (*buttons[i]).set_style(style->get_button_style());
     }
 }

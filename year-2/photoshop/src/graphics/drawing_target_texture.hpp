@@ -2,8 +2,9 @@
 
 #include "drawing_target.hpp"
 #include "../utils/vec2.hpp"
+#include "drawable.hpp"
 
-class DrawingTargetTexture : public DrawingTarget {
+class DrawingTargetTexture : public DrawingTarget, public Drawable {
 
     Vec2i size {};
 public:
@@ -14,7 +15,7 @@ public:
         ((sf::RenderTexture*)target)->clear({0, 0, 0, 0});
     }
 
-    sf::RenderTexture* get_texture() { return ((sf::RenderTexture*)target); }
+    const sf::Texture* get_texture() { return &((sf::RenderTexture*)target)->getTexture(); }
 
     Vec2i get_size() { return size; }
 };

@@ -41,12 +41,12 @@ void UIWindowHeaderView::setup_buttons_container() {
 
 void UIWindowHeaderView::update_style() {
     if(window->get_is_active()) {
-        set_background(window->get_style()->header_background_color);
+        set_fill_style(window->get_style()->get_header_background_color());
     } else {
-        set_background(window->get_style()->inactive_header_background_color);
+        set_fill_style(window->get_style()->get_inactive_header_background_color());
     }
-    close_button->set_style(&window->get_style()->close_button_style);
-    fullscreen_button->set_style(&window->get_style()->fullscreen_button_style);
+    close_button->set_style(window->get_style()->get_close_button_style());
+    fullscreen_button->set_style(window->get_style()->get_fullscreen_button_style());
 }
 
 void UIWindowHeaderView::on_mouse_down(MouseDownEvent* event) {

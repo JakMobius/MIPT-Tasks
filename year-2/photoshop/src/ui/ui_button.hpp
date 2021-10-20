@@ -2,19 +2,9 @@
 
 #include "ui_view.hpp"
 #include "ui_text.hpp"
+#include "styles/button_style.hpp"
 
 typedef std::function<void()> button_callback;
-
-struct UIButtonStyle {
-    Vec4f hovered_color;
-    Vec4f idle_color;
-    Vec4f clicked_color;
-    Vec4f selected_color;
-    Vec4f disabled_color;
-    Vec4f inactive_color;
-};
-
-extern const UIButtonStyle UI_DEFAULT_BUTTON_STYLE;
 
 class UIButton : public UIView {
     UIText* label = new UIText();
@@ -24,17 +14,17 @@ class UIButton : public UIView {
     bool selected = false;
 
     void update_state(bool active) {
-        if(!active) set_background(style->inactive_color);
-        else if(hovered) set_background(style->hovered_color);
-        else if(clicked) set_background(style->clicked_color);
-        else if(selected) set_background(style->selected_color);
-        else set_background(style->idle_color);
+        if(!active) set_fill_style(style->get_inactive_color());
+        else if(hovered) set_fill_style(style->get_hovered_color());
+        else if(clicked) set_fill_style(style->get_clicked_color());
+        else if(selected) set_fill_style(style->get_selected_color());
+        else set_fill_style(style->get_idle_color());
     }
 
 public:
     explicit UIButton(const Vec2f& position = {0, 0}, const Vec2f& size = {50, 50}): UIView(position, size) {
         append_child(label);
-        set_style(&UI_DEFAULT_BUTTON_STYLE);
+        set_style(UIButtonStyle::instance);
     }
 
     void set_title(const char* string) {

@@ -8,7 +8,10 @@ class UIScreen;
 #include "../utils/matrix3.hpp"
 #include "../utils/vec4.hpp"
 #include "../ui/ui_drawing_context.hpp"
+#include "styles/fill_style.hpp"
 #include <vector>
+
+extern const UIFillStyleColor UIViewWhiteBackground;
 
 class UIView {
 
@@ -17,7 +20,7 @@ protected:
     Vec2f size;
     Matrix3f transform {};
     Matrix3f inv_transform {};
-    Vec4f background {0, 0, 0, 0};
+    const UIFillStyle* fill_style = nullptr;
     std::vector<UIView*> children {};
     UIView* current_hovered_child = nullptr;
     UIView* current_clicked_child = nullptr;
@@ -70,8 +73,8 @@ public:
     bool get_hidden() const { return hidden; }
     void set_hidden(bool p_hidden) { hidden = p_hidden; }
 
-    const Vec4f& get_background() { return background; }
-    virtual void set_background(const Vec4f& new_background);
+    const UIFillStyle* get_fill_style() { return fill_style; }
+    virtual void set_fill_style(const UIFillStyle* new_fill_style);
 
     const Matrix3f& get_transform() { return transform; }
     const Matrix3f& get_inv_transform() { return inv_transform; };

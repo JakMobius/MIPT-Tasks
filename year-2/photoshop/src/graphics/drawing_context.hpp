@@ -5,6 +5,7 @@
 #include "drawing_target.hpp"
 #include "drawing_target_texture.hpp"
 #include "../utils/vec4.hpp"
+#include "../ui/styles/fill_style.hpp"
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -24,7 +25,8 @@ enum VTextAlignment {
 class DrawingContext {
 
     std::vector<sf::Vertex> vertex_buffer {32};
-    sf::Color color {};
+    sf::Color stroke_color {};
+    const UIFillStyle* fill_style = nullptr;
 
 public:
 
@@ -39,17 +41,18 @@ public:
     HTextAlignment hAlignment;
     VTextAlignment vAlignment;
 
-    void draw_line(Vec2f from, Vec2f to, float thickness = 1) const;
-    void draw_rect(const Vec2f& position, const Vec2f& size) const;
-    void draw_circle(const Vec2f& center, float radius);
-    void draw_text(Vec2f position, const char* text) const;
-    void draw_texture(Vec2f position, Vec2f size, DrawingTargetTexture* texture);
+    void stroke_line(Vec2f from, Vec2f to, float thickness = 1) const;
+    void fill_rect(const Vec2f& position, const Vec2f& size) const;
+    void fill_circle(const Vec2f& center, float radius);
+    void stroke_text(Vec2f position, const char* text) const;
+    void draw_texture(Vec2f position, Vec2f size, Drawable* texture);
     void clear();
 
     void push_render_target(DrawingTarget* target);
     void pop_render_target();
 
-    void set_color(const Vec4f& p_color) { color = p_color.to_sf_color(); }
+    void set_stroke_color(const Vec4f& p_color) { stroke_color = p_color.to_sf_color(); }
+    void set_fill_style(const UIFillStyle* p_fill_style) { fill_style = p_fill_style; }
 
     DrawingTarget* get_render_target();
 

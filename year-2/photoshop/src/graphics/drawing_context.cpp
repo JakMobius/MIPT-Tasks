@@ -5,22 +5,21 @@
 #include "drawing_context.hpp"
 
 DrawingContext::DrawingContext() {
-    font.loadFromFile("font.ttf");
+    font.loadFromFile("resources/font/font.ttf");
     hAlignment = HTextAlignmentLeft;
     vAlignment = VTextAlignmentBottom;
-    color = sf::Color(255, 255, 255, 255);
+    stroke_color = sf::Color(255, 255, 255, 255);
 }
 
 DrawingContext::~DrawingContext() {
 
 }
 
-void DrawingContext::draw_line(Vec2f from, Vec2f to, float thickness) const {
+void DrawingContext::stroke_line(Vec2f from, Vec2f to, float thickness) const {
 
     Vec2f shape[] = {
         from, from, to, to
     };
-
 
     Vec2f ortho_offset = { to[1] - from[1], - to[0] + from[0] };
     ortho_offset.normalize();
@@ -32,16 +31,17 @@ void DrawingContext::draw_line(Vec2f from, Vec2f to, float thickness) const {
     (shape[3] -= ortho_offset) *= transform;
 
     sf::Vertex line[] = {
-        sf::Vertex({shape[0][0], shape[0][1]}, color),
-        sf::Vertex({shape[1][0], shape[1][1]}, color),
-        sf::Vertex({shape[2][0], shape[2][1]}, color),
-        sf::Vertex({shape[3][0], shape[3][1]}, color)
+        sf::Vertex({shape[0][0], shape[0][1]}, stroke_color),
+        sf::Vertex({shape[1][0], shape[1][1]}, stroke_color),
+        sf::Vertex({shape[2][0], shape[2][1]}, stroke_color),
+        sf::Vertex({shape[3][0], shape[3][1]}, stroke_color)
     };
 
     target->get_target()->draw(line, 4, sf::TriangleFan);
 }
 
-void DrawingContext::draw_circle(const Vec2f& center, float radius) {
+void DrawingContext::fill_circle(const Vec2f& center, float radius) {
+    if(!fill_style) return;
     vertex_buffer.clear();
 
     const int steps = 30;
@@ -50,23 +50,25 @@ void DrawingContext::draw_circle(const Vec2f& center, float radius) {
 
     for(int i = 0; i < steps; i++) {
         float angle = angle_step * (float) i;
-        Vec2f position = center;
-        position.set_x(position[0] + sin(angle) * radius);
-        position.set_y(position[1] + cos(angle) * radius);
-        position *= this->transform;
-        vertex_buffer.push_back(sf::Vertex({position[0], position[1]}, color));
+        Vec2f position = { sin(angle) * radius, cos(angle) * radius };
+        Vec2f screen_position(position);
+        screen_position += center;
+        screen_position *= this->transform;
+        vertex_buffer.push_back(fill_style->vertex(screen_position, position));
     }
 
-    target->get_target()->draw(&vertex_buffer[0], vertex_buffer.size(), sf::TriangleFan);
+    auto render_states = fill_style->get_render_states();
+    if(render_states) target->get_target()->draw(&vertex_buffer[0], vertex_buffer.size(), sf::TriangleFan, *render_states);
+    else target->get_target()->draw(&vertex_buffer[0], vertex_buffer.size(), sf::TriangleFan);
 }
 
-void DrawingContext::draw_text(Vec2f position, const char* text) const {
+void DrawingContext::stroke_text(Vec2f position, const char* text) const {
     position *= this->transform;
 
     sf::Text sfText;
     sfText.setCharacterSize(15);
     sfText.setString(text);
-    sfText.setFillColor(color);
+    sfText.setFillColor(stroke_color);
     sfText.setFont(font);
 
     if(hAlignment != HTextAlignmentRight) {
@@ -88,7 +90,8 @@ void DrawingContext::draw_text(Vec2f position, const char* text) const {
     target->get_target()->draw(sfText);
 }
 
-void DrawingContext::draw_rect(const Vec2f& position, const Vec2f& size) const {
+void DrawingContext::fill_rect(const Vec2f& position, const Vec2f& size) const {
+    if(!fill_style) return;
 
     Vec2f tlVertex(position);
     Vec2f trVertex(position[0] + size[0], position[1]);
@@ -101,15 +104,15 @@ void DrawingContext::draw_rect(const Vec2f& position, const Vec2f& size) const {
     brVertex *= transform;
 
     sf::Vertex quad[] = {
-        sf::Vertex({tlVertex[0], tlVertex[1]}, color),
-        sf::Vertex({trVertex[0], trVertex[1]}, color),
-        sf::Vertex({blVertex[0], blVertex[1]}, color),
-        sf::Vertex({trVertex[0], trVertex[1]}, color),
-        sf::Vertex({blVertex[0], blVertex[1]}, color),
-        sf::Vertex({brVertex[0], brVertex[1]}, color)
+        fill_style->vertex(blVertex, {0, size[1]}),
+        fill_style->vertex(tlVertex, {0, 0}),
+        fill_style->vertex(trVertex, {size[0], 0}),
+        fill_style->vertex(brVertex, {size[0], size[1]})
     };
 
-    target->get_target()->draw(quad, 6, sf::Triangles);
+    auto render_states = fill_style->get_render_states();
+    if(render_states) target->get_target()->draw(quad, 4, sf::Quads, *render_states);
+    else target->get_target()->draw(quad, 4, sf::Quads);
 }
 
 DrawingTarget* DrawingContext::get_render_target() {
@@ -126,19 +129,19 @@ void DrawingContext::push_render_target(DrawingTarget* p_target) {
     target_stack.push_back(p_target);
 }
 
-void DrawingContext::draw_texture(Vec2f position, Vec2f size, DrawingTargetTexture* texture) {
+void DrawingContext::draw_texture(Vec2f position, Vec2f size, Drawable* texture) {
     position *= transform;
     size.transform_unbound(transform);
 
     sf::Sprite sprite;
-    sf::Texture sf_texture = texture->get_texture()->getTexture();
-    sprite.setTexture(sf_texture);
+    const sf::Texture* sf_texture = texture->get_texture();
+    sprite.setTexture(*sf_texture);
     sprite.setPosition(position[0], position[1]);
-    auto texture_size = sf_texture.getSize();
+    auto texture_size = sf_texture->getSize();
     sprite.setScale(size[0] / (float)texture_size.x, size[1] / (float)texture_size.y);
     target->get_target()->draw(sprite);
 }
 
 void DrawingContext::clear() {
-    target->get_target()->clear(color);
+    target->get_target()->clear(stroke_color);
 }

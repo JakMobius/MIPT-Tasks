@@ -21,7 +21,7 @@ App::App(sf::RenderWindow* window) : window(window) {
 }
 
 void App::tick() {
-    ctx->set_color({0, 0, 0, 1});
+    ctx->set_stroke_color({0, 0, 0, 1});
     ctx->clear();
 
     screen->prepare_to_draw(ctx);

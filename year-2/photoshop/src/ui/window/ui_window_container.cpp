@@ -43,7 +43,7 @@ void UIWindowContainer::on_mouse_down(MouseDownEvent* event) {
         }
         if(current_hovered_child) {
             maybe_activate_child(current_hovered_child);
-        }
+        } else activate_window(nullptr);
         set_needs_redraw();
         event->mark_handled();
     }

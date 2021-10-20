@@ -6,6 +6,7 @@ class UIWindow;
 #include "../ui_stack.hpp"
 #include "../ui_button.hpp"
 #include "ui_window.hpp"
+#include "../styles/window_style.hpp"
 
 class UIWindowHeaderView : public UIStackView {
     UIStackView* buttons_container = new UIStackView(UIStackViewDirection::x);

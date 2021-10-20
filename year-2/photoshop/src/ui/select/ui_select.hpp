@@ -6,6 +6,7 @@ class UISelectView;
 #include "../ui_view.hpp"
 #include "../ui_text.hpp"
 #include "ui_select_modal.hpp"
+#include "../styles/select_view_style.hpp"
 
 struct UISelectOption {
     const char* title;
@@ -16,10 +17,11 @@ class UISelectView : public UIView {
 
     UIText* label = new UIText();
     std::vector<UISelectOption> options {};
+    const UISelectViewStyle* style = nullptr;
 
 public:
     explicit UISelectView(const Vec2f& position = {0, 0}, const Vec2f& size = {200, 50}): UIView(position, size) {
-        set_background({0.7, 0.7, 0.7, 1.0});
+        set_style(UISelectViewStyle::instance);
         label->set_h_text_alignment(HTextAlignmentLeft);
         label->set_position({10, 5});
         append_child(label);
@@ -36,4 +38,7 @@ public:
     void add_variant(const UISelectOption& option) {
         options.push_back(option);
     }
+
+    const UISelectViewStyle* get_style() const { return style; }
+    void set_style(const UISelectViewStyle* p_style);
 };

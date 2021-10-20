@@ -12,7 +12,6 @@ private:
     std::vector<UIWindow*> windows {};
 
     void activate_window(UIWindow* window);
-
     void maybe_activate_child(UIView* view);
 
 public:

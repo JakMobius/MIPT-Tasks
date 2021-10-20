@@ -4,7 +4,7 @@
 
 #include "drawing_context.hpp"
 
-DrawingContext::DrawingContext(sf::RenderWindow *window): vertex_buffer(32), transform(), window(window), font() {
+DrawingContext::DrawingContext() {
     font.loadFromFile("font.ttf");
     hAlignment = HTextAlignmentLeft;
     vAlignment = VTextAlignmentBottom;
@@ -38,7 +38,7 @@ void DrawingContext::draw_line(Vec2f from, Vec2f to, float thickness) const {
         sf::Vertex({shape[3][0], shape[3][1]}, color)
     };
 
-    window->draw(line, 4, sf::TriangleFan);
+    target->get_target()->draw(line, 4, sf::TriangleFan);
 }
 
 void DrawingContext::draw_circle(const Vec2f& center, float radius) {
@@ -57,7 +57,7 @@ void DrawingContext::draw_circle(const Vec2f& center, float radius) {
         vertex_buffer.push_back(sf::Vertex({position[0], position[1]}, color));
     }
 
-    window->draw(&vertex_buffer[0], vertex_buffer.size(), sf::TriangleFan);
+    target->get_target()->draw(&vertex_buffer[0], vertex_buffer.size(), sf::TriangleFan);
 }
 
 void DrawingContext::draw_text(Vec2f position, const char* text) const {
@@ -85,7 +85,7 @@ void DrawingContext::draw_text(Vec2f position, const char* text) const {
 
     sfText.setPosition({position[0], position[1]});
 
-    window->draw(sfText);
+    target->get_target()->draw(sfText);
 }
 
 void DrawingContext::draw_rect(const Vec2f& position, const Vec2f& size) const {
@@ -109,5 +109,36 @@ void DrawingContext::draw_rect(const Vec2f& position, const Vec2f& size) const {
         sf::Vertex({brVertex[0], brVertex[1]}, color)
     };
 
-    window->draw(quad, 6, sf::Triangles);
+    target->get_target()->draw(quad, 6, sf::Triangles);
+}
+
+DrawingTarget* DrawingContext::get_render_target() {
+    return target;
+}
+
+void DrawingContext::pop_render_target() {
+    target = target_stack[target_stack.size() - 1];
+    target_stack.pop_back();
+}
+
+void DrawingContext::push_render_target(DrawingTarget* p_target) {
+    target = p_target;
+    target_stack.push_back(p_target);
+}
+
+void DrawingContext::draw_texture(Vec2f position, Vec2f size, DrawingTargetTexture* texture) {
+    position *= transform;
+    size.transform_unbound(transform);
+
+    sf::Sprite sprite;
+    sf::Texture sf_texture = texture->get_texture()->getTexture();
+    sprite.setTexture(sf_texture);
+    sprite.setPosition(position[0], position[1]);
+    auto texture_size = sf_texture.getSize();
+    sprite.setScale(size[0] / (float)texture_size.x, size[1] / (float)texture_size.y);
+    target->get_target()->draw(sprite);
+}
+
+void DrawingContext::clear() {
+    target->get_target()->clear(color);
 }

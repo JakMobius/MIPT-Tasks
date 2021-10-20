@@ -17,7 +17,7 @@ void UISelectView::on_mouse_click(MouseClickEvent* event) {
 void UISelectView::draw(UIDrawingContext* ctx) {
     UIView::draw(ctx);
 
-    ctx->color = Vec4f {0, 0, 0, 1}.to_sf_color();
+    ctx->set_color({0, 0, 0, 1});
 
     Vec2f arrow_position = get_size() + Vec2f {-20, 0};
     arrow_position.set_y(arrow_position[1] / 2);

@@ -5,7 +5,7 @@
 class UIText : public UIView {
     const char* str;
 
-    Vec4d text_color = {0, 0, 0, 1};
+    Vec4f text_color = {0, 0, 0, 1};
 
 private:
     HTextAlignment h_text_alignment = HTextAlignmentCenter;
@@ -27,6 +27,6 @@ public:
     void set_text(const char* str) { this->str = str; };
     const char* get_text() { return str; }
 
-    const Vec4d& get_text_color() const { return text_color; }
-    void set_text_color(const Vec4d &new_text_color) { text_color = new_text_color; }
+    const Vec4f& get_text_color() const { return text_color; }
+    void set_text_color(const Vec4f &new_text_color) { text_color = new_text_color; }
 };

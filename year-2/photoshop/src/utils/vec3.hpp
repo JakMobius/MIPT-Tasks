@@ -99,6 +99,14 @@ struct Vec3 {
 
     inline Vec3<T> &operator/=(const T k) { content /= k; return *this; }
 
+    void transform_unbound(const Matrix4<T> &matrix) {
+        content = {
+            matrix.transform_x(content[0], content[1], content[2], 0),
+            matrix.transform_y(content[0], content[1], content[2], 0),
+            matrix.transform_z(content[0], content[1], content[2], 0)
+        };
+    }
+
     inline Vec3<T> &operator*=(const Matrix4<T> &other) {
 
         content = {
@@ -113,6 +121,11 @@ struct Vec3 {
     inline bool operator==(const Vec3<T> &second) const {
         const auto res = content - second.content;
         return (res[0]) < epsilon && (res[1]) < epsilon && (res[2]) < epsilon;
+    }
+
+    template<typename V>
+    inline explicit operator Vec3<V>() const {
+        return Vec3<V> { (V)content[0], (V) content[1], (V) content[2]  };
     }
 };
 

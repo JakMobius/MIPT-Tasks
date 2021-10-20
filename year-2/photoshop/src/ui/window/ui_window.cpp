@@ -3,6 +3,7 @@
 //
 
 #include "ui_window.hpp"
+#include "../../utils/dispatch_queue.hpp"
 
 const UIWindowStyle UI_WINDOW_DEFAULT_STYLE {
     {
@@ -27,23 +28,22 @@ const UIWindowStyle UI_WINDOW_DEFAULT_STYLE {
     Vec4f {0.8, 0.8, 0.8, 1}
 };
 
-UIWindow::UIWindow(const Vec2f &position, const Vec2f &size, const char* title) : UIView(position, {}),
-    window_size(size), header_view(new UIWindowHeaderView(this)) {
+void UIWindow::layout() {
+    UIStackView::layout();
+    header_view->set_fitting({size[0], header_height});
+}
+
+UIWindow::UIWindow(const Vec2f &position, const Vec2f &size, const char* title):
+        UIStackView(UIStackViewDirection::y),
+        header_view(new UIWindowHeaderView(this)) {
     append_child(header_view);
     append_child(content_view);
 
+    header_view->set_size({size[0], header_height});
+    content_view->set_size(size);
+
     if(title) set_title(title);
     set_style(&UI_WINDOW_DEFAULT_STYLE);
-}
-
-void UIWindow::layout() {
-    UIView::layout();
-
-    content_view->set_position({0, header_height});
-    header_view->set_fitting({window_size[0], header_height});
-    Vec2f new_size = window_size;
-    new_size += content_view->get_position();
-    set_size(new_size);
 }
 
 void UIWindow::set_title(const char* string) {
@@ -54,4 +54,10 @@ void UIWindow::set_style(const UIWindowStyle* p_style) {
     style = p_style;
     set_background(style->window_background_color);
     header_view->update_style();
+}
+
+void UIWindow::close() {
+    DispatchQueue::main.push([&]() {
+        container->remove_window(this);
+    });
 }

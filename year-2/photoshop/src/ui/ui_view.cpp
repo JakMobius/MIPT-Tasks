@@ -26,7 +26,7 @@ void UIView::prepare_to_draw(UIDrawingContext* ctx) {
 
 void UIView::draw(UIDrawingContext* ctx) {
     if(background[3] > 0) {
-        ctx->color = background.to_sf_color();
+        ctx->set_color(background);
         ctx->draw_rect({0, 0}, size);
     }
 }
@@ -191,6 +191,13 @@ void UIView::append_child(UIView* child) {
 
 void UIView::remove_child(int index) {
     auto child = children[index];
+
+    if(child == current_hovered_child) {
+        current_hovered_child = nullptr;
+    }
+    if(child == current_clicked_child) {
+        current_clicked_child = nullptr;
+    }
     children.erase(children.begin() + index);
     child->parent = nullptr;
     set_needs_layout();
@@ -271,4 +278,10 @@ int UIView::get_child_index(UIView* child) {
         if(children[i] == child) return i;
     }
     return -1;
+}
+
+UIView::~UIView() {
+    for(int i = 0; i < children.size(); i++) {
+        delete children[i];
+    }
 }

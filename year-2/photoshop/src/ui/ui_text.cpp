@@ -4,7 +4,7 @@
 void UIText::draw(UIDrawingContext* ctx) {
     ctx->vAlignment = v_text_alignment;
     ctx->hAlignment = h_text_alignment;
-    ctx->color = text_color.to_sf_color();
+    ctx->set_color(text_color);
 
     if(str) {
         ctx->draw_text(size * 0.5, str);

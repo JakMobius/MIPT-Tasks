@@ -22,21 +22,11 @@ class UIWindowHeaderView : public UIStackView {
 public:
     explicit UIWindowHeaderView(UIWindow* window);
 
-    void set_title(const char* string) {
-        header->set_text(string);
-    }
+    void set_title(const char* string) { header->set_text(string); }
 
-    void layout() override {
-        buttons_container->layout_if_needed();
-        spacer->set_size(buttons_container->get_size());
-        UIStackView::layout();
-    }
+    void layout() override;
 
-    void on_mouse_down(MouseDownEvent* event) override {
-        UIStackView::on_mouse_down(event);
-        drag_start_position = { event->x, event->y };
-    }
-
+    void on_mouse_down(MouseDownEvent* event) override;
     void on_mouse_move(MouseMoveEvent* event) override;
 
     void update_style();

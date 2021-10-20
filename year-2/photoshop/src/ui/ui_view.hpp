@@ -35,11 +35,7 @@ protected:
 public:
 
     explicit UIView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): position(position), size(size) {}
-    virtual ~UIView() {
-        for(int i = 0; i < children.size(); i++) {
-            delete children[i];
-        }
-    };
+    virtual ~UIView();
 
     virtual void prepare_to_draw(UIDrawingContext* ctx);
     virtual void draw(UIDrawingContext* ctx);
@@ -93,6 +89,7 @@ public:
     const std::vector<UIView*>& get_children() const { return children; }
     void append_child(UIView* child);
     void remove_child(int index);
+    UIView* get_parent() const { return parent; }
 
     virtual UIScreen* get_screen();
 

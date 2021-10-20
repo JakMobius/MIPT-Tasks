@@ -6,7 +6,10 @@ class UIWindow;
 #include "../ui_view.hpp"
 #include "ui_window_header.hpp"
 #include "../ui_drawing_context.hpp"
+#include "ui_window_container.hpp"
+#include "../ui_stack.hpp"
 
+extern const UIWindowStyle UI_WINDOW_DEFAULT_STYLE;
 struct UIWindowStyle {
     UIButtonStyle close_button_style;
     UIButtonStyle fullscreen_button_style;
@@ -16,14 +19,12 @@ struct UIWindowStyle {
     Vec4f header_text_color;
 };
 
-extern const UIWindowStyle UI_WINDOW_DEFAULT_STYLE;
+class UIWindow : public UIStackView {
 
-class UIWindow : public UIView {
-
+    UIWindowContainer* container;
     UIWindowHeaderView* header_view;
     UIView* content_view = new UIView();
     const UIWindowStyle* style = nullptr;
-    Vec2f window_size;
     float header_height = 40;
     bool is_active = false;
 
@@ -45,4 +46,11 @@ public:
 
     bool get_is_active() const { return is_active; };
     void set_is_active(bool p_is_active) { is_active = p_is_active; set_style(style); }
+
+    UIView* get_content_view() { return content_view; }
+
+    UIWindowContainer* get_container_view() const { return container; }
+    void set_container_view(UIWindowContainer* p_container) { container = p_container; }
+
+    void close();
 };

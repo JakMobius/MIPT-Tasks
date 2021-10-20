@@ -33,6 +33,10 @@ void UIWindowHeaderView::setup_buttons_container() {
 
     buttons_container->append_child(close_button);
     buttons_container->append_child(fullscreen_button);
+
+    close_button->set_callback([this]() {
+        window->close();
+    });
 }
 
 void UIWindowHeaderView::update_style() {
@@ -43,4 +47,15 @@ void UIWindowHeaderView::update_style() {
     }
     close_button->set_style(&window->get_style()->close_button_style);
     fullscreen_button->set_style(&window->get_style()->fullscreen_button_style);
+}
+
+void UIWindowHeaderView::on_mouse_down(MouseDownEvent* event) {
+    UIStackView::on_mouse_down(event);
+    drag_start_position = { event->x, event->y };
+}
+
+void UIWindowHeaderView::layout() {
+    buttons_container->layout_if_needed();
+    spacer->set_size(buttons_container->get_size());
+    UIStackView::layout();
 }

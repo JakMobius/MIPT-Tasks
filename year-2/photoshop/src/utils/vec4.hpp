@@ -98,7 +98,12 @@ struct Vec4 {
         return (res[0]) < epsilon && (res[1]) < epsilon && (res[2]) < epsilon && res[3] < epsilon;
     }
 
-    sf::Color to_sf_color() { return { (sf::Uint8)(content[0] * 255), (sf::Uint8)(content[1] * 255), (sf::Uint8)(content[2] * 255), (sf::Uint8)(content[3] * 255) }; }
+    template<typename V>
+    inline explicit operator Vec4<V>() const {
+        return Vec4<V> { (V)content[0], (V) content[1], (V) content[2], (V) content[3] };
+    }
+
+    sf::Color to_sf_color() const { return { (sf::Uint8)(content[0] * 255), (sf::Uint8)(content[1] * 255), (sf::Uint8)(content[2] * 255), (sf::Uint8)(content[3] * 255) }; }
 };
 
 typedef Vec4<double> Vec4d;

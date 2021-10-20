@@ -92,6 +92,13 @@ struct Vec2 {
 
     inline Vec2<T> &operator/=(const T k) { content /= k; return *this; }
 
+    void transform_unbound(const Matrix3<T> &matrix) {
+        content = {
+            matrix.transform_x(content[0], content[1], 0),
+            matrix.transform_y(content[0], content[1], 0)
+        };
+    }
+
     inline Vec2<T> &operator*=(const Matrix3<T> &other) {
 
         content = {
@@ -106,7 +113,13 @@ struct Vec2 {
         const auto res = content - second.content;
         return (res[0]) < FLOAT_EPS && (res[1]) < FLOAT_EPS;
     }
+
+    template<typename V>
+    inline explicit operator Vec2<V>() const {
+        return Vec2<V> { (V)content[0], (V) content[1] };
+    }
 };
 
 typedef Vec2<double> Vec2d;
 typedef Vec2<float> Vec2f;
+typedef Vec2<int> Vec2i;

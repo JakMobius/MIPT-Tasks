@@ -40,7 +40,7 @@ void UIWindowHeaderView::setup_buttons_container() {
 }
 
 void UIWindowHeaderView::update_style() {
-    if(window->get_is_active()) {
+    if(window->get_active()) {
         set_fill_style(window->get_style()->get_header_background_color());
     } else {
         set_fill_style(window->get_style()->get_inactive_header_background_color());

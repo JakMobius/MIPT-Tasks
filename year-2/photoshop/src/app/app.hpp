@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../ui/ui_drawing_context.hpp"
 #include "../ui/ui_screen.hpp"
 #include "../controls/user_controller.hpp"
 #include "../graphics/drawing_target_window.hpp"
@@ -8,7 +7,7 @@
 #include "../utils/dispatch_queue.hpp"
 
 class App {
-    UIDrawingContext* ctx = nullptr;
+    DrawingContext* ctx = nullptr;
     sf::RenderWindow* window = nullptr;
     UIScreen* screen = nullptr;
     UserController* controller = nullptr;

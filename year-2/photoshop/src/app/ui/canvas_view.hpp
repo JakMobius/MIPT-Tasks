@@ -5,7 +5,6 @@ class CanvasView;
 #include "../../graphics/drawing_context.hpp"
 #include "../../graphics/drawing_target_texture.hpp"
 #include "../../utils/vec2.hpp"
-#include "../../ui/ui_drawing_context.hpp"
 #include "../../ui/ui_view.hpp"
 #include "../canvas/canvas.hpp"
 #include "../canvas/canvas_layer.hpp"
@@ -37,7 +36,7 @@ public:
         tool_manager = new ToolManager(canvas);
     }
 
-    void draw(UIDrawingContext* ctx) override {
+    void draw(DrawingContext* ctx) override {
         UIView::draw(ctx);
         canvas->draw(ctx);
     }

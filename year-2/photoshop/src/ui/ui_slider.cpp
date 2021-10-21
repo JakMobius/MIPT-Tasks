@@ -56,7 +56,12 @@ void UISlider::layout() {
 }
 
 void UISlider::set_style(const UISliderStyle* p_style) {
-    style = p_style;
+    Styled::set_style(p_style);
     bar->set_fill_style(style->get_bar_color());
     button->set_fill_style(style->get_bar_color());
+}
+
+void UISlider::set_size(const Vec2f &new_size) {
+    Vec2f real_size = {new_size[0], BUTTON_HEIGHT};
+    UIView::set_size(real_size);
 }

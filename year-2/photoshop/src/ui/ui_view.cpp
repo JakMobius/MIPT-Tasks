@@ -2,12 +2,12 @@
 
 const UIFillStyleColor UIViewWhiteBackground({1, 1, 1, 1});
 
-void UIView::transform_context(UIDrawingContext* ctx) {
+void UIView::transform_context(DrawingContext* ctx) {
     ctx->transform.translate(position[0], position[1]);
     ctx->transform.multiply(transform);
 }
 
-void UIView::prepare_to_draw(UIDrawingContext* ctx) {
+void UIView::prepare_to_draw(DrawingContext* ctx) {
     if(get_hidden()) return;
 
     Matrix3f saved_transform = ctx->transform;
@@ -26,7 +26,7 @@ void UIView::prepare_to_draw(UIDrawingContext* ctx) {
     ctx->transform = saved_transform;
 }
 
-void UIView::draw(UIDrawingContext* ctx) {
+void UIView::draw(DrawingContext* ctx) {
     if(fill_style) {
         ctx->set_fill_style(fill_style);
         ctx->fill_rect({0, 0}, size);
@@ -285,5 +285,12 @@ int UIView::get_child_index(UIView* child) {
 UIView::~UIView() {
     for(int i = 0; i < children.size(); i++) {
         delete children[i];
+    }
+}
+
+void UIView::set_active(bool p_is_active) {
+    active = p_is_active;
+    for(int i = 0; i < children.size(); i++) {
+        children[i]->set_active(p_is_active);
     }
 }

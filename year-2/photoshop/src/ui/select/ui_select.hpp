@@ -13,11 +13,10 @@ struct UISelectOption {
     std::function<void(void)> callback;
 };
 
-class UISelectView : public UIView {
+class UISelectView : public UIView, public Styled<UISelectViewStyle> {
 
     UIText* label = new UIText();
     std::vector<UISelectOption> options {};
-    const UISelectViewStyle* style = nullptr;
 
 public:
     explicit UISelectView(const Vec2f& position = {0, 0}, const Vec2f& size = {200, 50}): UIView(position, size) {
@@ -32,13 +31,12 @@ public:
         label->set_size(size - Vec2f { 20, 10 });
     }
 
-    void draw(UIDrawingContext* ctx) override;
+    void draw(DrawingContext* ctx) override;
     void on_mouse_click(MouseClickEvent *event) override;
 
     void add_variant(const UISelectOption& option) {
         options.push_back(option);
     }
 
-    const UISelectViewStyle* get_style() const { return style; }
-    void set_style(const UISelectViewStyle* p_style);
+    void set_style(const UISelectViewStyle* p_style) override;
 };

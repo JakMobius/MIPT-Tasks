@@ -27,10 +27,19 @@ void UIWindow::set_title(const char* string) {
     header_view->set_title(string);
 }
 
-void UIWindow::set_style(const UIWindowStyle* p_style) {
-    style = p_style;
+void UIWindow::update_style() {
     set_fill_style(style->get_window_background_color());
     header_view->update_style();
+}
+
+void UIWindow::set_style(const UIWindowStyle* p_style) {
+    style = p_style;
+    update_style();
+}
+
+void UIWindow::set_active(bool p_is_active) {
+    UIStackView::set_active(p_is_active);
+    update_style();
 }
 
 void UIWindow::close() {

@@ -1,6 +1,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "app/app.hpp"
+#include "app/assets.hpp"
 
 int main() {
 
@@ -12,6 +13,7 @@ int main() {
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
 
+    Assets.load();
     App app { &window };
 
     while(window.isOpen()) {
@@ -26,6 +28,8 @@ int main() {
 
         DispatchQueue::main.perform();
     }
+
+    Assets.unload();
 
     return 0;
 }

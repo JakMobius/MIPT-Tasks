@@ -8,7 +8,7 @@ App::App(sf::RenderWindow* window) : window(window) {
 
     auto window_size = window->getSize();
 
-    ctx = new UIDrawingContext();
+    ctx = new DrawingContext();
     screen = new UIScreen({0, 0}, {(float)window_size.x, (float)window_size.y});
     render_target = new DrawingTargetWindow(window);
     ctx->push_render_target(render_target);
@@ -21,6 +21,8 @@ App::App(sf::RenderWindow* window) : window(window) {
 }
 
 void App::tick() {
+    if(!screen->get_needs_redraw()) return;
+
     ctx->set_stroke_color({0, 0, 0, 1});
     ctx->clear();
 

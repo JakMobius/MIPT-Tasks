@@ -7,8 +7,8 @@ class UIScreen;
 #include "../utils/vec2.hpp"
 #include "../utils/matrix3.hpp"
 #include "../utils/vec4.hpp"
-#include "../ui/ui_drawing_context.hpp"
 #include "styles/fill_style.hpp"
+#include "../graphics/drawing_context.hpp"
 #include <vector>
 
 extern const UIFillStyleColor UIViewWhiteBackground;
@@ -32,16 +32,17 @@ protected:
     bool hidden = false;
     bool hovered = false;
     bool clicked = false;
+    bool active = false;
 
-    void transform_context(UIDrawingContext* ctx);
+    void transform_context(DrawingContext* ctx);
     bool update_hover(UIView* child, const Vec2f& internal_point);
 public:
 
     explicit UIView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): position(position), size(size) {}
     virtual ~UIView();
 
-    virtual void prepare_to_draw(UIDrawingContext* ctx);
-    virtual void draw(UIDrawingContext* ctx);
+    virtual void prepare_to_draw(DrawingContext* ctx);
+    virtual void draw(DrawingContext* ctx);
     virtual void on_mouse_in(MouseInEvent *event);
     virtual void on_mouse_move(MouseMoveEvent *event);
     virtual void on_mouse_out(MouseOutEvent *event);
@@ -79,6 +80,9 @@ public:
     const Matrix3f& get_transform() { return transform; }
     const Matrix3f& get_inv_transform() { return inv_transform; };
     virtual void set_transform(const Matrix3f& new_transform);
+
+    bool get_active() const { return active; };
+    virtual void set_active(bool p_is_active);
 
     /// Returns local coordinates of point in parent coordinates
     Vec2f get_local_position(const Vec2f& external_position);

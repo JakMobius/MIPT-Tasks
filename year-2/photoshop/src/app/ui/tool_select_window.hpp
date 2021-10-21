@@ -2,10 +2,12 @@
 
 #include "../../ui/window/ui_window.hpp"
 #include "../../graphics/drawable_texture.hpp"
+#include "../assets.hpp"
 
 struct ToolButtonStyle : public UIButtonStyle {
     UIFillStyleTexture* style;
     explicit ToolButtonStyle(UIFillStyleTexture* style): style(style) {}
+    ~ToolButtonStyle() override { delete style; }
     const UIFillStyle* get_idle_color() const override { return style; };
 };
 
@@ -15,7 +17,7 @@ class ToolSelectWindow : public UIWindow {
     void create_tool_buttons() {
         for(int i = 0; i < 10; i++) {
             auto* button = new UIButton({}, {50, 50});
-            auto* texture = new DrawableTexture("resources/img/tools/blur.png");
+            auto* texture = Assets.tool_brush_texture;
             auto* fill_style = new UIFillStyleTexture(texture);
             auto* style = new ToolButtonStyle(fill_style);
             button->set_style(style);

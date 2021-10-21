@@ -1,7 +1,8 @@
 
 #include "ui_text.hpp"
+#include "../graphics/drawing_context.hpp"
 
-void UIText::draw(UIDrawingContext* ctx) {
+void UIText::draw(DrawingContext* ctx) {
     ctx->vAlignment = v_text_alignment;
     ctx->hAlignment = h_text_alignment;
     ctx->set_stroke_color(text_color);

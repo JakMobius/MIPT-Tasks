@@ -16,7 +16,7 @@ void UISelectView::on_mouse_click(MouseClickEvent* event) {
     screen->present_modal(modal, this);
 }
 
-void UISelectView::draw(UIDrawingContext* ctx) {
+void UISelectView::draw(DrawingContext* ctx) {
     UIView::draw(ctx);
 
     ctx->set_stroke_color({0, 0, 0, 1});
@@ -28,6 +28,6 @@ void UISelectView::draw(UIDrawingContext* ctx) {
 }
 
 void UISelectView::set_style(const UISelectViewStyle* p_style) {
-    style = p_style;
+    Styled::set_style(p_style);
     set_fill_style(style->get_background_color());
 }

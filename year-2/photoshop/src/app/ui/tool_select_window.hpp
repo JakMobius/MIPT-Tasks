@@ -3,6 +3,7 @@
 #include "../../ui/window/ui_window.hpp"
 #include "../../graphics/drawable_texture.hpp"
 #include "../assets.hpp"
+#include "../tools/tool_manager.hpp"
 
 struct ToolButtonStyle : public UIButtonStyle {
     UIFillStyleTexture* style;
@@ -13,17 +14,26 @@ struct ToolButtonStyle : public UIButtonStyle {
 
 class ToolSelectWindow : public UIWindow {
     UIStackView* stack = nullptr;
+    ToolManager* manager = nullptr;
 
     void create_tool_buttons() {
-        for(int i = 0; i < 10; i++) {
+
+        auto& factories = manager->get_factories();
+
+        for(int i = 0; i < factories.size(); i++) {
             auto* button = new UIButton({}, {50, 50});
-            auto* texture = Assets.tool_brush_texture;
-            auto* fill_style = new UIFillStyleTexture(texture);
+
+            auto* fill_style = new UIFillStyleTexture(factories[i]->get_tool_icon());
             auto* style = new ToolButtonStyle(fill_style);
-            button->set_style(style);
+
+            button->set_own_style(style);
             stack->append_child(button);
 
             fill_style->set_scale({512.f / 50.f, 512.f / 50.f});
+
+            button->set_callback([this, i]() {
+                manager->activate_factory(manager->get_factories()[i]);
+            });
         }
     }
 
@@ -37,8 +47,6 @@ public:
 
         stack->set_fill_style(&UIViewWhiteBackground);
 
-        create_tool_buttons();
-
         get_content_view()->append_child(stack);
     };
 
@@ -46,5 +54,10 @@ public:
         stack->layout_if_needed();
         get_content_view()->set_size(stack->get_size());
         UIWindow::layout();
+    }
+
+    void set_tool_manager(ToolManager* p_manager) {
+        manager = p_manager;
+        create_tool_buttons();
     }
 };

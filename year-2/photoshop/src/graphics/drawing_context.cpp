@@ -3,12 +3,12 @@
 //
 
 #include "drawing_context.hpp"
+#include "../app/assets.hpp"
 
 DrawingContext::DrawingContext() {
-    font.loadFromFile("resources/font/font.ttf");
+    font = Assets.default_font;
     hAlignment = HTextAlignmentLeft;
     vAlignment = VTextAlignmentBottom;
-    stroke_color = sf::Color(255, 255, 255, 255);
 }
 
 DrawingContext::~DrawingContext() {
@@ -16,6 +16,7 @@ DrawingContext::~DrawingContext() {
 }
 
 void DrawingContext::stroke_line(Vec2f from, Vec2f to, float thickness) const {
+    if(!stroke_style) return;
 
     Vec2f shape[] = {
         from, from, to, to
@@ -31,13 +32,15 @@ void DrawingContext::stroke_line(Vec2f from, Vec2f to, float thickness) const {
     (shape[3] -= ortho_offset) *= transform;
 
     sf::Vertex line[] = {
-        sf::Vertex({shape[0][0], shape[0][1]}, stroke_color),
-        sf::Vertex({shape[1][0], shape[1][1]}, stroke_color),
-        sf::Vertex({shape[2][0], shape[2][1]}, stroke_color),
-        sf::Vertex({shape[3][0], shape[3][1]}, stroke_color)
+        stroke_style->vertex(shape[0], -1, 1),
+        stroke_style->vertex(shape[1], -1, -1),
+        stroke_style->vertex(shape[2], 1, -1),
+        stroke_style->vertex(shape[3], 1, 1)
     };
 
-    target->get_target()->draw(line, 4, sf::TriangleFan);
+    auto render_states = stroke_style->get_render_states();
+    if(render_states) target->get_target()->draw(line, 4, sf::TriangleFan, *render_states);
+    else target->get_target()->draw(line, 4, sf::TriangleFan);
 }
 
 void DrawingContext::fill_circle(const Vec2f& center, float radius) {
@@ -68,8 +71,8 @@ void DrawingContext::stroke_text(Vec2f position, const char* text) const {
     sf::Text sfText;
     sfText.setCharacterSize(15);
     sfText.setString(text);
-    sfText.setFillColor(stroke_color);
-    sfText.setFont(font);
+    sfText.setFillColor(text_color);
+    sfText.setFont(*font);
 
     if(hAlignment != HTextAlignmentRight) {
         float width = sfText.getLocalBounds().width;
@@ -104,10 +107,10 @@ void DrawingContext::fill_rect(const Vec2f& position, const Vec2f& size) const {
     brVertex *= transform;
 
     sf::Vertex quad[] = {
-        fill_style->vertex(blVertex, {0, size[1]}),
-        fill_style->vertex(tlVertex, {0, 0}),
-        fill_style->vertex(trVertex, {size[0], 0}),
-        fill_style->vertex(brVertex, {size[0], size[1]})
+        fill_style->vertex(blVertex, {0, 0}),
+        fill_style->vertex(tlVertex, {0, size[1]}),
+        fill_style->vertex(trVertex, {size[0], size[1]}),
+        fill_style->vertex(brVertex, {size[0], 0})
     };
 
     auto render_states = fill_style->get_render_states();
@@ -142,6 +145,6 @@ void DrawingContext::draw_texture(Vec2f position, Vec2f size, Drawable* texture)
     target->get_target()->draw(sprite);
 }
 
-void DrawingContext::clear() {
-    target->get_target()->clear(stroke_color);
+void DrawingContext::clear(const Vec4f& color) {
+    target->get_target()->clear(color.to_sf_color());
 }

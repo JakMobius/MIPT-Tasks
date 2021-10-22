@@ -19,7 +19,7 @@ void UISelectView::on_mouse_click(MouseClickEvent* event) {
 void UISelectView::draw(DrawingContext* ctx) {
     UIView::draw(ctx);
 
-    ctx->set_stroke_color({0, 0, 0, 1});
+    ctx->set_stroke_style(style->get_arrow_style());
 
     Vec2f arrow_position = get_size() + Vec2f {-20, 0};
     arrow_position.set_y(arrow_position[1] / 2);

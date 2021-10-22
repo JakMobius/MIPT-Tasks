@@ -17,7 +17,10 @@ class CanvasLayer {
     bool needs_redraw = false;
 
 public:
-    explicit CanvasLayer(Vec2i size): size(size) { texture = new DrawingTargetTexture(size); }
+    explicit CanvasLayer(Vec2i size): size(size) {
+        texture = new DrawingTargetTexture(size);
+        texture->clear({0, 0, 0, 0});
+    }
 
     void draw(DrawingContext* ctx) {
         needs_redraw = false;

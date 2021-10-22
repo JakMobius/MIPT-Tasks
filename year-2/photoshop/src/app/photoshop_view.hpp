@@ -6,6 +6,7 @@
 #include "ui/canvas_window.hpp"
 #include "tools/brush_tool.hpp"
 #include "ui/tool_select_window.hpp"
+#include "tools/eraser_tool.hpp"
 
 class PhotoshopView : public UIWindowContainer {
 public:
@@ -25,11 +26,13 @@ public:
         add_window(win1);
         add_window(win2);
 
-        auto tool = new BrushTool();
-
         ToolManager* manager = win1->get_canvas_view()->get_tool_manager();
 
-        manager->set_active_tool(tool);
+        manager->add_tool_factory(new ToolFactory<BrushTool>("Brush", Assets.tool_brush_texture));
+        manager->add_tool_factory(new ToolFactory<EraserTool>("Eraser", Assets.tool_rubber_texture));
+
+        win2->set_tool_manager(manager);
+
         manager->set_color({1, 0, 0, 1});
 
     }

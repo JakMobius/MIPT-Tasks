@@ -6,8 +6,11 @@
 #include "../../graphics/drawing_target_texture.hpp"
 
 class UIFillStyle {
+protected:
+    sf::RenderStates render_states {};
 public:
-    virtual const sf::RenderStates* get_render_states() const { return nullptr; };
+    virtual const sf::RenderStates* get_render_states() const { return &render_states; };
+    virtual sf::RenderStates* get_render_states() { return &render_states; };
     virtual sf::Vertex vertex(Vec2f vertex_position, Vec2f shape_position) const = 0;
 };
 
@@ -24,18 +27,16 @@ public:
 };
 
 class UIFillStyleTexture : public UIFillStyle {
-    sf::RenderStates render_states;
     Vec2f scale { 1, 1 };
 public:
-    explicit UIFillStyleTexture(Drawable* texture): render_states(texture->get_texture()) {}
-
-    const sf::RenderStates* get_render_states() const override {
-        return &render_states;
-    }
+    explicit UIFillStyleTexture(Drawable* texture) { render_states.texture = texture->get_texture(); }
+    explicit UIFillStyleTexture() {}
 
     sf::Vertex vertex(Vec2f vertex_position, Vec2f shape_position) const override {
         return {{vertex_position[0], vertex_position[1]}, {shape_position[0] * scale[0], shape_position[1] * scale[1]}};
     };
+
+    void set_texture(Drawable* texture) { render_states.texture = texture->get_texture(); }
 
     void set_scale(const Vec2f& p_scale) { scale = p_scale; }
 };

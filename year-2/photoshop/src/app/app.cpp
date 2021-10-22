@@ -23,8 +23,7 @@ App::App(sf::RenderWindow* window) : window(window) {
 void App::tick() {
     if(!screen->get_needs_redraw()) return;
 
-    ctx->set_stroke_color({0, 0, 0, 1});
-    ctx->clear();
+    ctx->clear({0, 0, 0, 1});
 
     screen->prepare_to_draw(ctx);
     window->display();

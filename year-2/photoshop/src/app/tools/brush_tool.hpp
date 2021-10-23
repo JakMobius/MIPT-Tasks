@@ -6,7 +6,7 @@
 class BrushTool : public Tool {
     DrawingContext ctx {};
     UIFillStyleColor brush_fill_style {{0, 0, 0, 0}};
-    UIFillStyleColor brush_stroke_style {{0, 0, 0, 0}};
+    UIStrokeStyleColor brush_stroke_style {{0, 0, 0, 0}};
     Vec2f old_position;
 public:
     BrushTool(): Tool() {}
@@ -33,6 +33,7 @@ public:
         brush_stroke_style.set_color(manager->get_color());
 
         ctx.set_fill_style(&brush_fill_style);
+        ctx.set_stroke_style(&brush_stroke_style);
 
         ctx.push_render_target(texture);
         ctx.fill_circle(position, 3);

@@ -9,6 +9,7 @@ class CanvasView;
 #include "../canvas/canvas.hpp"
 #include "../canvas/canvas_layer.hpp"
 #include "../tools/tool_manager.hpp"
+#include "../assets.hpp"
 
 class CanvasViewUpdateHandler : public EventHandler<CanvasUpdateEvent> {
     CanvasView* view;
@@ -22,9 +23,12 @@ class CanvasView : public UIView {
     ToolManager* tool_manager = nullptr;
     Canvas* canvas = nullptr;
     CanvasViewUpdateHandler canvas_view_update_listener { this };
+    UIFillStyleTexture imaged_background { Assets.canvas_background_texture };
 
 public:
-    CanvasView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): UIView(position, size) {}
+    explicit CanvasView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): UIView(position, size) {
+        set_fill_style(&imaged_background);
+    }
     ~CanvasView() override {
         canvas->get_event_emitter()->remove_listener(&canvas_view_update_listener);
         delete canvas;

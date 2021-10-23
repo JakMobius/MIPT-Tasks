@@ -3,7 +3,6 @@
 #include "../ui/ui_screen.hpp"
 #include "../controls/user_controller.hpp"
 #include "../graphics/drawing_target_window.hpp"
-#include "photoshop_view.hpp"
 #include "../utils/dispatch_queue.hpp"
 
 class App {

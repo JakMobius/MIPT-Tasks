@@ -12,6 +12,7 @@ class UIScreen;
 #include <vector>
 
 extern const UIFillStyleColor UIViewWhiteBackground;
+extern const UIFillStyleColor UIViewRedBackground;
 
 class UIView {
 
@@ -33,6 +34,7 @@ protected:
     bool hovered = false;
     bool clicked = false;
     bool active = false;
+    bool interactions_enabled = true;
 
     void transform_context(DrawingContext* ctx);
     bool update_hover(UIView* child, const Vec2f& internal_point);
@@ -83,6 +85,9 @@ public:
 
     bool get_active() const { return active; };
     virtual void set_active(bool p_is_active);
+
+    bool get_interactions_enabled() const { return interactions_enabled; }
+    virtual void set_interactions_enabled(bool p_interactions_enabled) { interactions_enabled = p_interactions_enabled; }
 
     /// Returns local coordinates of point in parent coordinates
     Vec2f get_local_position(const Vec2f& external_position);

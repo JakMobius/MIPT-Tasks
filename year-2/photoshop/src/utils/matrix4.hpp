@@ -23,6 +23,12 @@ public:
     ValueType transform_y(ValueType x, ValueType y, ValueType z) const { return x * data[1] + y * data[5] + z * data[9]; }
     ValueType transform_z(ValueType x, ValueType y, ValueType z) const { return x * data[2] + y * data[6] + z * data[10]; }
 
+    static Matrix4<ValueType> rotation_x_matrix(ValueType angle);
+    static Matrix4<ValueType> rotation_y_matrix(ValueType angle);
+    static Matrix4<ValueType> rotation_z_matrix(ValueType angle);
+    static Matrix4<ValueType> scale_matrix(ValueType x, ValueType y, ValueType z);
+    static Matrix4<ValueType> translation_matrix(ValueType x, ValueType y, ValueType z);
+
     void reset();
 };
 
@@ -47,6 +53,62 @@ Matrix4<ValueType> Matrix4<ValueType>::operator*(const Matrix4<ValueType> &other
     }
 
     return result;
+}
+
+template<typename ValueType>
+Matrix4<ValueType> Matrix4<ValueType>::scale_matrix(ValueType x, ValueType y, ValueType z) {
+    return Matrix4<ValueType>({
+        x, 0, 0, 0,
+        0, y, 0, 0,
+        0, 0, z, 0,
+        0, 0, 0, 1
+    });
+}
+
+template<typename ValueType>
+Matrix4<ValueType> Matrix4<ValueType>::translation_matrix(ValueType x, ValueType y, ValueType z) {
+    return Matrix4<ValueType>({
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        x, y, z, 1
+    });
+}
+
+template<typename ValueType>
+Matrix4<ValueType> Matrix4<ValueType>::rotation_x_matrix(ValueType angle) {
+    ValueType s = sin(angle);
+    ValueType c = cos(angle);
+    return Matrix4<ValueType>({
+        1, 0,  0, 0,
+        0, c,  s, 0,
+        0, -s, c, 0,
+        0, 0,  0, 1
+    });
+}
+
+template<typename ValueType>
+Matrix4<ValueType> Matrix4<ValueType>::rotation_y_matrix(ValueType angle) {
+    ValueType s = sin(angle);
+    ValueType c = cos(angle);
+    return Matrix4<ValueType>({
+        c,  0, s, 0,
+        0,  1, 0, 0,
+        -s, 0, c, 0,
+        0,  0, 0, 1
+    });
+}
+
+template<typename ValueType>
+Matrix4<ValueType> Matrix4<ValueType>::rotation_z_matrix(ValueType angle) {
+    ValueType s = sin(angle);
+    ValueType c = cos(angle);
+    return Matrix4<ValueType>({
+        c,  s, 0, 0,
+        -s, c, 0, 0,
+        0,  0, 1, 0,
+        0,  0, 0, 1
+    });
 }
 
 template<typename ValueType>

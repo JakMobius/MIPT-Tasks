@@ -19,18 +19,27 @@ void EraserTool::override_alpha(sf::BlendMode &mode) {
     mode.alphaSrcFactor = sf::BlendMode::One;
 }
 
+void EraserTool::multiply_alpha(sf::BlendMode &mode) {
+    mode.alphaDstFactor = sf::BlendMode::Zero;
+    mode.alphaSrcFactor = sf::BlendMode::DstAlpha;
+}
+
 EraserTool::EraserTool() : Tool() {
     auto& brush_fill_mode = brush_fill_style.get_render_states()->blendMode;
     override_color(brush_fill_mode);
     override_alpha(brush_fill_mode);
 
     auto& brush_stroke_mode = brush_stroke_style.get_render_states()->blendMode;
-    override_color(brush_fill_mode);
+    override_color(brush_stroke_mode);
     override_alpha(brush_stroke_mode);
+
+    auto& texture_copy_mode = texture_copy_style.get_render_states()->blendMode;
+    override_color(texture_copy_mode);
+    override_alpha(texture_copy_mode);
 
     auto& apply_mode = brush_apply_style.get_render_states()->blendMode;
     preserve_color(apply_mode);
-    override_alpha(apply_mode);
+    multiply_alpha(apply_mode);
 }
 
 void EraserTool::draw(Vec2f position) {
@@ -46,11 +55,15 @@ void EraserTool::draw(Vec2f position) {
     ctx.pop_render_target();
 
     ctx.push_render_target(texture);
+    ctx.clear({0, 0, 0, 0});
+
     texture_copy_style.set_texture(buffer_texture);
     ctx.set_fill_style(&texture_copy_style);
     ctx.fill_rect({}, (Vec2f) layer->get_size());
+
     ctx.set_fill_style(&brush_apply_style);
     ctx.fill_rect({}, (Vec2f) layer->get_size());
+
     ctx.pop_render_target();
 
     layer->set_needs_redraw();
@@ -62,18 +75,15 @@ void EraserTool::on_become_active() {
     auto size = manager->get_canvas()->get_active_layer()->get_size();
 
     map_texture = new DrawingTargetTexture(size);
-    map_texture->clear({0, 0, 0, 1});
-
     buffer_texture = new DrawingTargetTexture(size);
-    buffer_texture->clear({0, 0, 0, 1});
 
-    brush_apply_style.get_render_states()->texture = map_texture->get_texture();
+    brush_apply_style.set_texture(map_texture);
 }
 
 void EraserTool::on_resign_active() {
     Tool::on_resign_active();
 
-    brush_apply_style.get_render_states()->texture = nullptr;
+    brush_apply_style.set_texture(nullptr);
 
     delete map_texture;
     delete buffer_texture;
@@ -89,11 +99,12 @@ void EraserTool::on_mouse_down(Vec2f position) {
     if(!canvas_layer) return;
     auto canvas_texture = canvas_layer->get_texture();
     auto canvas_size = canvas_layer->get_size();
+    map_texture->clear({1, 1, 1, 1});
 
-    buffer_texture->clear({0, 0, 0, 0});
     ctx.push_render_target(buffer_texture);
-    ctx.set_fill_style(&brush_fill_style);
-    ctx.draw_texture({}, (Vec2f) canvas_size, canvas_texture);
+    texture_copy_style.set_texture(canvas_texture);
+    ctx.set_fill_style(&texture_copy_style);
+    ctx.fill_rect({}, (Vec2f) canvas_size);
     ctx.pop_render_target();
 
     old_position = position;

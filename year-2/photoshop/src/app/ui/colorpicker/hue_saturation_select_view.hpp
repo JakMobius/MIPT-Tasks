@@ -1,0 +1,36 @@
+#pragma once
+
+#include "../../../ui/ui_view.hpp"
+#include "../../../graphics/drawable_texture.hpp"
+#include "../../../utils/vec3.hpp"
+#include "../../../utils/hsv.hpp"
+#include "../../assets.hpp"
+
+class HueSaturationSelectView : public UIView {
+    DrawableTexture* hue_saturation_map = nullptr;
+    UIFillStyleTexture fill_style {};
+    UIFillStyleTexture cursor_style {};
+    UIView* selector = nullptr;
+    std::function<void(float, float)> callback;
+
+    void create_texture();
+    void handle_mouse(Vec2f position);
+
+public:
+    explicit HueSaturationSelectView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): UIView(position, size) {
+        selector = new UIView({0, 0}, {16, 16});
+        cursor_style.set_texture(Assets.hue_select_cursor);
+        selector->set_fill_style(&cursor_style);
+        selector->set_interactions_enabled(false);
+        create_texture();
+        set_fill_style(&fill_style);
+        append_child(selector);
+    }
+
+    void on_mouse_down(MouseDownEvent *event) override;
+    void on_mouse_move(MouseMoveEvent *event) override;
+
+    void set_value(float hue, float saturation);
+
+    void set_callback(const std::function<void(float, float)>& p_callback) { callback = p_callback; }
+};

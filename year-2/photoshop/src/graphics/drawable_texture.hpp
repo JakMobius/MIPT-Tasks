@@ -9,17 +9,13 @@ class DrawableTexture : public Drawable {
     sf::Texture* texture;
     Vec2i size {};
 public:
-    DrawableTexture(const Vec2i& texture_size) {
-        size = texture_size;
-        texture = new sf::Texture();
-        texture->create(size[0], size[1]);
-    }
+    explicit DrawableTexture(const Vec2i& texture_size);
+    ~DrawableTexture();
 
-    DrawableTexture(const char* path) {
-        texture = new sf::Texture();
-        texture->loadFromFile(path);
-    }
+    explicit DrawableTexture(const char* path);
+    explicit DrawableTexture(const Vec2i size, const unsigned char* rgba_array);
 
+    void set_repeating(bool is_repeating);
     const sf::Texture* get_texture() override { return texture; }
 
     Vec2i get_size() { return size; }

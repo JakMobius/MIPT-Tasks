@@ -147,17 +147,17 @@ Matrix3<ValueType> Matrix3<ValueType>::translation_matrix(ValueType tx, ValueTyp
 
 template <typename ValueType>
 void Matrix3<ValueType>::scale(ValueType sx, ValueType sy) {
-    multiply(Matrix3<ValueType>::scale_matrix(sx, sy));
+    *this = Matrix3<ValueType>::scale_matrix(sx, sy).multiplied(*this);
 }
 
 template <typename ValueType>
 void Matrix3<ValueType>::rotate(ValueType angle) {
-    multiply(Matrix3<ValueType>::rotation_matrix(angle));
+    *this = Matrix3<ValueType>::rotation_matrix(angle).multiplied(*this);
 }
 
 template <typename ValueType>
 void Matrix3<ValueType>::translate(ValueType tx, ValueType ty) {
-    multiply(Matrix3<ValueType>::translation_matrix(tx, ty));
+    *this = Matrix3<ValueType>::translation_matrix(tx, ty).multiplied(*this);
 }
 
 template <typename ValueType>

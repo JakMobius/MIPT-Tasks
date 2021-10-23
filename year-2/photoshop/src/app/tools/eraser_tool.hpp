@@ -16,6 +16,7 @@ class EraserTool : public Tool {
     void preserve_color(sf::BlendMode& mode);
     void override_color(sf::BlendMode& mode);
     void override_alpha(sf::BlendMode& mode);
+    void multiply_alpha(sf::BlendMode &mode);
 
 public:
     EraserTool();

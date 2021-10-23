@@ -7,12 +7,20 @@ class UIWindow;
 #include "ui_window_container.hpp"
 #include "../ui_stack.hpp"
 #include "../styles/window_style.hpp"
+#include "../../events/event_emitter.hpp"
+
+struct WindowCloseEvent {
+    UIWindow* window;
+};
 
 class UIWindow : public UIStackView, public Styled<UIWindowStyle> {
 
-    UIWindowContainer* container;
-    UIWindowHeaderView* header_view;
+    UIWindowContainer* container = nullptr;
+    UIWindowHeaderView* header_view = nullptr;
     UIView* content_view = new UIView();
+
+    EventEmitter<WindowCloseEvent> close_event_emitter {};
+
     float header_height = 40;
 
     void update_style();
@@ -30,6 +38,8 @@ public:
 
     UIWindowContainer* get_container_view() const { return container; }
     void set_container_view(UIWindowContainer* p_container) { container = p_container; }
+
+    EventEmitter<WindowCloseEvent>* get_close_event_emitter() { return &close_event_emitter; }
 
     void close();
 };

@@ -3,13 +3,15 @@
 #include "../../ui/window/ui_window.hpp"
 #include "../../graphics/drawing_target_texture.hpp"
 #include "canvas_view.hpp"
+#include "../app.hpp"
+#include "photoshop_window.hpp"
 
-class CanvasWindow : public UIWindow {
+class CanvasWindow : public PhotoshopWindow {
 
     CanvasView* canvas_view = nullptr;
 
 public:
-    explicit CanvasWindow(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): UIWindow(position, size, "Canvas") {
+    explicit CanvasWindow(PhotoshopView* app, const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): PhotoshopWindow(app, position, size, "Canvas") {
         canvas_view = new CanvasView({}, size);
         get_content_view()->append_child(canvas_view);
     };

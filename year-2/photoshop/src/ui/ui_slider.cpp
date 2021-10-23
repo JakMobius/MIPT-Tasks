@@ -58,7 +58,7 @@ void UISlider::layout() {
 void UISlider::set_style(const UISliderStyle* p_style) {
     Styled::set_style(p_style);
     bar->set_fill_style(style->get_bar_color());
-    button->set_fill_style(style->get_bar_color());
+    button->set_fill_style(style->get_button_color());
 }
 
 void UISlider::set_size(const Vec2f &new_size) {

@@ -38,9 +38,6 @@ void UIWindowContainer::on_mouse_down(MouseDownEvent* event) {
     update_hovered_child(event->x, event->y);
 
     if(current_hovered_child != active_window) {
-        if(active_window) {
-            active_window->set_active(false);
-        }
         if(current_hovered_child) {
             maybe_activate_child(current_hovered_child);
         } else activate_window(nullptr);
@@ -58,12 +55,15 @@ void UIWindowContainer::maybe_activate_child(UIView* view) {
 }
 
 void UIWindowContainer::activate_window(UIWindow* window) {
+    if(active_window) {
+        active_window->set_active(false);
+    }
     active_window = window;
     if(!window) return;
 
     window->set_active(true);
     int view_index = get_child_index(window);
-    for(int i = children.size() - 1; i > view_index; i--) {
+    for(int i = view_index + 1; i < children.size(); i++) {
         children[i - 1] = children[i];
     }
     children[children.size() - 1] = active_window;

@@ -11,8 +11,10 @@ private:
     UIWindow* active_window = nullptr;
     std::vector<UIWindow*> windows {};
 
-    void activate_window(UIWindow* window);
     void maybe_activate_child(UIView* view);
+
+protected:
+    void activate_window(UIWindow* window);
 
 public:
     explicit UIWindowContainer(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): UIView(position, size) {}

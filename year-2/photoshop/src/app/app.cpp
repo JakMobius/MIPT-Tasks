@@ -3,6 +3,7 @@
 //
 
 #include "app.hpp"
+#include "photoshop_view.hpp"
 
 App::App(sf::RenderWindow* window) : window(window) {
 
@@ -14,7 +15,7 @@ App::App(sf::RenderWindow* window) : window(window) {
     ctx->push_render_target(render_target);
     controller = new UserController(window, screen);
 
-    auto root_view = new PhotoshopView({0, 0}, {(float)window_size.x, (float)window_size.y});
+    auto root_view = new PhotoshopView(this, {0, 0}, {(float)window_size.x, (float)window_size.y});
     screen->get_view_container()->append_child(root_view);
 
     tick_delayed();

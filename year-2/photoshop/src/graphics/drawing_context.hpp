@@ -48,7 +48,6 @@ public:
     void fill_rect(const Vec2f& position, const Vec2f& size) const;
     void fill_circle(const Vec2f& center, float radius);
     void stroke_text(Vec2f position, const char* text) const;
-    void draw_texture(Vec2f position, Vec2f size, Drawable* texture);
     void clear(const Vec4f &color);
 
     void push_render_target(DrawingTarget* target);

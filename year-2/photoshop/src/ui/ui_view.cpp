@@ -1,10 +1,11 @@
 #include "ui_view.hpp"
 
 const UIFillStyleColor UIViewWhiteBackground({1, 1, 1, 1});
+const UIFillStyleColor UIViewRedBackground({1, 0, 0, 1});
 
 void UIView::transform_context(DrawingContext* ctx) {
     ctx->transform.translate(position[0], position[1]);
-    ctx->transform.multiply(transform);
+    ctx->transform = transform.multiplied(ctx->transform);
 }
 
 void UIView::prepare_to_draw(DrawingContext* ctx) {
@@ -51,6 +52,7 @@ void UIView::on_mouse_in(MouseInEvent* event) {
 UIView* UIView::test(const Vec2f& point, Vec2f* internal_point) const {
     for(int i = children.size() - 1; i >= 0; i--) {
         UIView* child = children[i];
+        if(!child->get_interactions_enabled()) continue;
         if(child->get_hidden()) continue;
         Vec2f absolute_point = point;
         absolute_point -= child->get_position();

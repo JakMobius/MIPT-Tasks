@@ -132,19 +132,6 @@ void DrawingContext::push_render_target(DrawingTarget* p_target) {
     target_stack.push_back(p_target);
 }
 
-void DrawingContext::draw_texture(Vec2f position, Vec2f size, Drawable* texture) {
-    position *= transform;
-    size.transform_unbound(transform);
-
-    sf::Sprite sprite;
-    const sf::Texture* sf_texture = texture->get_texture();
-    sprite.setTexture(*sf_texture);
-    sprite.setPosition(position[0], position[1]);
-    auto texture_size = sf_texture->getSize();
-    sprite.setScale(size[0] / (float)texture_size.x, size[1] / (float)texture_size.y);
-    target->get_target()->draw(sprite);
-}
-
 void DrawingContext::clear(const Vec4f& color) {
     target->get_target()->clear(color.to_sf_color());
 }

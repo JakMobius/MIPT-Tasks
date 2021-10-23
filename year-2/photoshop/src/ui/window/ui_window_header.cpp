@@ -4,6 +4,7 @@
 
 #include "ui_window_header.hpp"
 #include "./ui_window.hpp"
+#include "../../utils/dispatch_queue.hpp"
 
 void UIWindowHeaderView::on_mouse_move(MouseMoveEvent* event) {
     UIStackView::on_mouse_move(event);
@@ -35,7 +36,14 @@ void UIWindowHeaderView::setup_buttons_container() {
     buttons_container->append_child(fullscreen_button);
 
     close_button->set_callback([this]() {
-        window->close();
+        // Close window asynchronously, so
+        // interface hierarchy does not get
+        // changed until event propagation is
+        // done.
+
+        DispatchQueue::main.push([&]() {
+            window->close();
+        });
     });
 }
 

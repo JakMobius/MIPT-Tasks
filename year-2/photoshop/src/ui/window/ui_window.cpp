@@ -43,7 +43,7 @@ void UIWindow::set_active(bool p_is_active) {
 }
 
 void UIWindow::close() {
-    DispatchQueue::main.push([&]() {
-        container->remove_window(this);
-    });
+    WindowCloseEvent event { this };
+    close_event_emitter.emit(&event);
+    container->remove_window(this);
 }

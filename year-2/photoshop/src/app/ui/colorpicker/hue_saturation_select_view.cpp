@@ -25,7 +25,7 @@ void HueSaturationSelectView::create_texture() {
     hue_saturation_map = new DrawableTexture((Vec2i) get_size(), rgba_array);
     delete[] rgba_array;
 
-    fill_style.set_texture(hue_saturation_map);
+    texture_fill_style.set_texture(hue_saturation_map);
 }
 
 void HueSaturationSelectView::on_mouse_down(MouseDownEvent* event) {

@@ -68,3 +68,9 @@ void UIWindowContainer::activate_window(UIWindow* window) {
     }
     children[children.size() - 1] = active_window;
 }
+
+void UIWindowContainer::layout() {
+    UIView::layout();
+
+    if(!fill_style) set_fill_style(&background_style);
+}

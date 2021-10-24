@@ -1,31 +1,12 @@
 #pragma once
 
-#include "tool.hpp"
-#include "../assets.hpp"
+#include "brush_tool.hpp"
 
-class EraserTool : public Tool {
-    DrawingContext ctx {};
-    UIFillStyleColor brush_fill_style {{0, 0, 0, 0}};
-    UIStrokeStyleColor brush_stroke_style {{0, 0, 0, 0}};
-    UIFillStyleTexture texture_copy_style {};
-    UIFillStyleTexture brush_apply_style {};
-    Vec2f old_position;
-    DrawingTargetTexture* map_texture;
-    DrawingTargetTexture* buffer_texture;
-
-    void preserve_color(sf::BlendMode& mode);
-    void override_color(sf::BlendMode& mode);
-    void override_alpha(sf::BlendMode& mode);
-    void multiply_alpha(sf::BlendMode &mode);
+class EraserTool : public BrushTool {
 
 public:
-    EraserTool();
+    EraserTool(): BrushTool() {};
 
-    void on_mouse_down(Vec2f position) override;
-    void on_mouse_move(Vec2f position) override;
-
-    void on_become_active() override;
-    void on_resign_active() override;
-
-    void draw(Vec2f position);
+    void prepare_to_draw() override;
+    void setup_color_blending() override;
 };

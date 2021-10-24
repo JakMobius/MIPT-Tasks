@@ -23,6 +23,21 @@ enum VTextAlignment {
     VTextAlignmentBottom
 };
 
+struct Vertex {
+    Vec2f position;
+    Vec2f shape_position;
+};
+
+enum class PrimitiveType {
+    points =         sf::PrimitiveType::Points,
+    lines =          sf::PrimitiveType::Lines,
+    line_strip =     sf::PrimitiveType::LineStrip,
+    triangles =      sf::PrimitiveType::Triangles,
+    triangle_strip = sf::PrimitiveType::TriangleStrip,
+    triangle_fan =   sf::PrimitiveType::TriangleFan,
+    quads =          sf::PrimitiveType::Quads
+};
+
 class DrawingContext {
 
     std::vector<sf::Vertex> vertex_buffer {32};
@@ -47,6 +62,7 @@ public:
     void stroke_line(Vec2f from, Vec2f to, float thickness = 1) const;
     void fill_rect(const Vec2f& position, const Vec2f& size) const;
     void fill_circle(const Vec2f& center, float radius);
+    void fill_shape(const std::vector<Vertex>& shape, PrimitiveType type = PrimitiveType::triangles);
     void stroke_text(Vec2f position, Vec2f size, const char* text) const;
     void clear(const Vec4f &color);
 

@@ -4,42 +4,34 @@
 #include "../assets.hpp"
 
 class BrushTool : public Tool {
+protected:
     DrawingContext ctx {};
     UIFillStyleColor brush_fill_style {{0, 0, 0, 0}};
     UIStrokeStyleColor brush_stroke_style {{0, 0, 0, 0}};
+    UIFillStyleTexture texture_copy_style {};
+    UIFillStyleTexture brush_apply_style {};
     Vec2f old_position;
+    DrawingTargetTexture* map_texture;
+    DrawingTargetTexture* buffer_texture;
+
+    static void preserve_color(sf::BlendMode& mode);
+    static void override_color(sf::BlendMode& mode);
+    static void blend_color(sf::BlendMode& mode);
+    static void override_alpha(sf::BlendMode& mode);
+    static void multiply_alpha(sf::BlendMode& mode);
+    static void blend_alpha(sf::BlendMode& mode);
+
 public:
-    BrushTool(): Tool() {}
+    BrushTool();
 
-    void on_mouse_down(Vec2f position) override {
-        Tool::on_mouse_down(position);
-        old_position = position;
-        draw(position);
-    }
+    void on_mouse_down(Vec2f position) override;
+    void on_mouse_move(Vec2f position) override;
 
-    void on_mouse_move(Vec2f position) override {
-        Tool::on_mouse_move(position);
-        if(!is_mouse_down) return;
-        draw(position);
-        old_position = position;
-    }
+    void on_become_active() override;
+    void on_resign_active() override;
 
-    void draw(Vec2f position) {
-        auto layer = manager->get_canvas()->get_active_layer();
-        if(!layer) return;
-        auto texture = layer->get_texture();
+    void draw(Vec2f position);
+    virtual void prepare_to_draw();
 
-        brush_fill_style.set_color(manager->get_color());
-        brush_stroke_style.set_color(manager->get_color());
-
-        ctx.set_fill_style(&brush_fill_style);
-        ctx.set_stroke_style(&brush_stroke_style);
-
-        ctx.push_render_target(texture);
-        ctx.fill_circle(position, 3);
-        ctx.stroke_line(old_position, position, 6);
-        ctx.pop_render_target();
-
-        layer->set_needs_redraw();
-    }
+    virtual void setup_color_blending();
 };

@@ -50,6 +50,8 @@ class ColorPickerWindow: public PhotoshopWindow {
     void update_value_slider_gradient();
     void update_hue_saturation_view();
 
+    void call_callback();
+
 public:
     ColorPickerWindow(PhotoshopView* app, const Vec2f& position);;
 

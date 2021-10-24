@@ -9,6 +9,7 @@ class UIScreen;
 #include "../utils/vec4.hpp"
 #include "styles/fill_style.hpp"
 #include "../graphics/drawing_context.hpp"
+#include "../graphics/shapes/shape.hpp"
 #include <vector>
 
 extern const UIFillStyleColor UIViewWhiteBackground;
@@ -21,38 +22,57 @@ protected:
     Vec2f size;
     Matrix3f transform {};
     Matrix3f inv_transform {};
-    const UIFillStyle* fill_style = nullptr;
+
     std::vector<UIView*> children {};
     UIView* current_hovered_child = nullptr;
     UIView* current_clicked_child = nullptr;
     UIView* parent = nullptr;
 
+    DrawingTargetTexture* texture = nullptr;
+    Shape* shape = nullptr;
+
+    const UIFillStyle* fill_style = nullptr;
+
+    /* Preferences */
+    bool masks_to_bounds = false;
+    bool interactions_enabled = true;
+    bool active = false;
+
+    /* State flags */
+    bool needs_texture_decision = true;
     bool needs_children_layout = true;
     bool needs_layout = true;
+    bool texture_valid = false;
     bool needs_redraw = true;
     bool hidden = false;
     bool hovered = false;
     bool clicked = false;
-    bool active = false;
-    bool interactions_enabled = true;
 
     void transform_context(DrawingContext* ctx);
     bool update_hover(UIView* child, const Vec2f& internal_point);
+    bool update_hovered_child(float x, float y);
+
+    void decide_whether_to_draw_to_texture();
+    void set_draw_to_texture(bool use_texture);
+    void recreate_texture();
+
+    void draw_self_and_children(DrawingContext* ctx);
+    virtual void draw(DrawingContext* ctx);
+    void draw_in_texture(DrawingContext* ctx);
+    void draw_without_texture(DrawingContext* ctx);
+    void draw_self_texture_shaped(DrawingContext* ctx);
 public:
 
     explicit UIView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): position(position), size(size) {}
     virtual ~UIView();
 
     virtual void prepare_to_draw(DrawingContext* ctx);
-    virtual void draw(DrawingContext* ctx);
     virtual void on_mouse_in(MouseInEvent *event);
     virtual void on_mouse_move(MouseMoveEvent *event);
     virtual void on_mouse_out(MouseOutEvent *event);
     virtual void on_mouse_down(MouseDownEvent *event);
     virtual void on_mouse_up(MouseUpEvent *event);
     virtual void on_mouse_click(MouseClickEvent *event);
-
-    bool update_hovered_child(float x, float y);
 
     const Vec2f& get_position() { return position; }
     virtual void set_position(const Vec2f& pos) { position = pos; set_needs_redraw(); }
@@ -71,10 +91,14 @@ public:
     bool get_needs_children_layout() const { return needs_children_layout; };
 
     void set_needs_redraw();
+    void set_needs_texture_update();
     bool get_needs_redraw() const;
 
     bool get_hidden() const { return hidden; }
     void set_hidden(bool p_hidden) { hidden = p_hidden; }
+
+    Shape* get_shape() const;
+    void set_shape(Shape* p_shape);
 
     const UIFillStyle* get_fill_style() { return fill_style; }
     virtual void set_fill_style(const UIFillStyle* new_fill_style);

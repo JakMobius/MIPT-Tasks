@@ -116,13 +116,35 @@ void DrawingContext::fill_rect(const Vec2f& position, const Vec2f& size) const {
     else target->get_target()->draw(quad, 4, sf::Quads);
 }
 
+void DrawingContext::fill_shape(const std::vector<Vertex> &shape, PrimitiveType primitive_type) {
+    if(!fill_style) return;
+
+    vertex_buffer.clear();
+
+    for(int i = 0; i < shape.size(); i++) {
+        Vec2f position = shape[i].position;
+        position *= transform;
+        vertex_buffer.push_back(fill_style->vertex(position, shape[i].shape_position));
+    }
+
+    auto type = (sf::PrimitiveType) primitive_type;
+
+    auto render_states = fill_style->get_render_states();
+    if(render_states) target->get_target()->draw(&vertex_buffer[0], shape.size(), type, *render_states);
+    else target->get_target()->draw(&vertex_buffer[0], shape.size(), type);
+}
+
 DrawingTarget* DrawingContext::get_render_target() {
     return target;
 }
 
 void DrawingContext::pop_render_target() {
-    target = target_stack[target_stack.size() - 1];
     target_stack.pop_back();
+    if(!target_stack.empty()) {
+        target = target_stack[target_stack.size() - 1];
+    } else {
+        target = nullptr;
+    }
 }
 
 void DrawingContext::push_render_target(DrawingTarget* p_target) {

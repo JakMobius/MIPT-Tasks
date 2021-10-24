@@ -33,9 +33,10 @@ PhotoshopView::PhotoshopView(App* app, const Vec2f &position, const Vec2f &size)
     add_window(new ToolSelectWindow(this, manager, {510, 100}));
 }
 
-void PhotoshopView::open_colorpicker(const std::function<void(const Vec4f &)> &callback) {
+void PhotoshopView::open_colorpicker(const std::function<void(const Vec4f &)> &callback, const Vec4f* current_color = nullptr) {
     if(!color_piсker) create_color_picker();
     activate_window(color_piсker);
+    if(current_color) color_piсker->set_color(*current_color);
     color_piсker->set_callback(callback);
 }
 

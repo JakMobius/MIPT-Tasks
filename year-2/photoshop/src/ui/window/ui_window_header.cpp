@@ -5,6 +5,7 @@
 #include "ui_window_header.hpp"
 #include "./ui_window.hpp"
 #include "../../utils/dispatch_queue.hpp"
+#include "../ui_shadow_view.hpp"
 
 void UIWindowHeaderView::on_mouse_move(MouseMoveEvent* event) {
     UIStackView::on_mouse_move(event);
@@ -33,7 +34,7 @@ void UIWindowHeaderView::setup_buttons_container() {
     buttons_container->set_insets({5});
 
     buttons_container->append_child(close_button);
-    buttons_container->append_child(fullscreen_button);
+//    buttons_container->append_child(fullscreen_button);
 
     close_button->set_callback([this]() {
         // Close window asynchronously, so

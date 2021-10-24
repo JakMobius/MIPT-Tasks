@@ -8,7 +8,7 @@
 
 class HueSaturationSelectView : public UIView {
     DrawableTexture* hue_saturation_map = nullptr;
-    UIFillStyleTexture fill_style {};
+    UIFillStyleTexture texture_fill_style {};
     UIFillStyleTexture cursor_style {};
     UIView* selector = nullptr;
     std::function<void(float, float)> callback;
@@ -23,8 +23,12 @@ public:
         selector->set_fill_style(&cursor_style);
         selector->set_interactions_enabled(false);
         create_texture();
-        set_fill_style(&fill_style);
         append_child(selector);
+    }
+
+    void layout() override {
+        UIView::layout();
+        if(!fill_style) set_fill_style(&texture_fill_style);
     }
 
     void on_mouse_down(MouseDownEvent *event) override;

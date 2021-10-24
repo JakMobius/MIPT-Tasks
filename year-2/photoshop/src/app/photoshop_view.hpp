@@ -29,6 +29,6 @@ class PhotoshopView : public UIWindowContainer {
 public:
     explicit PhotoshopView(App* app, const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0});
 
-    void open_colorpicker(const std::function<void(const Vec4f&)>& callback);
+    void open_colorpicker(const std::function<void(const Vec4f &)> &callback, const Vec4f* current_color);
     void on_color_picker_closed();
 };

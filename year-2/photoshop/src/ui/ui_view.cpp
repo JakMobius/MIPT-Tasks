@@ -8,23 +8,58 @@ void UIView::transform_context(DrawingContext* ctx) {
     ctx->transform = transform.multiplied(ctx->transform);
 }
 
-void UIView::prepare_to_draw(DrawingContext* ctx) {
-    if(get_hidden()) return;
-
-    Matrix3f saved_transform = ctx->transform;
-    transform_context(ctx);
-
-    layout_if_needed();
+void UIView::draw_self_and_children(DrawingContext* ctx) {
     draw(ctx);
 
     for(int i = 0; i < children.size(); i++) {
         auto* child = children[i];
         child->prepare_to_draw(ctx);
     }
+}
 
-    needs_redraw = false;
+void UIView::draw_self_texture_shaped(DrawingContext* ctx) {
+    if(shape) {
+        shape->draw(ctx);
+    } else {
+        ctx->fill_rect({}, size);
+    }
+}
 
+void UIView::draw_in_texture(DrawingContext* ctx) {
+    Matrix3f saved_transform = ctx->transform;
+
+    if(!texture_valid) {
+        ctx->push_render_target(texture);
+        ctx->clear({0, 0, 0, 0});
+        ctx->transform = {};
+        draw_self_and_children(ctx);
+        ctx->pop_render_target();
+        texture_valid = true;
+        ctx->transform = saved_transform;
+    }
+
+    transform_context(ctx);
+    UIFillStyleTexture style { texture };
+    ctx->set_fill_style(&style);
+    draw_self_texture_shaped(ctx);
     ctx->transform = saved_transform;
+}
+
+void UIView::draw_without_texture(DrawingContext* ctx) {
+    Matrix3f saved_transform = ctx->transform;
+    transform_context(ctx);
+    draw_self_and_children(ctx);
+    needs_redraw = false;
+    ctx->transform = saved_transform;
+}
+
+void UIView::prepare_to_draw(DrawingContext* ctx) {
+    if(get_hidden()) return;
+    if(needs_texture_decision) decide_whether_to_draw_to_texture();
+
+    layout_if_needed();
+    if(texture) draw_in_texture(ctx);
+    else draw_without_texture(ctx);
 }
 
 void UIView::draw(DrawingContext* ctx) {
@@ -50,7 +85,7 @@ void UIView::on_mouse_in(MouseInEvent* event) {
 }
 
 UIView* UIView::test(const Vec2f& point, Vec2f* internal_point) const {
-    for(int i = children.size() - 1; i >= 0; i--) {
+    for(int i = (int)children.size() - 1; i >= 0; i--) {
         UIView* child = children[i];
         if(!child->get_interactions_enabled()) continue;
         if(child->get_hidden()) continue;
@@ -221,9 +256,16 @@ void UIView::set_needs_layout() {
     if(parent) parent->set_needs_children_layout();
 }
 
+void UIView::set_needs_texture_update() {
+    texture_valid = false;
+}
+
 void UIView::set_needs_redraw() {
     needs_redraw = true;
-    if(parent) parent->set_needs_redraw();
+    if(parent) {
+        parent->set_needs_texture_update();
+        parent->set_needs_redraw();
+    }
 }
 
 bool UIView::get_needs_redraw() const {
@@ -244,6 +286,7 @@ void UIView::set_transform(const Matrix3f &new_transform) {
 void UIView::set_size(const Vec2f &new_size) {
     size = new_size;
     set_needs_layout();
+    if(texture) recreate_texture();
 }
 
 UIScreen* UIView::get_screen() {
@@ -288,6 +331,7 @@ UIView::~UIView() {
     for(int i = 0; i < children.size(); i++) {
         delete children[i];
     }
+    if(texture) delete texture;
 }
 
 void UIView::set_active(bool p_is_active) {
@@ -295,4 +339,33 @@ void UIView::set_active(bool p_is_active) {
     for(int i = 0; i < children.size(); i++) {
         children[i]->set_active(p_is_active);
     }
+}
+
+void UIView::decide_whether_to_draw_to_texture() {
+    needs_texture_decision = false;
+    set_draw_to_texture(shape || masks_to_bounds);
+}
+
+void UIView::set_draw_to_texture(bool use_texture) {
+    if(use_texture && !texture) {
+        recreate_texture();
+        texture_valid = false;
+    } else if(!use_texture && texture) {
+        delete texture;
+        texture = nullptr;
+    }
+}
+
+void UIView::recreate_texture() {
+    delete texture;
+    texture = new DrawingTargetTexture((Vec2i)size);
+}
+
+Shape* UIView::get_shape() const {
+    return shape;
+}
+
+void UIView::set_shape(Shape* p_shape) {
+    shape = p_shape;
+    needs_texture_decision = true;
 }

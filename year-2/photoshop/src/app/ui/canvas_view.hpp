@@ -26,12 +26,15 @@ class CanvasView : public UIView {
     UIFillStyleTexture imaged_background { Assets.canvas_background_texture };
 
 public:
-    explicit CanvasView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): UIView(position, size) {
-        set_fill_style(&imaged_background);
-    }
+    explicit CanvasView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): UIView(position, size) {}
     ~CanvasView() override {
         canvas->get_event_emitter()->remove_listener(&canvas_view_update_listener);
         delete canvas;
+    }
+
+    void layout() override {
+        UIView::layout();
+        if(!fill_style) set_fill_style(&imaged_background);
     }
 
     void create_canvas(Vec2i size) {

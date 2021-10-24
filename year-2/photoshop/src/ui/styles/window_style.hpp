@@ -2,13 +2,31 @@
 
 #include "../../utils/vec4.hpp"
 #include "./button_style.hpp"
+#include "../../app/assets.hpp"
 
 struct UIDefaultCloseButtonStyle : public UIButtonStyle {
     static UIDefaultCloseButtonStyle* instance;
 
-    const UIFillStyle* get_hovered_color() const override { static UIFillStyleColor color({1.0, 0.5, 0.5, 1}); return &color; }
-    const UIFillStyle* get_idle_color()    const override { static UIFillStyleColor color({1.0, 0.3, 0.3, 1}); return &color; }
-    const UIFillStyle* get_clicked_color() const override { static UIFillStyleColor color({0.6, 0.2, 0.2, 1}); return &color; }
+    const UIFillStyle* get_hovered_color() const override {
+        static UIFillStyleTexture texture {};
+        if(!texture.get_texture()) texture.set_texture(Assets.window_close_hover_icon);
+        return &texture;
+    }
+    const UIFillStyle* get_inactive_color()    const override {
+        static UIFillStyleTexture texture {};
+        if(!texture.get_texture()) texture.set_texture(Assets.window_close_inactive_icon);
+        return &texture;
+    }
+    const UIFillStyle* get_idle_color()    const override {
+        static UIFillStyleTexture texture {};
+        if(!texture.get_texture()) texture.set_texture(Assets.window_close_icon);
+        return &texture;
+    }
+    const UIFillStyle* get_clicked_color() const override {
+        static UIFillStyleTexture texture {};
+        if(!texture.get_texture()) texture.set_texture(Assets.window_close_clicked_icon);
+        return &texture;
+    }
 };
 
 struct UIDefaultFullscreenButtonStyle : public UIButtonStyle {

@@ -4,6 +4,7 @@
 
 #include "tool_select_window.hpp"
 #include "../app.hpp"
+#include "color_select_button.hpp"
 
 void ToolSelectWindow::create_tool_buttons() {
 
@@ -25,20 +26,20 @@ void ToolSelectWindow::create_tool_buttons() {
         });
     }
 
-    auto* color_button = new UIButton({}, {100, 50});
-    color_button->set_callback([this]() {
-        emit_color_picker();
-    });
-
-    stack->append_child(color_button);
+    color_select_button = new ColorSelectButton();
+    color_select_button->set_callback([this]() { emit_color_picker(); });
+    color_select_button->set_presented_color(manager->get_color());
+    stack->append_child(color_select_button);
 }
 
 ToolSelectWindow::ToolSelectWindow(PhotoshopView* app, ToolManager* manager, const Vec2f &position) : PhotoshopWindow(app, position, {}, ""), manager(manager) {
-    stack = new UIStackView(UIStackViewDirection::y);
+    stack = new UIStackView(UIStackViewDirection::x);
     stack->set_primary_alignment(UIStackViewPrimaryAlignment::leading);
     stack->set_item_spacing(7);
     stack->set_insets({7});
     stack->set_fitting({});
+
+    manager->get_color_event_emitter()->add_listener(&color_listener);
 
     stack->set_fill_style(&UIViewWhiteBackground);
 
@@ -50,4 +51,21 @@ void ToolSelectWindow::layout() {
     stack->layout_if_needed();
     get_content_view()->set_size(stack->get_size());
     UIWindow::layout();
+}
+
+void ToolSelectWindow::on_manager_color_updated() {
+    color_select_button->set_presented_color(manager->get_color());
+}
+
+void ToolSelectWindow::emit_color_picker() {
+    auto container = get_container_view();
+    if(!container) return;
+
+    get_app()->open_colorpicker([this](const Vec4f& color) {
+        manager->set_color(color);
+    }, &manager->get_color());
+}
+
+void ToolManagerColorListener::operator()(ToolManagerColorEvent* event) {
+    window->on_manager_color_updated();
 }

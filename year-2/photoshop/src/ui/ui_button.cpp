@@ -44,16 +44,17 @@ void UIButton::set_active(bool p_active) {
 }
 
 void UIButton::layout() {
+    if(!style) set_style(UIButtonStyle::instance);
     label->set_size(get_size());
 }
 
 UIButton::UIButton(const Vec2f &position, const Vec2f &size) : UIView(position, size) {
     append_child(label);
-    set_style(UIButtonStyle::instance);
 }
 
 void UIButton::update_state() {
-    if(!active) set_fill_style(style->get_inactive_color());
+    if(!style) set_fill_style(nullptr);
+    else if(!active) set_fill_style(style->get_inactive_color());
     else if(hovered) set_fill_style(style->get_hovered_color());
     else if(clicked) set_fill_style(style->get_clicked_color());
     else if(selected) set_fill_style(style->get_selected_color());

@@ -87,6 +87,8 @@ void ColorPickerWindow::set_color(const Vec4f &color) {
     update_value_slider();
     update_rgba_sliders();
     update_hue_saturation_view();
+
+    call_callback();
 }
 
 void ColorPickerWindow::update_rgba_sliders() {
@@ -140,6 +142,7 @@ void ColorPickerWindow::on_value_slider_updated(float value) {
     current_rgb = rgb_from_hsv(current_hsv);
     update_rgba_sliders();
 
+    call_callback();
     callbacks_ignored = false;
 }
 
@@ -155,6 +158,7 @@ void ColorPickerWindow::on_rgb_slider_updated(int index, float value) {
         update_hue_saturation_view();
     } else current_alpha = value;
 
+    call_callback();
     callbacks_ignored = false;
 }
 
@@ -168,6 +172,7 @@ void ColorPickerWindow::on_hue_saturation_update(float hue, float saturation) {
     update_rgba_sliders();
     update_value_slider_gradient();
 
+    call_callback();
     callbacks_ignored = false;
 }
 
@@ -175,5 +180,13 @@ void ColorPickerWindow::layout() {
     container->layout_if_needed();
     get_content_view()->set_size(container->get_size());
     UIWindow::layout();
+}
+
+void ColorPickerWindow::call_callback() {
+    if(callback) {
+        Vec4f color(current_rgb.content);
+        color.set_w(current_alpha);
+        callback(color);
+    }
 }
 

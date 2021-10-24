@@ -14,6 +14,7 @@ public:
         target = new sf::RenderTexture();
         ((sf::RenderTexture*)target)->create(size[0], size[1]);
     }
+    ~DrawingTargetTexture() { delete target; }
 
     void clear(const Vec4f& color) {
         ((sf::RenderTexture*)target)->clear(color.to_sf_color());

@@ -8,9 +8,7 @@ void UISlider::on_mouse_move(MouseMoveEvent* event) {
     }
 }
 
-UISlider::UISlider(const Vec2f& position, const Vec2f& size): UIView(position, {}) {
-    set_style(UISliderStyle::instance);
-    set_size(size);
+UISlider::UISlider(const Vec2f& position, const Vec2f& size): UIView(position, size) {
     append_child(bar);
     append_child(button);
 }
@@ -50,10 +48,12 @@ void UISlider::set_button_position(float x) {
 
 void UISlider::layout() {
     UIView::layout();
+    if(!style) set_style(UISliderStyle::instance);
     bar->set_size({size[0], bar->get_size()[1]});
     bar->set_position({0, button->get_size()[1] / 2 - style->get_bar_height() / 2});
     float position_x = (size[0] - button->get_size()[0]) * fraction;
     button->set_position({position_x, 0});
+    set_size(size);
 }
 
 void UISlider::set_style(const UISliderStyle* p_style) {

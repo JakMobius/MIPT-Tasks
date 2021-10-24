@@ -7,7 +7,7 @@ class UIWindowContainer;
 
 class UIWindowContainer : public UIView {
 private:
-
+    UIFillStyleColor background_style {{ 0.2, 0.2, 0.2, 1 }};
     UIWindow* active_window = nullptr;
     std::vector<UIWindow*> windows {};
 
@@ -22,4 +22,5 @@ public:
     void remove_window(UIWindow* window);
     int get_window_index(UIView* maybe_window);
     void on_mouse_down(MouseDownEvent *event) override;
+    void layout() override;
 };

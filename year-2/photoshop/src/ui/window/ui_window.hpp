@@ -8,31 +8,36 @@ class UIWindow;
 #include "../ui_stack.hpp"
 #include "../styles/window_style.hpp"
 #include "../../events/event_emitter.hpp"
+#include "../../graphics/shapes/rounded_rect_shape.hpp"
 
 struct WindowCloseEvent {
     UIWindow* window;
 };
 
-class UIWindow : public UIStackView, public Styled<UIWindowStyle> {
+class UIWindow : public UIView, public Styled<UIWindowStyle> {
 
     UIWindowContainer* container = nullptr;
     UIWindowHeaderView* header_view = nullptr;
+    UIView* inner_view = new UIStackView(UIStackViewDirection::y);
     UIView* content_view = new UIView();
+    RoundedRectShape* inner_shape = nullptr;
 
     EventEmitter<WindowCloseEvent> close_event_emitter {};
 
-    float header_height = 40;
+    float header_height = 42;
 
     void update_style();
 
 public:
     explicit UIWindow(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}, const char* title = nullptr);
-
+    ~UIWindow() { delete inner_shape; }
     void layout() override;
 
     void set_title(const char* string);
     void set_style(const UIWindowStyle* p_style) override;
     void set_active(bool p_is_active) override;
+
+    void set_size(const Vec2f &new_size) override;
 
     UIView* get_content_view() { return content_view; }
 

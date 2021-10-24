@@ -8,9 +8,9 @@ void UISlider::on_mouse_move(MouseMoveEvent* event) {
     }
 }
 
-UISlider::UISlider(const Vec2f& position, const Vec2f& size): UIView(position, {size[0], BUTTON_HEIGHT}) {
+UISlider::UISlider(const Vec2f& position, const Vec2f& size): UIView(position, {}) {
     set_style(UISliderStyle::instance);
-    button->set_size({BUTTON_WIDTH, BUTTON_HEIGHT});
+    set_size(size);
     append_child(bar);
     append_child(button);
 }
@@ -27,31 +27,32 @@ void UISlider::set_fraction(float new_fraction) {
 void UISlider::on_mouse_down(MouseDownEvent* event) {
     UIView::on_mouse_down(event);
     if(current_clicked_child != button) {
-        set_button_position(event->x - BUTTON_WIDTH / 2);
-        mouse_click_point = BUTTON_WIDTH / 2;
+        float half_buffon_width = button->get_size()[0] / 2;
+        set_button_position(event->x - half_buffon_width);
+        mouse_click_point = half_buffon_width;
     } else {
         mouse_click_point = event->x - button->get_position()[0];
     }
 }
 
 void UISlider::set_button_position(float x) {
-    float max_right = size[0] - BUTTON_WIDTH;
+    float available_width = size[0] - button->get_size()[0];
 
     Vec2f button_position = button->get_position();
     button_position.set_x(x);
     if(button_position[0] < 0) button_position.set_x(0);
-    if(button_position[0] > max_right) button_position.set_x(max_right);
+    if(button_position[0] > available_width) button_position.set_x(available_width);
     button->set_position(button_position);
 
-    fraction = button_position[0] / (size[0] - BUTTON_WIDTH);
+    fraction = button_position[0] / available_width;
     if(callback) callback(fraction);
 }
 
 void UISlider::layout() {
     UIView::layout();
-    bar->set_position({0, BUTTON_HEIGHT / 2 - BAR_HEIGHT / 2});
-    bar->set_size({size[0], BAR_HEIGHT});
-    float position_x = (size[0] - BUTTON_WIDTH) * fraction;
+    bar->set_size({size[0], bar->get_size()[1]});
+    bar->set_position({0, button->get_size()[1] / 2 - style->get_bar_height() / 2});
+    float position_x = (size[0] - button->get_size()[0]) * fraction;
     button->set_position({position_x, 0});
 }
 
@@ -59,9 +60,12 @@ void UISlider::set_style(const UISliderStyle* p_style) {
     Styled::set_style(p_style);
     bar->set_fill_style(style->get_bar_color());
     button->set_fill_style(style->get_button_color());
+    button->set_size(style->get_button_size());
+    set_size(size);
+    bar->set_size({size[0], style->get_bar_height()});
 }
 
 void UISlider::set_size(const Vec2f &new_size) {
-    Vec2f real_size = {new_size[0], BUTTON_HEIGHT};
+    Vec2f real_size = {new_size[0], button->get_size()[1]};
     UIView::set_size(real_size);
 }

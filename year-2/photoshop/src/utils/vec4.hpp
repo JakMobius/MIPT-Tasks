@@ -62,6 +62,7 @@ struct Vec4 {
     void set_y(T x) { content[1] = x; }
     void set_z(T x) { content[2] = x; }
     void set_w(T x) { content[3] = x; }
+    void set(int i, T x) { content[i] = x; }
 
     T operator[](const int i) const { return content[i]; }
 

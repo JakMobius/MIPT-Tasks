@@ -14,7 +14,7 @@ void HueSaturationSelectView::create_texture() {
             float saturation = 1 - float(y) / float(size[0]);
             float value = 1;
 
-            Vec3f color = rgb_from_hsv(hue, saturation, value);
+            Vec3f color = rgb_from_hsv({ hue, saturation, value });
             rgba_array[texel++] = (char)(color[0] * 255);
             rgba_array[texel++] = (char)(color[1] * 255);
             rgba_array[texel++] = (char)(color[2] * 255);
@@ -46,6 +46,10 @@ void HueSaturationSelectView::on_mouse_move(MouseMoveEvent* event) {
 
 void HueSaturationSelectView::handle_mouse(Vec2f position) {
     position /= get_size();
+    if(position[0] < 0) position.set_x(0);
+    if(position[1] < 0) position.set_y(0);
+    if(position[0] > 1) position.set_x(1);
+    if(position[1] > 1) position.set_y(1);
     set_value(position[0] * 360, position[1]);
 }
 

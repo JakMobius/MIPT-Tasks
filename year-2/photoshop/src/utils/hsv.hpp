@@ -2,5 +2,5 @@
 
 #include "vec3.hpp"
 
-Vec3f rgb_from_hsv(float hue, float saturation, float value);
-Vec3f hsv_from_rgb(float red, float green, float blue);
+Vec3f rgb_from_hsv(const Vec3f& hsv);
+Vec3f hsv_from_rgb(const Vec3f& rgb);

@@ -8,6 +8,6 @@ void UIText::draw(DrawingContext* ctx) {
     ctx->set_text_color(text_color);
 
     if(str) {
-        ctx->stroke_text(size * 0.5, str);
+        ctx->stroke_text({}, size, str);
     }
 }

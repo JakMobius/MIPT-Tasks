@@ -9,7 +9,11 @@
 // hue: 0 - 360
 // saturation: 0 - 1
 // value: 0 - 1
-Vec3f rgb_from_hsv(float hue, float saturation, float value) {
+Vec3f rgb_from_hsv(const Vec3f& hsv) {
+    float hue = hsv[0];
+    float saturation = hsv[1];
+    float value = hsv[2];
+
     if(hue > 360 || hue < 0 || saturation > 1 || saturation < 0 || value > 1 || value < 0) {
         return {0, 0, 0};
     }
@@ -42,7 +46,11 @@ static float max3(float a, float b, float c) {
     return c;
 }
 
-Vec3f hsv_from_rgb(float red, float green, float blue) {
+Vec3f hsv_from_rgb(const Vec3f& rgb) {
+    float red = rgb[0];
+    float green = rgb[1];
+    float blue = rgb[2];
+
     Vec3f out {};
 
     float min = min3( red, green, blue );
@@ -50,11 +58,6 @@ Vec3f hsv_from_rgb(float red, float green, float blue) {
 
     out.set_z(max);
     float delta = max - min;
-    if(delta < FLOAT_EPS) {
-        out.set_x(0);
-        out.set_y(0);
-        return out;
-    }
     if(max > 0) {
         out.set_y(delta / max);
     } else {
@@ -63,7 +66,8 @@ Vec3f hsv_from_rgb(float red, float green, float blue) {
         return out;
     }
 
-    if(red >= max) out.set_x((green - blue) / delta);
+    if(delta <= FLOAT_EPS) out.set_x(0);
+    else if(red >= max) out.set_x((green - blue) / delta);
     else if(green >= max) out.set_x(2.f + (blue - red) / delta);
     else out.set_x(4.f + (red - green) / delta);
 

@@ -65,7 +65,7 @@ void DrawingContext::fill_circle(const Vec2f& center, float radius) {
     else target->get_target()->draw(&vertex_buffer[0], vertex_buffer.size(), sf::TriangleFan);
 }
 
-void DrawingContext::stroke_text(Vec2f position, const char* text) const {
+void DrawingContext::stroke_text(Vec2f position, Vec2f size, const char* text) const {
     position *= this->transform;
 
     sf::Text sfText;
@@ -74,19 +74,17 @@ void DrawingContext::stroke_text(Vec2f position, const char* text) const {
     sfText.setFillColor(text_color);
     sfText.setFont(*font);
 
-    if(hAlignment != HTextAlignmentRight) {
-        float width = sfText.getLocalBounds().width;
+    auto bounds = sfText.getLocalBounds();
+    float height = bounds.height;
+    float width = bounds.width;
 
-        if(hAlignment == HTextAlignmentCenter) position.set_x(position[0] - width / 2);
-        else position.set_x(position[0] - width);
-    }
+    if(hAlignment == HTextAlignmentCenter) position.set_x(position[0] + size[0] / 2 - width / 2);
+    else if(hAlignment == HTextAlignmentLeft) position.set_x(position[0]);
+    else position.set_x(position[0] + size[0] - width);
 
-    if(vAlignment != VTextAlignmentBottom) {
-        float height = sfText.getLocalBounds().height;
-
-        if(vAlignment == VTextAlignmentCenter) position.set_y(position[1] - height / 2);
-        else position.set_y(position[1] - height);
-    }
+    if(vAlignment == VTextAlignmentCenter) position.set_y(position[1] + size[1] / 2 - height / 2);
+    else if(vAlignment == VTextAlignmentTop) position.set_y(position[1]);
+    else position.set_y(position[1] + size[1] - height);
 
     sfText.setPosition({position[0], position[1]});
 

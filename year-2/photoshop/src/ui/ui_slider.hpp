@@ -7,6 +7,7 @@
 typedef std::function<void(float)> ui_slider_callback;
 
 class UISlider : public UIView, public Styled<UISliderStyle> {
+protected:
     UIView* bar = new UIView();
     UIView* button = new UIView();
     float fraction = 0.5;
@@ -28,10 +29,6 @@ public:
     float get_fraction() const { return fraction; }
     ui_slider_callback get_callback() { return callback; }
     void set_callback(ui_slider_callback p_callback) { callback = p_callback; }
-
-    constexpr const static float BUTTON_WIDTH = 40;
-    constexpr const static float BUTTON_HEIGHT = 40;
-    constexpr const static float BAR_HEIGHT = 10;
 
     void set_fraction(float fraction);
     void set_style(const UISliderStyle* p_style) override;

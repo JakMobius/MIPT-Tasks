@@ -6,6 +6,7 @@ class PhotoshopView;
 #include "../ui/ui_view.hpp"
 #include "../ui/window/ui_window.hpp"
 #include "../ui/window/ui_window_container.hpp"
+#include "tools/tool_manager.hpp"
 #include <functional>
 
 class ColorPickerWindow;
@@ -23,6 +24,8 @@ class PhotoshopView : public UIWindowContainer {
     ColorPickerCloseListener color_picker_close_listener { this };
     ColorPickerWindow* color_piсker = nullptr;
     App* app;
+    ToolManager* manager;
+    void create_canvas(const Vec2f &position, const Vec2f &size);
 
     void create_color_picker();
 

@@ -4,7 +4,9 @@
 
 #include "hue_saturation_select_view.hpp"
 
-void HueSaturationSelectView::create_texture() {
+void HueSaturationSelectView::create_texture(
+
+        ) {
     auto size = (Vec2i)get_size();
     int pixels = size[0] * size[1];
     auto* rgba_array = new unsigned char[pixels * 4];
@@ -21,6 +23,10 @@ void HueSaturationSelectView::create_texture() {
             rgba_array[texel++] = 255;
         }
     }
+
+//    if(texture_fill_style.get_texture()) {
+//        delete texture_fill_style.get_texture();
+//    }
 
     hue_saturation_map = new DrawableTexture((Vec2i) get_size(), rgba_array);
     delete[] rgba_array;
@@ -52,6 +58,11 @@ void HueSaturationSelectView::handle_mouse(Vec2f position) {
     if(position[1] > 1) position.set_y(1);
     set_value(position[0] * 360, position[1]);
 }
+
+void HueSaturationSelectView::set_hue(float hue) {
+    create_texture();
+}
+
 
 void HueSaturationSelectView::set_value(float hue, float saturation) {
     Vec2f position { hue / 360, saturation };

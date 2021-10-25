@@ -12,8 +12,8 @@ class UIWindowHeaderView : public UIStackView {
     UIStackView* buttons_container = new UIStackView(UIStackViewDirection::x);
     UIText* header = new UIText();
     UIView* spacer = new UIView();
-    UIButton* close_button = new UIButton({}, {32, 32});
-    UIButton* fullscreen_button = new UIButton({}, {32, 32});
+    UIButton* close_button = new UIButton({}, {24, 24});
+    UIButton* fullscreen_button = new UIButton({}, {24, 24});
     UIWindow* window = nullptr;
     Vec2f drag_start_position {};
     const UIWindowStyle* style;

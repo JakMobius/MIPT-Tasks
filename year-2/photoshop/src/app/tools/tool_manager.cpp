@@ -27,3 +27,8 @@ void ToolManager::on_mouse_move(Vec2f position) {
 void ToolManager::on_mouse_up() {
     if(active_tool) active_tool->on_mouse_up();
 }
+
+void ToolManager::set_active_canvas(Canvas* p_canvas) {
+    canvas = p_canvas;
+    if(active_tool) active_tool->on_layer_change();
+}

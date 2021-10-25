@@ -17,6 +17,7 @@ public:
     void set_manager(ToolManager* p_manager) { manager = p_manager; };
     ToolManager* get_manager() { return manager; };
 
+    virtual void on_layer_change() {}
     virtual void on_mouse_down(Vec2f position) { is_mouse_down = true; }
     virtual void on_mouse_move(Vec2f position) {}
     virtual void on_mouse_up() { is_mouse_down = false; }

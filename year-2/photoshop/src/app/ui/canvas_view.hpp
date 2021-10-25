@@ -26,7 +26,8 @@ class CanvasView : public UIView {
     UIFillStyleTexture imaged_background { Assets.canvas_background_texture };
 
 public:
-    explicit CanvasView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): UIView(position, size) {}
+    explicit CanvasView(ToolManager* manager, const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}):
+        UIView(position, size), tool_manager(manager) {}
     ~CanvasView() override {
         canvas->get_event_emitter()->remove_listener(&canvas_view_update_listener);
         delete canvas;
@@ -40,7 +41,6 @@ public:
     void create_canvas(Vec2i size) {
         canvas = new Canvas(size);
         canvas->get_event_emitter()->add_listener(&canvas_view_update_listener);
-        tool_manager = new ToolManager(canvas);
     }
 
     void draw(DrawingContext* ctx) override {
@@ -50,6 +50,11 @@ public:
 
     void on_canvas_updated() {
         set_needs_redraw();
+    }
+
+    void set_active(bool p_is_active) override {
+        UIView::set_active(p_is_active);
+        tool_manager->set_active_canvas(canvas);
     }
 
     void on_mouse_down(MouseDownEvent* event) override {

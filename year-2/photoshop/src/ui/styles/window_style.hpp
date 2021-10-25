@@ -42,7 +42,8 @@ struct UIWindowStyle {
 
     virtual const UIButtonStyle* get_close_button_style()      const { return UIDefaultCloseButtonStyle::instance; };
     virtual const UIButtonStyle* get_fullscreen_button_style() const { return UIDefaultFullscreenButtonStyle::instance; };
-    virtual const UIFillStyle*   get_window_background_color()          const { static UIFillStyleColor color({1,   1,   1,   1}); return &color; };
-    virtual const UIFillStyle*   get_header_background_color()          const { static UIFillStyleColor color({0.3, 0.5, 0.3, 1}); return &color; };
-    virtual const UIFillStyle*   get_inactive_header_background_color() const { static UIFillStyleColor color({0.3, 0.3, 0.3, 1}); return &color; };
+    virtual const Vec4f          get_window_header_color()              const { return Vec4f {0.702,  0.69,  0.694,  1}; };
+    virtual const UIFillStyle*   get_window_background_color()          const { static UIFillStyleColor color({0.153,  0.125, 0.141,  1}); return &color; };
+    virtual const UIFillStyle*   get_header_background_color()          const { static UIFillStyleColor color({0.30,  0.30,  0.3,   1}); return &color; };
+    virtual const UIFillStyle*   get_inactive_header_background_color() const { static UIFillStyleColor color({0.235, 0.247, 0.254, 1}); return &color; };
 };

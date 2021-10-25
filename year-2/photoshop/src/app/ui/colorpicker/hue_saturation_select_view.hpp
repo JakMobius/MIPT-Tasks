@@ -37,4 +37,6 @@ public:
     void set_value(float hue, float saturation);
 
     void set_callback(const std::function<void(float, float)>& p_callback) { callback = p_callback; }
+
+    void set_hue(float hue);
 };

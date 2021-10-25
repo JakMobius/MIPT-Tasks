@@ -29,6 +29,7 @@ void ColorPickerWindow::add_rgba_slider(int index) {
     char* label_text = rgb_label_values + index * 4;
     strcpy(label_text, "0");
     text_label->set_text(label_text);
+    text_label->set_text_color({1, 1, 1, 1});
 
     stack->append_child(slider);
     stack->append_child(text_label);

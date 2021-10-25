@@ -11,8 +11,8 @@ class CanvasWindow : public PhotoshopWindow {
     CanvasView* canvas_view = nullptr;
 
 public:
-    explicit CanvasWindow(PhotoshopView* app, const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): PhotoshopWindow(app, position, size, "Canvas") {
-        canvas_view = new CanvasView({}, size);
+    explicit CanvasWindow(PhotoshopView* app, ToolManager* manager, const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): PhotoshopWindow(app, position, size, "Canvas") {
+        canvas_view = new CanvasView(manager, {}, size);
         get_content_view()->append_child(canvas_view);
     };
 

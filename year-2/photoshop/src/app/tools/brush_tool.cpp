@@ -37,7 +37,7 @@ void BrushTool::blend_alpha(sf::BlendMode &mode) {
 BrushTool::BrushTool() : Tool() {}
 
 void BrushTool::draw(Vec2f position) {
-    auto layer = manager->get_canvas()->get_active_layer();
+    auto layer = manager->get_active_canvas()->get_active_layer();
     if(!layer) return;
     auto texture = layer->get_texture();
 
@@ -65,8 +65,16 @@ void BrushTool::draw(Vec2f position) {
 void BrushTool::on_become_active() {
     Tool::on_become_active();
     setup_color_blending();
+    create_textures();
+}
 
-    auto size = manager->get_canvas()->get_active_layer()->get_size();
+void BrushTool::on_resign_active() {
+    Tool::on_resign_active();
+    delete_textures();
+}
+
+void BrushTool::create_textures() {
+    auto size = manager->get_active_canvas()->get_active_layer()->get_size();
 
     map_texture = new DrawingTargetTexture(size);
     buffer_texture = new DrawingTargetTexture(size);
@@ -74,9 +82,7 @@ void BrushTool::on_become_active() {
     brush_apply_style.set_texture(map_texture);
 }
 
-void BrushTool::on_resign_active() {
-    Tool::on_resign_active();
-
+void BrushTool::delete_textures() {
     brush_apply_style.set_texture(nullptr);
 
     delete map_texture;
@@ -89,7 +95,7 @@ void BrushTool::on_resign_active() {
 void BrushTool::on_mouse_down(Vec2f position) {
     Tool::on_mouse_down(position);
 
-    auto canvas_layer = manager->get_canvas()->get_active_layer();
+    auto canvas_layer = manager->get_active_canvas()->get_active_layer();
     if(!canvas_layer) return;
     auto canvas_texture = canvas_layer->get_texture();
     auto canvas_size = canvas_layer->get_size();
@@ -138,4 +144,10 @@ void BrushTool::setup_color_blending() {
     auto& apply_mode = brush_apply_style.get_render_states()->blendMode;
     blend_color(apply_mode);
     blend_alpha(apply_mode);
+}
+
+void BrushTool::on_layer_change() {
+    Tool::on_layer_change();
+    delete_textures();
+    create_textures();
 }

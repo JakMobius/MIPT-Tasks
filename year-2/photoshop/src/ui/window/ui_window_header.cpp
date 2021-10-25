@@ -54,6 +54,7 @@ void UIWindowHeaderView::update_style() {
     } else {
         set_fill_style(window->get_style()->get_inactive_header_background_color());
     }
+    header->set_text_color(window->get_style()->get_window_header_color());
     close_button->set_style(window->get_style()->get_close_button_style());
     fullscreen_button->set_style(window->get_style()->get_fullscreen_button_style());
 }
@@ -64,6 +65,8 @@ void UIWindowHeaderView::on_mouse_down(MouseDownEvent* event) {
 }
 
 void UIWindowHeaderView::layout() {
+    buttons_container->set_fitting({{}, 42});
+    buttons_container->set_insets({0, 7});
     buttons_container->layout_if_needed();
     spacer->set_size(buttons_container->get_size());
     UIStackView::layout();

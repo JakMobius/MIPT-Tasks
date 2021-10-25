@@ -7,13 +7,16 @@
 class GradientSliderStyle : public UISliderStyle {
     UIFillStyleGradient* gradient = new UIFillStyleGradient();
     UIFillStyleTexture* texture = new UIFillStyleTexture();
+    UIFillStyleColor* button_color = new UIFillStyleTexture(Assets.slider_bar_texture);
 public:
-    ~GradientSliderStyle() override { delete gradient; delete texture; }
+    ~GradientSliderStyle() override { delete gradient; delete texture; delete button_color; }
 
     UIFillStyleGradient* get_gradient() { return gradient; }
 
-    const UIFillStyle * get_bar_color() const override { return texture; }
-    float get_bar_height() const override { return 16; };
+    const UIFillStyle* get_button_color() const override { return button_color; }
+    const UIFillStyle* get_bar_color() const override { return texture; }
+    float get_bar_height() const override { return 10; };
+    Vec2f get_button_size() const override { return {12, 24}; }
 
     void set_bar_texture(Drawable* p_texture) { texture->set_texture(p_texture); }
 };

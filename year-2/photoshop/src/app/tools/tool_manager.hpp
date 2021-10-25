@@ -14,17 +14,18 @@ struct ToolManagerColorEvent {
 class ToolManager {
     Tool* active_tool = nullptr;
     Vec4f selected_color = {1, 1, 1, 1};
-    Canvas* canvas;
+    Canvas* canvas = nullptr;
     EventEmitter<ToolManagerColorEvent> color_event_emitter;
     std::vector<ToolFactoryBase*> tool_factories;
 public:
-    explicit ToolManager(Canvas* canvas): canvas(canvas) {}
+    explicit ToolManager() {}
 
     void on_mouse_down(Vec2f position);
     void on_mouse_move(Vec2f position);
     void on_mouse_up();
 
-    Canvas* get_canvas() { return canvas; }
+    void set_active_canvas(Canvas* p_canvas);
+    Canvas* get_active_canvas() { return canvas; }
     void activate_factory(ToolFactoryBase* p_active_tool);
     Tool* get_active_tool() const { return active_tool; }
     void set_color(const Vec4f& p_selected_color) {

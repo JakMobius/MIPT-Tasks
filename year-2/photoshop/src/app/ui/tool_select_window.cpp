@@ -14,6 +14,7 @@ void ToolSelectWindow::create_tool_buttons() {
         auto* factory = manager->get_factories()[i];
         auto* button = new UIButton({}, {50, 50});
         auto* fill_style = new UIFillStyleTexture(factories[i]->get_tool_icon());
+        fill_style->set_color({1, 1, 1, 0.7});
         auto* style = new ToolButtonStyle(fill_style);
 
         button->set_own_style(style);
@@ -40,8 +41,6 @@ ToolSelectWindow::ToolSelectWindow(PhotoshopView* app, ToolManager* manager, con
     stack->set_fitting({});
 
     manager->get_color_event_emitter()->add_listener(&color_listener);
-
-    stack->set_fill_style(&UIViewWhiteBackground);
 
     get_content_view()->append_child(stack);
     create_tool_buttons();

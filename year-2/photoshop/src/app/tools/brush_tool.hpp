@@ -32,6 +32,11 @@ public:
 
     void draw(Vec2f position);
     virtual void prepare_to_draw();
-
     virtual void setup_color_blending();
+
+    void on_layer_change() override;
+
+    void create_textures();
+
+    void delete_textures();
 };

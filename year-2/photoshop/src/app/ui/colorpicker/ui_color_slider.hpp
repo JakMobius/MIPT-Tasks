@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../../ui/ui_slider.hpp"
+#include "../../../graphics/shapes/rounded_rect_shape.hpp"
 
 class UIColorSlider : public UISlider {
     UIView* bar_gradient_view;

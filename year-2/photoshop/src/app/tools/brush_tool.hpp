@@ -11,8 +11,8 @@ protected:
     UIFillStyleTexture texture_copy_style {};
     UIFillStyleTexture brush_apply_style {};
     Vec2f old_position;
-    DrawingTargetTexture* map_texture;
-    DrawingTargetTexture* buffer_texture;
+    DrawingTargetTexture* map_texture = nullptr;
+    DrawingTargetTexture* buffer_texture = nullptr;
 
     static void preserve_color(sf::BlendMode& mode);
     static void override_color(sf::BlendMode& mode);

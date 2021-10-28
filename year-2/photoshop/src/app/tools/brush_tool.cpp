@@ -74,6 +74,7 @@ void BrushTool::on_resign_active() {
 }
 
 void BrushTool::create_textures() {
+    if(!manager->get_active_canvas()) return;
     auto size = manager->get_active_canvas()->get_active_layer()->get_size();
 
     map_texture = new DrawingTargetTexture(size);

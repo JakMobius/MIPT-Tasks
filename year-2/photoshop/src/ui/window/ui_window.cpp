@@ -5,6 +5,7 @@
 #include "ui_window.hpp"
 #include "../../utils/dispatch_queue.hpp"
 #include "../ui_shadow_view.hpp"
+#include "window_border_view.hpp"
 
 void UIWindow::layout() {
     UIView::layout();
@@ -18,6 +19,7 @@ UIWindow::UIWindow(const Vec2f &position, const Vec2f &size, const char* title):
         header_view(new UIWindowHeaderView(this)) {
     append_child(new UIShadowView());
     append_child(inner_view);
+    append_child(new WindowBorderView());
 
     inner_shape = new RoundedRectShape({}, size, {18, 18, 18, 18});
 

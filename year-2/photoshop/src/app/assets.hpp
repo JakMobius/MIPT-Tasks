@@ -22,6 +22,9 @@ public:
     DrawableTexture* window_shadow_horizontal_texture = nullptr;
     DrawableTexture* window_shadow_corner_texture = nullptr;
     DrawableTexture* slider_bar_texture = nullptr;
+    DrawableTexture* window_border_corner_texture = nullptr;
+    DrawableTexture* window_border_horizontal_texture = nullptr;
+    DrawableTexture* window_border_vertical_texture = nullptr;
     sf::Font* default_font = nullptr;
 
     void load();

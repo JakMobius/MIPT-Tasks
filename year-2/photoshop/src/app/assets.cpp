@@ -18,6 +18,9 @@ void AssetsStructure::load() {
     window_shadow_corner_texture        = own_texture(new DrawableTexture("resources/img/window-shadow-corner.png"));
     canvas_background_texture           = own_texture(new DrawableTexture("resources/img/canvas_background.png"));
     slider_bar_texture                  = own_texture(new DrawableTexture("resources/img/slider-bar.png"));
+    window_border_corner_texture        = own_texture(new DrawableTexture("resources/img/window-border-corner.png"));
+    window_border_vertical_texture      = own_texture(new DrawableTexture("resources/img/window-border-vertical.png"));
+    window_border_horizontal_texture    = own_texture(new DrawableTexture("resources/img/window-border-horizontal.png"));
     canvas_background_texture->set_repeating(true);
     default_font = new sf::Font();
     default_font->loadFromFile("resources/font/font.ttf");

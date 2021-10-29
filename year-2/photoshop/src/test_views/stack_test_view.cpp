@@ -91,9 +91,9 @@ void LayoutTestView::setup_inset_slider(const char* text, UIStackViewInset* targ
     auto container = new UIStackView(UIStackViewDirection::x);
 
     auto text_view = new UIText({}, {50, 50});
-    text_view->set_text(text);
-    text_view->set_v_text_alignment(VTextAlignmentCenter);
-    text_view->set_h_text_alignment(HTextAlignmentCenter);
+    text_view->get_text_drawer()->set_text(text);
+    text_view->get_text_drawer()->set_v_alignment(VTextAlignmentCenter);
+    text_view->get_text_drawer()->set_h_alignment(HTextAlignmentCenter);
 
     auto slider = new UISlider({}, {225, 30});
     slider->set_fraction(0);
@@ -122,7 +122,7 @@ void LayoutTestView::add_inset_sliders() {
 
 void LayoutTestView::add_spacing_slider() {
     auto text_view = new UIText({}, {250, 50});
-    text_view->set_text("Spacing:");
+    text_view->get_text_drawer()->set_text("Spacing:");
     controls->append_child(text_view);
 
     auto spacing_slider = new UISlider({}, {250, 0});

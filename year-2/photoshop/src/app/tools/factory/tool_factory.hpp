@@ -2,24 +2,24 @@
 
 class ToolFactoryBase;
 
-#include "../../../graphics/drawable_texture.hpp"
+#include "../../../graphics/texture.hpp"
 #include "../tool.hpp"
 
 class ToolFactoryBase {
 protected:
     const char* tool_name = nullptr;
-    DrawableTexture* tool_icon = nullptr;
+    Texture* tool_icon = nullptr;
 public:
     virtual Tool* create_tool() = 0;
 
     const char* get_tool_name() const { return tool_name; }
-    DrawableTexture* get_tool_icon() const { return tool_icon; }
+    Texture* get_tool_icon() const { return tool_icon; }
 };
 
 template<typename ToolType>
 class ToolFactory : public ToolFactoryBase {
 public:
-    ToolFactory(const char* name, DrawableTexture* icon) {
+    ToolFactory(const char* name, Texture* icon) {
         tool_name = name;
         tool_icon = icon;
     };

@@ -3,7 +3,7 @@
 class ToolSelectWindow;
 
 #include "../../ui/window/ui_window.hpp"
-#include "../../graphics/drawable_texture.hpp"
+#include "../../graphics/texture.hpp"
 #include "../assets.hpp"
 #include "../tools/tool_manager.hpp"
 #include "../app.hpp"

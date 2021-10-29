@@ -21,7 +21,7 @@ class UISelectView : public UIView, public Styled<UISelectViewStyle> {
 public:
     explicit UISelectView(const Vec2f& position = {0, 0}, const Vec2f& size = {200, 50}): UIView(position, size) {
         set_style(UISelectViewStyle::instance);
-        label->set_h_text_alignment(HTextAlignmentLeft);
+        label->get_text_drawer()->set_h_alignment(HTextAlignmentLeft);
         label->set_position({10, 5});
         append_child(label);
     }

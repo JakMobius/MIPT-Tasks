@@ -5,15 +5,8 @@
 #include "drawing_context.hpp"
 #include "../app/assets.hpp"
 
-DrawingContext::DrawingContext() {
-    font = Assets.default_font;
-    hAlignment = HTextAlignmentLeft;
-    vAlignment = VTextAlignmentBottom;
-}
-
-DrawingContext::~DrawingContext() {
-
-}
+DrawingContext::DrawingContext() {}
+DrawingContext::~DrawingContext() {}
 
 void DrawingContext::stroke_line(Vec2f from, Vec2f to, float thickness) const {
     if(!stroke_style) return;
@@ -65,32 +58,6 @@ void DrawingContext::fill_circle(const Vec2f& center, float radius) {
     else target->get_target()->draw(&vertex_buffer[0], vertex_buffer.size(), sf::TriangleFan);
 }
 
-void DrawingContext::stroke_text(Vec2f position, Vec2f size, const char* text) const {
-    position *= this->transform;
-
-    sf::Text sfText;
-    sfText.setCharacterSize(15);
-    sfText.setString(text);
-    sfText.setFillColor(text_color);
-    sfText.setFont(*font);
-
-    auto bounds = sfText.getLocalBounds();
-    float height = bounds.height;
-    float width = bounds.width;
-
-    if(hAlignment == HTextAlignmentCenter) position.set_x(position[0] + size[0] / 2 - width / 2);
-    else if(hAlignment == HTextAlignmentLeft) position.set_x(position[0]);
-    else position.set_x(position[0] + size[0] - width);
-
-    if(vAlignment == VTextAlignmentCenter) position.set_y(position[1] + size[1] / 2 - height / 2);
-    else if(vAlignment == VTextAlignmentTop) position.set_y(position[1]);
-    else position.set_y(position[1] + size[1] - height);
-
-    sfText.setPosition({position[0], position[1]});
-
-    target->get_target()->draw(sfText);
-}
-
 void DrawingContext::fill_rect(const Vec2f& position, const Vec2f& size) const {
     if(!fill_style) return;
 
@@ -127,8 +94,11 @@ void DrawingContext::fill_shape(const std::vector<Vertex> &shape, PrimitiveType 
         vertex_buffer.push_back(fill_style->vertex(position, shape[i].shape_position));
     }
 
-    auto type = (sf::PrimitiveType) primitive_type;
+    fill_shape(vertex_buffer, primitive_type);
+}
 
+void DrawingContext::fill_shape(const std::vector<sf::Vertex> &shape, PrimitiveType primitive_type) {
+    auto type = (sf::PrimitiveType) primitive_type;
     auto render_states = fill_style->get_render_states();
     if(render_states) target->get_target()->draw(&vertex_buffer[0], shape.size(), type, *render_states);
     else target->get_target()->draw(&vertex_buffer[0], shape.size(), type);

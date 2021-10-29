@@ -1,13 +1,13 @@
 #pragma once
 
 #include "../../../ui/ui_view.hpp"
-#include "../../../graphics/drawable_texture.hpp"
+#include "../../../graphics/texture.hpp"
 #include "../../../utils/vec3.hpp"
 #include "../../../utils/hsv.hpp"
 #include "../../assets.hpp"
 
 class HueSaturationSelectView : public UIView {
-    DrawableTexture* hue_saturation_map = nullptr;
+    Texture* hue_saturation_map = nullptr;
     UIFillStyleTexture texture_fill_style {};
     UIFillStyleTexture cursor_style {};
     UIView* selector = nullptr;

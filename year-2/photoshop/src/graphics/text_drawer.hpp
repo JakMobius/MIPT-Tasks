@@ -1,0 +1,60 @@
+#pragma once
+
+class DrawingContext;
+class TextDrawer;
+
+#include <SFML/Graphics/Text.hpp>
+#include "../app/assets.hpp"
+#include "drawing_context.hpp"
+
+enum TextAlignment {
+    TextAlignmentLeading,
+    TextAlignmentCenter,
+    TextAlignmentTrailing
+};
+
+enum HTextAlignment {
+    HTextAlignmentLeft   = TextAlignmentLeading,
+    HTextAlignmentCenter = TextAlignmentCenter,
+    HTextAlignmentRight  = TextAlignmentTrailing
+};
+
+enum VTextAlignment {
+    VTextAlignmentTop    = TextAlignmentLeading,
+    VTextAlignmentCenter = TextAlignmentCenter,
+    VTextAlignmentBottom = TextAlignmentTrailing
+};
+
+class TextDrawer {
+    sf::Text sf_text;
+    HTextAlignment h_alignment = HTextAlignmentLeft;
+    VTextAlignment v_alignment = VTextAlignmentTop;
+
+    Vec2f size;
+
+public:
+    explicit TextDrawer(const Vec2f& size, const char* text = ""):
+        size(size),
+        sf_text(text, *Assets.default_font, 15) {}
+
+    Vec2f get_text_bounds() {
+        auto bounds = sf_text.getLocalBounds();
+        return {bounds.width, bounds.height};
+    }
+
+    void set_font_size(int p_size) { sf_text.setCharacterSize(p_size); }
+
+    void set_size(const Vec2f& p_size) { size = p_size; }
+    Vec2f get_size() const { return size; }
+
+    void set_text(const char* text) { sf_text.setString(text); }
+
+    void set_h_alignment(HTextAlignment alignment) { h_alignment = alignment; }
+    void set_v_alignment(VTextAlignment alignment) { v_alignment = alignment; }
+    void set_font_color(const Vec4f& color) { sf_text.setFillColor(color.to_sf_color()); }
+
+    HTextAlignment get_h_alignment() const { return h_alignment; }
+    VTextAlignment get_v_alignment() const { return v_alignment; }
+
+    void draw(DrawingContext* ctx, Vec2f position);
+};

@@ -22,6 +22,9 @@ UIWindowHeaderView::UIWindowHeaderView(UIWindow* window) : UIStackView(UIStackVi
     set_lateral_alignment(UIStackViewLateralAlignment::center);
     setup_buttons_container();
 
+    header->get_text_drawer()->set_v_alignment(VTextAlignmentCenter);
+    header->get_text_drawer()->set_h_alignment(HTextAlignmentCenter);
+
     append_child(buttons_container);
     append_child(header);
     append_child(spacer);
@@ -54,7 +57,7 @@ void UIWindowHeaderView::update_style() {
     } else {
         set_fill_style(window->get_style()->get_inactive_header_background_color());
     }
-    header->set_text_color(window->get_style()->get_window_header_color());
+    header->get_text_drawer()->set_font_color(window->get_style()->get_window_header_color());
     close_button->set_style(window->get_style()->get_close_button_style());
     fullscreen_button->set_style(window->get_style()->get_fullscreen_button_style());
 }

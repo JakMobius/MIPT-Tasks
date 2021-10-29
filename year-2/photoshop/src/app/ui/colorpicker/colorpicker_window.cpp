@@ -28,15 +28,15 @@ void ColorPickerWindow::add_rgba_slider(int index) {
 
     char* label_text = rgb_label_values + index * 4;
     strcpy(label_text, "0");
-    text_label->set_text(label_text);
-    text_label->set_text_color({1, 1, 1, 1});
+    text_label->get_text_drawer()->set_text(label_text);
+    text_label->get_text_drawer()->set_font_color({1, 1, 1, 1});
 
     stack->append_child(slider);
     stack->append_child(text_label);
 
     slider->set_callback([label_text, text_label, index, this](float value) {
         snprintf(label_text, 4, "%d", (int)(value * 255));
-        text_label->set_text(label_text);
+        text_label->get_text_drawer()->set_text(label_text);
         this->on_rgb_slider_updated(index, value);
     });
 

@@ -29,9 +29,9 @@ public:
 
 class UIFillStyleTexture : public UIFillStyleColor {
     Vec2f scale { 1, 1 };
-    Drawable* texture;
+    Textured* texture;
 public:
-    explicit UIFillStyleTexture(Drawable* texture): UIFillStyleColor({1, 1, 1, 1}), texture(texture) { render_states.texture = texture->get_texture(); }
+    explicit UIFillStyleTexture(Textured* texture): UIFillStyleColor({1, 1, 1, 1}), texture(texture) { render_states.texture = texture->get_texture(); }
     explicit UIFillStyleTexture(): UIFillStyleColor({1, 1, 1, 1}) {}
 
     sf::Vertex vertex(Vec2f vertex_position, Vec2f shape_position) const override {
@@ -42,7 +42,7 @@ public:
         };
     };
 
-    void set_texture(Drawable* p_texture) {
+    void set_texture(Textured* p_texture) {
         texture = p_texture;
         if(texture) {
             render_states.texture = texture->get_texture();
@@ -53,7 +53,7 @@ public:
 
     void set_scale(const Vec2f& p_scale) { scale = p_scale; }
 
-    Drawable* get_texture() { return texture; }
+    Textured* get_texture() { return texture; }
 };
 
 struct GradientAnchorPoint {

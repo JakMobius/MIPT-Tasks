@@ -2,10 +2,10 @@
 
 #include "drawing_target.hpp"
 #include "../utils/vec2.hpp"
-#include "drawable.hpp"
+#include "textured.hpp"
 #include "../utils/vec4.hpp"
 
-class DrawingTargetTexture : public DrawingTarget, public Drawable {
+class DrawingTargetTexture : public DrawingTarget, public Textured {
 
     Vec2i size {};
 public:

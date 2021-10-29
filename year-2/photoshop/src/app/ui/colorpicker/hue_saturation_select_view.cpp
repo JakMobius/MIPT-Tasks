@@ -28,7 +28,7 @@ void HueSaturationSelectView::create_texture(
 //        delete texture_fill_style.get_texture();
 //    }
 
-    hue_saturation_map = new DrawableTexture((Vec2i) get_size(), rgba_array);
+    hue_saturation_map = new Texture((Vec2i) get_size(), rgba_array);
     delete[] rgba_array;
 
     texture_fill_style.set_texture(hue_saturation_map);

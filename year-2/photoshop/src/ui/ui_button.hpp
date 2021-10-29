@@ -19,7 +19,7 @@ public:
     explicit UIButton(const Vec2f& position = {0, 0}, const Vec2f& size = {50, 50});
 
     void set_title(const char* string) {
-        label->set_text(string);
+        label->get_text_drawer()->set_text(string);
     }
 
     void on_mouse_in(MouseInEvent *event) override;

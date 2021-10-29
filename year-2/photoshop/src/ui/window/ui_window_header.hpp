@@ -23,7 +23,7 @@ class UIWindowHeaderView : public UIStackView {
 public:
     explicit UIWindowHeaderView(UIWindow* window);
 
-    void set_title(const char* string) { header->set_text(string); }
+    void set_title(const char* string) { header->get_text_drawer()->set_text(string); }
 
     void layout() override;
 

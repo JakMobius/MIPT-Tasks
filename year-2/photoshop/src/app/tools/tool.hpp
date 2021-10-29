@@ -4,7 +4,7 @@ class Tool;
 
 #include "tool_manager.hpp"
 #include "../../utils/vec2.hpp"
-#include "../../graphics/drawable_texture.hpp"
+#include "../../graphics/texture.hpp"
 
 class Tool {
 protected:

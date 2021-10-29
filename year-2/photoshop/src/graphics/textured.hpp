@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics/Texture.hpp>
 
-class Drawable {
+class Textured {
 public:
     virtual const sf::Texture* get_texture() = 0;
 };

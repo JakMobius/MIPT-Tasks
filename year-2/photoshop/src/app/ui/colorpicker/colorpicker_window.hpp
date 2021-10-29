@@ -18,7 +18,7 @@ public:
     float get_bar_height() const override { return 10; };
     Vec2f get_button_size() const override { return {12, 24}; }
 
-    void set_bar_texture(Drawable* p_texture) { texture->set_texture(p_texture); }
+    void set_bar_texture(Textured* p_texture) { texture->set_texture(p_texture); }
 };
 
 class ColorPickerWindow: public PhotoshopWindow {

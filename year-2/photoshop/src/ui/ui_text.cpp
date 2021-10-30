@@ -3,5 +3,5 @@
 #include "../graphics/drawing_context.hpp"
 
 void UIText::draw(DrawingContext* ctx) {
-    drawer.draw(ctx, position);
+    drawer.draw(ctx, {});
 }

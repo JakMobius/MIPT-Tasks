@@ -10,6 +10,7 @@ class UIScreen;
 #include "styles/fill_style.hpp"
 #include "../graphics/drawing_context.hpp"
 #include "../graphics/shapes/shape.hpp"
+#include "../events/keyboard_events.hpp"
 #include <vector>
 
 extern const UIFillStyleColor UIViewWhiteBackground;
@@ -26,6 +27,7 @@ protected:
     std::vector<UIView*> children {};
     UIView* current_hovered_child = nullptr;
     UIView* current_clicked_child = nullptr;
+    UIView* current_focused_child = nullptr;
     UIView* parent = nullptr;
 
     DrawingTargetTexture* texture = nullptr;
@@ -47,6 +49,7 @@ protected:
     bool hidden = false;
     bool hovered = false;
     bool clicked = false;
+    bool focused = false;
 
     void transform_context(DrawingContext* ctx);
     bool update_hover(UIView* child, const Vec2f& internal_point);
@@ -61,6 +64,9 @@ protected:
     void draw_in_texture(DrawingContext* ctx);
     void draw_without_texture(DrawingContext* ctx);
     void draw_self_texture_shaped(DrawingContext* ctx);
+
+    void set_needs_children_layout();
+    void focus_child(UIView* child);
 public:
 
     explicit UIView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): position(position), size(size) {}
@@ -73,6 +79,9 @@ public:
     virtual void on_mouse_down(MouseDownEvent *event);
     virtual void on_mouse_up(MouseUpEvent *event);
     virtual void on_mouse_click(MouseClickEvent *event);
+    virtual void on_text_enter(TextEnterEvent *event);
+    virtual void on_key_down(KeyDownEvent *event);
+    virtual void on_key_up(KeyUpEvent *event);
 
     const Vec2f& get_position() { return position; }
     virtual void set_position(const Vec2f& pos) { position = pos; set_needs_redraw(); }
@@ -83,7 +92,6 @@ public:
     virtual void layout();
     void layout_if_needed();
     void set_needs_layout();
-    void set_needs_children_layout();
 
     int get_child_index(UIView* child);
 
@@ -96,6 +104,10 @@ public:
 
     bool get_hidden() const { return hidden; }
     void set_hidden(bool p_hidden) { hidden = p_hidden; }
+
+    bool get_is_focused() const { return focused; }
+    virtual void focus();
+    virtual void blur();
 
     Shape* get_shape() const;
     void set_shape(Shape* p_shape);

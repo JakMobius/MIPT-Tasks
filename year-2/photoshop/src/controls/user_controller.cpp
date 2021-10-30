@@ -5,53 +5,52 @@
 #include "user_controller.hpp"
 
 void UserController::handle_event(const sf::Event &event)  {
-    if (event.type == sf::Event::Closed) window->close();
-    else if(event.type == sf::Event::KeyPressed) {
-        switch(event.key.code) {
-            case sf::Keyboard::W: w_pressed = true; break;
-            case sf::Keyboard::A: a_pressed = true; break;
-            case sf::Keyboard::S: s_pressed = true; break;
-            case sf::Keyboard::D: d_pressed = true; break;
-            case sf::Keyboard::LShift: shift_pressed = true; break;
-            case sf::Keyboard::Space: space_pressed = true; break;
-            case sf::Keyboard::Up: up_pressed = true; break;
-            case sf::Keyboard::Left: left_pressed = true; break;
-            case sf::Keyboard::Down: down_pressed = true; break;
-            case sf::Keyboard::Right: right_pressed = true; break;
-            default: break;
+    switch(event.type) {
+        case sf::Event::Closed: {
+            window->close();
+            break;
         }
-    } else if(event.type == sf::Event::KeyReleased) {
-        switch(event.key.code) {
-            case sf::Keyboard::W: w_pressed = false; break;
-            case sf::Keyboard::A: a_pressed = false; break;
-            case sf::Keyboard::S: s_pressed = false; break;
-            case sf::Keyboard::D: d_pressed = false; break;
-            case sf::Keyboard::LShift: shift_pressed = false; break;
-            case sf::Keyboard::Space: space_pressed = false; break;
-            case sf::Keyboard::Up: up_pressed = false; break;
-            case sf::Keyboard::Left: left_pressed = false; break;
-            case sf::Keyboard::Down: down_pressed = false; break;
-            case sf::Keyboard::Right: right_pressed = false; break;
-            default: break;
+        case sf::Event::TextEntered: {
+            TextEnterEvent text_event(event.text.unicode);
+            if(root_view) root_view->on_text_enter(&text_event);
+            break;
         }
-    } else if(event.type == sf::Event::MouseEntered) {
-        MouseInEvent mouseEvent((float) event.mouseMove.x, (float) event.mouseMove.y);
-        if(root_view) root_view->on_mouse_in(&mouseEvent);
-    } else if(event.type == sf::Event::MouseLeft) {
-        MouseOutEvent mouseEvent((float) event.mouseMove.x, (float) event.mouseMove.y);
-        if(root_view) root_view->on_mouse_out(&mouseEvent);
-    } else if(event.type == sf::Event::MouseMoved) {
-        MouseMoveEvent mouseEvent((float) event.mouseMove.x, (float) event.mouseMove.y);
-        if(root_view) root_view->on_mouse_move(&mouseEvent);
-    } else if(event.type == sf::Event::MouseButtonPressed) {
-        MouseDownEvent mouseEvent((float) event.mouseButton.x, (float) event.mouseButton.y);
-        if(root_view) root_view->on_mouse_down(&mouseEvent);
-    } else if(event.type == sf::Event::MouseButtonReleased) {
-        MouseUpEvent mouseEvent((float) event.mouseButton.x, (float) event.mouseButton.y);
-        if(root_view) root_view->on_mouse_up(&mouseEvent);
+        case sf::Event::KeyPressed: {
+            KeyDownEvent key_down_event((KeyCode)(event.key.code));
+            if(root_view) root_view->on_key_down(&key_down_event);
+            break;
+        }
+        case sf::Event::KeyReleased: {
+            KeyUpEvent key_up_event((KeyCode)(event.key.code));
+            if(root_view) root_view->on_key_up(&key_up_event);
+            break;
+        }
+        case sf::Event::MouseEntered: {
+            MouseInEvent mouse_event((float) event.mouseMove.x, (float) event.mouseMove.y);
+            if(root_view) root_view->on_mouse_in(&mouse_event);
+            break;
+        }
+        case sf::Event::MouseLeft: {
+            MouseOutEvent mouse_event((float) event.mouseMove.x, (float) event.mouseMove.y);
+            if(root_view) root_view->on_mouse_out(&mouse_event);
+            break;
+        }
+        case sf::Event::MouseMoved: {
+            MouseMoveEvent mouse_event((float) event.mouseMove.x, (float) event.mouseMove.y);
+            if(root_view) root_view->on_mouse_move(&mouse_event);
+            break;
+        }
+        case sf::Event::MouseButtonPressed: {
+            if(event.mouseButton.button != sf::Mouse::Left) break;
+            MouseDownEvent mouse_event((float) event.mouseButton.x, (float) event.mouseButton.y);
+            if(root_view) root_view->on_mouse_down(&mouse_event);
+            break;
+        }
+        case sf::Event::MouseButtonReleased: {
+            if(event.mouseButton.button != sf::Mouse::Left) break;
+            MouseUpEvent mouse_event((float) event.mouseButton.x, (float) event.mouseButton.y);
+            if(root_view) root_view->on_mouse_up(&mouse_event);
+            break;
+        }
     }
-}
-
-void UserController::tick() {
-
 }

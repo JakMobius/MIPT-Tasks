@@ -137,7 +137,16 @@ void UIView::on_mouse_down(MouseDownEvent* event) {
     update_hovered_child(event->x, event->y);
 
     current_clicked_child = current_hovered_child;
+
+    if(current_focused_child && current_clicked_child != current_focused_child) {
+        current_focused_child->blur();
+    }
+
     if(current_clicked_child) {
+        if(!current_clicked_child->get_is_focused()) {
+            current_clicked_child->focus();
+        }
+
         Vec2f internal_point = current_clicked_child->get_local_position({ event->x, event->y });
         MouseDownEvent nested_event(internal_point[0], internal_point[1]);
 
@@ -231,12 +240,10 @@ void UIView::append_child(UIView* child) {
 void UIView::remove_child(int index) {
     auto child = children[index];
 
-    if(child == current_hovered_child) {
-        current_hovered_child = nullptr;
-    }
-    if(child == current_clicked_child) {
-        current_clicked_child = nullptr;
-    }
+    if(child == current_hovered_child) current_hovered_child = nullptr;
+    if(child == current_clicked_child) current_clicked_child = nullptr;
+    if(child == current_focused_child) current_focused_child = nullptr;
+
     children.erase(children.begin() + index);
     child->parent = nullptr;
     set_needs_layout();
@@ -331,7 +338,7 @@ UIView::~UIView() {
     for(int i = 0; i < children.size(); i++) {
         delete children[i];
     }
-    if(texture) delete texture;
+    delete texture;
 }
 
 void UIView::set_active(bool p_is_active) {
@@ -368,4 +375,34 @@ Shape* UIView::get_shape() const {
 void UIView::set_shape(Shape* p_shape) {
     shape = p_shape;
     needs_texture_decision = true;
+}
+
+void UIView::on_key_down(KeyDownEvent* event) {
+    if(current_focused_child) current_focused_child->on_key_down(event);
+}
+
+void UIView::on_key_up(KeyUpEvent* event) {
+    if(current_focused_child) current_focused_child->on_key_up(event);
+}
+
+void UIView::on_text_enter(TextEnterEvent* event) {
+    if(current_focused_child) current_focused_child->on_text_enter(event);
+}
+
+void UIView::focus() {
+    if(focused) return;
+    focused = true;
+    if(parent) parent->focus_child(this);
+}
+
+void UIView::blur() {
+    if(!focused) return;
+    focused = false;
+    if(current_focused_child) current_focused_child->blur();
+    if(parent) parent->blur();
+}
+
+void UIView::focus_child(UIView* child) {
+    focus();
+    current_focused_child = child;
 }

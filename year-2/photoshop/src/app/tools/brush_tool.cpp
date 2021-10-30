@@ -96,6 +96,8 @@ void BrushTool::delete_textures() {
 void BrushTool::on_mouse_down(Vec2f position) {
     Tool::on_mouse_down(position);
 
+    map_texture->clear({0, 0, 0, 0});
+
     auto canvas_layer = manager->get_active_canvas()->get_active_layer();
     if(!canvas_layer) return;
     auto canvas_texture = canvas_layer->get_texture();
@@ -114,7 +116,6 @@ void BrushTool::on_mouse_down(Vec2f position) {
 }
 
 void BrushTool::prepare_to_draw() {
-    map_texture->clear({0, 0, 0, 0});
     Vec4f brush_color(manager->get_color());
     brush_color.set_w(1);
     brush_fill_style.set_color(brush_color);

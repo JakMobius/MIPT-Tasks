@@ -28,7 +28,6 @@ void App::tick() {
 
     screen->prepare_to_draw(ctx);
     window->display();
-    controller->tick();
 
     if(screen->get_needs_redraw()) {
         tick_delayed();

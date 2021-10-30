@@ -33,7 +33,7 @@ class TextDrawer {
     Vec2f size;
 
 public:
-    explicit TextDrawer(const Vec2f& size, const char* text = ""):
+    explicit TextDrawer(const Vec2f& size = {}, const char* text = ""):
         size(size),
         sf_text(text, *Assets.default_font, 15) {}
 

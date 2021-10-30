@@ -3,6 +3,7 @@
 //
 
 #include "colorpicker_window.hpp"
+#include "../../../ui/ui_input.hpp"
 
 GradientSliderStyle* ColorPickerWindow::create_slider_style(UIColorSlider* slider) {
     auto* style = new GradientSliderStyle();
@@ -25,6 +26,7 @@ void ColorPickerWindow::add_rgba_slider(int index) {
 
     auto* slider = new UIColorSlider({}, {300, 40});
     auto* text_label = new UIText({}, {40, 10});
+    text_label->get_text_drawer()->set_h_alignment(HTextAlignmentCenter);
 
     char* label_text = rgb_label_values + index * 4;
     strcpy(label_text, "0");
@@ -66,6 +68,7 @@ ColorPickerWindow::ColorPickerWindow(PhotoshopView* app, const Vec2f &position) 
     container = new UIStackView(UIStackViewDirection::y);
     container->set_insets({20});
     container->set_item_spacing(10);
+
     hsv_container = new UIView({}, {360, 300});
     container->append_child(hsv_container);
 
@@ -74,8 +77,10 @@ ColorPickerWindow::ColorPickerWindow(PhotoshopView* app, const Vec2f &position) 
     for(int i = 0; i < 4; i++) add_rgba_slider(i);
 
     rgba_slider_styles[3]->set_bar_texture(Assets.canvas_background_texture);
+    container->append_child(new UIInput({}, {300, 30}));
 
     get_content_view()->append_child(container);
+
 
     set_color({1, 0, 1, 1});
 }

@@ -20,11 +20,9 @@ void TextDrawer::draw(DrawingContext* ctx, Vec2f position) {
     }
 
     float* t = ctx->transform.data;
-    sf::Transform transform(t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8]);
-    // Dirty, but is there any other way to do it?
-    memcpy((void*) sf_text.getTransform().getMatrix(), transform.getMatrix(),16 * sizeof(float));
+    sf::Transform transform(t[0], t[3], t[6], t[1], t[4], t[7], t[2], t[5], t[8]);
 
     position += text_position;
     sf_text.setPosition(position[0], position[1]);
-    ctx->get_render_target()->get_target()->draw(sf_text);
+    ctx->get_render_target()->get_target()->draw(sf_text, transform);
 }

@@ -16,18 +16,14 @@ int main() {
     Assets.load();
     App app { &window };
 
-    while(window.isOpen()) {
-        sf::Event event = {};
+    std::function<void(void)> event_processing_loop = [&]() {
+        if(!app.opened()) return;
+        app.process_events();
+        DispatchQueue::main.push({event_processing_loop, 16});
+    };
 
-        if(DispatchQueue::main.empty()) {
-            if(window.waitEvent(event)) app.get_controller()->handle_event(event);
-            app.tick_delayed();
-        } else {
-            while (window.pollEvent(event)) app.get_controller()->handle_event(event);
-        }
-
-        DispatchQueue::main.perform();
-    }
+    DispatchQueue::main.push(event_processing_loop);
+    DispatchQueue::main.perform();
 
     Assets.unload();
 

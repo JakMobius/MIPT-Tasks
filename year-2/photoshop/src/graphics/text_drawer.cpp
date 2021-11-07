@@ -26,3 +26,13 @@ void TextDrawer::draw(DrawingContext* ctx, Vec2f position) {
     sf_text.setPosition(position[0], position[1]);
     ctx->get_render_target()->get_target()->draw(sf_text, transform);
 }
+
+Vec2f TextDrawer::get_char_position(int char_index) {
+    auto position = sf_text.findCharacterPos(char_index);
+    return { position.x, position.y };
+}
+
+Vec2f TextDrawer::get_text_bounds() {
+    auto bounds = sf_text.getLocalBounds();
+    return {bounds.width, bounds.height};
+}

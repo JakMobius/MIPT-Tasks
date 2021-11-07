@@ -45,9 +45,9 @@ void UIWindowHeaderView::setup_buttons_container() {
         // changed until event propagation is
         // done.
 
-        DispatchQueue::main.push([&]() {
+        DispatchQueue::main.push(DispatchQueueTask { [&]() {
             window->close();
-        });
+        }});
     });
 }
 

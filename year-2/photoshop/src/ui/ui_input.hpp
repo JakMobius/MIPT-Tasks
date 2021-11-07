@@ -2,6 +2,7 @@
 
 #include "ui_view.hpp"
 #include "styled.hpp"
+#include "../utils/dispatch_queue.hpp"
 #include <vector>
 
 class UIInputStyle {
@@ -16,11 +17,17 @@ public:
 class UIInput : public UIView, public Styled<UIInputStyle> {
     TextDrawer text_drawer {};
     std::vector<char> contents {'\0'};
+    DispatchQueueTaskHandle blink_task_handle;
+    UIFillStyleColor cursor_fill_style {{ 0, 0, 0, 1 }};
 
     int cursor_position = 0;
+    bool cursor_visible;
 
     void update_style();
     void update_text();
+    void blink();
+    void enable_blink();
+    void disable_blink();
 
 public:
     UIInput(const Vec2f& position, const Vec2f& size): UIView(position, size) {}

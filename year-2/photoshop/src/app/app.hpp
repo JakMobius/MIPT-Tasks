@@ -20,4 +20,8 @@ public:
     void tick();
 
     UserController* get_controller() const { return controller; }
+
+    void process_events();
+
+    bool opened();
 };

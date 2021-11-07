@@ -10,21 +10,21 @@ UIInputStyle* UIInputStyle::instance = &UIInputStyleInstance;
 void UIInput::focus() {
     UIView::focus();
     update_style();
+    enable_blink();
 }
 
 void UIInput::blur() {
     UIView::blur();
     update_style();
+    disable_blink();
 }
 
 void UIInput::on_key_up(KeyUpEvent* event) {
     UIView::on_key_up(event);
-    printf("key up %d\n", event->code);
 }
 
 void UIInput::on_key_down(KeyDownEvent* event) {
     UIView::on_key_down(event);
-    printf("key down %d\n", event->code);
 }
 
 void UIInput::layout() {
@@ -75,4 +75,28 @@ void UIInput::update_text() {
 void UIInput::draw(DrawingContext* ctx) {
     UIView::draw(ctx);
     text_drawer.draw(ctx, {});
+    if(cursor_visible) {
+        ctx->set_fill_style(&cursor_fill_style);
+        Vec2f char_position = text_drawer.get_char_position(cursor_position);
+        ctx->fill_rect(char_position, {2, (float)text_drawer.get_font_size()});
+    }
+}
+
+void UIInput::blink() {
+    DispatchQueue::main.cancel(blink_task_handle);
+
+    cursor_visible = !cursor_visible;
+    set_needs_redraw();
+
+    blink_task_handle = DispatchQueue::main.push(DispatchQueueTask { [this]() {
+        blink();
+    }, 500});
+}
+
+void UIInput::enable_blink() {
+    blink();
+}
+
+void UIInput::disable_blink() {
+    DispatchQueue::main.cancel(blink_task_handle);
 }

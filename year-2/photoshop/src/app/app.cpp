@@ -35,7 +35,7 @@ void App::tick() {
 }
 
 void App::tick_delayed() {
-    DispatchQueue::main.push([this] { this->tick(); });
+    DispatchQueue::main.push(DispatchQueueTask { [this] { this->tick(); } });
 }
 
 App::~App() {
@@ -43,4 +43,14 @@ App::~App() {
     delete screen;
     delete controller;
     delete render_target;
+}
+
+void App::process_events() {
+    sf::Event event {};
+    while (window->pollEvent(event)) get_controller()->handle_event(event);
+    tick_delayed();
+}
+
+bool App::opened() {
+    return window->isOpen();
 }

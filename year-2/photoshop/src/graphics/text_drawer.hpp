@@ -37,12 +37,10 @@ public:
         size(size),
         sf_text(text, *Assets.default_font, 15) {}
 
-    Vec2f get_text_bounds() {
-        auto bounds = sf_text.getLocalBounds();
-        return {bounds.width, bounds.height};
-    }
+    Vec2f get_text_bounds();
 
     void set_font_size(int p_size) { sf_text.setCharacterSize(p_size); }
+    int get_font_size() { return sf_text.getCharacterSize(); }
 
     void set_size(const Vec2f& p_size) { size = p_size; }
     Vec2f get_size() const { return size; }
@@ -57,4 +55,6 @@ public:
     VTextAlignment get_v_alignment() const { return v_alignment; }
 
     void draw(DrawingContext* ctx, Vec2f position);
+
+    Vec2f get_char_position(int char_index);
 };

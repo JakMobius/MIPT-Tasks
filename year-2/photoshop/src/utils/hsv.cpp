@@ -35,14 +35,14 @@ Vec3f rgb_from_hsv(const Vec3f& hsv) {
 }
 
 static float min3(float a, float b, float c) {
-    if(a < b && a < c) return a;
-    if(b < c && b < a) return b;
+    if(a <= b && a <= c) return a;
+    if(b <= c && b <= a) return b;
     return c;
 }
 
 static float max3(float a, float b, float c) {
-    if(a > b && a > c) return a;
-    if(b > c && b > a) return b;
+    if(a >= b && a >= c) return a;
+    if(b >= c && b >= a) return b;
     return c;
 }
 

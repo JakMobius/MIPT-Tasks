@@ -10,13 +10,14 @@ UIInputStyle* UIInputStyle::instance = &UIInputStyleInstance;
 void UIInput::focus() {
     UIView::focus();
     update_style();
-    enable_blink();
+    enable_cursor_blinking();
 }
 
 void UIInput::blur() {
     UIView::blur();
+    if(enter_callback) enter_callback();
     update_style();
-    disable_blink();
+    disable_cursor_blinking();
 }
 
 void UIInput::on_key_up(KeyUpEvent* event) {
@@ -25,12 +26,19 @@ void UIInput::on_key_up(KeyUpEvent* event) {
 
 void UIInput::on_key_down(KeyDownEvent* event) {
     UIView::on_key_down(event);
+
+    switch(event->code) {
+        case KeyCode::left: move_cursor_left(); break;
+        case KeyCode::right: move_cursor_right(); break;
+        case KeyCode::enter: blur(); break;
+        default: break;
+    }
 }
 
 void UIInput::layout() {
     if(!style) set_style(UIInputStyle::instance);
     UIView::layout();
-    text_drawer.set_size(size);
+    text_drawer.set_size(text_insets.get_nested_size(size));
 }
 
 void UIInput::set_style(const UIInputStyle* p_style) {
@@ -56,9 +64,7 @@ void UIInput::on_text_enter(TextEnterEvent* event) {
 
     if(c == '\r' || c == '\n') return;
     else if(c == '\b') {
-        if(cursor_position == 0) return;
-        cursor_position--;
-        contents.erase(contents.begin() + cursor_position);
+        handle_backspace();
     } else {
         contents.insert(contents.begin() + cursor_position, event->get_ascii());
         cursor_position++;
@@ -67,16 +73,25 @@ void UIInput::on_text_enter(TextEnterEvent* event) {
     update_text();
 }
 
+void UIInput::handle_backspace() {
+    if(cursor_position > 0) {
+        cursor_position--;
+        contents.erase(contents.begin() + cursor_position);
+    }
+}
+
 void UIInput::update_text() {
+    if(cursor_position >= contents.size()) cursor_position = contents.size() - 1;
     text_drawer.set_text(&contents[0]);
+    if(change_callback) change_callback();
     set_needs_redraw();
 }
 
 void UIInput::draw(DrawingContext* ctx) {
     UIView::draw(ctx);
-    text_drawer.draw(ctx, {});
+    text_drawer.draw(ctx, text_insets.get_nested_position(size));
     if(cursor_visible) {
-        ctx->set_fill_style(&cursor_fill_style);
+        ctx->set_fill_style(style->get_cursor_fill_style());
         Vec2f char_position = text_drawer.get_char_position(cursor_position);
         ctx->fill_rect(char_position, {2, (float)text_drawer.get_font_size()});
     }
@@ -84,6 +99,7 @@ void UIInput::draw(DrawingContext* ctx) {
 
 void UIInput::blink() {
     DispatchQueue::main.cancel(blink_task_handle);
+    if(!focused) return;
 
     cursor_visible = !cursor_visible;
     set_needs_redraw();
@@ -93,10 +109,22 @@ void UIInput::blink() {
     }, 500});
 }
 
-void UIInput::enable_blink() {
+void UIInput::enable_cursor_blinking() {
+    cursor_visible = false;
     blink();
 }
 
-void UIInput::disable_blink() {
+void UIInput::disable_cursor_blinking() {
+    cursor_visible = false;
     DispatchQueue::main.cancel(blink_task_handle);
+}
+
+void UIInput::move_cursor_left() {
+    if(cursor_position > 0) cursor_position--;
+    enable_cursor_blinking();
+}
+
+void UIInput::move_cursor_right() {
+    if(cursor_position < contents.size() - 1) cursor_position++;
+    enable_cursor_blinking();
 }

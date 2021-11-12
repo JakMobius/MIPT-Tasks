@@ -37,8 +37,12 @@ void BrushTool::blend_alpha(sf::BlendMode &mode) {
 BrushTool::BrushTool() : Tool() {}
 
 void BrushTool::draw(Vec2f position) {
-    auto layer = manager->get_active_canvas()->get_active_layer();
+    auto canvas = manager->get_active_canvas();
+    if(!canvas) return;
+
+    auto layer = canvas->get_active_layer();
     if(!layer) return;
+
     auto texture = layer->get_texture();
 
     ctx.push_render_target(map_texture);
@@ -74,8 +78,13 @@ void BrushTool::on_resign_active() {
 }
 
 void BrushTool::create_textures() {
-    if(!manager->get_active_canvas()) return;
-    auto size = manager->get_active_canvas()->get_active_layer()->get_size();
+    auto canvas = manager->get_active_canvas();
+    if(!canvas) return;
+
+    auto active_layer = canvas->get_active_layer();
+    if(!active_layer) return;
+
+    auto size = active_layer->get_size();
 
     map_texture = new DrawingTargetTexture(size);
     buffer_texture = new DrawingTargetTexture(size);
@@ -96,12 +105,16 @@ void BrushTool::delete_textures() {
 void BrushTool::on_mouse_down(Vec2f position) {
     Tool::on_mouse_down(position);
 
-    map_texture->clear({0, 0, 0, 0});
+    auto canvas = manager->get_active_canvas();
+    if(!canvas) return;
 
-    auto canvas_layer = manager->get_active_canvas()->get_active_layer();
+    auto canvas_layer = canvas->get_active_layer();
     if(!canvas_layer) return;
+
     auto canvas_texture = canvas_layer->get_texture();
     auto canvas_size = canvas_layer->get_size();
+
+    map_texture->clear({0, 0, 0, 0});
 
     ctx.push_render_target(buffer_texture);
     texture_copy_style.set_texture(canvas_texture);

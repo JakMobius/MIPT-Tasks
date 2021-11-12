@@ -27,12 +27,12 @@ void LayoutTestView::layout() {
 }
 
 void LayoutTestView::create_layout(const Vec2f &position, UIStackViewLateralAlignment lateral) {
-    auto container = new UIStackView(UIStackViewDirection::x, position);
+    auto container = new UIStackView(UIAxis::x, position);
     container->set_fitting({350, 1200});
     container->set_primary_alignment(UIStackViewPrimaryAlignment::center);
     container->set_lateral_alignment(UIStackViewLateralAlignment::center);
 
-    auto stack = new UIStackView(UIStackViewDirection::x, {0, 0});
+    auto stack = new UIStackView(UIAxis::x, {0, 0});
     stack->set_lateral_alignment(lateral);
 
     container->append_child(stack);
@@ -59,12 +59,12 @@ void LayoutTestView::create_layout(const Vec2f &position, UIStackViewLateralAlig
 }
 
 void LayoutTestView::create_controls(const Vec2f &position) {
-    auto controls_container = new UIStackView(UIStackViewDirection::y, position);
+    auto controls_container = new UIStackView(UIAxis::y, position);
     controls_container->set_fitting({300, 1200});
     controls_container->set_lateral_alignment(UIStackViewLateralAlignment::center);
     controls_container->set_primary_alignment(UIStackViewPrimaryAlignment::center);
 
-    controls = new UIStackView(UIStackViewDirection::y);
+    controls = new UIStackView(UIAxis::y);
     controls->set_fill_style(&UIViewWhiteBackground);
     controls->set_lateral_alignment(UIStackViewLateralAlignment::center);
     controls->set_insets({25});
@@ -86,9 +86,9 @@ void LayoutTestView::create_controls(const Vec2f &position) {
     controls->append_child(select);
 }
 
-void LayoutTestView::setup_inset_slider(const char* text, UIStackViewInset* target) {
+void LayoutTestView::setup_inset_slider(const char* text, UIInset* target) {
 
-    auto container = new UIStackView(UIStackViewDirection::x);
+    auto container = new UIStackView(UIAxis::x);
 
     auto text_view = new UIText({}, {50, 50});
     text_view->get_text_drawer()->set_text(text);
@@ -178,7 +178,7 @@ void LayoutTestView::add_h_v_modes_buttons() {
         buttons->push_back(button);
         button->set_title(directions[i]);
         button->set_callback([this, i, buttons]() -> void {
-            direction = (UIStackViewDirection) i;
+            direction = (UIAxis) i;
             for(int j = 0; j < buttons->size(); j++) (*buttons)[j]->set_selected(i == j);
             set_needs_layout();
         });

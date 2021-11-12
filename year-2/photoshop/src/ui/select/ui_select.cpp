@@ -9,11 +9,12 @@ void UISelectView::on_mouse_click(MouseClickEvent* event) {
 
     event->mark_handled();
 
-    auto* modal = new UISelectModalView(&options);
+    auto* present_mode = new UIModalViewPresentModeDropdown(this);
+    auto* modal = new UISelectModalView(present_mode, &options);
 
     modal->set_style(style);
 
-    screen->present_modal(modal, this);
+    screen->present_modal(modal);
 }
 
 void UISelectView::draw(DrawingContext* ctx) {

@@ -76,10 +76,11 @@ void UIView::on_mouse_in(MouseInEvent* event) {
     hovered = true;
 
     if(child) {
-        MouseInEvent nested_event(internal_point[0], internal_point[1]);
-
-        child->on_mouse_in(&nested_event);
-        if(nested_event.is_handled()) event->mark_handled();
+        if(event->should_propagate()) {
+            MouseInEvent nested_event(internal_point[0], internal_point[1]);
+            child->on_mouse_in(&nested_event);
+            if(nested_event.is_handled()) event->mark_handled();
+        }
         current_hovered_child = child;
     }
 }
@@ -106,9 +107,11 @@ void UIView::on_mouse_move(MouseMoveEvent* event) {
 
     if(current_hovered_child == old_hovered_child && current_hovered_child) {
         auto internal_point = current_hovered_child->get_local_position({event->x, event->y});
-        MouseMoveEvent nested_event(internal_point[0], internal_point[1]);
-        current_hovered_child->on_mouse_move(&nested_event);
-        if(nested_event.is_handled()) event->mark_handled();
+        if(event->should_propagate()) {
+            MouseMoveEvent nested_event(internal_point[0], internal_point[1]);
+            current_hovered_child->on_mouse_move(&nested_event);
+            if(nested_event.is_handled()) event->mark_handled();
+        }
     }
 }
 
@@ -118,18 +121,22 @@ void UIView::on_mouse_out(MouseOutEvent* event) {
 
     if(current_hovered_child) {
         Vec2f internal_point = Vec2f(event->x, event->y);
-        MouseOutEvent nested_event(internal_point[0], internal_point[1]);
-        current_hovered_child->on_mouse_out(&nested_event);
+        if(event->should_propagate()) {
+            MouseOutEvent nested_event(internal_point[0], internal_point[1]);
+            current_hovered_child->on_mouse_out(&nested_event);
+            if(nested_event.is_handled()) event->mark_handled();
+        }
         current_hovered_child = nullptr;
-        if(nested_event.is_handled()) event->mark_handled();
     }
 
     if(current_clicked_child) {
         Vec2f internal_point = Vec2f(event->x, event->y);
-        MouseUpEvent nested_event(internal_point[0], internal_point[1]);
-        current_clicked_child->on_mouse_up(&nested_event);
+        if(event->should_propagate()) {
+            MouseUpEvent nested_event(internal_point[0], internal_point[1]);
+            current_clicked_child->on_mouse_up(&nested_event);
+            if(nested_event.is_handled()) event->mark_handled();
+        }
         current_clicked_child = nullptr;
-        if(nested_event.is_handled()) event->mark_handled();
     }
 }
 
@@ -148,12 +155,14 @@ void UIView::on_mouse_down(MouseDownEvent* event) {
         }
 
         Vec2f internal_point = current_clicked_child->get_local_position({ event->x, event->y });
-        MouseDownEvent nested_event(internal_point[0], internal_point[1]);
+        if(event->should_propagate()) {
+            MouseDownEvent nested_event(internal_point[0], internal_point[1]);
 
-        current_clicked_child->on_mouse_down(&nested_event);
-        if(nested_event.is_handled()) {
-            event->mark_handled();
-            return;
+            current_clicked_child->on_mouse_down(&nested_event);
+            if(nested_event.is_handled()) {
+                event->mark_handled();
+                return;
+            }
         }
     }
 
@@ -163,23 +172,26 @@ void UIView::on_mouse_down(MouseDownEvent* event) {
 void UIView::on_mouse_up(MouseUpEvent* event) {
     update_hovered_child(event->x, event->y);
 
+    bool handle_click = true;
     clicked = false;
     if(current_clicked_child) {
         Vec2f internal_point = current_clicked_child->get_local_position({ event->x, event->y });
-        MouseUpEvent nested_event(internal_point[0], internal_point[1]);
-
 
         UIView* child = test(Vec2f {event->x, event->y}, &internal_point);
         if(child != current_hovered_child) {
             if(update_hover(child, internal_point)) event->mark_handled();
+            handle_click = false;
         }
 
-        current_clicked_child->on_mouse_up(&nested_event);
-        if(nested_event.is_handled()) event->mark_handled();
+        if(event->should_propagate()) {
+            MouseUpEvent nested_event(internal_point[0], internal_point[1]);
+            current_clicked_child->on_mouse_up(&nested_event);
+            if(nested_event.is_handled()) event->mark_handled();
+        }
         current_clicked_child = nullptr;
     }
 
-    if(event->x >= 0 && event->y >= 0 && event->x < size[0] && event->y < size[1]) {
+    if(handle_click && event->x >= 0 && event->y >= 0 && event->x < size[0] && event->y < size[1]) {
         auto click_event = MouseClickEvent(event->x, event->y);
         if(event->is_handled()) click_event.mark_handled();
         on_mouse_click(&click_event);
@@ -269,6 +281,7 @@ void UIView::set_needs_texture_update() {
 
 void UIView::set_needs_redraw() {
     needs_redraw = true;
+    set_needs_texture_update();
     if(parent) {
         parent->set_needs_texture_update();
         parent->set_needs_redraw();
@@ -308,6 +321,15 @@ void UIView::set_needs_children_layout() {
 
 void UIView::on_mouse_click(MouseClickEvent* event) {
 
+}
+
+void UIView::on_mouse_scroll(MouseScrollEvent* event) {
+    if(current_hovered_child && event->should_propagate()) {
+        auto internal_point = current_hovered_child->get_local_position({event->x, event->y});
+        MouseScrollEvent nested_event(internal_point[0], internal_point[1], event->dx, event->dy);
+        current_hovered_child->on_mouse_scroll(&nested_event);
+        if(nested_event.is_handled()) event->mark_handled();
+    }
 }
 
 bool UIView::update_hovered_child(float x, float y) {
@@ -398,7 +420,10 @@ void UIView::focus() {
 void UIView::blur() {
     if(!focused) return;
     focused = false;
-    if(current_focused_child) current_focused_child->blur();
+    if(current_focused_child) {
+        current_focused_child->blur();
+        current_focused_child = nullptr;
+    }
     if(parent) parent->blur();
 }
 

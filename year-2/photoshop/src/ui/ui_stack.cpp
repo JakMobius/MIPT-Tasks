@@ -4,7 +4,7 @@
 
 #include "ui_stack.hpp"
 
-void UIStackView::layout_primary_leading(UIStackViewDirection p_direction, float from, float to) {
+void UIStackView::layout_primary_leading(UIAxis p_direction, float from, float to) {
     for(int i = 0; i < children.size(); i++) {
         auto child = children[i];
         Vec2f child_position = child->get_position();
@@ -15,7 +15,7 @@ void UIStackView::layout_primary_leading(UIStackViewDirection p_direction, float
     }
 }
 
-void UIStackView::layout_primary_trailing(UIStackViewDirection p_direction, float from, float to) {
+void UIStackView::layout_primary_trailing(UIAxis p_direction, float from, float to) {
     for(int i = (int)children.size() - 1; i >= 0; i--) {
         auto child = children[i];
         Vec2f child_position = child->get_position();
@@ -26,7 +26,7 @@ void UIStackView::layout_primary_trailing(UIStackViewDirection p_direction, floa
     }
 }
 
-void UIStackView::layout_primary_center(UIStackViewDirection p_direction, float from, float to) {
+void UIStackView::layout_primary_center(UIAxis p_direction, float from, float to) {
     float total_size = 0;
 
     for(int i = 0; i < children.size(); i++) {
@@ -45,7 +45,7 @@ void UIStackView::layout_primary_center(UIStackViewDirection p_direction, float 
     }
 }
 
-void UIStackView::layout_primary_space(UIStackViewDirection p_direction, float from, float to, UIStackViewSpaceMode mode) {
+void UIStackView::layout_primary_space(UIAxis p_direction, float from, float to, UIStackViewSpaceMode mode) {
     float total_size = 0;
 
     for(int i = 0; i < children.size(); i++) {
@@ -77,7 +77,7 @@ void UIStackView::layout_primary_space(UIStackViewDirection p_direction, float f
     }
 }
 
-void UIStackView::layout_primary(UIStackViewDirection p_direction, float from, float to) {
+void UIStackView::layout_primary(UIAxis p_direction, float from, float to) {
     switch(primary_alignment) {
         case UIStackViewPrimaryAlignment::leading:  layout_primary_leading (p_direction, from, to); break;
         case UIStackViewPrimaryAlignment::trailing: layout_primary_trailing(p_direction, from, to); break;
@@ -88,7 +88,7 @@ void UIStackView::layout_primary(UIStackViewDirection p_direction, float from, f
     }
 }
 
-void UIStackView::layout_lateral(UIStackViewDirection p_direction, float from, float to) {
+void UIStackView::layout_lateral(UIAxis p_direction, float from, float to) {
     for(int i = 0; i < children.size(); i++) {
         auto child = children[i];
         float size = child->get_size()[(int) p_direction];
@@ -106,7 +106,7 @@ void UIStackView::layout_lateral(UIStackViewDirection p_direction, float from, f
     }
 }
 
-float UIStackView::layout_direction(UIStackViewDirection p_direction) {
+float UIStackView::layout_direction(UIAxis p_direction) {
     float size = 0;
     if(p_direction == direction) size = get_primary_size(p_direction);
     else size = get_lateral_size(p_direction);
@@ -126,7 +126,7 @@ float UIStackView::layout_direction(UIStackViewDirection p_direction) {
     return size;
 }
 
-float UIStackView::get_primary_size(UIStackViewDirection p_direction) {
+float UIStackView::get_primary_size(UIAxis p_direction) {
     auto& dir_fitting = fitting.by_direction(p_direction);
     if(!dir_fitting.is_fitting) return dir_fitting.size;
 
@@ -147,7 +147,7 @@ float UIStackView::get_primary_size(UIStackViewDirection p_direction) {
     return total_size;
 }
 
-float UIStackView::get_lateral_size(UIStackViewDirection p_direction) {
+float UIStackView::get_lateral_size(UIAxis p_direction) {
     auto& dir_fitting = fitting.by_direction(p_direction);
     if(!dir_fitting.is_fitting) return dir_fitting.size;
 

@@ -79,6 +79,7 @@ public:
     virtual void on_mouse_down(MouseDownEvent *event);
     virtual void on_mouse_up(MouseUpEvent *event);
     virtual void on_mouse_click(MouseClickEvent *event);
+    virtual void on_mouse_scroll(MouseScrollEvent *event);
     virtual void on_text_enter(TextEnterEvent *event);
     virtual void on_key_down(KeyDownEvent *event);
     virtual void on_key_up(KeyUpEvent *event);
@@ -109,11 +110,14 @@ public:
     virtual void focus();
     virtual void blur();
 
+    bool get_masks_to_bounds() const { return masks_to_bounds; }
+    void set_masks_to_bounds(bool p_masks_to_bounds) { masks_to_bounds = p_masks_to_bounds; needs_texture_decision = true; }
+
     Shape* get_shape() const;
     void set_shape(Shape* p_shape);
 
     const UIFillStyle* get_fill_style() { return fill_style; }
-    virtual void set_fill_style(const UIFillStyle* new_fill_style);
+    void set_fill_style(const UIFillStyle* new_fill_style);
 
     const Matrix3f& get_transform() { return transform; }
     const Matrix3f& get_inv_transform() { return inv_transform; };
@@ -121,6 +125,9 @@ public:
 
     bool get_active() const { return active; };
     virtual void set_active(bool p_is_active);
+
+    bool get_is_clicked() const { return clicked; };
+    bool get_hovered() const { return hovered; };
 
     bool get_interactions_enabled() const { return interactions_enabled; }
     virtual void set_interactions_enabled(bool p_interactions_enabled) { interactions_enabled = p_interactions_enabled; }

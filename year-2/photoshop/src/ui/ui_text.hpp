@@ -10,7 +10,11 @@ public:
     ~UIText() override = default;
 
     void draw(DrawingContext* ctx) override;
-    void set_size(const Vec2f &new_size) override { UIView::set_size(size); drawer.set_size(size); }
+
+    void layout() override {
+        drawer.set_size(size);
+        UIView::layout();
+    }
 
     TextDrawer* get_text_drawer() { return &drawer; }
 };

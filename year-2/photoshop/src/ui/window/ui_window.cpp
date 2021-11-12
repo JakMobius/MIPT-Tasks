@@ -55,9 +55,11 @@ void UIWindow::set_active(bool p_is_active) {
 }
 
 void UIWindow::close() {
+    container->remove_window(this);
     WindowCloseEvent event { this };
     close_event_emitter.emit(&event);
-    container->remove_window(this);
+    blur();
+    delete this;
 }
 
 void UIWindow::set_size(const Vec2f &new_size) {
@@ -65,4 +67,22 @@ void UIWindow::set_size(const Vec2f &new_size) {
 
     inner_shape->resize(new_size);
     inner_view->set_shape(inner_shape);
+}
+
+void UIWindow::on_mouse_down(MouseDownEvent* event) {
+//    if(!active) event->stop_propagation();
+    UIView::on_mouse_down(event);
+    event->mark_handled();
+}
+
+void UIWindow::on_mouse_up(MouseUpEvent* event) {
+//    if(!active) event->stop_propagation();
+    UIView::on_mouse_up(event);
+    event->mark_handled();
+}
+
+void UIWindow::on_mouse_move(MouseMoveEvent* event) {
+//    if(!active) event->stop_propagation();
+    UIView::on_mouse_move(event);
+    event->mark_handled();
 }

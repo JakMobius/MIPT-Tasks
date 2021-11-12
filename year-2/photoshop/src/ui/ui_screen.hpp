@@ -5,6 +5,7 @@ class UIScreen;
 #include "ui_view.hpp"
 #include "select/ui_select_modal.hpp"
 #include "ui_modal_container.hpp"
+#include "ui_modal_view.hpp"
 
 class UIScreen : public UIView {
     UIView* view_container = new UIView();
@@ -27,5 +28,5 @@ public:
     UIModalContainerView* get_modal_container() { return modal_view_container; }
     UIScreen* get_screen() override { return this; }
 
-    void present_modal(UISelectModalView* modal_view, UIView* parent);
+    void present_modal(UIModalView* modal_view);
 };

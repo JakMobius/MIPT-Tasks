@@ -34,5 +34,6 @@ Vec2f TextDrawer::get_char_position(int char_index) {
 
 Vec2f TextDrawer::get_text_bounds() {
     auto bounds = sf_text.getLocalBounds();
+    if(bounds.height < (float)get_font_size()) bounds.height = (float)get_font_size();
     return {bounds.width, bounds.height};
 }

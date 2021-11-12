@@ -29,6 +29,15 @@ void ToolManager::on_mouse_up() {
 }
 
 void ToolManager::set_active_canvas(Canvas* p_canvas) {
+    if(canvas == p_canvas) return;
     canvas = p_canvas;
+    CanvasChangeEvent event { this };
+    canvas_change_emitter.emit(&event);
     if(active_tool) active_tool->on_layer_change();
+}
+
+void ToolManager::set_color(const Vec4f &p_selected_color) {
+    selected_color = p_selected_color;
+    ToolManagerColorEvent event { this };
+    color_event_emitter.emit(&event);
 }

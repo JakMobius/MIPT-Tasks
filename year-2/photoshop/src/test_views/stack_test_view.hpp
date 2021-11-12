@@ -10,10 +10,10 @@
 class LayoutTestView : public UIView {
 
     float spacing = 0;
-    UIStackViewInsets stack_insets {};
+    UIInsets stack_insets {};
     std::vector<UIStackView*> stacks;
     std::vector<UIStackView*> containers;
-    UIStackViewDirection direction = UIStackViewDirection::x;
+    UIAxis direction = UIAxis::x;
     UIStackViewPrimaryAlignment primary_alignment = UIStackViewPrimaryAlignment::leading;
     UIStackViewFitting fitting = {{350}, {700}};
     UIStackView* controls;
@@ -21,7 +21,7 @@ class LayoutTestView : public UIView {
     void layout() override;
     void create_layout(const Vec2f& position, UIStackViewLateralAlignment lateral);
     void create_controls(const Vec2f& position);
-    void setup_inset_slider(const char* text, UIStackViewInset* target);
+    void setup_inset_slider(const char* text, UIInset* target);
     void add_inset_sliders();
     void add_spacing_slider();
     void add_primary_alignment_buttons();

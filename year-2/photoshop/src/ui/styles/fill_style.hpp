@@ -25,6 +25,7 @@ public:
     };
 
     void set_color(const Vec4f& p_color) { color = p_color.to_sf_color(); }
+    Vec4f get_color() { return Vec4f::from_sf_color(color); }
 };
 
 class UIFillStyleTexture : public UIFillStyleColor {

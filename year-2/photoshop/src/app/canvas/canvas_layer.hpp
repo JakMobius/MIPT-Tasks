@@ -1,35 +1,38 @@
 #pragma once
 
 class CanvasLayer;
-
-#include "../../graphics/drawing_target_texture.hpp"
-#include "../../graphics/drawing_context.hpp"
-#include "../../events/event_emitter.hpp"
-
+class Canvas;
 struct LayerUpdateEvent {
     CanvasLayer* layer;
 };
 
+#include "../../graphics/drawing_target_texture.hpp"
+#include "../../graphics/drawing_context.hpp"
+#include "../../events/event_emitter.hpp"
+#include "layer_preferences_generator.hpp"
+
 class CanvasLayer {
+protected:
+    LayerPreferencesGenerator* preferences_generator = nullptr;
     EventEmitter<LayerUpdateEvent> layer_update_event_emitter {};
     DrawingTargetTexture* texture = nullptr;
     UIFillStyleTexture draw_style {};
     Vec2i size;
     bool needs_redraw = false;
+    bool needs_clear = true;
+
+    virtual void create_preferences_generator() {};
 
 public:
-    explicit CanvasLayer(Vec2i size): size(size) {
-        texture = new DrawingTargetTexture(size);
-        texture->clear({0, 0, 0, 0});
-        draw_style.set_texture(texture);
-    }
+    explicit CanvasLayer(Vec2i size);
+    virtual ~CanvasLayer();
 
-    void draw(DrawingContext* ctx) {
-        needs_redraw = false;
-        Vec2f texture_size = { (float)size[0], (float)size[1] };
-        Vec2f texture_position = { 0, 0 };
-        ctx->set_fill_style(&draw_style);
-        ctx->fill_rect(texture_position, texture_size);
+    virtual void clear_texture();
+    virtual void draw(Canvas* canvas, DrawingContext* ctx);
+
+    LayerPreferencesGenerator* get_preferences_generator() {
+        if(!preferences_generator) create_preferences_generator();
+        return preferences_generator;
     }
 
     void set_needs_redraw();

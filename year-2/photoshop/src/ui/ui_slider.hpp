@@ -32,4 +32,6 @@ public:
 
     void set_fraction(float fraction);
     void set_style(const UISliderStyle* p_style) override;
+
+    UIView* get_bar() { return bar; }
 };

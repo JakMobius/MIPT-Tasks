@@ -21,6 +21,16 @@ public:
     void set_bar_texture(Textured* p_texture) { texture->set_texture(p_texture); }
 };
 
+class UIColorInputStyle : public UIInputStyle {
+public:
+    static UIColorInputStyle* instance;
+
+    Vec4f                get_text_color()       const override { return Vec4f {0.702,  0.69,  0.694,  1}; };
+    const UIFillStyle*   get_background_color() const override { static UIFillStyleColor color({0, 0, 0, 0}); return &color; }
+    const UIFillStyle*   get_focused_background_color() const override { static UIFillStyleColor color({0.1, 0.1, 0.1, 1}); return &color; }
+    const UIFillStyle*   get_cursor_fill_style() const override { static UIFillStyleColor color({1, 1, 1, 1}); return &color; }
+};
+
 class ColorPickerWindow: public PhotoshopWindow {
     std::function<void(Vec4f)> callback;
 
@@ -32,7 +42,6 @@ class ColorPickerWindow: public PhotoshopWindow {
 
     GradientSliderStyle* rgba_slider_styles[4] {};
     UIColorSlider* rgba_sliders[4] {};
-    char rgb_label_values[16]{};
 
     HueSaturationSelectView* hue_saturation_view = nullptr;
 
@@ -41,6 +50,7 @@ class ColorPickerWindow: public PhotoshopWindow {
     float current_alpha = 0;
 
     bool callbacks_ignored = false;
+    bool first_layout = false;
 
     static GradientSliderStyle* create_slider_style(UIColorSlider* slider);
     void add_rgba_slider(int index);
@@ -64,7 +74,5 @@ public:
     void on_hue_saturation_update(float hue, float saturation);
     void layout() override;
 
-    void set_callback(const std::function<void(const Vec4f&)>& p_callback) {
-        callback = p_callback;
-    }
+    void set_callback(const std::function<void(const Vec4f&)>& p_callback);
 };

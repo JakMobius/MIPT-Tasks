@@ -2,11 +2,8 @@
 
 #include <vector>
 
-template<typename EventType>
-class EventHandler {
-public:
-    virtual void operator() (EventType* event) {}
-};
+template <typename EventType>
+using EventHandler = std::function<void(EventType*)>;
 
 template<typename EventType>
 class EventEmitter {

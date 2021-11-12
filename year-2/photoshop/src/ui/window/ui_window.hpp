@@ -18,7 +18,7 @@ class UIWindow : public UIView, public Styled<UIWindowStyle> {
 
     UIWindowContainer* container = nullptr;
     UIWindowHeaderView* header_view = nullptr;
-    UIView* inner_view = new UIStackView(UIStackViewDirection::y);
+    UIView* inner_view = new UIStackView(UIAxis::y);
     UIView* content_view = new UIView();
     RoundedRectShape* inner_shape = nullptr;
 
@@ -45,6 +45,10 @@ public:
     void set_container_view(UIWindowContainer* p_container) { container = p_container; }
 
     EventEmitter<WindowCloseEvent>* get_close_event_emitter() { return &close_event_emitter; }
+
+    void on_mouse_down(MouseDownEvent *event)   override;
+    void on_mouse_up(MouseUpEvent *event)       override;
+    void on_mouse_move(MouseMoveEvent *event)   override;
 
     void close();
 };

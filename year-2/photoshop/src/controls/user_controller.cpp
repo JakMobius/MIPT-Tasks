@@ -8,6 +8,7 @@ void UserController::handle_event(const sf::Event &event)  {
     switch(event.type) {
         case sf::Event::Closed: {
             window->close();
+            root_view->blur();
             break;
         }
         case sf::Event::TextEntered: {
@@ -52,5 +53,21 @@ void UserController::handle_event(const sf::Event &event)  {
             if(root_view) root_view->on_mouse_up(&mouse_event);
             break;
         }
+        case sf::Event::MouseWheelScrolled: {
+
+            float delta = event.mouseWheelScroll.delta;
+            if(delta == 0) break;
+
+            if(event.mouseWheelScroll.wheel == sf::Mouse::HorizontalWheel) {
+                MouseScrollEvent mouse_event((float)event.mouseWheelScroll.x, (float)event.mouseWheelScroll.y, delta, 0);
+                if(root_view) root_view->on_mouse_scroll(&mouse_event);
+            } else {
+                MouseScrollEvent mouse_event((float)event.mouseWheelScroll.x, (float)event.mouseWheelScroll.y, 0, delta);
+                if(root_view) root_view->on_mouse_scroll(&mouse_event);
+            }
+
+            break;
+        }
+        default: break;
     }
 }

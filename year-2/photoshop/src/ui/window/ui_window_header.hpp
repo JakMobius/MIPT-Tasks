@@ -9,7 +9,7 @@ class UIWindow;
 #include "../styles/window_style.hpp"
 
 class UIWindowHeaderView : public UIStackView {
-    UIStackView* buttons_container = new UIStackView(UIStackViewDirection::x);
+    UIStackView* buttons_container = new UIStackView(UIAxis::x);
     UIText* header = new UIText();
     UIView* spacer = new UIView();
     UIButton* close_button = new UIButton({}, {24, 24});

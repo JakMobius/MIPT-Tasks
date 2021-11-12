@@ -16,8 +16,6 @@ void UIWindowContainer::remove_window(UIWindow* window) {
     window->set_container_view(nullptr);
     windows.erase(windows.begin() + window_index);
     remove_child(child_index);
-
-    delete window;
 }
 
 void UIWindowContainer::add_window(UIWindow* window) {
@@ -35,17 +33,14 @@ int UIWindowContainer::get_window_index(UIView* maybe_window) {
 }
 
 void UIWindowContainer::on_mouse_down(MouseDownEvent* event) {
-    update_hovered_child(event->x, event->y);
+    UIView::on_mouse_down(event);
 
     if(current_hovered_child != active_window) {
         if(current_hovered_child) {
             maybe_activate_child(current_hovered_child);
         } else activate_window(nullptr);
         set_needs_redraw();
-        event->mark_handled();
     }
-
-    UIView::on_mouse_down(event);
 }
 
 void UIWindowContainer::maybe_activate_child(UIView* view) {
@@ -58,11 +53,18 @@ void UIWindowContainer::activate_window(UIWindow* window) {
     if(active_window) {
         active_window->set_active(false);
     }
+
+    if(window == nullptr) {
+        active_window = nullptr;
+        return;
+    }
+
+    int view_index = get_child_index(window);
+    if(view_index < 0) return;
+
     active_window = window;
-    if(!window) return;
 
     window->set_active(true);
-    int view_index = get_child_index(window);
     for(int i = view_index + 1; i < children.size(); i++) {
         children[i - 1] = children[i];
     }
@@ -71,6 +73,4 @@ void UIWindowContainer::activate_window(UIWindow* window) {
 
 void UIWindowContainer::layout() {
     UIView::layout();
-
-    if(!fill_style) set_fill_style(&background_style);
 }

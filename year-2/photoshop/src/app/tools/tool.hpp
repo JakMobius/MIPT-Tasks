@@ -1,10 +1,11 @@
 #pragma once
 
 class Tool;
+class ToolManager;
 
-#include "tool_manager.hpp"
 #include "../../utils/vec2.hpp"
 #include "../../graphics/texture.hpp"
+#include "../../graphics/drawing_context.hpp"
 
 class Tool {
 protected:

@@ -34,11 +34,15 @@ void ToolSelectWindow::create_tool_buttons() {
 }
 
 ToolSelectWindow::ToolSelectWindow(PhotoshopView* app, ToolManager* manager, const Vec2f &position) : PhotoshopWindow(app, position, {}, ""), manager(manager) {
-    stack = new UIStackView(UIStackViewDirection::x);
+    stack = new UIStackView(UIAxis::x);
     stack->set_primary_alignment(UIStackViewPrimaryAlignment::leading);
     stack->set_item_spacing(7);
     stack->set_insets({7});
     stack->set_fitting({});
+
+    color_listener = [this](ToolManagerColorEvent*){
+        color_select_button->set_presented_color(this->manager->get_color());
+    };
 
     manager->get_color_event_emitter()->add_listener(&color_listener);
 
@@ -52,10 +56,6 @@ void ToolSelectWindow::layout() {
     UIWindow::layout();
 }
 
-void ToolSelectWindow::on_manager_color_updated() {
-    color_select_button->set_presented_color(manager->get_color());
-}
-
 void ToolSelectWindow::emit_color_picker() {
     auto container = get_container_view();
     if(!container) return;
@@ -65,6 +65,6 @@ void ToolSelectWindow::emit_color_picker() {
     }, &manager->get_color());
 }
 
-void ToolManagerColorListener::operator()(ToolManagerColorEvent* event) {
-    window->on_manager_color_updated();
+ToolSelectWindow::~ToolSelectWindow() {
+    manager->get_color_event_emitter()->remove_listener(&color_listener);
 }

@@ -13,15 +13,17 @@ void UIWindowHeaderView::on_mouse_move(MouseMoveEvent* event) {
         Vec2f position = window->get_position();
         position.set_x(position[0] + event->x - drag_start_position[0]);
         position.set_y(position[1] + event->y - drag_start_position[1]);
+        if(position[1] < 0) position.set_y(0);
         window->set_position(position);
     }
 }
 
-UIWindowHeaderView::UIWindowHeaderView(UIWindow* window) : UIStackView(UIStackViewDirection::x, position), window(window) {
+UIWindowHeaderView::UIWindowHeaderView(UIWindow* window) : UIStackView(UIAxis::x, position), window(window) {
     set_primary_alignment(UIStackViewPrimaryAlignment::space_between);
     set_lateral_alignment(UIStackViewLateralAlignment::center);
     setup_buttons_container();
 
+    header->get_text_drawer()->set_font_size(20);
     header->get_text_drawer()->set_v_alignment(VTextAlignmentCenter);
     header->get_text_drawer()->set_h_alignment(HTextAlignmentCenter);
 

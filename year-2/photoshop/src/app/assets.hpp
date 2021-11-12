@@ -25,6 +25,7 @@ public:
     Texture* window_border_corner_texture = nullptr;
     Texture* window_border_horizontal_texture = nullptr;
     Texture* window_border_vertical_texture = nullptr;
+    Texture* error_texture = nullptr;
     sf::Font* default_font = nullptr;
 
     void load();

@@ -7,7 +7,7 @@
 class DroppingMenuTestView : public UIView {
 
     void create_menu() {
-        auto* stack = new UIStackView(UIStackViewDirection::y);
+        auto* stack = new UIStackView(UIAxis::y);
         append_child(stack);
         stack->set_primary_alignment(UIStackViewPrimaryAlignment::center);
         stack->set_lateral_alignment(UIStackViewLateralAlignment::center);

@@ -21,6 +21,7 @@ void AssetsStructure::load() {
     window_border_corner_texture        = own_texture(new Texture("resources/img/window-border-corner.png"));
     window_border_vertical_texture      = own_texture(new Texture("resources/img/window-border-vertical.png"));
     window_border_horizontal_texture    = own_texture(new Texture("resources/img/window-border-horizontal.png"));
+    error_texture                       = own_texture(new Texture("resources/img/error.png"));
     canvas_background_texture->set_repeating(true);
     default_font = new sf::Font();
     default_font->loadFromFile("resources/font/font.ttf");

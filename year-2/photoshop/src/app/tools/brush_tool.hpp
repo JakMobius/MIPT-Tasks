@@ -40,3 +40,5 @@ public:
 
     void delete_textures();
 };
+
+#include "tool_manager.hpp"

@@ -9,12 +9,14 @@
 class CanvasWindow : public PhotoshopWindow {
 
     CanvasView* canvas_view = nullptr;
+    EventHandler<WindowCloseEvent> close_handler { [this](WindowCloseEvent*){ deactivate_canvas(); }};
+
+    void deactivate_canvas();
 
 public:
-    explicit CanvasWindow(PhotoshopView* app, ToolManager* manager, const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): PhotoshopWindow(app, position, size, "Canvas") {
-        canvas_view = new CanvasView(manager, {}, size);
-        get_content_view()->append_child(canvas_view);
-    };
+    explicit CanvasWindow(PhotoshopView* app, ToolManager* manager, const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0});;
+
+    void focus() override;
 
     CanvasView* get_canvas_view() { return canvas_view; }
 };

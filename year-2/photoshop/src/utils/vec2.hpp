@@ -66,7 +66,7 @@ struct Vec2 {
 
     inline Vec2<T> operator+() { return *this; }
 
-    inline Vec2<T> operator-() const { return {content * -1}; }
+    inline Vec2<T> operator-() const { return Vec2 {content * -1}; }
 
     inline Vec2<T> operator+(const Vec2<T> &second) const { return Vec2 {content + second.content}; }
 
@@ -92,6 +92,7 @@ struct Vec2 {
 
     inline Vec2<T> &operator/=(const T k) { content /= k; return *this; }
 
+
     void transform_unbound(const Matrix3<T> &matrix) {
         content = {
             matrix.transform_x(content[0], content[1], 0),
@@ -111,8 +112,9 @@ struct Vec2 {
 
     inline bool operator==(const Vec2<T> &second) const {
         const auto res = content - second.content;
-        return (res[0]) < FLOAT_EPS && (res[1]) < FLOAT_EPS;
+        return abs(res[0]) < FLOAT_EPS && abs(res[1]) < FLOAT_EPS;
     }
+    inline bool operator!=(const Vec2<T> other) const { return !(*this == other); }
 
     template<typename V>
     inline explicit operator Vec2<V>() const {

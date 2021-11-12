@@ -105,6 +105,7 @@ struct Vec4 {
     }
 
     sf::Color to_sf_color() const { return { (sf::Uint8)(content[0] * 255), (sf::Uint8)(content[1] * 255), (sf::Uint8)(content[2] * 255), (sf::Uint8)(content[3] * 255) }; }
+    static Vec4<T> from_sf_color(sf::Color color) { return Vec4<T> { T(color.r) / 255, T(color.g) / 255, T(color.b) / 255, T(color.a) / 255 }; }
 };
 
 typedef Vec4<double> Vec4d;

@@ -10,14 +10,6 @@ class ToolSelectWindow;
 #include "photoshop_window.hpp"
 #include "color_select_button.hpp"
 
-struct ToolManagerColorListener : public EventHandler<ToolManagerColorEvent> {
-    ToolSelectWindow* window;
-public:
-    explicit ToolManagerColorListener(ToolSelectWindow* window): window(window) {}
-
-    void operator() (ToolManagerColorEvent* event) override;
-};
-
 struct ToolButtonStyle : public UIButtonStyle {
     UIFillStyleTexture* style;
     explicit ToolButtonStyle(UIFillStyleTexture* style): style(style) {}
@@ -34,20 +26,16 @@ struct ToolButtonStyle : public UIButtonStyle {
 class ToolSelectWindow : public PhotoshopWindow {
     UIStackView* stack = nullptr;
     ToolManager* manager = nullptr;
-    ToolManagerColorListener color_listener { this };
     ColorSelectButton* color_select_button;
 
-    void emit_color_picker();
+    EventHandler<ToolManagerColorEvent> color_listener;
 
+    void emit_color_picker();
     void create_tool_buttons();
 
 public:
     explicit ToolSelectWindow(PhotoshopView* app, ToolManager* manager, const Vec2f& position);
-    ~ToolSelectWindow() {
-        manager->get_color_event_emitter()->remove_listener(&color_listener);
-    };
+    ~ToolSelectWindow();;
 
     void layout() override;
-
-    void on_manager_color_updated();
 };

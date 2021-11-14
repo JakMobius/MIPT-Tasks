@@ -23,6 +23,7 @@ protected:
 
 public:
     BrushTool();
+    ~BrushTool() override;
 
     void on_mouse_down(Vec2f position) override;
     void on_mouse_move(Vec2f position) override;

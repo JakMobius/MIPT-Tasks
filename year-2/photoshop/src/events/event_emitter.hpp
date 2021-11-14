@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <functional>
 
 template <typename EventType>
 using EventHandler = std::function<void(EventType*)>;

@@ -29,3 +29,23 @@ void CanvasEffectLayer::draw(Canvas* canvas, DrawingContext* ctx) {
 
     CanvasLayer::draw(canvas, ctx);
 }
+
+CanvasEffectLayer::CanvasEffectLayer(Vec2i size) : CanvasLayer(size) {
+    united_map = new float[generator.resolution * 3];
+    swap_texture = new DrawingTargetTexture(size);
+    shader.loadFromFile("resources/shaders/rgb_mapping_effect_shader.shader", sf::Shader::Fragment);
+    draw_style.get_render_states()->shader = &shader;
+    draw_style.get_render_states()->blendMode = sf::BlendNone;
+
+    for(int i = 0; i < 3; i++) regenerate_curve(i);
+}
+
+CanvasEffectLayer::~CanvasEffectLayer() {
+    delete united_map;
+    delete swap_texture;
+}
+
+void CanvasEffectLayer::clear_texture() {
+    texture->clear({1, 1, 1, 1});
+    needs_clear = false;
+}

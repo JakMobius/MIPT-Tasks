@@ -166,3 +166,7 @@ void BrushTool::on_layer_change() {
     delete_textures();
     create_textures();
 }
+
+BrushTool::~BrushTool() {
+    delete_textures();
+}

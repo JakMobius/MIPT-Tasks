@@ -53,10 +53,6 @@ void UIWindow::set_style(const UIWindowStyle* p_style) {
 }
 
 void UIWindow::close() {
-    container->remove_window(this);
-    WindowCloseEvent event { this };
-    close_event_emitter.emit(&event);
-    blur();
     delete this;
 }
 
@@ -93,4 +89,12 @@ void UIWindow::focus() {
 void UIWindow::blur() {
     UIView::blur();
     set_active(false);
+}
+
+UIWindow::~UIWindow() {
+    if(container) container->remove_window(this);
+    WindowCloseEvent event { this };
+    close_event_emitter.emit(&event);
+    blur();
+    delete inner_shape;
 }

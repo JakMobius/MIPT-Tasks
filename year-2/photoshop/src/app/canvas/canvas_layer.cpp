@@ -10,7 +10,10 @@ void CanvasLayer::set_needs_redraw() {
     layer_update_event_emitter.emit(&event);
 }
 
-CanvasLayer::~CanvasLayer() { delete preferences_generator; }
+CanvasLayer::~CanvasLayer() {
+    delete preferences_generator;
+    delete texture;
+}
 
 CanvasLayer::CanvasLayer(Vec2i size) : size(size) {
     texture = new DrawingTargetTexture(size);

@@ -30,7 +30,7 @@ class UIWindow : public UIView, public Styled<UIWindowStyle> {
 
 public:
     explicit UIWindow(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}, const char* title = nullptr);
-    ~UIWindow() { delete inner_shape; }
+    ~UIWindow();
     void layout() override;
 
     void set_title(const char* string);

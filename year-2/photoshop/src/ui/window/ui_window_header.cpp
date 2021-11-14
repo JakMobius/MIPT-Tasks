@@ -39,7 +39,6 @@ void UIWindowHeaderView::setup_buttons_container() {
     buttons_container->set_insets({5});
 
     buttons_container->append_child(close_button);
-//    buttons_container->append_child(fullscreen_button);
 
     close_button->set_callback([this]() {
         // Close window asynchronously, so
@@ -61,7 +60,6 @@ void UIWindowHeaderView::update_style() {
     }
     header->get_text_drawer()->set_font_color(window->get_style()->get_window_header_color());
     close_button->set_style(window->get_style()->get_close_button_style());
-    fullscreen_button->set_style(window->get_style()->get_fullscreen_button_style());
 }
 
 void UIWindowHeaderView::on_mouse_down(MouseDownEvent* event) {

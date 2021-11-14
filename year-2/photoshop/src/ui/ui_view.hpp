@@ -12,6 +12,9 @@ class UIScreen;
 #include "../graphics/shapes/shape.hpp"
 #include "../events/keyboard_events.hpp"
 #include <vector>
+#include <climits>
+#include <cassert>
+#include <functional>
 
 extern const UIFillStyleColor UIViewWhiteBackground;
 extern const UIFillStyleColor UIViewRedBackground;

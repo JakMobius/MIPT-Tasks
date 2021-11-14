@@ -23,24 +23,10 @@ class CanvasEffectLayer : public CanvasLayer {
     }
 
 public:
-    explicit CanvasEffectLayer(Vec2i size): CanvasLayer(size) {
-        united_map = new float[generator.resolution * 3];
-        swap_texture = new DrawingTargetTexture(size);
-        shader.loadFromFile("resources/shaders/rgb_mapping_effect_shader.shader", sf::Shader::Fragment);
-        draw_style.get_render_states()->shader = &shader;
-        draw_style.get_render_states()->blendMode = sf::BlendNone;
+    explicit CanvasEffectLayer(Vec2i size);
+    ~CanvasEffectLayer() override;
 
-        for(int i = 0; i < 3; i++) regenerate_curve(i);
-    }
-
-    void clear_texture() override {
-        texture->clear({1, 1, 1, 1});
-        needs_clear = false;
-    }
-
-    ~CanvasEffectLayer() {
-        delete swap_texture;
-    }
+    void clear_texture() override;
 
     void draw(Canvas* canvas, DrawingContext *ctx) override;
 

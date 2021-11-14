@@ -30,7 +30,9 @@ void ToolManager::on_mouse_up() {
 
 void ToolManager::set_active_canvas(Canvas* p_canvas) {
     if(canvas == p_canvas) return;
+    if(canvas != nullptr) canvas->get_active_layer_change_event_emitter()->remove_listener(&active_layer_change_handler);
     canvas = p_canvas;
+    if(canvas) canvas->get_active_layer_change_event_emitter()->add_listener(&active_layer_change_handler);
     CanvasChangeEvent event { this };
     canvas_change_emitter.emit(&event);
     if(active_tool) active_tool->on_layer_change();

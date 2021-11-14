@@ -43,11 +43,6 @@ void UIButton::set_style(const UIButtonStyle* p_style) {
     update_state();
 }
 
-void UIButton::set_active(bool p_active) {
-    UIView::set_active(p_active);
-    update_state();
-}
-
 void UIButton::layout() {
     if(!style) set_style(UIButtonStyle::instance);
     label->set_size(get_size());

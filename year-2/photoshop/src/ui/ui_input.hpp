@@ -14,19 +14,27 @@ public:
     virtual const UIFillStyle*   get_background_color() const { static UIFillStyleColor color({1, 1, 1, 1}); return &color; }
     virtual const UIFillStyle*   get_focused_background_color() const { static UIFillStyleColor color({0.8, 0.8, 1, 1}); return &color; }
     virtual const UIFillStyle*   get_cursor_fill_style() const { static UIFillStyleColor color({0, 0, 0, 1}); return &color; }
+    virtual const UIFillStyle*   get_selection_color() const { static UIFillStyleColor color({0.5, 0.5, 0.9, 1.0}); return &color; }
+};
+
+struct UIInputSelection {
+    int position = 0;
+    int anchor = -1;
 };
 
 class UIInput : public UIView, public Styled<UIInputStyle> {
+
+protected:
     TextDrawer text_drawer {};
 
     std::vector<char> contents {'\0'};
-    DispatchQueueTaskHandle blink_task_handle;
+    DispatchQueueTaskHandle blink_task_handle = -1;
     UIInsets text_insets { 5 };
 
     std::function<void(void)> change_callback {};
     std::function<void(void)> enter_callback {};
 
-    int cursor_position = 0;
+    UIInputSelection cursor {};
     bool cursor_visible = false;
 
     void update_style();
@@ -38,6 +46,12 @@ class UIInput : public UIView, public Styled<UIInputStyle> {
 public:
     UIInput(const Vec2f& position = {}, const Vec2f& size = {}): UIView(position, size) {
         text_drawer.set_v_alignment(VTextAlignmentCenter);
+        focusable = true;
+    }
+    ~UIInput() {
+        if(blink_task_handle != -1) {
+            DispatchQueue::main.cancel(blink_task_handle);
+        }
     }
 
     void set_style(const UIInputStyle *p_style) override;
@@ -52,8 +66,8 @@ public:
     void focus() override;
     void blur() override;
 
-    void move_cursor_left();
-    void move_cursor_right();
+    void move_cursor_left(bool shift);
+    void move_cursor_right(bool shift);
 
     const UIInsets& get_text_insets() const { return text_insets; }
     void set_text_insets(const UIInsets &p_text_insets) { text_insets = p_text_insets; set_needs_layout(); }
@@ -64,19 +78,9 @@ public:
     TextDrawer* get_text_drawer() { return &text_drawer; }
 
     const std::vector<char>& get_contents() const { return contents; }
-    void set_contents(const std::vector<char>& p_contents) {
-        contents = p_contents;
-        update_text();
-    }
-    void set_contents(const char* p_contents) {
-        int length = strlen(p_contents);
-        contents.resize(length + 1);
-        for(int i = 0; i < length; i++) {
-            contents[i] = p_contents[i];
-        }
-        contents[length] = '\0';
-        update_text();
-    }
+    void set_contents(const std::vector<char>& p_contents);
+    void set_contents(const char* p_contents);
 
     void handle_backspace();
+    virtual void handle_enter();
 };

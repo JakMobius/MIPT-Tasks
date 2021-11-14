@@ -10,6 +10,7 @@ typedef std::function<void()> button_callback;
 class UIButton : public UIView, public Styled<UIButtonStyle> {
 protected:
     UIText* label = new UIText();
+
     button_callback callback {};
 
     bool selected = false;
@@ -34,7 +35,11 @@ public:
     void set_callback(const button_callback& p_callback) { callback = p_callback; }
     void set_selected(bool p_selected) { selected = p_selected; update_state(); }
     void set_style(const UIButtonStyle* p_style) override;
-    void set_active(bool p_active) override;
+
+    void set_active(bool p_is_active) override {
+        UIView::set_active(p_is_active);
+        update_state();
+    }
 
     void set_enabled(bool p_enabled);
 

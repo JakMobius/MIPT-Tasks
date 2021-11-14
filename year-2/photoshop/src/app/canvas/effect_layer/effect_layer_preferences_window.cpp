@@ -31,6 +31,8 @@ EffectLayerPreferencesWindow::EffectLayerPreferencesWindow(CanvasEffectLayer* la
         catmull_rom_buttons[i] = button;
         get_content_view()->append_child(button);
     }
+
+    handle_button_click(0);
 }
 
 void EffectLayerPreferencesWindow::handle_button_click(int i) {

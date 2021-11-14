@@ -7,29 +7,23 @@
 #include "canvas_window.hpp"
 #include "alert_window.hpp"
 
-FileOpenWindow::FileOpenWindow(PhotoshopView* app, const Vec2f& position): PhotoshopWindow(app, position, {300, 110}) {
+FileOpenWindow::FileOpenWindow(PhotoshopView* app, const Vec2f& position): DialogWindow(app, position, {400, 110}) {
     set_title("Open file");
 
-    auto text = new UIText({10, 10}, {90, 40});
-    input = new UIInput({110, 10}, {180, 40});
-    button = new UIButton({210, 60}, {80, 40});
+    text_width = 70;
+    input = create_string_field("File path");
+
+    button = new UIButton({}, {80, 40});
     button->set_title("Ok");
+    stack->append_child(button);
 
     button->set_callback([this]() {
-        DispatchQueue::main.push(DispatchQueueTask { [this]() {
-            const char* path = &input->get_contents()[0];
-            try_open_file(path);
+        DispatchQueue::main.push(DispatchQueueTask {[this]() {
+            try_open_file(&input->get_contents()[0]);
         }});
     });
 
-    text->get_text_drawer()->set_v_alignment(VTextAlignmentCenter);
-    text->get_text_drawer()->set_h_alignment(HTextAlignmentCenter);
-    text->get_text_drawer()->set_text("File path");
-    text->get_text_drawer()->set_font_size(17);
-
-    get_content_view()->append_child(text);
-    get_content_view()->append_child(input);
-    get_content_view()->append_child(button);
+    get_content_view()->append_child(stack);
 }
 
 void FileOpenWindow::try_open_file(const char* path) {

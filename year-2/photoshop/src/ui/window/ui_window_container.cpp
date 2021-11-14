@@ -11,7 +11,7 @@ void UIWindowContainer::remove_window(UIWindow* window) {
 
     if(window_index == -1 || child_index == -1) return;
 
-    if(window == active_window) activate_window(nullptr);
+    if(window == active_window) focus_window(nullptr);
 
     window->set_container_view(nullptr);
     windows.erase(windows.begin() + window_index);
@@ -38,20 +38,20 @@ void UIWindowContainer::on_mouse_down(MouseDownEvent* event) {
     if(current_hovered_child != active_window) {
         if(current_hovered_child) {
             maybe_activate_child(current_hovered_child);
-        } else activate_window(nullptr);
+        } else focus_window(nullptr);
         set_needs_redraw();
     }
 }
 
 void UIWindowContainer::maybe_activate_child(UIView* view) {
     int index = get_window_index(view);
-    if(index >= 0) activate_window(windows[index]);
-    else activate_window(nullptr);
+    if(index >= 0) focus_window(windows[index]);
+    else focus_window(nullptr);
 }
 
-void UIWindowContainer::activate_window(UIWindow* window) {
+void UIWindowContainer::focus_window(UIWindow* window) {
     if(active_window) {
-        active_window->set_active(false);
+        active_window->blur();
     }
 
     if(window == nullptr) {
@@ -63,8 +63,8 @@ void UIWindowContainer::activate_window(UIWindow* window) {
     if(view_index < 0) return;
 
     active_window = window;
+    active_window->focus();
 
-    window->set_active(true);
     for(int i = view_index + 1; i < children.size(); i++) {
         children[i - 1] = children[i];
     }

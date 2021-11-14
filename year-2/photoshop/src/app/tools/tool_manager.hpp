@@ -22,6 +22,11 @@ class ToolManager {
     EventEmitter<ToolManagerColorEvent> color_event_emitter;
     EventEmitter<CanvasChangeEvent> canvas_change_emitter;
     std::vector<ToolFactoryBase*> tool_factories;
+
+    EventHandler<ActiveLayerChangeEvent> active_layer_change_handler {[this](ActiveLayerChangeEvent* event) {
+        if(active_tool) active_tool->on_layer_change();
+    }};
+
 public:
     explicit ToolManager() {}
 

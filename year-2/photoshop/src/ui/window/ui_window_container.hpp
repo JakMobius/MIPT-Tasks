@@ -20,5 +20,5 @@ public:
     void on_mouse_down(MouseDownEvent *event) override;
     void layout() override;
 
-    void activate_window(UIWindow* window);
+    void focus_window(UIWindow* window);
 };

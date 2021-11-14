@@ -53,9 +53,9 @@ LayerInspectorWindow::LayerInspectorWindow(PhotoshopView* app, ToolManager* mana
 }
 
 void LayerInspectorWindow::on_canvas_changed() {
-    if(active_canvas) active_canvas->get_event_emitter()->remove_listener(&canvas_update_event_listener);
+    if(active_canvas) active_canvas->get_update_event_emitter()->remove_listener(&canvas_update_event_listener);
     active_canvas = manager->get_active_canvas();
-    if(active_canvas) active_canvas->get_event_emitter()->add_listener(&canvas_update_event_listener);
+    if(active_canvas) active_canvas->get_update_event_emitter()->add_listener(&canvas_update_event_listener);
 
     update_list();
 

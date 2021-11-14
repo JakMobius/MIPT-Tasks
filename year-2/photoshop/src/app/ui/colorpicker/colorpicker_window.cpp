@@ -30,12 +30,12 @@ void ColorPickerWindow::add_rgba_slider(int index) {
     input_slider->get_input()->set_style(UIColorInputStyle::instance);
 
     input_slider->set_callback([index, this](float value) {
-        this->on_rgb_slider_updated(index, value / 255);
+        this->on_rgb_slider_updated(index, value);
     });
 
     input_slider->set_min(0);
     input_slider->set_max(255);
-    input_slider->set_number_format("%.f");
+    input_slider->get_input()->set_number_format("%.f");
 
     rgba_sliders[index] = color_slider;
     rgba_slider_styles[index] = create_slider_style(color_slider);
@@ -149,6 +149,8 @@ void ColorPickerWindow::on_value_slider_updated(float value) {
 void ColorPickerWindow::on_rgb_slider_updated(int index, float value) {
     if(callbacks_ignored) return;
     callbacks_ignored = true;
+
+    value /= 255;
 
     if(index < 3) {
         current_rgb.set(index, value);

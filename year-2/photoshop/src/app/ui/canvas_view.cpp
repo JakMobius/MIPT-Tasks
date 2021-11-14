@@ -5,7 +5,7 @@
 #include "canvas_view.hpp"
 
 CanvasView::~CanvasView() {
-    canvas->get_event_emitter()->remove_listener(&canvas_view_update_listener);
+    canvas->get_update_event_emitter()->remove_listener(&canvas_view_update_listener);
     delete canvas;
 }
 
@@ -16,7 +16,7 @@ void CanvasView::layout() {
 
 void CanvasView::create_canvas(Vec2i size) {
     canvas = new Canvas(size);
-    canvas->get_event_emitter()->add_listener(&canvas_view_update_listener);
+    canvas->get_update_event_emitter()->add_listener(&canvas_view_update_listener);
 }
 
 void CanvasView::draw(DrawingContext* ctx) {
@@ -29,6 +29,7 @@ void CanvasView::on_canvas_updated() {
 }
 
 void CanvasView::focus() {
+    UIView::focus();
     tool_manager->set_active_canvas(canvas);
 }
 

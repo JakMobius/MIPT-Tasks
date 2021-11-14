@@ -38,7 +38,8 @@ protected:
     /* Preferences */
     bool masks_to_bounds = false;
     bool interactions_enabled = true;
-    bool active = false;
+    bool active = true;
+    bool focusable = false;
 
     /* State flags */
     bool needs_texture_decision = true;
@@ -50,6 +51,7 @@ protected:
     bool hovered = false;
     bool clicked = false;
     bool focused = false;
+    bool wrap_focus = false;
 
     void transform_context(DrawingContext* ctx);
     bool update_hover(UIView* child, const Vec2f& internal_point);
@@ -67,6 +69,11 @@ protected:
 
     void set_needs_children_layout();
     void focus_child(UIView* child);
+    virtual void handle_child_blur();
+
+    bool focus_next_upwards();
+    bool focus_previous_upwards();
+
 public:
 
     explicit UIView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): position(position), size(size) {}
@@ -110,6 +117,15 @@ public:
     virtual void focus();
     virtual void blur();
 
+    bool focus_first_child(int start_index = 0, int end_index = INT_MAX);
+    bool focus_last_child(int start_index = INT_MAX, int end_index = 0);
+
+    bool focus_next();
+    bool focus_previous();
+
+    bool get_active() const { return active; };
+    virtual void set_active(bool p_is_active);
+
     bool get_masks_to_bounds() const { return masks_to_bounds; }
     void set_masks_to_bounds(bool p_masks_to_bounds) { masks_to_bounds = p_masks_to_bounds; needs_texture_decision = true; }
 
@@ -121,10 +137,7 @@ public:
 
     const Matrix3f& get_transform() { return transform; }
     const Matrix3f& get_inv_transform() { return inv_transform; };
-    virtual void set_transform(const Matrix3f& new_transform);
-
-    bool get_active() const { return active; };
-    virtual void set_active(bool p_is_active);
+    virtual void set_transform(const Matrix3f& new_transform);;
 
     bool get_is_clicked() const { return clicked; };
     bool get_hovered() const { return hovered; };

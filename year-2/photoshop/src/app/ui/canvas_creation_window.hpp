@@ -4,17 +4,15 @@
 #include "../../ui/ui_input.hpp"
 #include "photoshop_window.hpp"
 #include "alert_window.hpp"
+#include "dialog_window.hpp"
 
-class CanvasCreationWindow: public PhotoshopWindow {
+class CanvasCreationWindow: public DialogWindow {
 
     std::function<void(long, long)> callback {};
-    UIStackView* stack = nullptr;
-    UIInput* width_input = nullptr;
-    UIInput* height_input = nullptr;
+    UINumberInput* width_input = nullptr;
+    UINumberInput* height_input = nullptr;
     UIButton* create_button = nullptr;
 
-    UIInput* create_field(const char* title);
-    void present_alert(const char* reason);
     static bool try_parse_size(const char* string, long* result);
     void try_create_canvas();
 

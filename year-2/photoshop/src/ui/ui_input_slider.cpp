@@ -22,15 +22,7 @@ void UIInputSlider::layout() {
     UIView::layout();
 }
 
-void UIInputSlider::update_input() {
-    float value = slider->get_fraction() * (max - min) + min;
-    int size = snprintf(nullptr, 0, number_format, value) + 1;
-    std::vector<char> buffer(size, 0);
-    snprintf(&buffer[0], size, number_format, value);
-    input->set_contents(buffer);
-}
-
-UIInputSlider::UIInputSlider(const Vec2f &position, const Vec2f &size, UISlider* slider, UIInput* input):
+UIInputSlider::UIInputSlider(const Vec2f &position, const Vec2f &size, UISlider* slider, UINumberInput* input):
         UIView(position, size),
         slider(slider),
         input(input) {
@@ -41,28 +33,16 @@ UIInputSlider::UIInputSlider(const Vec2f &position, const Vec2f &size, UISlider*
     slider->set_callback([this](float value) {
         if(ignore_callbacks) return;
         ignore_callbacks = true;
-        update_input();
-        if(callback) callback(value * (max - min) + min);
+        this->input->set_float_value(value * (max - min) + min);
+        if(callback) callback(this->input->get_float_value());
         ignore_callbacks = false;
     });
 
-    input->set_enter_callback([this]() {
+    input->set_float_value_callback([this]() {
         if(ignore_callbacks) return;
         ignore_callbacks = true;
-        auto &contents = this->input->get_contents();
-        if(contents.size() > 1) {
-            char* end = nullptr;
-            auto value = (float) strtod(&contents[0], &end);
-            if(end == &(*contents.end()) - 1) {
-                if(value < min) value = min;
-                if(value > max) value = max;
-                this->slider->set_fraction((value - min) / (max - min));
-            }
-        }
-        update_input();
-        if(callback) callback(this->slider->get_fraction() * (max - min) + min);
+        this->slider->set_fraction((this->input->get_float_value() - min) / (max - min));
+        if(callback) callback(this->input->get_float_value());
         ignore_callbacks = false;
     });
-
-    update_input();
 }

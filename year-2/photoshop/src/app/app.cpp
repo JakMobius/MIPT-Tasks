@@ -11,6 +11,7 @@ App::App(sf::RenderWindow* window) : window(window) {
 
     ctx = new DrawingContext();
     screen = new UIScreen({0, 0}, {(float)window_size.x, (float)window_size.y});
+    screen->focus();
     render_target = new DrawingTargetWindow(window);
     ctx->push_render_target(render_target);
     controller = new UserController(window, screen);

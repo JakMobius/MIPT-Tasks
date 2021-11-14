@@ -239,7 +239,9 @@ bool UIView::update_hover(UIView* child, const Vec2f& internal_point) {
 }
 
 void UIView::layout() {
-    for(int i = 0; i < children.size(); i++) children[i]->layout_if_needed();
+    for(int i = 0; i < children.size(); i++) {
+        children[i]->layout_if_needed();
+    }
 }
 
 void UIView::append_child(UIView* child) {
@@ -363,13 +365,6 @@ UIView::~UIView() {
     delete texture;
 }
 
-void UIView::set_active(bool p_is_active) {
-    active = p_is_active;
-    for(int i = 0; i < children.size(); i++) {
-        children[i]->set_active(p_is_active);
-    }
-}
-
 void UIView::decide_whether_to_draw_to_texture() {
     needs_texture_decision = false;
     set_draw_to_texture(shape || masks_to_bounds);
@@ -400,15 +395,31 @@ void UIView::set_shape(Shape* p_shape) {
 }
 
 void UIView::on_key_down(KeyDownEvent* event) {
-    if(current_focused_child) current_focused_child->on_key_down(event);
+    if(current_focused_child) {
+        if(event->should_propagate()) {
+            current_focused_child->on_key_down(event);
+        }
+    } else if(focused && event->code == KeyCode::tab) {
+        if(event->shift) focus_previous();
+        else focus_next();
+        event->mark_handled();
+    }
 }
 
 void UIView::on_key_up(KeyUpEvent* event) {
-    if(current_focused_child) current_focused_child->on_key_up(event);
+    if(current_focused_child) {
+        if(event->should_propagate()) {
+            current_focused_child->on_key_up(event);
+        }
+    }
 }
 
 void UIView::on_text_enter(TextEnterEvent* event) {
-    if(current_focused_child) current_focused_child->on_text_enter(event);
+    if(current_focused_child) {
+        if(event->should_propagate()) {
+            current_focused_child->on_text_enter(event);
+        }
+    }
 }
 
 void UIView::focus() {
@@ -420,14 +431,93 @@ void UIView::focus() {
 void UIView::blur() {
     if(!focused) return;
     focused = false;
-    if(current_focused_child) {
-        current_focused_child->blur();
-        current_focused_child = nullptr;
-    }
-    if(parent) parent->blur();
+    if(current_focused_child) current_focused_child->blur();
+    if(parent) parent->handle_child_blur();
 }
 
 void UIView::focus_child(UIView* child) {
+    if(current_focused_child && current_focused_child != child) current_focused_child->blur();
     focus();
     current_focused_child = child;
+}
+
+bool UIView::focus_next() {
+    return focus_first_child() || focus_next_upwards();
+}
+
+bool UIView::focus_previous() {
+    return focus_last_child() || focus_previous_upwards();
+}
+
+bool UIView::focus_next_upwards() {
+    if(!parent) return false;
+
+    int index = parent->get_child_index(this);
+    if(index < 0) return false;
+
+    if(!parent->focus_first_child(index + 1)) return parent->focus_next_upwards();
+    return false;
+}
+
+bool UIView::focus_previous_upwards() {
+    if(!parent) return false;
+
+    int index = parent->get_child_index(this);
+    if(index < 0) return false;
+
+    if(!parent->focus_last_child(index)) return parent->focus_previous_upwards();
+    return false;
+}
+
+bool UIView::focus_first_child(int start_index, int end_index) {
+    if(start_index < 0) start_index = 0;
+    if(end_index > children.size()) end_index = children.size();
+
+    for(int i = start_index; i < children.size(); i++) {
+        auto child = children[i];
+
+        if(child->focusable) {
+            child->focus();
+            return true;
+        }
+
+        if(child->focus_first_child()) return true;
+    }
+    if(wrap_focus && start_index != 0) {
+        return focus_first_child(0, start_index);
+    }
+    return false;
+}
+
+bool UIView::focus_last_child(int start_index, int end_index) {
+    if(start_index > (int)children.size()) start_index = children.size();
+    if(end_index < 0) end_index = 0;
+
+    for(int i = start_index - 1; i >= 0; i--) {
+        auto child = children[i];
+        if(child->focusable && child != current_focused_child) {
+            child->focus();
+            return true;
+        }
+
+        if(child->focus_last_child()) return true;
+    }
+
+    if(wrap_focus && start_index != children.size()) {
+        return focus_last_child(children.size(), start_index);
+    }
+
+    return false;
+}
+
+void UIView::set_active(bool p_is_active) {
+    active = p_is_active;
+    for(int i = 0; i < children.size(); i++) {
+        children[i]->set_active(p_is_active);
+    }
+}
+
+void UIView::handle_child_blur() {
+    current_focused_child = nullptr;
+    blur();
 }

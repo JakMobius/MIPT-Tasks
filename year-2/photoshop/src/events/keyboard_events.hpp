@@ -2,6 +2,7 @@
 
 #include <SFML/Window/Keyboard.hpp>
 #include <cstdint>
+#include "event.hpp"
 
 enum class KeyCode {
     a            = sf::Keyboard::A,
@@ -107,10 +108,10 @@ enum class KeyCode {
     pause        = sf::Keyboard::Pause,
 };
 
-struct TextEnterEvent {
+struct TextEnterEvent: public EventBase {
     uint32_t unicode;
 
-    TextEnterEvent(uint32_t unicode): unicode(unicode) {};
+    TextEnterEvent(uint32_t unicode): EventBase(), unicode(unicode) {};
 
     bool is_ascii() {
         return !(unicode & 0xFF00);
@@ -122,14 +123,17 @@ struct TextEnterEvent {
     }
 };
 
-struct KeyEvent {
+struct KeyEvent : public EventBase {
     KeyCode code;
-
-
-    explicit KeyEvent(KeyCode code): code(code) {}
+    explicit KeyEvent(KeyCode code): EventBase(), code(code) {}
 };
 
 struct KeyDownEvent : public KeyEvent {
+    bool control = false;
+    bool shift = false;
+    bool alt = false;
+    bool super = false;
+
     KeyDownEvent(KeyCode code): KeyEvent(code) {}
 };
 struct KeyUpEvent : public KeyEvent {

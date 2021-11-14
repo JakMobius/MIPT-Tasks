@@ -35,7 +35,6 @@ public:
 
     void set_title(const char* string);
     void set_style(const UIWindowStyle* p_style) override;
-    void set_active(bool p_is_active) override;
 
     void set_size(const Vec2f &new_size) override;
 
@@ -49,6 +48,10 @@ public:
     void on_mouse_down(MouseDownEvent *event)   override;
     void on_mouse_up(MouseUpEvent *event)       override;
     void on_mouse_move(MouseMoveEvent *event)   override;
+
+    void handle_child_blur() override { current_focused_child = nullptr; }
+    void focus() override;
+    void blur() override;
 
     void close();
 };

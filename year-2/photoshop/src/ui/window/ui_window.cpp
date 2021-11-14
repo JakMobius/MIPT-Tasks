@@ -17,6 +17,8 @@ void UIWindow::layout() {
 UIWindow::UIWindow(const Vec2f &position, const Vec2f &size, const char* title):
         UIView(position),
         header_view(new UIWindowHeaderView(this)) {
+    wrap_focus = true;
+
     append_child(new UIShadowView());
     append_child(inner_view);
     append_child(new WindowBorderView());
@@ -29,6 +31,7 @@ UIWindow::UIWindow(const Vec2f &position, const Vec2f &size, const char* title):
 
     header_view->set_size({size[0], header_height});
     content_view->set_size(size);
+    set_active(false);
 
     if(title) set_title(title);
 }
@@ -46,11 +49,6 @@ void UIWindow::update_style() {
 
 void UIWindow::set_style(const UIWindowStyle* p_style) {
     style = p_style;
-    update_style();
-}
-
-void UIWindow::set_active(bool p_is_active) {
-    UIView::set_active(p_is_active);
     update_style();
 }
 
@@ -85,4 +83,14 @@ void UIWindow::on_mouse_move(MouseMoveEvent* event) {
 //    if(!active) event->stop_propagation();
     UIView::on_mouse_move(event);
     event->mark_handled();
+}
+
+void UIWindow::focus() {
+    UIView::focus();
+    set_active(true);
+}
+
+void UIWindow::blur() {
+    UIView::blur();
+    set_active(false);
 }

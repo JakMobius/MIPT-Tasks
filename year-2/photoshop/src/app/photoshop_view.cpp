@@ -68,7 +68,7 @@ void PhotoshopView::open_layer_inspector() {
         layer_inspector_window->get_close_event_emitter()->add_listener(handler);
         window_container->add_window(layer_inspector_window);
     }
-    window_container->activate_window(layer_inspector_window);
+    window_container->focus_window(layer_inspector_window);
 }
 
 void PhotoshopView::open_tool_select_window() {
@@ -82,7 +82,7 @@ void PhotoshopView::open_tool_select_window() {
         tool_select_window->get_close_event_emitter()->add_listener(handler);
         window_container->add_window(tool_select_window);
     }
-    window_container->activate_window(tool_select_window);
+    window_container->focus_window(tool_select_window);
 }
 
 void PhotoshopView::open_colorpicker(const std::function<void(const Vec4f &)> &callback, const Vec4f* current_color = nullptr) {
@@ -96,7 +96,7 @@ void PhotoshopView::open_colorpicker(const std::function<void(const Vec4f &)> &c
         color_picker->get_close_event_emitter()->add_listener(handler);
         window_container->add_window(color_picker);
     }
-    window_container->activate_window(color_picker);
+    window_container->focus_window(color_picker);
     if(current_color) color_picker->set_color(*current_color);
     color_picker->set_callback(callback);
 }
@@ -133,7 +133,6 @@ void PhotoshopView::present_window_modally(UIWindow* window) {
     overlay->set_stretched_child(nested_window_container);
 
     nested_window_container->add_window(window);
-    nested_window_container->activate_window(window);
 
     window->layout();
     window->set_position((screen->get_size() * 0.5) -= (window->get_size() * 0.5));
@@ -147,6 +146,8 @@ void PhotoshopView::present_window_modally(UIWindow* window) {
     window->get_close_event_emitter()->add_listener(handler);
 
     screen->present_modal(overlay);
+
+    nested_window_container->focus_window(window);
 }
 
 void PhotoshopView::present_window(UIWindow* window) {
@@ -158,5 +159,5 @@ ToolManager* PhotoshopView::get_tool_manager() {
 }
 
 void PhotoshopView::focus_window(UIWindow* window) {
-    window_container->activate_window(window);
+    window_container->focus_window(window);
 }

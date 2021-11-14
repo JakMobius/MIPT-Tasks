@@ -24,6 +24,8 @@ public:
         modal_view_container->set_size(get_size());
     }
 
+    void handle_child_blur() override { current_focused_child = nullptr; }
+
     UIView* get_view_container() { return view_container; }
     UIModalContainerView* get_modal_container() { return modal_view_container; }
     UIScreen* get_screen() override { return this; }

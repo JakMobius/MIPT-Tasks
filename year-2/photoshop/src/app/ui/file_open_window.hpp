@@ -1,9 +1,9 @@
 #pragma once
 
-#include "photoshop_window.hpp"
 #include "../../ui/ui_input.hpp"
+#include "dialog_window.hpp"
 
-class FileOpenWindow : public PhotoshopWindow {
+class FileOpenWindow : public DialogWindow {
     UIButton* button = nullptr;
     UIInput* input = nullptr;
 

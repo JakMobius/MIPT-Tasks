@@ -18,6 +18,10 @@ void UserController::handle_event(const sf::Event &event)  {
         }
         case sf::Event::KeyPressed: {
             KeyDownEvent key_down_event((KeyCode)(event.key.code));
+            if(event.key.shift) key_down_event.shift = true;
+            if(event.key.alt) key_down_event.alt = true;
+            if(event.key.system) key_down_event.alt = true;
+            if(event.key.control) key_down_event.control = true;
             if(root_view) root_view->on_key_down(&key_down_event);
             break;
         }

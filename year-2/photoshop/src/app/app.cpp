@@ -18,25 +18,19 @@ App::App(sf::RenderWindow* window) : window(window) {
 
     auto root_view = new PhotoshopView(this, {0, 0}, {(float)window_size.x, (float)window_size.y});
     screen->get_view_container()->append_child(root_view);
-
-    tick_delayed();
 }
 
-void App::tick() {
+void App::render() {
     if(!screen->get_needs_redraw()) return;
 
     ctx->clear({0, 0, 0, 1});
 
     screen->prepare_to_draw(ctx);
     window->display();
-
-    if(screen->get_needs_redraw()) {
-        tick_delayed();
-    }
 }
 
-void App::tick_delayed() {
-    DispatchQueue::main.push(DispatchQueueTask { [this] { this->tick(); } });
+void App::render_delayed() {
+    DispatchQueue::main.push(DispatchQueueTask { [this] { this->render(); } });
 }
 
 App::~App() {
@@ -49,7 +43,7 @@ App::~App() {
 void App::process_events() {
     sf::Event event {};
     while (window->pollEvent(event)) get_controller()->handle_event(event);
-    tick_delayed();
+    render_delayed();
 }
 
 bool App::opened() {

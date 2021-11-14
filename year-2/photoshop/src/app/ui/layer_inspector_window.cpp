@@ -82,6 +82,9 @@ void LayerInspectorWindow::on_canvas_changed() {
 }
 
 LayerInspectorWindow::~LayerInspectorWindow() {
+    if(active_canvas) {
+        active_canvas->get_update_event_emitter()->remove_listener(&canvas_update_event_listener);
+    }
     manager->get_canvas_change_event_emitter()->remove_listener(&canvas_change_event_listener);
 }
 

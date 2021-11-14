@@ -16,8 +16,8 @@ public:
     explicit App(sf::RenderWindow* window);
     ~App();
 
-    void tick_delayed();
-    void tick();
+    void render_delayed();
+    void render();
 
     UserController* get_controller() const { return controller; }
 

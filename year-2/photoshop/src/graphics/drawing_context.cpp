@@ -46,7 +46,7 @@ void DrawingContext::fill_circle(const Vec2f& center, float radius) {
 
     for(int i = 0; i < steps; i++) {
         float angle = angle_step * (float) i;
-        Vec2f position = { sin(angle) * radius, cos(angle) * radius };
+        Vec2f position = { (float)sin(angle) * radius, (float)cos(angle) * radius };
         Vec2f screen_position(position);
         screen_position += center;
         screen_position *= this->transform;

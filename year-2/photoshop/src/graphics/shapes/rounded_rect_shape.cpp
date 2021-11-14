@@ -11,7 +11,7 @@ void RoundedRectShape::shape_circle(Vec2f circle_position, float radius, float a
 
     for(int i = 0; i < steps; i++) {
         float angle = angle_step * (float) i + angle_from;
-        Vec2f vertex_position = { cos(angle) * radius, sin(angle) * radius };
+        Vec2f vertex_position = { (float) cos(angle) * radius, (float) sin(angle) * radius };
         vertex_position += circle_position;
         Vec2f shape_position { vertex_position };
         vertex_position += position;

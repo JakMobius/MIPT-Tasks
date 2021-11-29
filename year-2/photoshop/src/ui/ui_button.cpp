@@ -58,12 +58,12 @@ UIButton::UIButton(const Vec2f &position, const Vec2f &size) : UIView(position, 
 
 void UIButton::update_state() {
     if(!style) set_fill_style(nullptr);
-    else if(!enabled) set_fill_style(style->get_disabled_color());
-    else if(!active) set_fill_style(style->get_inactive_color());
-    else if(hovered) set_fill_style(style->get_hovered_color());
-    else if(clicked) set_fill_style(style->get_clicked_color());
-    else if(selected) set_fill_style(style->get_selected_color());
-    else set_fill_style(style->get_idle_color());
+    else if(!enabled) set_fill_style(style->get_disabled_color(), 0.3);
+    else if(!active) set_fill_style(style->get_inactive_color(), 0.3);
+    else if(hovered) set_fill_style(style->get_hovered_color(), 0.3);
+    else if(clicked) set_fill_style(style->get_clicked_color(), 0.3);
+    else if(selected) set_fill_style(style->get_selected_color(), 0.3);
+    else set_fill_style(style->get_idle_color(), 0.3);
 }
 
 void UIButton::set_enabled(bool p_enabled) {

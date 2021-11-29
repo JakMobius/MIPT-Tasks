@@ -5,6 +5,7 @@
 #include "../../../utils/vec3.hpp"
 #include "../../../utils/hsv.hpp"
 #include "../../assets.hpp"
+#include "../../../ui/styles/fill_style/fill_style_texture.hpp"
 
 class HueSaturationSelectView : public UIView {
     Texture* hue_saturation_map = nullptr;

@@ -3,6 +3,7 @@
 #include "../photoshop_window.hpp"
 #include "hue_saturation_select_view.hpp"
 #include "ui_color_slider.hpp"
+#include "../../../ui/styles/fill_style/fill_style_gradient.hpp"
 
 class GradientSliderStyle : public UISliderStyle {
     UIFillStyleGradient* gradient = new UIFillStyleGradient();

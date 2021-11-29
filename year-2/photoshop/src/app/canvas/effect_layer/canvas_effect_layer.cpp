@@ -20,7 +20,8 @@ void CanvasEffectLayer::draw(Canvas* canvas, DrawingContext* ctx) {
     ctx->push_render_target(canvas->get_framebuffer());
     ctx->clear({0, 0, 0, 0});
 
-    shader.setUniform("texture", sf::Shader::CurrentTexture);
+    shader.setUniform("primary_texture", *get_texture()->get_texture());
+    shader.setUniform("preview_texture", *get_preview_texture()->get_texture());
     shader.setUniform("back_buffer", *old_canvas_framebuffer->get_texture());
 
     shader.setUniformArray("red",   &united_map[0 * generator.resolution], generator.resolution);
@@ -41,7 +42,7 @@ CanvasEffectLayer::CanvasEffectLayer(Vec2i size) : CanvasLayer(size) {
 }
 
 CanvasEffectLayer::~CanvasEffectLayer() {
-    delete united_map;
+    delete[] united_map;
     delete swap_texture;
 }
 

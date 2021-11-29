@@ -20,6 +20,11 @@ public:
 struct UIInputSelection {
     int position = 0;
     int anchor = -1;
+
+    int get_lower() const;
+    int get_upper() const;
+
+    bool has_selection() { return anchor != -1; }
 };
 
 class UIInput : public UIView, public Styled<UIInputStyle> {
@@ -48,11 +53,7 @@ public:
         text_drawer.set_v_alignment(VTextAlignmentCenter);
         focusable = true;
     }
-    ~UIInput() {
-        if(blink_task_handle != -1) {
-            DispatchQueue::main.cancel(blink_task_handle);
-        }
-    }
+    ~UIInput() override;
 
     void set_style(const UIInputStyle *p_style) override;
     void layout() override;
@@ -62,6 +63,9 @@ public:
     void on_text_enter(TextEnterEvent* event) override;
     void on_key_down(KeyDownEvent *event) override;
     void on_key_up(KeyUpEvent *event) override;
+
+    void on_mouse_down(MouseDownEvent* event) override;
+    void on_mouse_move(MouseMoveEvent* event) override;
 
     void focus() override;
     void blur() override;
@@ -83,4 +87,14 @@ public:
 
     void handle_backspace();
     virtual void handle_enter();
+
+    void select_all();
+
+    void copy_selection();
+
+    void paste_from_clipboard();
+
+    void jump_to_start(bool shift);
+
+    void jump_to_end(bool shift);
 };

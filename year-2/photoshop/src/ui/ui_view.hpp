@@ -4,13 +4,15 @@ class UIView;
 class UIScreen;
 
 #include "../events/mouse_events.hpp"
+#include "../events/event_emitter.hpp"
 #include "../utils/vec2.hpp"
 #include "../utils/matrix3.hpp"
 #include "../utils/vec4.hpp"
-#include "styles/fill_style.hpp"
+#include "styles/fill_style/fill_style.hpp"
 #include "../graphics/drawing_context.hpp"
 #include "../graphics/shapes/shape.hpp"
 #include "../events/keyboard_events.hpp"
+#include "styles/fill_style/fill_style_color.hpp"
 #include <vector>
 #include <climits>
 #include <cassert>
@@ -18,6 +20,10 @@ class UIScreen;
 
 extern const UIFillStyleColor UIViewWhiteBackground;
 extern const UIFillStyleColor UIViewRedBackground;
+
+struct ViewDestroyEvent {
+    UIView* view;
+};
 
 class UIView {
 
@@ -38,6 +44,8 @@ protected:
 
     const UIFillStyle* fill_style = nullptr;
 
+    EventEmitter<ViewDestroyEvent> destroy_event_emitter {};
+
     /* Preferences */
     bool masks_to_bounds = false;
     bool interactions_enabled = true;
@@ -55,6 +63,7 @@ protected:
     bool clicked = false;
     bool focused = false;
     bool wrap_focus = false;
+    bool destroyed = false;
 
     void transform_context(DrawingContext* ctx);
     bool update_hover(UIView* child, const Vec2f& internal_point);
@@ -77,10 +86,13 @@ protected:
     bool focus_next_upwards();
     bool focus_previous_upwards();
 
+    virtual ~UIView();
+
 public:
 
     explicit UIView(const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0}): position(position), size(size) {}
-    virtual ~UIView();
+
+    virtual void destroy();
 
     virtual void prepare_to_draw(DrawingContext* ctx);
     virtual void on_mouse_in(MouseInEvent *event);
@@ -136,7 +148,7 @@ public:
     void set_shape(Shape* p_shape);
 
     const UIFillStyle* get_fill_style() { return fill_style; }
-    void set_fill_style(const UIFillStyle* new_fill_style);
+    void set_fill_style(const UIFillStyle* new_fill_style, float animation_duration = 0);
 
     const Matrix3f& get_transform() { return transform; }
     const Matrix3f& get_inv_transform() { return inv_transform; };
@@ -165,4 +177,6 @@ public:
     virtual UIScreen* get_screen();
 
     UIView* test(const Vec2f &point, Vec2f* internal_point) const;
+
+    EventEmitter<ViewDestroyEvent>* get_destroy_event_emitter() { return &destroy_event_emitter; }
 };

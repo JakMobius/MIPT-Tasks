@@ -3,6 +3,7 @@
 #include "../../utils/vec4.hpp"
 #include "./button_style.hpp"
 #include "../../app/assets.hpp"
+#include "fill_style/fill_style_texture.hpp"
 
 struct UIDefaultCloseButtonStyle : public UIButtonStyle {
     static UIDefaultCloseButtonStyle* instance;

@@ -11,6 +11,7 @@ class App {
     UIScreen* screen = nullptr;
     UserController* controller = nullptr;
     DrawingTargetWindow* render_target = nullptr;
+    bool render_queried = false;
 
 public:
     explicit App(sf::RenderWindow* window);

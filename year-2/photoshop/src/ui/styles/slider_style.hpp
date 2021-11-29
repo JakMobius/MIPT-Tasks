@@ -1,6 +1,7 @@
 #pragma once
 
-#include "fill_style.hpp"
+#include "fill_style/fill_style.hpp"
+#include "fill_style/fill_style_color.hpp"
 
 struct UISliderStyle {
     UISliderStyle() = default;

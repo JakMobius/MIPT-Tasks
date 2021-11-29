@@ -1,6 +1,6 @@
 #pragma once
 
-#include "brush_tool.hpp"
+#include "brush/brush_tool.hpp"
 
 class EraserTool : public BrushTool {
 

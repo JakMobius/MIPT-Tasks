@@ -10,6 +10,7 @@ class CanvasWindow;
 #include "../ui/ui_view.hpp"
 #include "../ui/window/ui_window.hpp"
 #include "../ui/window/ui_window_container.hpp"
+#include "plugin/plugin_manager.hpp"
 #include <functional>
 
 class ColorPickerWindow;
@@ -23,9 +24,10 @@ class PhotoshopView : public UIView {
     UIStackView* action_button_view = new UIStackView(UIAxis::x);
     UIWindowContainer* window_container = new UIWindowContainer();
     App* app = nullptr;
-    ToolManager* manager = nullptr;
+    ToolManager* tool_manager = nullptr;
     ToolSelectWindow* tool_select_window = nullptr;
     LayerInspectorWindow* layer_inspector_window = nullptr;
+    PluginManager* plugin_manager = nullptr;
 
     void create_canvas(const Vec2f &position, const Vec2f &size);
     void present_canvas_creation_modal();
@@ -45,4 +47,5 @@ public:
     void open_colorpicker(const std::function<void(const Vec4f &)> &callback, const Vec4f* current_color);
 
     ToolManager* get_tool_manager();
+    PluginManager* get_plugin_manager();
 };

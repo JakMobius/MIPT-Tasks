@@ -11,13 +11,15 @@ void CanvasLayer::set_needs_redraw() {
 }
 
 CanvasLayer::~CanvasLayer() {
-    delete preferences_generator;
+    delete preview_texture;
     delete texture;
 }
 
 CanvasLayer::CanvasLayer(Vec2i size) : size(size) {
     texture = new DrawingTargetTexture(size);
+    preview_texture = new DrawingTargetTexture(size);
     texture->clear({0, 0, 0, 0});
+    preview_texture->clear({0, 0, 0, 0});
     draw_style.set_texture(texture);
 }
 
@@ -29,6 +31,11 @@ void CanvasLayer::draw(Canvas* canvas, DrawingContext* ctx) {
     Vec2f texture_size = { (float)size[0], (float)size[1] };
     Vec2f texture_position = { 0, 0 };
     ctx->set_fill_style(&draw_style);
+
+    draw_style.set_texture(texture);
+    ctx->fill_rect(texture_position, texture_size);
+
+    draw_style.set_texture(preview_texture);
     ctx->fill_rect(texture_position, texture_size);
 }
 

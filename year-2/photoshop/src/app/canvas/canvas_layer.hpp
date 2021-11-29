@@ -9,13 +9,15 @@ struct LayerUpdateEvent {
 #include "../../graphics/drawing_target_texture.hpp"
 #include "../../graphics/drawing_context.hpp"
 #include "../../events/event_emitter.hpp"
-#include "layer_preferences_generator.hpp"
+#include "../preferences_generator.hpp"
+#include "../../ui/styles/fill_style/fill_style_texture.hpp"
+#include "../adjustable.hpp"
 
-class CanvasLayer {
+class CanvasLayer : public Adjustable {
 protected:
-    LayerPreferencesGenerator* preferences_generator = nullptr;
     EventEmitter<LayerUpdateEvent> layer_update_event_emitter {};
     DrawingTargetTexture* texture = nullptr;
+    DrawingTargetTexture* preview_texture = nullptr;
     UIFillStyleTexture draw_style {};
     Vec2i size;
     bool needs_redraw = false;
@@ -30,7 +32,7 @@ public:
     virtual void clear_texture();
     virtual void draw(Canvas* canvas, DrawingContext* ctx);
 
-    LayerPreferencesGenerator* get_preferences_generator() {
+    PreferencesGenerator* get_preferences_generator() {
         if(!preferences_generator) create_preferences_generator();
         return preferences_generator;
     }
@@ -40,6 +42,7 @@ public:
     EventEmitter<LayerUpdateEvent>* get_layer_update_event_emitter() { return &layer_update_event_emitter; }
 
     DrawingTargetTexture* get_texture() { return texture; }
+    DrawingTargetTexture* get_preview_texture() { return preview_texture; }
 
-    Vec2i get_size() const { return size; }
+            Vec2i get_size() const { return size; }
 };

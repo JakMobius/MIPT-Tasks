@@ -6,8 +6,9 @@ class ToolManager;
 #include "../../utils/vec2.hpp"
 #include "../../graphics/texture.hpp"
 #include "../../graphics/drawing_context.hpp"
+#include "../adjustable.hpp"
 
-class Tool {
+class Tool : public Adjustable {
 protected:
     ToolManager* manager = nullptr;
     bool is_mouse_down = false;

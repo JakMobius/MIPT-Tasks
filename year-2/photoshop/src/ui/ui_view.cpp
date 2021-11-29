@@ -1,4 +1,7 @@
 #include "ui_view.hpp"
+#include "ui_screen.hpp"
+#include "animations/ui_fill_style_color_animation.hpp"
+#include "styles/fill_style/fill_style_texture.hpp"
 
 const UIFillStyleColor UIViewWhiteBackground({1, 1, 1, 1});
 const UIFillStyleColor UIViewRedBackground({1, 0, 0, 1});
@@ -70,7 +73,7 @@ void UIView::draw(DrawingContext* ctx) {
 }
 
 void UIView::on_mouse_in(MouseInEvent* event) {
-    Vec2f internal_point;
+    Vec2f internal_point {};
     UIView* child = test(Vec2f { event->x, event->y }, &internal_point);
 
     hovered = true;
@@ -294,7 +297,17 @@ bool UIView::get_needs_redraw() const {
     return needs_redraw;
 }
 
-void UIView::set_fill_style(const UIFillStyle* p_fill_style) {
+void UIView::set_fill_style(const UIFillStyle* p_fill_style, float animation_duration) {
+    if(animation_duration > 0) {
+        auto screen = get_screen();
+        if(screen) {
+            auto animation = new UIFillStyleAnimation(this, p_fill_style, animation_duration);
+            auto* animation_controller = screen->get_animation_controller();
+            animation_controller->add_animation(animation);
+            return;
+        }
+    }
+
     fill_style = p_fill_style;
     set_needs_redraw();
 }
@@ -359,8 +372,10 @@ int UIView::get_child_index(UIView* child) {
 }
 
 UIView::~UIView() {
-    for(int i = 0; i < children.size(); i++) {
-        delete children[i];
+    while(!children.empty()) {
+        auto* child = children[children.size() - 1];
+        children.pop_back();
+        child->destroy();
     }
     delete texture;
 }
@@ -473,7 +488,7 @@ bool UIView::focus_first_child(int start_index, int end_index) {
     if(start_index < 0) start_index = 0;
     if(end_index > children.size()) end_index = children.size();
 
-    for(int i = start_index; i < children.size(); i++) {
+    for(int i = start_index; i < end_index; i++) {
         auto child = children[i];
 
         if(child->focusable) {
@@ -493,7 +508,7 @@ bool UIView::focus_last_child(int start_index, int end_index) {
     if(start_index > (int)children.size()) start_index = children.size();
     if(end_index < 0) end_index = 0;
 
-    for(int i = start_index - 1; i >= 0; i--) {
+    for(int i = start_index - 1; i >= end_index; i--) {
         auto child = children[i];
         if(child->focusable && child != current_focused_child) {
             child->focus();
@@ -520,4 +535,12 @@ void UIView::set_active(bool p_is_active) {
 void UIView::handle_child_blur() {
     current_focused_child = nullptr;
     blur();
+}
+
+void UIView::destroy() {
+    if(destroyed) return;
+    destroyed = true;
+    ViewDestroyEvent event { this };
+    destroy_event_emitter.emit(&event);
+    delete this;
 }

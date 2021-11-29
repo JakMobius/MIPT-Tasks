@@ -78,7 +78,7 @@ struct Vec4 {
 
     inline Vec4<T> operator/(const Vec4<T> &second) const { return {content / second.content}; }
 
-    inline Vec4<T> operator*(const T k) const { return {content * k}; }
+    inline Vec4<T> operator*(const T k) const { return Vec4 {content * k}; }
 
     inline Vec4<T> operator/(T k) const { return {content / k}; }
 

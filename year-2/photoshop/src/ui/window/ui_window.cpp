@@ -53,6 +53,7 @@ void UIWindow::set_style(const UIWindowStyle* p_style) {
 }
 
 void UIWindow::close() {
+    blur();
     delete this;
 }
 
@@ -95,6 +96,5 @@ UIWindow::~UIWindow() {
     if(container) container->remove_window(this);
     WindowCloseEvent event { this };
     close_event_emitter.emit(&event);
-    blur();
     delete inner_shape;
 }

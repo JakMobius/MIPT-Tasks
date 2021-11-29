@@ -7,8 +7,8 @@
 void UIModalContainerView::close_single_modal(int index) {
     auto* modal = modal_views_stack[index];
     auto child_index = get_child_index(modal);
-    if(index >= 0) remove_child(child_index);
-    delete modal;
+    if(child_index >= 0) remove_child(child_index);
+    modal->destroy();
 }
 
 void UIModalContainerView::on_mouse_click(MouseClickEvent* event) {
@@ -26,7 +26,6 @@ void UIModalContainerView::close_modal(UIModalView* view) {
             modal_views_stack.pop_back();
             break;
         }
-        modal_views_stack.pop_back();
     }
     if(modal_views_stack.empty()) {
         set_hidden(true);

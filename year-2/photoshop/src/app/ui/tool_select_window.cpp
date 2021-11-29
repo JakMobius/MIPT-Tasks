@@ -12,15 +12,15 @@ void ToolSelectWindow::create_tool_buttons() {
 
     for(int i = 0; i < factories.size(); i++) {
         auto* factory = manager->get_factories()[i];
-        auto* button = new UIButton({}, {50, 50});
-        auto* fill_style = new UIFillStyleTexture(factories[i]->get_tool_icon());
-        fill_style->set_color({1, 1, 1, 0.7});
-        auto* style = new ToolButtonStyle(fill_style);
+        auto* button = new UIButton({}, {250, 50});
+        auto* style = new ToolButtonStyle(nullptr);
 
         button->set_own_style(style);
         stack->append_child(button);
 
-        fill_style->set_scale((Vec2f) factory->get_tool_icon()->get_size() / button->get_size());
+        button->set_text_color({1, 1, 1, 1});
+        button->set_text_size(18);
+        button->set_title(factory->get_tool_name());
 
         button->set_callback([this, factory]() {
             manager->activate_factory(factory);
@@ -34,7 +34,7 @@ void ToolSelectWindow::create_tool_buttons() {
 }
 
 ToolSelectWindow::ToolSelectWindow(PhotoshopView* app, ToolManager* manager, const Vec2f &position) : PhotoshopWindow(app, position, {}, ""), manager(manager) {
-    stack = new UIStackView(UIAxis::x);
+    stack = new UIStackView(UIAxis::y);
     stack->set_primary_alignment(UIStackViewPrimaryAlignment::leading);
     stack->set_item_spacing(7);
     stack->set_insets({7});

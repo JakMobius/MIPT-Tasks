@@ -84,24 +84,28 @@ void DrawingContext::fill_rect(const Vec2f& position, const Vec2f& size) const {
 }
 
 void DrawingContext::fill_shape(const std::vector<Vertex> &shape, PrimitiveType primitive_type) {
+    fill_shape(&shape[0], shape.size(), primitive_type);
+}
+
+void DrawingContext::fill_shape(const Vertex* shape, int count, PrimitiveType primitive_type) {
     if(!fill_style) return;
 
     vertex_buffer.clear();
 
-    for(int i = 0; i < shape.size(); i++) {
+    for(int i = 0; i < count; i++) {
         Vec2f position = shape[i].position;
         position *= transform;
         vertex_buffer.push_back(fill_style->vertex(position, shape[i].shape_position));
     }
 
-    fill_shape(vertex_buffer, primitive_type);
+    fill_shape(&vertex_buffer[0], count, primitive_type);
 }
 
-void DrawingContext::fill_shape(const std::vector<sf::Vertex> &shape, PrimitiveType primitive_type) {
+void DrawingContext::fill_shape(const sf::Vertex* shape, int count, PrimitiveType primitive_type) {
     auto type = (sf::PrimitiveType) primitive_type;
     auto render_states = fill_style->get_render_states();
-    if(render_states) target->get_target()->draw(&vertex_buffer[0], shape.size(), type, *render_states);
-    else target->get_target()->draw(&vertex_buffer[0], shape.size(), type);
+    if(render_states) target->get_target()->draw(shape, count, type, *render_states);
+    else target->get_target()->draw(shape, count, type);
 }
 
 DrawingTarget* DrawingContext::get_render_target() {

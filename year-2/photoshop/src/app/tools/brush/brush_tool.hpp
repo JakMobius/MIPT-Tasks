@@ -1,7 +1,10 @@
 #pragma once
 
-#include "tool.hpp"
-#include "../assets.hpp"
+#include "../tool.hpp"
+#include "../../assets.hpp"
+#include "../../preferences_generator.hpp"
+#include "../../../ui/styles/fill_style/fill_style_color.hpp"
+#include "../../../ui/styles/fill_style/fill_style_texture.hpp"
 
 class BrushTool : public Tool {
 protected:
@@ -13,6 +16,7 @@ protected:
     Vec2f old_position;
     DrawingTargetTexture* map_texture = nullptr;
     DrawingTargetTexture* buffer_texture = nullptr;
+    PreferencesGenerator* preferences_generator;
 
     static void preserve_color(sf::BlendMode& mode);
     static void override_color(sf::BlendMode& mode);
@@ -42,4 +46,4 @@ public:
     void delete_textures();
 };
 
-#include "tool_manager.hpp"
+#include "../tool_manager.hpp"

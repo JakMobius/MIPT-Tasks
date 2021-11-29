@@ -21,16 +21,23 @@ App::App(sf::RenderWindow* window) : window(window) {
 }
 
 void App::render() {
+    render_queried = false;
     if(!screen->get_needs_redraw()) return;
 
     ctx->clear({0, 0, 0, 1});
 
     screen->prepare_to_draw(ctx);
     window->display();
+
+    if(screen->get_hidden()) {
+        render_delayed();
+    }
 }
 
 void App::render_delayed() {
-    DispatchQueue::main.push(DispatchQueueTask { [this] { this->render(); } });
+    if(render_queried) return;
+    render_queried = true;
+    DispatchQueue::main.push(DispatchQueueTask { [this] { this->render(); }, 1000 / 60 });
 }
 
 App::~App() {
@@ -43,7 +50,7 @@ App::~App() {
 void App::process_events() {
     sf::Event event {};
     while (window->pollEvent(event)) get_controller()->handle_event(event);
-    render_delayed();
+    if(screen->get_needs_redraw()) render_delayed();
 }
 
 bool App::opened() {

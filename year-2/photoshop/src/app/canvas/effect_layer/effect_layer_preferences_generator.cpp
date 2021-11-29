@@ -3,6 +3,7 @@
 //
 
 #include "effect_layer_preferences_generator.hpp"
+#include "../../photoshop_view.hpp"
 
 void EffectLayerPreferencesGenerator::open_preferences(PhotoshopView* app) {
     if(!opened_window) {

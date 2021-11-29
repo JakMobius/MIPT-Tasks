@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../ui/styles/fill_style.hpp"
+#include "../../../ui/styles/fill_style/fill_style.hpp"
 #include "catmull_rom_curve.hpp"
 #include "../../../graphics/shapes/line_shape.hpp"
 #include "../../../ui/ui_view.hpp"
@@ -53,6 +53,4 @@ public:
 
     void set_point_color(const Vec4f& color) { point_color.set_color(color); set_needs_redraw(); }
     Vec4f get_point_color() { return point_color.get_color(); }
-
-    void set_points_visible(bool b);
 };

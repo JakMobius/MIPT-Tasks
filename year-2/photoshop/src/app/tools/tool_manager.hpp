@@ -19,6 +19,7 @@ class ToolManager {
     Tool* active_tool = nullptr;
     Vec4f selected_color = {1, 1, 1, 1};
     Canvas* canvas = nullptr;
+    PhotoshopView* app;
     EventEmitter<ToolManagerColorEvent> color_event_emitter;
     EventEmitter<CanvasChangeEvent> canvas_change_emitter;
     std::vector<ToolFactoryBase*> tool_factories;
@@ -28,7 +29,7 @@ class ToolManager {
     }};
 
 public:
-    explicit ToolManager() {}
+    explicit ToolManager(PhotoshopView* app): app(app) {}
 
     void on_mouse_down(Vec2f position);
     void on_mouse_move(Vec2f position);
@@ -46,4 +47,6 @@ public:
 
     EventEmitter<ToolManagerColorEvent>* get_color_event_emitter() { return &color_event_emitter; }
     EventEmitter<CanvasChangeEvent>* get_canvas_change_event_emitter() { return &canvas_change_emitter; }
+
+    PhotoshopView* get_app();
 };

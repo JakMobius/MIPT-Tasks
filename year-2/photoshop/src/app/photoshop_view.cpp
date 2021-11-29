@@ -5,7 +5,7 @@
 #include "photoshop_view.hpp"
 #include "ui/action_button.hpp"
 #include "ui/colorpicker/colorpicker_window.hpp"
-#include "tools/brush_tool.hpp"
+#include "tools/brush/brush_tool.hpp"
 #include "tools/eraser_tool.hpp"
 #include "ui/tool_select_window.hpp"
 #include "ui/layer_inspector_window.hpp"
@@ -21,10 +21,12 @@ PhotoshopView::PhotoshopView(App* app, const Vec2f &position, const Vec2f &size)
     append_child(window_container);
     append_child(action_button_view);
 
-    manager = new ToolManager();
-    manager->add_tool_factory(new ToolFactory<BrushTool>("Brush", Assets.tool_brush_texture));
-    manager->add_tool_factory(new ToolFactory<EraserTool>("Eraser", Assets.tool_rubber_texture));
-    manager->set_color({1, 0, 0, 1});
+    plugin_manager = new PluginManager(this);
+
+    tool_manager = new ToolManager(this);
+    tool_manager->add_tool_factory(new ToolFactory<BrushTool>("Brush", Assets.tool_brush_texture));
+    tool_manager->add_tool_factory(new ToolFactory<EraserTool>("Eraser", Assets.tool_rubber_texture));
+    tool_manager->set_color({1, 0, 0, 1});
 
     action_button_view->append_child(new ActionButton("New canvas", [this]() {
         present_canvas_creation_modal();
@@ -43,10 +45,12 @@ PhotoshopView::PhotoshopView(App* app, const Vec2f &position, const Vec2f &size)
     }));
 
     action_button_view->set_fill_style(&UIViewWhiteBackground);
+
+    plugin_manager->load_plugin_dir("./plugins/");
 }
 
 void PhotoshopView::create_canvas(const Vec2f& position, const Vec2f& size) {
-    auto* canvas_window = new CanvasWindow(this, manager, position, size);
+    auto* canvas_window = new CanvasWindow(this, tool_manager, position, size);
     canvas_window->get_canvas_view()->create_canvas((Vec2i) size);
     auto canvas = canvas_window->get_canvas_view()->get_canvas();
 
@@ -59,7 +63,7 @@ void PhotoshopView::create_canvas(const Vec2f& position, const Vec2f& size) {
 
 void PhotoshopView::open_layer_inspector() {
     if(!layer_inspector_window) {
-        layer_inspector_window = new LayerInspectorWindow(this, manager, {500, 100});
+        layer_inspector_window = new LayerInspectorWindow(this, tool_manager, {500, 100});
         EventHandler<WindowCloseEvent>* handler = new EventHandler<WindowCloseEvent>;
         *handler = [handler, this](WindowCloseEvent*){
             layer_inspector_window = nullptr;
@@ -73,7 +77,7 @@ void PhotoshopView::open_layer_inspector() {
 
 void PhotoshopView::open_tool_select_window() {
     if(!tool_select_window) {
-        tool_select_window = new ToolSelectWindow(this, manager, {300, 100});
+        tool_select_window = new ToolSelectWindow(this, tool_manager, {300, 100});
         EventHandler<WindowCloseEvent>* handler = new EventHandler<WindowCloseEvent>;
         *handler = [handler, this](WindowCloseEvent*){
             tool_select_window = nullptr;
@@ -137,13 +141,21 @@ void PhotoshopView::present_window_modally(UIWindow* window) {
     window->layout();
     window->set_position((screen->get_size() * 0.5) -= (window->get_size() * 0.5));
 
-    EventHandler<WindowCloseEvent>* handler = new EventHandler<WindowCloseEvent>;
-    *handler = [handler, overlay](WindowCloseEvent*){
+    EventHandler<WindowCloseEvent>* window_destroy_event = new EventHandler<WindowCloseEvent>;
+    EventHandler<ViewDestroyEvent>* overlay_destroy_handler = new EventHandler<ViewDestroyEvent>;
+
+    *window_destroy_event = [window_destroy_event, overlay, overlay_destroy_handler](WindowCloseEvent*){
+        overlay->get_destroy_event_emitter()->remove_listener(overlay_destroy_handler);
         overlay->get_container()->close_modal(overlay);
-        delete handler;
+        delete window_destroy_event;
     };
 
-    window->get_close_event_emitter()->add_listener(handler);
+    *overlay_destroy_handler = [window, window_destroy_event](ViewDestroyEvent*) {
+        window->get_close_event_emitter()->remove_listener(window_destroy_event);
+    };
+
+    overlay->get_destroy_event_emitter()->add_listener(overlay_destroy_handler);
+    window->get_close_event_emitter()->add_listener(window_destroy_event);
 
     screen->present_modal(overlay);
 
@@ -155,9 +167,13 @@ void PhotoshopView::present_window(UIWindow* window) {
 }
 
 ToolManager* PhotoshopView::get_tool_manager() {
-    return manager;
+    return tool_manager;
 }
 
 void PhotoshopView::focus_window(UIWindow* window) {
     window_container->focus_window(window);
+}
+
+PluginManager* PhotoshopView::get_plugin_manager() {
+    return plugin_manager;
 }

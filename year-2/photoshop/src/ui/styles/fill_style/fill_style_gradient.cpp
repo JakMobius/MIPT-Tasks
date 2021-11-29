@@ -1,8 +1,8 @@
 //
-// Created by Артем on 20.10.2021.
+// Created by Артем on 14.11.2021.
 //
 
-#include "fill_style.hpp"
+#include "fill_style_gradient.hpp"
 
 sf::Vertex UIFillStyleGradient::vertex(Vec2f vertex_position, Vec2f shape_position) const {
     Vec2f relative_position { shape_position };

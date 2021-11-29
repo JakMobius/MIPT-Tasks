@@ -27,10 +27,13 @@ enum VTextAlignment {
 
 class TextDrawer {
     sf::Text sf_text;
+    const char* text = nullptr;
     HTextAlignment h_alignment = HTextAlignmentLeft;
     VTextAlignment v_alignment = VTextAlignmentTop;
 
     Vec2f size;
+
+    Vec2f iterate_position(Vec2f position, char previous_char, char current_char);
 
 public:
     explicit TextDrawer(const Vec2f& size = {}, const char* text = ""):
@@ -45,7 +48,7 @@ public:
     void set_size(const Vec2f& p_size) { size = p_size; }
     Vec2f get_size() const { return size; }
 
-    void set_text(const char* text) { sf_text.setString(text); }
+    void set_text(const char* p_text) { text = p_text; sf_text.setString(text); }
 
     void set_h_alignment(HTextAlignment alignment) { h_alignment = alignment; }
     void set_v_alignment(VTextAlignment alignment) { v_alignment = alignment; }
@@ -57,4 +60,7 @@ public:
     void draw(DrawingContext* ctx, Vec2f position);
 
     Vec2f get_char_position(int char_index);
+    int get_char_index(Vec2f position);
+
+    const char* get_text();
 };

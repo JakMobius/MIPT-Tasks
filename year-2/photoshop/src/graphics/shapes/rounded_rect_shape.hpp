@@ -13,12 +13,7 @@ class RoundedRectShape : public Shape {
     void reshape();
 
 public:
-    RoundedRectShape(const Vec2f& position, const Vec2f& size, const Vec4f& radii):
-        position(position),
-        size(size),
-        radii(radii) {
-        reshape();
-    }
+    RoundedRectShape(const Vec2f& position, const Vec2f& size, const Vec4f& radii): position(position), size(size), radii(radii) {}
 
     void draw(DrawingContext* ctx) override {
         if(!valid) reshape();

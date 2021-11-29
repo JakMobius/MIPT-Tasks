@@ -20,9 +20,20 @@ protected:
 
 public:
     explicit UIButton(const Vec2f& position = {0, 0}, const Vec2f& size = {50, 50});
+    void destroy() override {
+        UIView::destroy();
+    }
 
     void set_title(const char* string) {
         label->get_text_drawer()->set_text(string);
+    }
+
+    void set_text_size(int size) {
+        label->get_text_drawer()->set_font_size(size);
+    }
+
+    void set_text_color(const Vec4f& color) {
+        label->get_text_drawer()->set_font_color(color);
     }
 
     void on_mouse_in(MouseInEvent *event) override;

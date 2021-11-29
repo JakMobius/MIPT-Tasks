@@ -11,7 +11,10 @@ void ToolManager::activate_factory(ToolFactoryBase* factory) {
     }
     if(factory) {
         active_tool = factory->create_tool();
-        active_tool->set_manager(this),
+        active_tool->set_manager(this);
+        if(active_tool->get_preferences_generator()) {
+            active_tool->get_preferences_generator()->open_preferences(app);
+        }
         active_tool->on_become_active();
     }
 }
@@ -42,4 +45,8 @@ void ToolManager::set_color(const Vec4f &p_selected_color) {
     selected_color = p_selected_color;
     ToolManagerColorEvent event { this };
     color_event_emitter.emit(&event);
+}
+
+PhotoshopView* ToolManager::get_app() {
+    return app;
 }

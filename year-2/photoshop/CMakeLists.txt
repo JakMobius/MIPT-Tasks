@@ -11,6 +11,10 @@ add_custom_command(TARGET photoshop PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/resources/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/resources)
 
+add_custom_command(TARGET photoshop PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/plugins/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-O0 -fsanitize=address")
 

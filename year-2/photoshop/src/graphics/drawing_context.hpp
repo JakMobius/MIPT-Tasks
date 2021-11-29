@@ -5,7 +5,7 @@
 #include "drawing_target.hpp"
 #include "drawing_target_texture.hpp"
 #include "../utils/vec4.hpp"
-#include "../ui/styles/fill_style.hpp"
+#include "../ui/styles/fill_style/fill_style.hpp"
 #include "../ui/styles/stroke_style.hpp"
 #include "text_drawer.hpp"
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -47,7 +47,8 @@ public:
     void fill_rect(const Vec2f& position, const Vec2f& size) const;
     void fill_circle(const Vec2f& center, float radius);
     void fill_shape(const std::vector<Vertex>& shape, PrimitiveType type = PrimitiveType::triangles);
-    void fill_shape(const std::vector<sf::Vertex>& shape, PrimitiveType type = PrimitiveType::triangles);
+    void fill_shape(const Vertex* shape, int count, PrimitiveType type = PrimitiveType::triangles);
+    void fill_shape(const sf::Vertex* shape, int count, PrimitiveType type = PrimitiveType::triangles);
 
     void clear(const Vec4f &color);
 

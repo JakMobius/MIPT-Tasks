@@ -5,12 +5,14 @@ class LayerInspectorWindow;
 class ToolSelectWindow;
 class ToolManager;
 class CanvasWindow;
+class EffectSelectWindow;
 
 #include "../utils/vec4.hpp"
 #include "../ui/ui_view.hpp"
 #include "../ui/window/ui_window.hpp"
 #include "../ui/window/ui_window_container.hpp"
 #include "plugin/plugin_manager.hpp"
+#include "ui/effect_select_window.hpp"
 #include <functional>
 
 class ColorPickerWindow;
@@ -28,13 +30,17 @@ class PhotoshopView : public UIView {
     ToolSelectWindow* tool_select_window = nullptr;
     LayerInspectorWindow* layer_inspector_window = nullptr;
     PluginManager* plugin_manager = nullptr;
+    EffectSelectWindow* effect_select_window = nullptr;
 
     void create_canvas(const Vec2f &position, const Vec2f &size);
     void present_canvas_creation_modal();
     void present_file_open_modal();
 
     void open_tool_select_window();
+    void open_effect_select_window();
     void open_layer_inspector();
+
+    void open_workspace_window(void** window_pointer, UIWindow* window);
 
 public:
     explicit PhotoshopView(App* app, const Vec2f& position = {0, 0}, const Vec2f& size = {0, 0});

@@ -36,7 +36,7 @@ bool PluginManager::load_plugin(const char* name) {
 
     auto info = interface->general.get_info();
 
-    auto plugin = new Plugin { lib, interface, nullptr };
+    auto plugin = new Plugin { lib, interface, nullptr, info->type == PPT_EFFECT };
 
     if(info->type == PPT_TOOL) {
         app->get_tool_manager()->add_tool_factory(new PluginToolFactory(plugin));
@@ -93,7 +93,7 @@ PluginManager::PluginManager(PhotoshopView* app) : app(app) {
     app_interface.target.get_size = &AppInterface::Target::get_size;
     app_interface.target.get_pixels = &AppInterface::Target::get_pixels;
 
-    app_interface.general.feature_level = (PFeatureLevel)0;
+    app_interface.general.feature_level =      PFeatureLevel::PFL_SHADER_SUPPORT;
     app_interface.general.get_absolute_time = &AppInterface::General::get_absolute_time;
     app_interface.general.get_color         = &AppInterface::General::get_color;
     app_interface.general.get_size          = &AppInterface::General::get_size;
@@ -129,7 +129,9 @@ PluginManager::PluginManager(PhotoshopView* app) : app(app) {
 
 PluginManager::~PluginManager() {
     while(!plugins.empty()) {
-        plugins[plugins.size() - 1]->interface->general.deinit();
+        auto plugin = plugins[plugins.size() - 1];
+        plugin->interface->general.deinit();
+        dlclose(plugin->lib);
         plugins.pop_back();
     }
 }

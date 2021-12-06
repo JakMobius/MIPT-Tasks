@@ -15,6 +15,7 @@ struct Plugin {
     void* lib;
     const PPluginInterface* interface;
     PluginTool* tool;
+    bool is_effect;
 };
 
 class PluginManager {
@@ -34,6 +35,8 @@ public:
     void set_active_plugin_tool(PluginTool* tool);
 
     PluginTool* get_active_plugin_tool();
+
+    const std::vector<Plugin*>& get_plugins() { return plugins; }
 };
 
 #include "../tools/plugin_tool.hpp"

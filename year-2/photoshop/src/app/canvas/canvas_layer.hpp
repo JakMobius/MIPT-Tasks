@@ -44,5 +44,5 @@ public:
     DrawingTargetTexture* get_texture() { return texture; }
     DrawingTargetTexture* get_preview_texture() { return preview_texture; }
 
-            Vec2i get_size() const { return size; }
+    Vec2i get_size() const { return size; }
 };

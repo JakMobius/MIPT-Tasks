@@ -8,6 +8,7 @@
 #include "tools/brush/brush_tool.hpp"
 #include "tools/eraser_tool.hpp"
 #include "ui/tool_select_window.hpp"
+#include "ui/effect_select_window.hpp"
 #include "ui/layer_inspector_window.hpp"
 #include "ui/canvas_creation_window.hpp"
 #include "ui/canvas_window.hpp"
@@ -36,8 +37,12 @@ PhotoshopView::PhotoshopView(App* app, const Vec2f &position, const Vec2f &size)
         present_file_open_modal();
     }));
 
-    action_button_view->append_child(new ActionButton("Tools window", [this]() {
+    action_button_view->append_child(new ActionButton("Tools", [this]() {
         open_tool_select_window();
+    }));
+
+    action_button_view->append_child(new ActionButton("Effects", [this]() {
+        open_effect_select_window();
     }));
 
     action_button_view->append_child(new ActionButton("Layer inspector", [this]() {
@@ -64,13 +69,7 @@ void PhotoshopView::create_canvas(const Vec2f& position, const Vec2f& size) {
 void PhotoshopView::open_layer_inspector() {
     if(!layer_inspector_window) {
         layer_inspector_window = new LayerInspectorWindow(this, tool_manager, {500, 100});
-        EventHandler<WindowCloseEvent>* handler = new EventHandler<WindowCloseEvent>;
-        *handler = [handler, this](WindowCloseEvent*){
-            layer_inspector_window = nullptr;
-            delete handler;
-        };
-        layer_inspector_window->get_close_event_emitter()->add_listener(handler);
-        window_container->add_window(layer_inspector_window);
+        open_workspace_window((void**) &layer_inspector_window, (UIWindow*) layer_inspector_window);
     }
     window_container->focus_window(layer_inspector_window);
 }
@@ -78,15 +77,17 @@ void PhotoshopView::open_layer_inspector() {
 void PhotoshopView::open_tool_select_window() {
     if(!tool_select_window) {
         tool_select_window = new ToolSelectWindow(this, tool_manager, {300, 100});
-        EventHandler<WindowCloseEvent>* handler = new EventHandler<WindowCloseEvent>;
-        *handler = [handler, this](WindowCloseEvent*){
-            tool_select_window = nullptr;
-            delete handler;
-        };
-        tool_select_window->get_close_event_emitter()->add_listener(handler);
-        window_container->add_window(tool_select_window);
+        open_workspace_window((void**) &tool_select_window, (UIWindow*) tool_select_window);
     }
     window_container->focus_window(tool_select_window);
+}
+
+void PhotoshopView::open_effect_select_window() {
+    if(!effect_select_window) {
+        effect_select_window = new EffectSelectWindow(this, {300, 100});
+        open_workspace_window((void**) &effect_select_window, (UIWindow*) effect_select_window);
+    }
+    window_container->focus_window(effect_select_window);
 }
 
 void PhotoshopView::open_colorpicker(const std::function<void(const Vec4f &)> &callback, const Vec4f* current_color = nullptr) {
@@ -176,4 +177,14 @@ void PhotoshopView::focus_window(UIWindow* window) {
 
 PluginManager* PhotoshopView::get_plugin_manager() {
     return plugin_manager;
+}
+
+void PhotoshopView::open_workspace_window(void** window_pointer, UIWindow* window) {
+    EventHandler<WindowCloseEvent>* handler = new EventHandler<WindowCloseEvent>;
+    *handler = [handler, window_pointer, this](WindowCloseEvent*){
+        *window_pointer = nullptr;
+        delete handler;
+    };
+    window->get_close_event_emitter()->add_listener(handler);
+    window_container->add_window(window);
 }

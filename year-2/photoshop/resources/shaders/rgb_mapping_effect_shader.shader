@@ -22,5 +22,6 @@ void main() {
     new_pixel.y = green[int(pixel.y * 255.0)];
     new_pixel.z = blue[int(pixel.z * 255.0)];
 
-    gl_FragColor = pixel * (1.0 - layer_texture.a) + new_pixel * layer_texture.a;
+    gl_FragColor.rgb = pixel.rgb * (1.0 - layer_texture.rgb * layer_texture.a) + new_pixel.rgb * layer_texture.rgb * layer_texture.a;
+    gl_FragColor.a = pixel.a;
 }

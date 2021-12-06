@@ -21,7 +21,7 @@ namespace AppInterface {
         Vec2f pvec2f_to_vec2f(const PVec2f& position);
         CanvasLayer* get_current_layer();
 
-
+        void setup_render_mode(const PRenderMode* render_mode);
         void fuse_context(const PRGBA& color, const PRenderMode* render_mode);
         void unfuse_context();
         void fill_shape(Vec2f* shape, int count, PrimitiveType type);
@@ -57,23 +57,23 @@ namespace AppInterface {
     }
 
     namespace Settings {
-        void  create_surface (size_t width, size_t height);
-        void  destroy_surface();
+        void  create_surface (const PPluginInterface *self, size_t width, size_t height);
+        void  destroy_surface(const PPluginInterface *self);
 
-        void* add(PSettingType type, const char *name);
-        void  get(void *handle, void *answer);
+        void* add(const PPluginInterface *self, PSettingType type, const char *name);
+        void  get(const PPluginInterface *self, void *handle, void *answer);
     }
 
     namespace Shader {
-        void apply(void *shader, const PRenderMode *render_mode);
+        void apply(const PRenderMode *render_mode);
 
         void *compile(const char *code, PShaderType type);
         void  release(void *);
 
-        void set_uniform_int    (const char *name, int  val);
-        void set_uniform_int_arr(const char *name, int *val, size_t cnt);
+        void set_uniform_int    (void* shader, const char *name, int  val);
+        void set_uniform_int_arr(void* shader, const char *name, int *val, size_t cnt);
 
-        void set_uniform_float    (const char *name, float  val);
-        void set_uniform_float_arr(const char *name, float *val, size_t cnt);
+        void set_uniform_float    (void* shader, const char *name, float  val);
+        void set_uniform_float_arr(void* shader, const char *name, float *val, size_t cnt);
     }
 }

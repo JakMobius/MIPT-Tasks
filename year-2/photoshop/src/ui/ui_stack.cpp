@@ -5,8 +5,7 @@
 #include "ui_stack.hpp"
 
 void UIStackView::layout_primary_leading(UIAxis p_direction, float from, float to) {
-    for(int i = 0; i < children.size(); i++) {
-        auto child = children[i];
+    for(auto child : children) {
         Vec2f child_position = child->get_position();
         Vec2f child_size = child->get_size();
         child_position.set((int) p_direction, from);
@@ -27,6 +26,8 @@ void UIStackView::layout_primary_trailing(UIAxis p_direction, float from, float 
 }
 
 void UIStackView::layout_primary_center(UIAxis p_direction, float from, float to) {
+    if(children.empty()) return;
+
     float total_size = 0;
 
     for(int i = 0; i < children.size(); i++) {
@@ -46,6 +47,8 @@ void UIStackView::layout_primary_center(UIAxis p_direction, float from, float to
 }
 
 void UIStackView::layout_primary_space(UIAxis p_direction, float from, float to, UIStackViewSpaceMode mode) {
+    if(children.empty()) return;
+
     float total_size = 0;
 
     for(int i = 0; i < children.size(); i++) {
@@ -54,7 +57,6 @@ void UIStackView::layout_primary_space(UIAxis p_direction, float from, float to,
     }
 
     float free_size = to - from - total_size;
-
     if(mode == UIStackViewSpaceMode::around) {
         float padding = free_size / float(children.size()) / 2;
         from += padding;
@@ -131,15 +133,17 @@ float UIStackView::get_primary_size(UIAxis p_direction) {
     if(!dir_fitting.is_fitting) return dir_fitting.size;
 
     float total_size = 0;
-    for(int i = 0; i < children.size(); i++) {
-        total_size += children[i]->get_size()[(int) p_direction];
+    for(auto & i : children) {
+        total_size += i->get_size()[(int) p_direction];
     }
 
     switch(primary_alignment) {
         case UIStackViewPrimaryAlignment::center:
         case UIStackViewPrimaryAlignment::leading:
         case UIStackViewPrimaryAlignment::trailing:
-            total_size += item_spacing * float(children.size() - 1);
+            if(!children.empty()) {
+                total_size += item_spacing * float(children.size() - 1);
+            }
             break;
         default: break;
     }

@@ -53,7 +53,7 @@ PRGBA* AppInterface::Target::get_pixels() {
 
     for(int y = size.y - 1, y1 = 0; y >= 0; y--, y1++) {
         int i1 = y * size.x;
-        int i2 = y1 * size.y;
+        int i2 = y1 * size.x;
 
         for(int x = 0; x < size.x; x++) {
             pixels[i1 + x] = ((PRGBA*)img_pixels)[i2 + x];
@@ -138,10 +138,9 @@ void AppInterface::Utils::fill_shape(Vec2f* shape, int count, PrimitiveType type
     }
 }
 
-void AppInterface::Utils::fuse_context(const PRGBA &color, const PRenderMode* mode) {
+void AppInterface::Utils::setup_render_mode(const PRenderMode* mode) {
     auto layer = Utils::get_current_layer();
     if(!layer) return;
-
     auto* context = &Utils::shared_context;
 
     if(mode->draw_policy == PPDP_ACTIVE) {
@@ -156,8 +155,17 @@ void AppInterface::Utils::fuse_context(const PRGBA &color, const PRenderMode* mo
         Utils::shared_fill_style.get_render_states()->blendMode = sf::BlendNone;
     }
 
+    Utils::shared_fill_style.get_render_states()->shader = (sf::Shader*) mode->shader;
+}
+
+void AppInterface::Utils::fuse_context(const PRGBA &color, const PRenderMode* mode) {
+    auto layer = Utils::get_current_layer();
+    if(!layer) return;
+
+    setup_render_mode(mode);
+
     shared_fill_style.set_color(prgba_to_vec4f(color));
-    context->set_fill_style(&Utils::shared_fill_style);
+    Utils::shared_context.set_fill_style(&Utils::shared_fill_style);
 }
 
 void AppInterface::Utils::unfuse_context() {
@@ -239,48 +247,95 @@ void AppInterface::Render::pixels(PVec2f position, const PRGBA* data, size_t wid
     Utils::unfuse_context();
 }
 
-void AppInterface::Settings::create_surface(size_t width, size_t height) {
+void AppInterface::Settings::create_surface(const PPluginInterface *self, size_t width, size_t height) {
 
 }
 
-void AppInterface::Settings::destroy_surface() {
+void AppInterface::Settings::destroy_surface(const PPluginInterface *self) {
 
 }
 
-void* AppInterface::Settings::add(PSettingType type, const char* name) {
+void* AppInterface::Settings::add(const PPluginInterface *self, PSettingType type, const char *name) {
     return nullptr;
 }
 
-void AppInterface::Settings::get(void* handle, void* answer) {
+void AppInterface::Settings::get(const PPluginInterface *self, void *handle, void *answer) {
 
 }
 
-void AppInterface::Shader::apply(void* shader, const PRenderMode* render_mode) {
+void AppInterface::Shader::apply(const PRenderMode* render_mode) {
+    auto layer = Utils::get_current_layer();
+    if(!layer) return;
+    if(render_mode->shader == nullptr) return;
 
+    auto texture = layer->get_texture()->get_texture();
+    Vec2f size = (Vec2f) layer->get_size();
+
+    Vertex vertices[] = {
+        {{0, 0}, {0, 1}},
+        {{0, 1}, {0, 0}},
+        {{1, 1}, {1, 0}},
+        {{1, 0}, {1, 1}}
+    };
+
+    for(int i = 0; i < 4; i++) {
+        vertices[i].position *= size;
+        vertices[i].shape_position *= size;
+    }
+
+    Utils::fuse_context({255, 255, 255, 255}, render_mode);
+    Utils::shared_fill_style.get_render_states()->texture = texture;
+    Utils::shared_context.fill_shape(vertices, 4, PrimitiveType::triangle_fan);
+    Utils::shared_fill_style.get_render_states()->texture = nullptr;
+    Utils::unfuse_context();
 }
 
 void* AppInterface::Shader::compile(const char* code, PShaderType type) {
-    return nullptr;
+    sf::Shader *shader = new sf::Shader;
+    sf::Shader::Type rtype = sf::Shader::Type::Fragment;
+
+    switch (type) {
+        case PShaderType::PST_FRAGMENT: rtype = sf::Shader::Type::Fragment; break;
+        case PShaderType::PST_VERTEX: rtype = sf::Shader::Type::Vertex; break;
+        default: return nullptr;
+    }
+
+    if (!shader->loadFromMemory(code, rtype)) {
+        delete shader;
+        return nullptr;
+    }
+
+    shader->setUniform("texture", sf::Shader::CurrentTexture);
+    return shader;
 }
 
-void AppInterface::Shader::release(void*) {
-
+void AppInterface::Shader::release(void* shader) {
+    delete (sf::Shader*) shader;
 }
 
-void AppInterface::Shader::set_uniform_int(const char* name, int val) {
+void AppInterface::Shader::set_uniform_int(void* shader, const char* name, int val) {
+    if (!shader) return;
 
+    sf::Shader *sf_shader = (sf::Shader*) shader;
+    sf_shader->setUniform(name, val);
 }
 
-void AppInterface::Shader::set_uniform_int_arr(const char* name, int* val, size_t cnt) {
-
+void AppInterface::Shader::set_uniform_int_arr(void* shader, const char* name, int* val, size_t cnt) {
+    // Unimplemented, sorry
 }
 
-void AppInterface::Shader::set_uniform_float(const char* name, float val) {
+void AppInterface::Shader::set_uniform_float(void* shader, const char* name, float val) {
+    if (!shader) return;
 
+    sf::Shader *sf_shader = (sf::Shader*) shader;
+    sf_shader->setUniform(name, val);
 }
 
-void AppInterface::Shader::set_uniform_float_arr(const char* name, float* val, size_t cnt) {
+void AppInterface::Shader::set_uniform_float_arr(void* shader, const char* name, float* val, size_t cnt) {
+    if (!shader) return;
 
+    sf::Shader *sf_shader = (sf::Shader*) shader;
+    sf_shader->setUniformArray(name, val, cnt);
 }
 
 bool AppInterface::Extensions::enable(const char* name) { return false; }

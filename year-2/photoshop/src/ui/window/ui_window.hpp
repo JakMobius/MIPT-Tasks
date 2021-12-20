@@ -16,11 +16,14 @@ struct WindowCloseEvent {
 
 class UIWindow : public UIView, public Styled<UIWindowStyle> {
 
+protected:
     UIWindowContainer* container = nullptr;
     UIWindowHeaderView* header_view = nullptr;
     UIView* inner_view = new UIStackView(UIAxis::y);
     UIView* content_view = new UIView();
     RoundedRectShape* inner_shape = nullptr;
+
+    bool can_be_closed = true;
 
     EventEmitter<WindowCloseEvent> close_event_emitter {};
 
@@ -53,5 +56,7 @@ public:
     void focus() override;
     void blur() override;
 
-    void close();
+    void set_can_be_closed(bool p_can_be_closed) { can_be_closed = p_can_be_closed; }
+
+    bool close();
 };

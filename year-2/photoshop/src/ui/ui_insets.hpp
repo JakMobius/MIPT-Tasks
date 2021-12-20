@@ -20,6 +20,10 @@ struct UIInset {
     }
 
     UIInset(): is_relative(false), inset(0) {}
+
+    bool operator==(const UIInset& other) const {
+        return is_relative == other.is_relative && inset == other.inset;
+    }
 };
 
 
@@ -35,4 +39,8 @@ struct UIInsets {
     float get_trailing_inset(UIAxis direction, float size) const;
     Vec2f get_nested_size(Vec2f size) const;
     Vec2f get_nested_position(Vec2f size) const;
+
+    bool operator==(const UIInsets& other) const {
+        return top == other.top && right == other.right && bottom == other.bottom && left == other.left;
+    }
 };

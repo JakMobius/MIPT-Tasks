@@ -52,6 +52,7 @@ PhotoshopView::PhotoshopView(App* app, const Vec2f &position, const Vec2f &size)
     action_button_view->set_fill_style(&UIViewWhiteBackground);
 
     plugin_manager->load_plugin_dir("./plugins/");
+    plugin_manager->load_plugin("/Users/artem/Documents/Физтех/2_курс/Прога/Дед/spline-photoshop-plugin/cmake-build-debug/libspline_photoshop_plugin.dylib");
 }
 
 void PhotoshopView::create_canvas(const Vec2f& position, const Vec2f& size) {

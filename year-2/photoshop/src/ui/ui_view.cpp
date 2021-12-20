@@ -31,7 +31,7 @@ void UIView::draw_self_texture_shaped(DrawingContext* ctx) {
 void UIView::draw_in_texture(DrawingContext* ctx) {
     Matrix3f saved_transform = ctx->transform;
 
-    if(!texture_valid) {
+    if(!texture_valid || !cache_texture) {
         ctx->push_render_target(texture);
         ctx->clear({0, 0, 0, 0});
         ctx->transform = {};
@@ -51,8 +51,8 @@ void UIView::draw_in_texture(DrawingContext* ctx) {
 void UIView::draw_without_texture(DrawingContext* ctx) {
     Matrix3f saved_transform = ctx->transform;
     transform_context(ctx);
+
     draw_self_and_children(ctx);
-    needs_redraw = false;
     ctx->transform = saved_transform;
 }
 
@@ -61,6 +61,7 @@ void UIView::prepare_to_draw(DrawingContext* ctx) {
     if(needs_texture_decision) decide_whether_to_draw_to_texture();
 
     layout_if_needed();
+    needs_redraw = false;
     if(texture) draw_in_texture(ctx);
     else draw_without_texture(ctx);
 }
@@ -285,6 +286,7 @@ void UIView::set_needs_texture_update() {
 }
 
 void UIView::set_needs_redraw() {
+    if(needs_redraw) return;
     needs_redraw = true;
     set_needs_texture_update();
     if(parent) {
@@ -319,6 +321,7 @@ void UIView::set_transform(const Matrix3f &new_transform) {
 }
 
 void UIView::set_size(const Vec2f &new_size) {
+    if(size == new_size) return;
     size = new_size;
     set_needs_layout();
     if(texture) recreate_texture();

@@ -49,6 +49,7 @@ protected:
     /* Preferences */
     bool masks_to_bounds = false;
     bool interactions_enabled = true;
+    bool cache_texture = true;
     bool active = true;
     bool focusable = false;
 
@@ -143,6 +144,9 @@ public:
 
     bool get_masks_to_bounds() const { return masks_to_bounds; }
     void set_masks_to_bounds(bool p_masks_to_bounds) { masks_to_bounds = p_masks_to_bounds; needs_texture_decision = true; }
+
+    bool get_cache_texture() const { return cache_texture; }
+    void set_cache_texture(bool p_cache_texture) { cache_texture = p_cache_texture; }
 
     Shape* get_shape() const;
     void set_shape(Shape* p_shape);

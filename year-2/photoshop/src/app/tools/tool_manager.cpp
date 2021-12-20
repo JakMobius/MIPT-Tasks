@@ -20,15 +20,15 @@ void ToolManager::activate_factory(ToolFactoryBase* factory) {
 }
 
 void ToolManager::on_mouse_down(Vec2f position) {
-    if(active_tool) active_tool->on_mouse_down(position);
+    if(active_tool && canvas && canvas->get_active_layer()) active_tool->on_mouse_down(position);
 }
 
 void ToolManager::on_mouse_move(Vec2f position) {
-    if(active_tool) active_tool->on_mouse_move(position);
+    if(active_tool && canvas && canvas->get_active_layer()) active_tool->on_mouse_move(position);
 }
 
 void ToolManager::on_mouse_up() {
-    if(active_tool) active_tool->on_mouse_up();
+    if(active_tool && canvas && canvas->get_active_layer()) active_tool->on_mouse_up();
 }
 
 void ToolManager::set_active_canvas(Canvas* p_canvas) {

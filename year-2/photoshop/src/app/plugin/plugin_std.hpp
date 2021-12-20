@@ -1,233 +1,180 @@
 #ifndef PLUGIN_STD_HPP
 #define PLUGIN_STD_HPP
 
-#include <cstdint>
-#include <cmath>
+
+#include <string_view>
+
+#include "lib_std/types_std.h"
+#include "lib_std/widgets/collection.h"
+#include "lib_std/extensioner_std.h"
 
 
-// this function is only defined in plugin. call it to get PPluginInterface to interact with plugin
+namespace PUPPY {
+
+constexpr uint32_t STD_VERSION = 0x00010000;
+
+constexpr char EXT_STD[] = "std";
+
+// this function is only defined in plugin. call it to get PluginInterface to interact with plugin
 // make sure you wrap it into extern C section to avoid mangling
-// const PPluginInterface *get_plugin_interface();
+// const PluginInterface *get_plugin_interface();
 
-#if __cplusplus >= 201703L
+constexpr char GET_INTERFACE_FUNC[] = "get_plugin_interface";
 
-constexpr char PGET_INTERFACE_FUNC[] = "get_plugin_interface";
-constexpr uint32_t PSTD_VERSION = 1;
-
-constexpr char PST_TEXT_LINE[]    = "pst_text_line";
-constexpr char PST_SLIDER_1D[]    = "pst_slider_1d";
-constexpr char PST_SLIDER_2D[]    = "pst_slider_2d";
-constexpr char PST_COLOR_PICKER[] = "pst_color_picker";
-
-#else
-
-#define PGET_INTERFACE_FUNC "get_plugin_interface"
-#define PSTD_VERSION 1
-
-#define PST_TEXT_LINE    "pst_text_line"
-#define PST_SLIDER_1D    "pst_slider_1d"
-#define PST_SLIDER_2D    "pst_slider_2d"
-#define PST_COLOR_PICKER "pst_color_picker"
-
-#endif
+// ============================================================================
 
 
-union PVec2f {
-    struct {
-        float x;
-        float y;
-    };
-    float data[2];
+class RenderTarget {
+public:
+    virtual ~RenderTarget() {}
 
-    PVec2f()                 : x(0),   y(0)   {}
-    PVec2f(float val)        : x(val), y(val) {}
-    PVec2f(float x, float y) : x(x),   y(y)   {}
-};
+    virtual RenderTarget *get_copy() const = 0;
 
-union PRGBA {
-    struct {
-        unsigned char r;
-        unsigned char g;
-        unsigned char b;
-        unsigned char a;
-    };
-    unsigned char rgba[4];
-    uint32_t ui32;
+    virtual Vec2s get_size() const = 0;
 
-    PRGBA()           : ui32(0) {}
-    PRGBA(uint32_t x) : ui32(x) {}
+    virtual RGBA get_pixel(size_t x, size_t y) const = 0;
+    virtual void set_pixel(size_t x, size_t y, const RGBA &color) = 0;
 
-    PRGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 255) : r(r), g(g), b(b), a(a) {}
+    virtual RGBA *get_pixels() const = 0;
+
+    virtual void clear(const RGBA &color = 0) = 0; // fills the target with `color`
+
+// render
+    virtual void render_circle(const Vec2f &position, float radius, const RGBA &color, const RenderMode &render_mode = {}) = 0;
+    virtual void render_line(const Vec2f &start, const Vec2f &end, const RGBA &color, const RenderMode &render_mode = {}) = 0;
+    virtual void render_triangle(const Vec2f &p1, const Vec2f &p2, const Vec2f &p3, const RGBA &color, const RenderMode &render_mode = {}) = 0;
+    virtual void render_rectangle(const Vec2f &p1, const Vec2f &p2, const RGBA &color, const RenderMode &render_mode = {}) = 0;
+    
+    virtual void render_texture(const Vec2f &position, const RenderTarget *texture, const RenderMode &render_mode = {}) = 0;
+    virtual void render_pixels(const Vec2f &position, const Vec2s &size, const RGBA *data, const RenderMode &render_mode = {}) = 0;
+
+    virtual void apply_shader(const Shader *shader) = 0;
 };
 
 
-enum PPluginStatus {
-    PPS_OK,
-    PPS_ERR,
+struct PluginInterface;
+
+struct PluginInfo {
+    const uint32_t std_version;
+    void *reserved;
+
+    const PluginInterface *const interface;
+
+    const char *const name;
+    const char *const version;
+    const char *const author;
+    const char *const description;
+    const RenderTarget *icon;
+
+    const PluginType type;
 };
 
-enum PFeatureLevel {
-    PFL_SHADER_SUPPORT   = 1 << 0,
-    PFL_SETTINGS_SUPPORT = 1 << 1,
-};
+struct AppInterface;
+struct PluginInterface {
+    PluginInterface(uint32_t std_version = STD_VERSION, void* reserved = nullptr) :
+        std_version(std_version), reserved(reserved) {}
 
-enum PPluginType {
-    PPT_EFFECT,
-    PPT_TOOL,
-};
-
-enum PPreviewLayerPolicy {
-    PPLP_BLEND,
-    PPLP_COPY,
-};
-
-enum PBlendMode {
-    PPBM_COPY,
-    PPBM_ALPHA_BLEND,
-};
-
-enum PDrawPolicy {
-    PPDP_PREVIEW,
-    PPDP_ACTIVE,
-};
-
-struct PRenderMode {
-    PBlendMode blend;
-    PDrawPolicy draw_policy;
-    void *shader;
-};
-
-
-struct PPluginInterface;
-
-struct PPluginInfo {
     uint32_t std_version;
     void *reserved;
 
-    const PPluginInterface *interface;
+    // enables specified extension
+    virtual bool ext_enable(const char *name) const = 0;
 
-    const char *name;
-    const char *version;
-    const char *author;
-    const char *description;
+    // returns given function, if it is implemented in the specified (enabled) extension
+    virtual void *ext_get_func(const char *extension, const char *func) const = 0;
 
-    PPluginType type;
+    // returns given interface, if it is implemented in the specified (enabled) extension
+    virtual void *ext_get_interface(const char *extension, const char *name) const = 0;
+
+    virtual const  PluginInfo *get_info()    const = 0;
+    virtual Status init(const AppInterface*) const = 0;
+    virtual Status deinit()                  const = 0;
+    virtual void   dump()                    const = 0;
+
+    virtual void on_tick(double dt) const = 0;
+
+    virtual void effect_apply() const = 0;
+
+    virtual void tool_on_press  (const Vec2f &position)              const = 0;
+    virtual void tool_on_release(const Vec2f &position)              const = 0;
+    virtual void tool_on_move   (const Vec2f &from, const Vec2f &to) const = 0;
+
+    virtual void show_settings() const = 0;
 };
 
-struct PAppInterface;
-struct PPluginInterface {
+struct WidgetFactory {
+    virtual ~WidgetFactory() {}
+
+    virtual Button      *button       (const WBody &body, Widget *parent = nullptr) const = 0;
+    virtual Button      *button       (const PUPPY::Vec2f &pos, const char *caption, PUPPY::Widget *parent = nullptr) const = 0; // button fit to contain caption
+    virtual Slider      *slider       (Slider::Type type, const WBody &body, Widget *parent = nullptr) const = 0;
+    virtual TextField   *text_field   (const WBody &body, Widget *parent = nullptr) const = 0;
+    virtual Window      *window       (const char *name, const WBody &body, Widget *parent = nullptr) const = 0;
+    virtual ColorPicker *color_picker (const WBody &body, Widget *parent = nullptr) const = 0;
+    virtual Label       *label        (const PUPPY::Vec2f &pos, const char *text, Widget *parent = nullptr) const = 0;
+    virtual Widget      *abstract     (const WBody &body, Widget *parent = nullptr) const = 0;
+};
+
+struct ShaderFactory {
+    virtual ~ShaderFactory() {}
+
+    virtual Shader *compile (const char *code, ShaderType type, bool is_code = true) const = 0;
+};
+
+struct RenderTargetFactory {
+    virtual ~RenderTargetFactory() {}
+
+    virtual RenderTarget *spawn(const Vec2s &size, const RGBA &color = {0, 0, 0, 255}) const = 0; // color -> fill with it
+    virtual RenderTarget *from_pixels(const Vec2s &size, const RGBA *data) const = 0;
+    virtual RenderTarget *from_file(const char *path) const = 0;
+};
+
+struct AppInterface {
     uint32_t std_version;
     void *reserved;
 
-    struct {
-        bool  (*enable)(const char *name);   // enables specified extension
-        void *(*get_func)(const char *name); // returns given function, if it is implemented in some enabled extension
-    } extensions;
+    int feature_level;
 
     struct {
-        const PPluginInfo *(*get_info)();
-        PPluginStatus (*init)(const PAppInterface*);
-        PPluginStatus (*deinit)();
-        void (*dump)();
+        WidgetFactory       *widget;
+        ShaderFactory       *shader;
+        RenderTargetFactory *target;
+    } factory;
 
-        void (*on_tick)(double dt);
-        void (*on_settings_update)();
+// extension
+    // enables specified extension
+    virtual bool ext_enable(const char *name) = 0;
 
-        PPreviewLayerPolicy (*get_flush_policy)();
-    } general;
+    // returns given function, if it is implemented in the specified (enabled) extension
+    virtual void *ext_get_func(const char *extension, const char *func) const = 0;
+    
+    // returns given interface, if it is implemented in the specified (enabled) extension
+    virtual void *ext_get_interface(const char *extension, const char *name) const = 0;
 
-    struct {
-        void (*apply)();
-    } effect;
+    // registers plugin as the holder of functions and interfaces for an extension
+    virtual void ext_register_as(const char *extension) const = 0;
 
-    struct {
-        void (*on_press)(PVec2f mouse_pos);
-        void (*on_release)(PVec2f mouse_pos);
-        void (*on_move)(PVec2f mouse_old_pos, PVec2f mouse_new_pos);
-    } tool;
+// general
+    virtual void log(const char *fmt, ...) const = 0;
+    virtual double get_absolute_time()     const = 0;
+
+    virtual RGBA get_color() const = 0;
+    virtual float get_size() const = 0;
+
+    virtual void set_color(const PUPPY::RGBA &color) const = 0;
+    virtual void set_size(float size) const = 0;
+
+    virtual const std::vector<WBody> &get_windows() const = 0;
+    virtual Widget *get_root_widget() = 0;
+
+// target
+    virtual RenderTarget *get_target()  const = 0; // returns actual active  layer, drawing in it changes app's layer
+    virtual RenderTarget *get_preview() const = 0; // returns actual preview layer, drawing in it changes app's layer
+    virtual void flush_preview()        const = 0;
+
+    virtual ~AppInterface() {}
 };
 
-
-typedef const char *PSettingType;
-
-struct PTextFieldSetting {
-    const char *text;
-};
-
-struct PSlider1dSetting {
-    float frac;
-};
-
-struct PSlider2dSetting {
-    PVec2f frac;
-};
-
-struct PColorPickerSetting {
-    PRGBA color;
-};
-
-enum PShaderType {
-    PST_VERTEX,
-    PST_FRAGMENT,
-    PST_COMPUTE,
-};
-
-struct PAppInterface {
-    uint32_t std_version;
-    void *reserved;
-
-    struct {
-        bool  (*enable)(const char *name);   // enables specified extension
-        void *(*get_func)(const char *name); // returns given function, if it is implemented in some enabled extension
-    } extensions;
-
-    struct {
-        int feature_level;
-
-        void (*log)(const char *fmt, ...);
-        double (*get_absolute_time)();
-
-        void (*release_pixels)(PRGBA *pixels);
-
-        PRGBA (*get_color)();
-        float (*get_size)();
-    } general;
-
-    struct {
-        PRGBA *(*get_pixels)();
-        void (*get_size)(size_t *width, size_t *height);
-    } target;
-
-    struct {
-        void (*circle)(PVec2f position, float radius, PRGBA color, const PRenderMode *render_mode);
-        void (*line)(PVec2f start, PVec2f end, PRGBA color, const PRenderMode *render_mode);
-        void (*triangle)(PVec2f p1, PVec2f p2, PVec2f p3, PRGBA color, const PRenderMode *render_mode);
-        void (*rectangle)(PVec2f p1, PVec2f p2, PRGBA color, const PRenderMode *render_mode);
-
-        void (*pixels)(PVec2f position, const PRGBA *data, size_t width, size_t height, const PRenderMode *render_mode);
-    } render;
-
-    struct {
-        void  (*create_surface) (const PPluginInterface *self, size_t width, size_t height);
-        void  (*destroy_surface)(const PPluginInterface *self);
-
-        void *(*add)(const PPluginInterface *self, PSettingType type, const char *name);
-        void  (*get)(const PPluginInterface *self, void *handle, void *answer);
-    } settings;
-
-    // set everything to nullptr here if you don't support shaders
-    struct {
-        void (*apply)(const PRenderMode *render_mode);
-
-        void *(*compile)(const char *code, PShaderType type);
-        void  (*release)(void *);
-
-        void (*set_uniform_int)      (void *shader, const char *name, int  val);
-        void (*set_uniform_int_arr)  (void *shader, const char *name, int *val, size_t cnt);
-
-        void (*set_uniform_float)    (void *shader, const char *name, float  val);
-        void (*set_uniform_float_arr)(void *shader, const char *name, float *val, size_t cnt);
-    } shader;
-};
+}
 
 #endif

@@ -121,6 +121,8 @@ struct TextEnterEvent: public EventBase {
         if(!is_ascii()) return 0;
         else return (char) unicode;
     }
+
+    uint32_t get_unicode() { return unicode; }
 };
 
 struct KeyEvent : public EventBase {

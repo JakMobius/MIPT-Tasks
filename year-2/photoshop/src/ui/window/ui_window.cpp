@@ -12,6 +12,9 @@ void UIWindow::layout() {
     set_size(inner_view->get_size());
     if(!style) set_style(UIWindowStyle::instance);
     header_view->set_fitting({size[0], header_height});
+    // It's very necessary to call layout_if_needed() of children,
+    // if we've changed their layout in any way.
+    header_view->layout_if_needed();
 }
 
 UIWindow::UIWindow(const Vec2f &position, const Vec2f &size, const char* title):
@@ -52,9 +55,11 @@ void UIWindow::set_style(const UIWindowStyle* p_style) {
     update_style();
 }
 
-void UIWindow::close() {
+bool UIWindow::close() {
+    if(!can_be_closed) return false;
     blur();
     delete this;
+    return true;
 }
 
 void UIWindow::set_size(const Vec2f &new_size) {

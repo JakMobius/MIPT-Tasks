@@ -5,6 +5,7 @@ class PluginTool;
 #include "tool.hpp"
 #include "../plugin/plugin_manager.hpp"
 #include "../../ui/styles/fill_style/fill_style_texture.hpp"
+#include "../plugin/plugin.hpp"
 
 class PluginTool : public Tool {
 

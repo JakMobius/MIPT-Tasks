@@ -16,6 +16,7 @@ add_custom_command(TARGET photoshop PRE_BUILD
         ${CMAKE_SOURCE_DIR}/plugins/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "-O0 -fsanitize=address")
+set(CMAKE_CXX_FLAGS "-O0")
+#set(CMAKE_CXX_FLAGS "-O0 -fsanitize=address")
 
 target_link_libraries(photoshop sfml-graphics sfml-audio)

@@ -2,78 +2,66 @@
 
 class PhotoshopView;
 class CanvasLayer;
+class HostAppInterface;
 
 #include "plugin_std.hpp"
 #include "../../graphics/drawing_context.hpp"
 #include "../../ui/styles/fill_style/fill_style_color.hpp"
 #include "../../ui/styles/fill_style/fill_style_texture.hpp"
+#include "plugin_manager.hpp"
+#include "host_shader_factory.hpp"
+#include "tweaks/tweaks_extension.hpp"
+#include "widgets/host_root_widget.hpp"
 
-namespace AppInterface {
-    extern PhotoshopView* app_instance;
+class HostAppInterface : public PUPPY::AppInterface {
 
-    namespace Utils {
-        extern DrawingContext shared_context;
-        extern UIFillStyleTexture shared_fill_style;
+    std::vector<PUPPY::WBody> windows = {};
+    PhotoshopView* app;
+    Plugin* plugin;
+    DrawingContext* ctx;
+    TweaksExtension* tweaks_extension = nullptr;
+    mutable HostRootWidget* root_widget = nullptr;
 
-        PRGBA vec4f_to_prgba(const Vec4f& color);
-        Vec4f prgba_to_vec4f(const PRGBA& color);
-        PVec2f vec2f_to_pvec2f(const Vec2f& position);
-        Vec2f pvec2f_to_vec2f(const PVec2f& position);
-        CanvasLayer* get_current_layer();
+    CanvasLayer* get_active_layer() const;
 
-        void setup_render_mode(const PRenderMode* render_mode);
-        void fuse_context(const PRGBA& color, const PRenderMode* render_mode);
-        void unfuse_context();
-        void fill_shape(Vec2f* shape, int count, PrimitiveType type);
-    }
+public:
+    HostAppInterface(PhotoshopView* app);
 
-    namespace Extensions {
-        bool enable(const char* name);
-        void* get_func(const char* name);
-    }
+    DrawingContext* get_drawing_context() { return ctx; }
 
-    namespace General {
-        void log(const char *fmt, ...);
-        double get_absolute_time();
+    virtual ~HostAppInterface();
 
-        void release_pixels(PRGBA* pixels);
+    void set_plugin(Plugin* p_plugin);
+    Plugin* get_plugin() const { return plugin; }
 
-        PRGBA get_color();
-        float get_size();
-    }
+    bool ext_enable(const char *name) override;
+    void *ext_get_func(const char *extension, const char *func) const override;
+    void *ext_get_interface(const char *extension, const char *name) const override;
+    void ext_register_as(const char *extension) const override;
 
-    namespace Target {
-        PRGBA* get_pixels();
-        void get_size(size_t* width, size_t* height);
-    }
+    void log(const char *fmt, ...) const override;
+    double get_absolute_time()     const override;
 
-    namespace Render {
-        void circle(PVec2f position, float radius, PRGBA color, const PRenderMode *render_mode);
-        void line(PVec2f start, PVec2f end, PRGBA color, const PRenderMode *render_mode);
-        void triangle(PVec2f p1, PVec2f p2, PVec2f p3, PRGBA color, const PRenderMode *render_mode);
-        void rectangle(PVec2f p1, PVec2f p2, PRGBA color, const PRenderMode *render_mode);
+    PUPPY::RGBA get_color() const override;
+    float get_size() const override;
 
-        void pixels(PVec2f position, const PRGBA *data, size_t width, size_t height, const PRenderMode *render_mode);
-    }
+    void set_color(const PUPPY::RGBA &color) const override;
+    void set_size(float size) const override;
 
-    namespace Settings {
-        void  create_surface (const PPluginInterface *self, size_t width, size_t height);
-        void  destroy_surface(const PPluginInterface *self);
+    const std::vector<PUPPY::WBody> &get_windows() const override;
+    PUPPY::Widget *get_root_widget() override;
 
-        void* add(const PPluginInterface *self, PSettingType type, const char *name);
-        void  get(const PPluginInterface *self, void *handle, void *answer);
-    }
+    PUPPY::RenderTarget *get_target()  const override; // returns actual active  layer, drawing in it changes app's layer
+    PUPPY::RenderTarget *get_preview() const override; // returns actual preview layer, drawing in it changes app's layer
+    void flush_preview()        const override;
 
-    namespace Shader {
-        void apply(const PRenderMode *render_mode);
+    static PUPPY::RGBA vec4f_to_prgba(const Vec4f &color);
+    static Vec4f prgba_to_vec4f(const PUPPY::RGBA &color);
+    static PUPPY::Vec2f vec2f_to_pvec2f(const Vec2f &position);
+    static Vec2f pvec2f_to_vec2f(const PUPPY::Vec2f &position);
+    static PUPPY::Vec2s vec2i_to_pvec2s(const Vec2i &position);
+    static Vec2i pvec2s_to_vec2i(const PUPPY::Vec2s &position);
 
-        void *compile(const char *code, PShaderType type);
-        void  release(void *);
+    PhotoshopView* get_app() const { return app; }
 
-        void set_uniform_int    (void* shader, const char *name, int  val);
-        void set_uniform_int_arr(void* shader, const char *name, int *val, size_t cnt);
-
-        void set_uniform_float    (void* shader, const char *name, float  val);
-        void set_uniform_float_arr(void* shader, const char *name, float *val, size_t cnt);
-    }
-}
+};

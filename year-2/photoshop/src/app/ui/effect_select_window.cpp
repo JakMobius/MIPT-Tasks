@@ -5,6 +5,7 @@
 
 #include "effect_select_window.hpp"
 #include "../app.hpp"
+#include "../plugin/app_interface.hpp"
 
 void EffectSelectWindow::create_tool_buttons() {
 
@@ -18,10 +19,12 @@ void EffectSelectWindow::create_tool_buttons() {
         stack->append_child(button);
 
         button->set_text_size(18);
-        button->set_title(plugin->interface->general.get_info()->name);
+        button->set_title(plugin->interface->get_info()->name);
 
         button->set_callback([this, plugin]() {
-            plugin->interface->effect.apply();
+            if(plugin->host_interface->get_target()) {
+                plugin->interface->effect_apply();
+            }
         });
     }
 }

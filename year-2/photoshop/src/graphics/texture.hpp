@@ -16,7 +16,7 @@ public:
     explicit Texture(const Vec2i size, const unsigned char* rgba_array);
 
     void set_repeating(bool is_repeating);
-    const sf::Texture* get_texture() override { return texture; }
+    const sf::Texture* get_texture() const override { return texture; }
 
     Vec2i get_size() { return size; }
 };

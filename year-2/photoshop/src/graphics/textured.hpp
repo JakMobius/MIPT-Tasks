@@ -4,5 +4,5 @@
 
 class Textured {
 public:
-    virtual const sf::Texture* get_texture() = 0;
+    virtual const sf::Texture* get_texture() const = 0;
 };

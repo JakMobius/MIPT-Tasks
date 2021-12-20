@@ -36,6 +36,8 @@ public:
         label->get_text_drawer()->set_font_color(color);
     }
 
+    UIText* get_label() { return label; }
+
     void on_mouse_in(MouseInEvent *event) override;
     void on_mouse_out(MouseOutEvent *event) override;
     void on_mouse_down(MouseDownEvent *event) override;

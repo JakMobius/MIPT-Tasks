@@ -54,4 +54,6 @@ public:
 
     ToolManager* get_tool_manager();
     PluginManager* get_plugin_manager();
+
+    UIWindowContainer* get_window_container() { return window_container; }
 };

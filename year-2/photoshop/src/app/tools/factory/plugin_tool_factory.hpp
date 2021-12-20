@@ -9,7 +9,7 @@ class PluginToolFactory : public ToolFactoryBase {
 
 public:
     explicit PluginToolFactory(Plugin* plugin): ToolFactoryBase(), plugin(plugin) {
-        tool_name = plugin->interface->general.get_info()->name;
+        tool_name = plugin->interface->get_info()->name;
         tool_icon = nullptr;
     }
 

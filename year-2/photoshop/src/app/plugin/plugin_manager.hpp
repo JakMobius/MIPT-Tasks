@@ -2,27 +2,17 @@
 
 class PhotoshopView;
 class PluginTool;
-struct Plugin;
 
 #include <cstdio>
 #include <dirent.h>
 #include <cstring>
-#include "plugin_std.hpp"
-#include "app_interface.hpp"
 #include "../tools/plugin_tool.hpp"
-
-struct Plugin {
-    void* lib;
-    const PPluginInterface* interface;
-    PluginTool* tool;
-    bool is_effect;
-};
+#include "raw_host_widget.hpp"
+#include "plugin.hpp"
 
 class PluginManager {
-    PAppInterface app_interface {};
     PhotoshopView* app;
-    std::vector<Plugin*> plugins;
-    PluginTool* active_plugin_tool;
+    std::vector<Plugin*> plugins {};
 
     void register_plugin(Plugin* plugin);
 public:
@@ -32,11 +22,11 @@ public:
     bool load_plugin_dir(const char* path);
     bool load_plugin(const char* path);
 
-    void set_active_plugin_tool(PluginTool* tool);
-
-    PluginTool* get_active_plugin_tool();
+    PhotoshopView* get_app() { return app; }
 
     const std::vector<Plugin*>& get_plugins() { return plugins; }
+
+    RawHostWidget* root_widget;
 };
 
 #include "../tools/plugin_tool.hpp"

@@ -31,6 +31,10 @@ struct UIStackDirFitting {
 
     UIStackDirFitting(): is_fitting(true), size(0) {};
     UIStackDirFitting(float size): is_fitting(false), size(size) {};
+
+    bool operator==(const UIStackDirFitting& other) const {
+        return is_fitting == other.is_fitting && size == other.size;
+    }
 };
 
 struct UIStackViewFitting {
@@ -40,6 +44,10 @@ struct UIStackViewFitting {
     UIStackDirFitting& by_direction(UIAxis direction) {
         if(direction == UIAxis::x) return x;
         return y;
+    }
+
+    bool operator==(const UIStackViewFitting& other) const {
+        return x == other.x && y == other.y;
     }
 };
 
@@ -80,10 +88,18 @@ public:
     void set_lateral_alignment(UIStackViewLateralAlignment lateralAlignment) { lateral_alignment = lateralAlignment; set_needs_layout(); }
 
     const UIInsets &get_insets() const { return insets; }
-    void set_insets(const UIInsets &p_insets) { insets = p_insets; }
+    void set_insets(const UIInsets &p_insets) {
+        if(insets == p_insets) return;
+        insets = p_insets;
+        set_needs_layout();
+    }
 
     const UIStackViewFitting &get_fitting() const { return fitting; }
-    void set_fitting(const UIStackViewFitting &p_fitting) { fitting = p_fitting; set_needs_layout(); }
+    void set_fitting(const UIStackViewFitting &p_fitting) {
+        if(fitting == p_fitting) return;
+        fitting = p_fitting;
+        set_needs_layout();
+    }
 
     UIAxis get_direction() const { return direction; }
     void set_direction(UIAxis p_direction) { direction = p_direction; set_needs_layout(); }

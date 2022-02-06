@@ -11,9 +11,10 @@ class ControlsWindow : public UIWindow {
 public:
     explicit ControlsWindow(AppView* app_view);
 
+    void open_animation(int sort_index);
     void open_chart(int sort_index);
 
-    void sort_indexed(std::vector<SmartInt> &vector, int index);
+    static void sort_indexed(std::vector<SmartInt> &vector, int index);
 
     void create_charts();
 

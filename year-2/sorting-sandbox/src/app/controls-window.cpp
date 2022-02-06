@@ -6,9 +6,10 @@
 #include <random>
 #include "controls-window.hpp"
 #include "smart-int.hpp"
-#include "bubble-sort.hpp"
-#include "selection-sort.hpp"
+#include "sorting-algorithms/bubble-sort.hpp"
+#include "sorting-algorithms/selection-sort.hpp"
 #include "../utils/hsv.hpp"
+#include "animation-window.hpp"
 
 static const char* CHART_NAMES[] = {
     "std::sort",
@@ -17,25 +18,42 @@ static const char* CHART_NAMES[] = {
     "selection sort"
 };
 
-ControlsWindow::ControlsWindow(AppView* app_view) : UIWindow({200, 200}, {600, 120}, "Controls"), m_app_view(app_view) {
-    auto stack_view = new UIStackView(UIAxis::x);
-    stack_view->set_item_spacing(10);
-    stack_view->set_insets({ 10 });
+ControlsWindow::ControlsWindow(AppView* app_view) : UIWindow({200, 200}, {610, 270}, "Controls"), m_app_view(app_view) {
 
     for(int i = 0; i < sizeof(CHART_NAMES) / sizeof(char*); i++) {
-        auto button = new UIButton({}, {130, 100});
-        button->set_title(CHART_NAMES[i]);
-        button->set_callback([this, i]() {
-            open_chart(i);
-        });
-        stack_view->append_child(button);
+        auto chart_button = new UIButton({30.0f + 140.0f * i, 30}, {130, 100});
+        chart_button->set_title(CHART_NAMES[i]);
+        chart_button->set_callback([this, i]() { open_chart(i); });
+        get_content_view()->append_child(chart_button);
 
-        button->set_text_color(ith_color(i, false));
+        chart_button->set_text_color(ith_color(i, false));
+
+        auto animation_button = new UIButton({30.0f + 140.0f * i, 140}, {130, 50});
+        animation_button->set_title("Animate");
+        animation_button->set_callback([this, i]() { open_animation(i); });
+        get_content_view()->append_child(animation_button);
     }
 
-    set_can_be_closed(false);
+    auto shuffle_button = new UIButton({30.0f, 210}, {130, 50});
+    shuffle_button->set_title("Shuffle");
+    shuffle_button->set_callback([this]() { open_animation(-1); });
+    get_content_view()->append_child(shuffle_button);
 
-    get_content_view()->append_child(stack_view);
+    set_can_be_closed(false);
+}
+
+void ControlsWindow::open_animation(int sort_index) {
+
+    auto* animation_window = m_app_view->get_animation_window();
+    if(!animation_window) {
+        m_app_view->create_animation_window();
+
+        animation_window = m_app_view->get_animation_window();
+    }
+
+    animation_window->get_animation_view()->perform_task_async([this, sort_index]() {
+        sort_indexed( m_app_view->get_animation_window()->get_animation_view()->get_array(), sort_index);
+    });
 }
 
 void ControlsWindow::open_chart(int sort_index) {
@@ -77,6 +95,9 @@ void ControlsWindow::open_chart(int sort_index) {
 
 void ControlsWindow::sort_indexed(std::vector<SmartInt> &vector, int index) {
     switch(index) {
+        case -1:
+            std::shuffle(vector.begin(), vector.end(), std::default_random_engine());
+            break;
         case 0:
             std::sort(vector.begin(), vector.end());
             break;
@@ -88,8 +109,8 @@ void ControlsWindow::sort_indexed(std::vector<SmartInt> &vector, int index) {
             break;
         case 3:
             selection_sort(vector.begin(), vector.end());
-        default:
             break;
+        default: break;
     }
 }
 

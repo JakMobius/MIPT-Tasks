@@ -30,6 +30,7 @@ class DispatchQueue {
     uint64_t task_counter = 0;
     std::set<DispatchQueueTask> tasks {};
     std::map<DispatchQueueTaskHandle, uint64_t> task_timestamp_map {};
+    std::mutex m_guard_mutex;
 
 public:
     static DispatchQueue main;

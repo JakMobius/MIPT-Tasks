@@ -72,8 +72,18 @@ ChartWindow* AppView::get_chart_window() {
     return m_chart_window;
 }
 
+AnimationWindow* AppView::get_animation_window() {
+    return m_animation_window;
+}
+
 void AppView::create_chart_window() {
     m_chart_window = new ChartWindow({100, 100}, "Chart");
 
     present_window(m_chart_window);
+}
+
+void AppView::create_animation_window() {
+    m_animation_window = new AnimationWindow({200, 200});
+
+    present_window(m_animation_window);
 }

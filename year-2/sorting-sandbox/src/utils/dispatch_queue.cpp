@@ -7,26 +7,36 @@
 DispatchQueue DispatchQueue::main {};
 
 void DispatchQueue::perform() {
-    while(!tasks.empty()) {
 
+    m_guard_mutex.lock();
+    while(!tasks.empty()) {
         DispatchQueueTask task = *tasks.begin();
         uint64_t current_timestamp = get_current_timestamp();
         if(task.timestamp > current_timestamp) {
             std::this_thread::sleep_for(std::chrono::milliseconds(task.timestamp - current_timestamp));
+            atomic_thread_fence(std::memory_order_acquire);
+            continue;
         }
 
         tasks.erase(tasks.begin());
 
+        m_guard_mutex.unlock();
+
         task.task();
+
+        m_guard_mutex.lock();
 
         auto timestamp_iter = task_timestamp_map.find(task.index);
         if(timestamp_iter != task_timestamp_map.end()) {
             task_timestamp_map.erase(timestamp_iter);
         }
     }
+    m_guard_mutex.unlock();
 }
 
 DispatchQueueTaskHandle DispatchQueue::push(DispatchQueueTask &&task) {
+    std::lock_guard<std::mutex> guard { m_guard_mutex };
+
     task_counter++;
     task.index = task_counter;
     task_timestamp_map[task.index] = task.timestamp;
@@ -35,6 +45,8 @@ DispatchQueueTaskHandle DispatchQueue::push(DispatchQueueTask &&task) {
 }
 
 bool DispatchQueue::cancel(DispatchQueueTaskHandle handle) {
+    std::lock_guard<std::mutex> guard { m_guard_mutex };
+
     auto timestamp_iter = task_timestamp_map.find(handle);
     if(timestamp_iter == task_timestamp_map.end()) return false;
     uint64_t timestamp = timestamp_iter->second;

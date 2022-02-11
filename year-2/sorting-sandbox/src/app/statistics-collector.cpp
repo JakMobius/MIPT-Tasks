@@ -24,9 +24,9 @@ void InterruptingCollector::register_assignment() {
 //        std::cout << "SORT: callback\n";
         if(m_callback) m_callback();
     }});
-    atomic_thread_fence(std::memory_order_release);
+
     m_semaphore.wait();
-    atomic_thread_fence(std::memory_order_acquire);
+
     if(m_kill_thread) {
         std::cout << "SORT: kill\n";
         m_kill_thread = false;
@@ -48,9 +48,9 @@ void InterruptingCollector::register_comparsion(const SmartInt &a, const SmartIn
 //        std::cout << "SORT: callback\n";
         if(m_callback) m_callback();
     }});
-    atomic_thread_fence(std::memory_order_release);
+
     m_semaphore.wait();
-    atomic_thread_fence(std::memory_order_acquire);
+
     if(m_kill_thread) {
         std::cout << "SORT: kill\n";
         m_kill_thread = false;

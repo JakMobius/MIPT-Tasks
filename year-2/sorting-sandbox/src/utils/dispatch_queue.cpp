@@ -14,7 +14,6 @@ void DispatchQueue::perform() {
         uint64_t current_timestamp = get_current_timestamp();
         if(task.timestamp > current_timestamp) {
             std::this_thread::sleep_for(std::chrono::milliseconds(task.timestamp - current_timestamp));
-            atomic_thread_fence(std::memory_order_acquire);
             continue;
         }
 

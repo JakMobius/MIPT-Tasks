@@ -13,6 +13,12 @@ struct StatisticsCollector {
     virtual void register_comparsion(const SmartInt& a, const SmartInt& b);
 };
 
+struct KindaException : public std::exception {
+    size_t m_code;
+    KindaException(size_t code) noexcept: m_code(code) {};
+    char const* what() const noexcept override { return "Sorting was interrupted"; };
+};
+
 struct SortingInterruptedException : public std::exception {
     SortingInterruptedException() noexcept = default;
     char const* what() const noexcept override { return "Sorting was interrupted"; };

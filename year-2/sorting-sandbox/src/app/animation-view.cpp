@@ -4,6 +4,7 @@
 
 #include <random>
 #include "animation-view.hpp"
+#include "../utils/dispatch_queue.hpp"
 
 AnimationView::AnimationView(const Vec2f &position, const Vec2f &size) : UIView(position, size) {
     m_collector.m_ignore_operators = true;
@@ -15,7 +16,6 @@ AnimationView::AnimationView(const Vec2f &position, const Vec2f &size) : UIView(
     m_collector.m_ignore_operators = false;
 
     m_collector.set_callback([this]() {
-        atomic_thread_fence(std::memory_order_acquire);
         set_needs_redraw();
         m_sorting_is_waiting = true;
     });

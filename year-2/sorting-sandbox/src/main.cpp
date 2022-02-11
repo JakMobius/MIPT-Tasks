@@ -8,8 +8,15 @@ int main() {
     const int window_width = 1800;
     const int window_height = 1400;
 
+    sf::ContextSettings settings;
+//    settings.majorVersion = 4;
+//    settings.minorVersion = 1;
+//    settings.
+//    settings.depthBits = 24;
+//    settings.attributeFlags |= sf::ContextSettings::Core;
+
     sf::RenderWindow window (sf::VideoMode(window_width, window_height, 32), "Sorting Sandbox",
-                                  sf::Style::Titlebar | sf::Style::Close);
+                                  sf::Style::Titlebar | sf::Style::Close, settings);
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
 

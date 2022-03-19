@@ -1,0 +1,17 @@
+digraph G {
+	graph [ fontname=monospace, rankdir="TB", bgcolor="#272822" fontcolor="#f8f8f2" ]
+	node [ fontname=monospace, color="#f8f8f2" fontcolor="#f8f8f2" ]
+	edge [ fontname=monospace, color="#f8f8f2" fontcolor="#f8f8f2" ]
+	var0[label=<<font color="#fd971f">"emplace_back 4" </font><br/><font color="#ae81ff">40 </font><br/><font color="#ae81ff">0x6240000021d8 </font><br/>>, shape=rectangle]
+	var1[label=<<font color="#fd971f">"emplace_back 4" </font><br/><font color="#ae81ff">40 </font><br/><font color="#ae81ff">0x6240000021d8 </font><br/><font color="#f92672">destructed </font><br/>>, shape=rectangle]
+	var0 -> var1[style=dashed]
+	var2[label=<<font color="#fd971f">"emplace_back 3" </font><br/><font color="#ae81ff">30 </font><br/><font color="#ae81ff">0x624000002190 </font><br/>>, shape=rectangle]
+	var3[label=<<font color="#fd971f">"emplace_back 3" </font><br/><font color="#ae81ff">30 </font><br/><font color="#ae81ff">0x624000002190 </font><br/><font color="#f92672">destructed </font><br/>>, shape=rectangle]
+	var2 -> var3[style=dashed]
+	var4[label=<<font color="#fd971f">"emplace_back 2" </font><br/><font color="#ae81ff">20 </font><br/><font color="#ae81ff">0x624000002148 </font><br/>>, shape=rectangle]
+	var5[label=<<font color="#fd971f">"emplace_back 2" </font><br/><font color="#ae81ff">20 </font><br/><font color="#ae81ff">0x624000002148 </font><br/><font color="#f92672">destructed </font><br/>>, shape=rectangle]
+	var4 -> var5[style=dashed]
+	var6[label=<<font color="#fd971f">"emplace_back 1" </font><br/><font color="#ae81ff">10 </font><br/><font color="#ae81ff">0x624000002100 </font><br/>>, shape=rectangle]
+	var7[label=<<font color="#fd971f">"emplace_back 1" </font><br/><font color="#ae81ff">10 </font><br/><font color="#ae81ff">0x624000002100 </font><br/><font color="#f92672">destructed </font><br/>>, shape=rectangle]
+	var6 -> var7[style=dashed]
+}

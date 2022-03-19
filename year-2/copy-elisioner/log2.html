@@ -1,0 +1,24 @@
+<style> html, body { background-color: #272822; min-height: 100%; color: #f8f8f2; } </style><pre><span style='color:#75715e'>/* function: main */</span>
+	<span style='color:#66d9ef'>created </span><span style='color:#fd971f'>"a"</span> = <span style='color:#ae81ff'>10</span> at <span style='color:#ae81ff'>0x7ff7b9088d30</span>
+	<span style='color:#66d9ef'>created </span><span style='color:#fd971f'>"b"</span> = <span style='color:#ae81ff'>20</span> at <span style='color:#ae81ff'>0x7ff7b9088dd0</span>
+	<span style='color:#66d9ef'>created </span><span style='color:#fd971f'>"c"</span> = <span style='color:#ae81ff'>30</span> at <span style='color:#ae81ff'>0x7ff7b9088e70</span>
+	<span style='color:#66d9ef'>created </span><span style='color:#fd971f'>"tmp #0"</span> = <span style='color:#ae81ff'>200</span> at <span style='color:#ae81ff'>0x7ff7b9088700</span>
+	<span style='color:#fd971f'>"tmp #0"</span> = (<span style='color:#fd971f'>"a"</span> = <span style='color:#ae81ff'>10</span>) * (<span style='color:#fd971f'>"b"</span> = <span style='color:#ae81ff'>20</span>)
+	<span style='color:#f92672'>copy-created </span><span style='color:#fd971f'>"tmp #1"</span><span style='color:#f92672'> from </span><span style='color:#fd971f'>"tmp #0"</span>
+	<span style='color:#66d9ef'>deleted </span><span style='color:#fd971f'>"tmp #0"</span> = <span style='color:#ae81ff'>200</span> at <span style='color:#ae81ff'>0x7ff7b9088700</span>
+	<span style='color:#f92672'>copy-assigned </span><span style='color:#fd971f'>"c"</span><span style='color:#f92672'> from </span><span style='color:#fd971f'>"tmp #1"</span>
+	<span style='color:#66d9ef'>deleted </span><span style='color:#fd971f'>"tmp #1"</span> = <span style='color:#ae81ff'>200</span> at <span style='color:#ae81ff'>0x7ff7b9088f10</span>
+	<span style='color:#66d9ef'>created </span><span style='color:#fd971f'>"tmp #2"</span> = <span style='color:#ae81ff'>2000</span> at <span style='color:#ae81ff'>0x7ff7b9088700</span>
+	<span style='color:#fd971f'>"tmp #2"</span> = (<span style='color:#fd971f'>"a"</span> = <span style='color:#ae81ff'>10</span>) * (<span style='color:#fd971f'>"c"</span> = <span style='color:#ae81ff'>200</span>)
+	<span style='color:#f92672'>copy-created </span><span style='color:#fd971f'>"tmp #3"</span><span style='color:#f92672'> from </span><span style='color:#fd971f'>"tmp #2"</span>
+	<span style='color:#66d9ef'>deleted </span><span style='color:#fd971f'>"tmp #2"</span> = <span style='color:#ae81ff'>2000</span> at <span style='color:#ae81ff'>0x7ff7b9088700</span>
+	<span style='color:#f92672'>copy-assigned </span><span style='color:#fd971f'>"b"</span><span style='color:#f92672'> from </span><span style='color:#fd971f'>"tmp #3"</span>
+	<span style='color:#66d9ef'>deleted </span><span style='color:#fd971f'>"tmp #3"</span> = <span style='color:#ae81ff'>2000</span> at <span style='color:#ae81ff'>0x7ff7b9088f60</span>
+	<span style='color:#75715e'>/* function: swap */</span>
+		<span style='color:#f92672'>copy-created </span><span style='color:#fd971f'>"tmp #4"</span><span style='color:#f92672'> from </span><span style='color:#fd971f'>"c"</span>
+		<span style='color:#f92672'>copy-assigned </span><span style='color:#fd971f'>"c"</span><span style='color:#f92672'> from </span><span style='color:#fd971f'>"a"</span>
+		<span style='color:#f92672'>copy-assigned </span><span style='color:#fd971f'>"a"</span><span style='color:#f92672'> from </span><span style='color:#fd971f'>"tmp #4"</span>
+		<span style='color:#66d9ef'>deleted </span><span style='color:#fd971f'>"tmp #4"</span> = <span style='color:#ae81ff'>200</span> at <span style='color:#ae81ff'>0x7ff7b90885c0</span>
+	<span style='color:#66d9ef'>deleted </span><span style='color:#fd971f'>"c"</span> = <span style='color:#ae81ff'>10</span> at <span style='color:#ae81ff'>0x7ff7b9088e70</span>
+	<span style='color:#66d9ef'>deleted </span><span style='color:#fd971f'>"b"</span> = <span style='color:#ae81ff'>2000</span> at <span style='color:#ae81ff'>0x7ff7b9088dd0</span>
+	<span style='color:#66d9ef'>deleted </span><span style='color:#fd971f'>"a"</span> = <span style='color:#ae81ff'>200</span> at <span style='color:#ae81ff'>0x7ff7b9088d30</span>

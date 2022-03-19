@@ -46,7 +46,7 @@ public:
         return *this;
     }
 
-    SmartInt& operator=(SmartInt&& move_assign) noexcept {
+    SmartInt& operator=(SmartInt&& move_assign) {
         if(&move_assign == this) {
             m_statistics->register_assignment();
             return *this;

@@ -50,6 +50,8 @@ struct InterruptingCollector : public StatisticsCollector {
         m_callback = callback;
     };
 
+    void hold_on();
+
     void register_assignment() override;
     void register_comparsion(const SmartInt& a, const SmartInt& b) override;
 };

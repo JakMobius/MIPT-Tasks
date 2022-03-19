@@ -18,21 +18,8 @@ void InterruptingCollector::register_assignment() {
     StatisticsCollector::register_assignment();
 
     if(m_ignore_operators) return;
-//    std::cout << "SORT: assignment\n";
 
-    DispatchQueue::main.push(DispatchQueueTask { [this] {
-//        std::cout << "SORT: callback\n";
-        if(m_callback) m_callback();
-    }});
-
-    m_semaphore.wait();
-
-    if(m_kill_thread) {
-        std::cout << "SORT: kill\n";
-        m_kill_thread = false;
-        throw SortingInterruptedException();
-    }
-//    std::cout << "SORT: continue\n";
+    hold_on();
 }
 
 void InterruptingCollector::register_comparsion(const SmartInt &a, const SmartInt &b) {
@@ -42,19 +29,19 @@ void InterruptingCollector::register_comparsion(const SmartInt &a, const SmartIn
     m_last_compared_b = &b;
 
     if(m_ignore_operators) return;
-//    std::cout << "SORT: comparsion\n";
 
+    hold_on();
+}
+
+void InterruptingCollector::hold_on() {
     DispatchQueue::main.push(DispatchQueueTask { [this] {
-//        std::cout << "SORT: callback\n";
         if(m_callback) m_callback();
     }});
 
     m_semaphore.wait();
 
     if(m_kill_thread) {
-        std::cout << "SORT: kill\n";
         m_kill_thread = false;
         throw SortingInterruptedException();
     }
-//    std::cout << "SORT: continue\n";
 }

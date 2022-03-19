@@ -22,6 +22,8 @@ public:
     void perform_task_async(const std::function<void(void)>& task);
     std::vector<SmartInt>& get_array() { return m_array; };
 
+    InterruptingCollector& get_statistics_collector() { return m_collector; }
+
     static void async_task_entry(AnimationView* view, const std::function<void(void)>& func);
 
     void draw(DrawingContext *ctx) override;

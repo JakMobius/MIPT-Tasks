@@ -1,2 +1,3 @@
 year-1/bonk-compiler-reinvented/venv/*
-*/**/cmake-build-debug/*
+**/cmake-build-debug/*
+**/.DS_Store

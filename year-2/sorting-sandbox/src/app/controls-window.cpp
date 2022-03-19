@@ -52,7 +52,9 @@ void ControlsWindow::open_animation(int sort_index) {
     }
 
     animation_window->get_animation_view()->perform_task_async([this, sort_index]() {
-        sort_indexed( m_app_view->get_animation_window()->get_animation_view()->get_array(), sort_index);
+        auto& array = m_app_view->get_animation_window()->get_animation_view()->get_array();
+
+        sort_indexed( array, sort_index);
     });
 }
 

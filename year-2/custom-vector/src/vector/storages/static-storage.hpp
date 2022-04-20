@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename T, int t_size>
+template<typename T, typename ErrorHandlingStrategy, int t_size>
 class StaticStorageT {
     T m_storage[t_size];
 public:
@@ -15,6 +15,6 @@ public:
 
 template<int t_size>
 struct StaticStorage {
-    template<typename T>
-    using type = StaticStorageT<T, t_size>;
+    template<typename T, typename ErrorHandlingStrategy>
+    using type = StaticStorageT<T, ErrorHandlingStrategy, t_size>;
 };
